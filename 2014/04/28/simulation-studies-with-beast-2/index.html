@@ -1,0 +1,348 @@
+---
+layout: post
+title: Simulation studies with BEAST 2 
+tags: [beast-2,simulation,simulation-study,v2-1-2]
+---
+
+	
+
+		
+		<p style="color:gray">28 April 2014 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+<p> Ever wondered whether the gamma shape that is estimated has any relation to the gamma shape that generated the data? Probably not, but there are many cases where you want to find out whether a model that you use has any relation to the process that generated the data. If so, you probably want to do a simulation study and observe how parameters that generate sequence data have an impact on the parameters of the model that you use to analyse the data.</p>
+<p> BEAST has a number of tools that you can use to do a simulation study. Here, we will check what will happen when you change the rate heterogeneity and how it impacts the gamma shape estimate when using the gamma rate heterogeneity model.</p>
+<h2>Generating an alignment</h2>
+<p> First of all, we will set up a simulator using the <tt>SequenceSimulator</tt> class in BEAST. At the time of writing, no GUI is available, so some XML hacking is required.</p>
+<p>We will generate a sequence from a 3 taxa fixed tree using the HKY substitution model (kappa=5) and 4 rate categories with gamma shape ranging from 0.2 to 15. The following XML shows how to do this:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<beast version="2.0"
+       namespace="beast.evolution.alignment:beast.core:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood">
+
+    <!-- specify the taxa -->
+    <data id="alignment" dataType="nucleotide">
+        <sequence taxon="human">?</sequence>
+        <sequence taxon="chimp">?</sequence>
+        <sequence taxon="bonobo">?</sequence>
+    </data>
+
+    <!-- specify the tree -->
+    <tree id="tree" spec="beast.util.TreeParser" newick="(human:0.2,(chimp:0.15,bonobo:0.15):0.05)" taxa="@alignment"/>
+
+    <!-- configure the Sequence Simulator -->
+    <run spec="beast.app.seqgen.SequenceSimulator" id="seqgen" data="@alignment" tree="@tree" sequencelength="10000" outputFileName="gammaShapeSequence.xml">
+    	<!-- set up site model -->     
+	    <siteModel spec="SiteModel" id="siteModel" gammaCategoryCount="4">
+			<!-- specify gamma shape parameter -->
+			<shape spec="parameter.RealParameter">1.0</shape>
+			<!-- use HKY substitution model -->
+			<substModel spec="HKY" id="hky">
+			    <parameter name="kappa" id="hky.kappa" value="5.0" lower="0.0"/>
+				<frequencies id="freqs" spec="Frequencies">
+				    <data idref="alignment"/>
+				</frequencies>
+			</substModel>
+	    </siteModel>
+
+	    <!-- use a strict clock -->
+        <branchRateModel id="StrictClock" spec="beast.evolution.branchratemodel.StrictClockModel">
+            <parameter dimension="1" estimate="false" id="clockRate" minordimension="1" name="clock.rate" value="1.0"/>
+        </branchRateModel>
+	</run>
+</beast>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>If you save the XML as <tt>simluator.xml</tt> you can run it using BEAST, and it will produce a file called <tt>gammaShapeSequence.xml</tt> containing a sequence alignment with 10000 characters.</p>
+<h2>Setting up an analysis</h2>
+<p>Next step is to create a BEAST MCMC analysis file. The easiest way to do this is using BEAUti. Open BEAUti using the (default) Standard template. Import the alignment from the generated file <tt>gammaShapeSequence.xml</tt>. Go to the Sitemodel panel, and change the substitution model to HKY. Then, set the number of categories to 4, and click the estimate checkbox next to the shape. The panel should look something like this:</p>
+<p><img src="../../../..//files/2014/04/BEAUtiSitePanel.png"/></p>
+<p> Save the file as <tt>analysis.xml</tt>. After running the analysis with BEAST, and using tracer to inspect the log file <tt>SequenceSimulator.log</tt>, tracer could report something like this:</p>
+<p><img src="../../../..//files/2014/04/tracer.png"/></p>
+<p>As you can see, the gamma shape is estimated as 1.287 with a 95% HPD Interval of [0.8596, 1.7296], so the original gamma shape value of 1.0 is in the 95% HPD Interval. So, it appears that the gamma shape parameter can be estimated. How about the bias? Perhaps we should run the simulation a few more time and see how it behaves over say 10 independently generated alignments.</p>
+<h2>Repeating this 10x</h2>
+<p>To repeat the above &#8212; simulate sequences, merge with an analysis, and run the analysis &#8212; say 10 times, we can adjust the XML script simply by adding the following:</p>
+<li>Add an iterations attribute to the run element, setting <tt>iterations="10"</tt>.</li>
+<li>Add a <tt>merge</tt> element indicating that the generated alignment should be merged with the XML representing an analysis &#8212; it replaces the alignment in a BEAST XML file with the one generated by the SequenceSimulator. Since we just created the file <tt>analysis.xml</tt> with the kind of analysis we want to run, we can use that file.</li>
+<p>Note that you can specify more than one merge file, and every template file has its alignment replaced with the same generated alignment. This is handy if you want to find out how model misspecification impacts your estimates.</p>
+<p>The XML should look something like this:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<beast version="2.0"
+       namespace="beast.evolution.alignment:beast.core:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood">
+
+    <!-- specify the taxa -->
+    <data id="alignment" dataType="nucleotide">
+        <sequence taxon="human">?</sequence>
+        <sequence taxon="chimp">?</sequence>
+        <sequence taxon="bonobo">?</sequence>
+    </data>
+
+    <!-- specify the tree -->
+    <tree id="tree" spec="beast.util.TreeParser" newick="(human:0.2,(chimp:0.15,bonobo:0.15):0.05)" taxa="@alignment"/>
+
+    <!-- configure the Sequence Simulator -->
+    <run spec="beast.app.seqgen.SequenceSimulator" id="seqgen" data="@alignment" 
+    		tree="@tree" sequencelength="10000" outputFileName="gammaShapeSequence.xml"
+    		iterations="10">
+    		<merge spec='beast.app.seqgen.MergeDataWith' template='analysis.xml' output='analysis-$(n).xml'/>
+
+    	<!-- set up site model -->     
+	    <siteModel spec="SiteModel" id="siteModel" gammaCategoryCount="4">
+			<!-- specify gamma shape parameter -->
+			<shape spec="parameter.RealParameter">1.0</shape>
+			<!-- use HKY substitution model -->
+			<substModel spec="HKY" id="hky">
+			    <parameter name="kappa" id="hky.kappa" value="5.0" lower="0.0"/>
+				<frequencies id="freqs" spec="Frequencies">
+				    <data idref="alignment"/>
+				</frequencies>
+			</substModel>
+	    </siteModel>
+
+	    <!-- use a strict clock -->
+        <branchRateModel id="StrictClock" spec="beast.evolution.branchratemodel.StrictClockModel">
+            <parameter dimension="1" estimate="false" id="clockRate" minordimension="1" name="clock.rate" value="1.0"/>
+        </branchRateModel>
+	</run>
+</beast>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>Save as <tt>simulator10.xml</tt> in the directory containing <tt>analysis.xml</tt> and when you run the XML file with BEAST, there should be 10 files generated, named <tt>analysis-0.xml</tt>, <tt>analysis-1.xml</tt>, up to <tt>analysis-9.xml</tt>. You could run the ten XML files with BEAST, but you will quickly find out that every log file has the same name &#8212; running each file in its own directory, or renaming log files after running an analysis is quite labourious.</p>
+<p>Fortunately The sequence simulator, before it replaces the alignment in the analysis file, replaces every instance of &#8220;$(n)&#8221; (dollar followed (n)) by the iteration number. So, if we change the file names of the loggers in the <tt>analysis.xml</tt> file like so:</p>
+<p>From</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}    <logger fileName="SequenceSimulator.log" id="tracelog" logEvery="1000" model="@posterior" sanitiseHeaders="true" sort="smart">{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>to</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}    <logger fileName="SequenceSimulator-$(n).log" id="tracelog" logEvery="1000" model="@posterior" sanitiseHeaders="true" sort="smart">{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>And, from </p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}    <logger fileName="$(tree).trees" id="treelog.t:SequenceSimulator" logEvery="1000" mode="tree">{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>to</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}    <logger fileName="$(tree)-$(n).trees" id="treelog.t:SequenceSimulator" logEvery="1000" mode="tree">{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>It is probably also a good idea to set the <tt>chainLength="4000000"</tt> in <tt>analysis.xml</tt>. Rerun BEAST on <tt>simluator10.xml</tt>.</p>
+<p>Now we can run the 10 simulator files and get log file <tt>SequenceSimulator-0.log</tt>, <tt>SequenceSimulator-1.log</tt>, &#8230; <tt>SequenceSimulator-9.log</tt>.</p>
+<p>Analysing the log files can be done with tracer with the 10 log files. For the 10 log files, we can select the combined log, which looks something like this:</p>
+<p><img src="../../../..//files/2014/04/tracer10.png"/></p>
+<p>The mean estimate over 10 runs is 1.0752 with 95% HPD Interval of [0.7423, 1.503], so the gamma shape used for generating the data is close to the mean and it is firmly in the 95% HPD interval.</p>
+<h2>Repeating 10x for 21 different gamma shape values</h2>
+<p>So, it looks like the gamma shape value can be infered when the value is 1.0. How about other values? To test this, we can change the <tt>simulator.xml</tt> file for different values of the shape parameter, and run the analysis 10 times for each gamma shape.</p>
+<h2>Analysing with <tt>LogAnalyser</tt> and <tt>R</tt></h2>
+<p>Doing this for 21 values of the shape parameter gives 210 log files, which become a bit cumbersome to analyse with tracer. If you would have run the same analysis with a different template (e.g. with a GTR model instead of HKY), you get another 210 log files.</p>
+<p>BEAST has a <tt>LogAnalyser</tt> that produces similar output to tracer in table format. To run it, you can use </p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}java -cp beast.jar  beast.util.LogAnalyser trace.log{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>Running it on one of the trace logs produces output like this:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}~> java -cp beast.jar beast.util.LogAnalyser SequenceSimulator-9.log
+Loading SequenceSimulator-9.log skipping 400 log lines
+
+|---------|---------|---------|---------|---------|---------|---------|---------|
+*********************************************************************************
+
+Calculating statistics
+
+|---------|---------|---------|---------|---------|---------|---------|---------|
+********************************************************************************
+
+item            mean     stderr   stddev   median   95%HPDlo 95%HPDup ACT      ESS      geometric-mean 
+posterior       -28426.3 0.104762 1.962981 -28426.0 -28430.0 -28422.9 10256.42 351.0971 NaN     
+likelihood      -28422.3 0.104126 1.814905 -28422.0 -28425.7 -28419.3 11853.12 303.8017 NaN     
+prior           -4.05647 0.01505  0.768483 -3.79066 -5.60204 -3.26877 1381.170 2607.208 NaN     
+treeLikelihood  -28422.3 0.104126 1.814905 -28422.0 -28425.7 -28419.3 11853.12 303.8017 NaN     
+TreeHeight      0.200092 0.000399 0.006715 0.199813 0.187791 0.213805 12723.26 283.0248 0.19998 
+YuleModel       0.009806 0.013149 0.757205 0.290776 -1.48896 0.721453 1085.933 3316.040 NaN     
+birthRate       5.396959 0.054138 3.102894 4.803029 0.51353  11.32685 1096.214 3284.940 4.521489
+gammaShape      1.198491 0.013759 0.195758 1.186229 0.853668 1.591099 17788.98 202.4286 1.183323
+kappa           4.993622 0.017951 0.231987 4.993078 4.55073  5.396354 21561.68 167.0091 4.988256
+freqParameter.1 0.25509  0.000216 0.003752 0.254981 0.248605 0.262504 11883.76 303.0184 0.255063
+freqParameter.2 0.24809  0.000193 0.003549 0.24805  0.241616 0.255487 10634.58 338.6120 0.248064
+freqParameter.3 0.246065 0.00022  0.003662 0.245816 0.239572 0.25322  13036.39 276.2267 0.246038
+freqParameter.4 0.250755 0.000213 0.003567 0.250743 0.244575 0.258267 12875.19 279.6851 0.250729{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>For this run, the estimated gamma shape is 1.198491 with an ESS of 202.</p>
+<p>By specifying the prefix directive, you can add a column to identify the run by a prefix value. For example, setting <tt>-Dprefix=1.0</tt> like so:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}~> java -Dprefix=1.0 -cp beast.jar beast.util.LogAnalyser SequenceSimulator-9.log
+
+Loading SequenceSimulator-9.log skipping 400 log lines
+
+|---------|---------|---------|---------|---------|---------|---------|---------|
+*********************************************************************************
+
+Calculating statistics
+
+|---------|---------|---------|---------|---------|---------|---------|---------|
+********************************************************************************
+
+item            prefix mean     stderr   stddev   median   95%HPDlo 95%HPDup ACT      ESS      geometric-mean 
+posterior       1.0 -28426.3 0.104762 1.962981 -28426.0 -28430.0 -28422.9 10256.42 351.0971 NaN     
+likelihood      1.0 -28422.3 0.104126 1.814905 -28422.0 -28425.7 -28419.3 11853.12 303.8017 NaN     
+prior           1.0 -4.05647 0.01505  0.768483 -3.79066 -5.60204 -3.26877 1381.170 2607.208 NaN     
+treeLikelihood  1.0 -28422.3 0.104126 1.814905 -28422.0 -28425.7 -28419.3 11853.12 303.8017 NaN     
+TreeHeight      1.0 0.200092 0.000399 0.006715 0.199813 0.187791 0.213805 12723.26 283.0248 0.19998 
+YuleModel       1.0 0.009806 0.013149 0.757205 0.290776 -1.48896 0.721453 1085.933 3316.040 NaN     
+birthRate       1.0 5.396959 0.054138 3.102894 4.803029 0.51353  11.32685 1096.214 3284.940 4.521489
+gammaShape      1.0 1.198491 0.013759 0.195758 1.186229 0.853668 1.591099 17788.98 202.4286 1.183323
+kappa           1.0 4.993622 0.017951 0.231987 4.993078 4.55073  5.396354 21561.68 167.0091 4.988256
+freqParameter.1 1.0 0.25509  0.000216 0.003752 0.254981 0.248605 0.262504 11883.76 303.0184 0.255063
+freqParameter.2 1.0 0.24809  0.000193 0.003549 0.24805  0.241616 0.255487 10634.58 338.6120 0.248064
+freqParameter.3 1.0 0.246065 0.00022  0.003662 0.245816 0.239572 0.25322  13036.39 276.2267 0.246038
+freqParameter.4 1.0 0.250755 0.000213 0.003567 0.250743 0.244575 0.258267 12875.19 279.6851 0.250729{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>This makes it easy to have for example an R script to find the estimates associated with a particular value used for generating the data.</p>
+<p> If you specify more than one indicators, for example the iteration number and the shape parameter, just insert them in braces, like so</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}~> java -Dprefix="1.0 9" -cp beast.jar beast.util.LogAnalyser SequenceSimulator-9.log{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>The output now has two columns, with headers labeled <tt>prefix0 prefix1</tt> and column values <tt>9 1.0</tt></p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}item            prefix0 prefix1 mean     stderr   stddev   median   95%HPDlo 95%HPDup ACT      ESS      geometric-mean 
+posterior       9 1.0 -28426.3 0.104762 1.962981 -28426.0 -28430.0 -28422.9 10256.42 351.0971 NaN     
+likelihood      9 1.0 -28422.3 0.104126 1.814905 -28422.0 -28425.7 -28419.3 11853.12 303.8017 NaN     
+prior           9 1.0 -4.05647 0.01505  0.768483 -3.79066 -5.60204 -3.26877 1381.170 2607.208 NaN     
+treeLikelihood  9 1.0 -28422.3 0.104126 1.814905 -28422.0 -28425.7 -28419.3 11853.12 303.8017 NaN     
+TreeHeight      9 1.0 0.200092 0.000399 0.006715 0.199813 0.187791 0.213805 12723.26 283.0248 0.19998 
+YuleModel       9 1.0 0.009806 0.013149 0.757205 0.290776 -1.48896 0.721453 1085.933 3316.040 NaN     
+birthRate       9 1.0 5.396959 0.054138 3.102894 4.803029 0.51353  11.32685 1096.214 3284.940 4.521489
+gammaShape      9 1.0 1.198491 0.013759 0.195758 1.186229 0.853668 1.591099 17788.98 202.4286 1.183323
+kappa           9 1.0 4.993622 0.017951 0.231987 4.993078 4.55073  5.396354 21561.68 167.0091 4.988256
+freqParameter.1 9 1.0 0.25509  0.000216 0.003752 0.254981 0.248605 0.262504 11883.76 303.0184 0.255063
+freqParameter.2 9 1.0 0.24809  0.000193 0.003549 0.24805  0.241616 0.255487 10634.58 338.6120 0.248064
+freqParameter.3 9 1.0 0.246065 0.00022  0.003662 0.245816 0.239572 0.25322  13036.39 276.2267 0.246038
+freqParameter.4 9 1.0 0.250755 0.000213 0.003567 0.250743 0.244575 0.258267 12875.19 279.6851 0.250729{% endhighlight %}			
+			
+		
+
+<p></p>
+<p> Using the LogAnalyser, you can create a text file containing the estimates for all logs. Doing this for various values of gamma shape,</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}java -Dprefix=0.2 -cp beast.jar beast.util.LogAnalyser SequenceSimulator-0.2.log >> log.dat
+java -Dprefix=0.3 -cp beast.jar beast.util.LogAnalyser SequenceSimulator-0.3.log >> log.dat
+java -Dprefix=0.4 -cp beast.jar beast.util.LogAnalyser SequenceSimulator-0.4.log >> log.dat
+...
+java -Dprefix=15.0 -cp beast.jar beast.util.LogAnalyser SequenceSimulator-15.log >> log.dat{% endhighlight %}			
+			
+		
+
+<p>You can create a <tt>log.dat</tt> that you can use in R for a plot. In R, we can do the following &#8212; assuming we generated alignments with shape parameter values 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.5, 3.0, 4.0, 5.0, 7.5,10.0, 15.0:</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}> x <- read.table("log.dat",header=1)
+> s <- c(0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.5, 3.0, 4.0, 5.0, 7.5,10.0, 15.0)
+> plot(s,s,log="xy",ann=0);
+> lines(s,as.numeric(as.character(x[which(x$item=="gammaShape"),"mean"])))
+> title("3 taxa, gamma site model with \nvarying shape parameter", xlab="shape used for generating data", ylab="estimated shape"){% endhighlight %}			
+			
+		
+
+<p></p>
+<p>This gives the following graph showing the estimate of shape parameter against the value used for simulating the data. Over all, there is a close match, except for large values of the shape parameter.</p>
+<p><img src="../../../..//files/2014/04/Rplot.png"/></p>
+	
+	

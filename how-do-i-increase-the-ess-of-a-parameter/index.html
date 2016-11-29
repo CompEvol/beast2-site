@@ -1,0 +1,29 @@
+---
+layout: site
+title: How do I increase the ESS of a parameter?  
+tags: [ess]
+---
+
+	
+		<p>Here are some ways of increasing the ESS of a parameter:</p>
+<ol>
+<li>Optimize the performance of the <a title="Glossary" href="../glossary//index.html#Operator/index.html">operators</a>. <a title="BEAST" href="http://beast2.org/">BEAST</a> implements a system of auto-optimization for <a title="Glossary" href="http://beast2.org/glossary/#operator">operator</a> tuning. By default, this is on, but can be turned of for many (but not all) operators by adding the following attribute to the <code>operator</code> element in the XML input file:<br />
+
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<operator optimize="false" ... ><{% endhighlight %}			
+			
+		
+
+<br />
+Also, at the end of a BEAST run, a report is printed showing some performance suggestions for operators that do not perform very well. You could change the start values of some operator parameters (e.g. the scale-factor for scale operators), which should help those operators explore the state space more efficiently.</li>
+<li>Increase the sampling frequency. The ESS is calculated by measuring the correlation between sampled states in the chain (i.e., the entries in the log file). If the sampling frequency is very low these will be uncorrelated. This will be indicated by the ESS being approximately equal to the number of states in the log file (minus the <a title="Glossary" href="../glossary//index.html#Burn-In/index.html">burn-in</a>). If this is the case, then it may be that you can improve the ESSs by increasing the <a title="Glossary" href="http://beast2.org/glossary/#Sampling_Frequency">sampling frequency</a> until the samples in the log file begin to be autocorrelated. Sampling too frequently will not affect the ESSs but will increase the size of the log file and the time it takes to analyse it.</li>
+<li>Combine the results of multiple independent chains. It is a good idea to do multiple independent runs of your analyses and compare the results to check that the chains are <a title="Glossary" href="../glossary//index.html#Convergence/index.html">converging</a> and <a title="Glossary" href="http://beast2.org/glossary/#Mixing">mixing</a> adequately. If this is the case then each should be sampling from the same distribution and the results could be combined (having removed a suitable <a title="Glossary" href="http://beast2.org/glossary/#Burn-In">burn-in</a>from each). The continuous parameters in the log file can be analysed and combined using <a title="Tracer" href="http://beast2.org/tracer-2">Tracer</a>. The tree files will currently have to be combined manually using a text editor. An advantage of this approach is that the different runs can be performed simultaneously on different computers (say in a computer lab or nodes on a Linux cluster) or on different processors in a multi-processor machine.</li>
+<li>Increase the chain length. This is the most straight-forward way of increasing the ESS. This obviously requires more computer resources and may not be practical.</li>
+</ol>
+	
+

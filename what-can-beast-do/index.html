@@ -1,0 +1,98 @@
+---
+layout: site
+title: What can BEAST do? 
+tags: []
+---
+
+	
+		<p>This is a list of some of the models and features in BEAST</p>
+<dl>
+<dt>
+<ul>
+<li>Constant rate molecular clock models.</li>
+</ul>
+</dt>
+<dd>This is the default model. The tree can be calibrated by specifying a mutation rate.</dd>
+</dl>
+<dl>
+<dt>
+<ul>
+<li>Variable rate (relaxed) molecular clock models.</li>
+</ul>
+</dt>
+<dd>Implements the uncorrelated relaxed clock models of Drummond, Ho, Phillips &amp; Rambaut (2006, PLoS Biology) see below for full citation.</dd>
+</dl>
+<dl>
+<dt>
+<ul>
+<li>Divergence date estimates.</li>
+</ul>
+</dt>
+<dd>Dates of divergence for specific most recent common ancestors (MRCA) can be estimated.</dd>
+</dl>
+<dl>
+<dt>
+<ul>
+<li>Non-contemporaneous sequences (!TipDate) molecular clock models.</li>
+</ul>
+</dt>
+<dd>When the differences in the dates associated with the sequences comprise a significant proportion of the age of the entire tree, these dates can be incorporated into the model providing a source of information about the rate of substitution.</dd>
+</dl>
+<dl>
+<dt>
+<ul>
+<li>Substitution model heterogeneity across sites.</li>
+</ul>
+</dt>
+<dd>Different substitution models can be specified for different sets of sites. For example, each codon position can be allowed a different substitution matrix and gamma model of rate heterogeneity.</dd>
+</dl>
+<dl>
+<dt>
+<ul>
+<li>Flexible model specification.</li>
+</ul>
+</dt>
+<dd>The model-specification file format allows considerable flexibility. For example, it is possible to specify that each codon position has a different rate, a different degree of rate heterogeneity but the same transition/transversion ratio.</dd>
+</dl>
+<dl>
+<dt>
+<ul>
+<li>Range of substitution models.</li>
+</ul>
+</dt>
+<dd>Available substitution models include HKY and GTR for nucleotides, Blosum62, CPREV, JTT, MTREV, WAG and Dayhoff for amino acids and the model of Yang and Nielsen (1998) for codons.</dd>
+</dl>
+<dl>
+<dt>
+<ul>
+<li>Flexible choice of priors on parameters.</li>
+</ul>
+</dt>
+<dd>Any parameter can be given a prior. For example, the age of the root of the tree can be given an exponential prior with a given mean.</dd>
+</dl>
+<dl>
+<dt>
+<ul>
+<li>Coalescent models of population size and growth.</li>
+</ul>
+</dt>
+<dd>Various models of coalescent population growth can be used. At present, constant size and exponential growth are available but more will be added soon. These models basically act as priors on the ages of nodes in the tree but the parameters (population size and growth rate) can be sampled and estimated.</dd>
+</dl>
+<dl>
+<dt>
+<ul>
+<li>Multi-locus coalescent models.</li>
+</ul>
+</dt>
+<dd>Two unlinked genes can be given the same coalescent population model but a different substitution process and tree, allowing the production of multi-locus coalescent inference.</dd>
+</dl>
+<dl>
+<dt>
+<ul>
+<li>Local clock molecular clock models.</li>
+</ul>
+</dt>
+<dd>Allowing different clades in the tree to have different rates (or indeed, completely different substitution processes).</dd>
+</dl>
+	
+

@@ -1,0 +1,21 @@
+---
+layout: site
+title: Morphological models 
+tags: []
+---
+
+	
+		<p class="toc_title">Contents</p><ul class="toc_list"><li><a href="#BEAST2_version">1 BEAST2 version</a></li><li><a href="#Morph-models_package">2 Morph-models package</a></li><li><a href="#Example_data_set">3 Example data set</a></li><li><a href="#Example_XML">4 Example XML</a></li></ul>
+<h2>BEAST2 version</h2>
+<p>To use morphological models download BEAST 2.2.0 <a class="external autonumber" href="http://www.beast2.org/" rel="nofollow">[1]</a></p>
+<h2>Morph-models package</h2>
+<p>Then install the morph-models package using package manager (which can be found in the file menu) in BEAUti 2.</p>
+<h2>Example data set</h2>
+<p>We will use the nexus file <a class="external text" href="https://github.com/CompEvol/morph-models/blob/master/examples/nexus/M3982.nex" rel="nofollow">here</a> to demonstrate setting up morph-models in BEAUti 2.</p>
+<p>Run BEAUti and add the alignment by hitting plus button at the bottom left corner of the main window. Choose <i>add MK morphological data</i> and then choose a nexus file with morphological data (such as an example one). BEAUti will add the alignment of morphological characters partitioning it in groups with the same number of character states. The number of character states for each character is either obtained from the CHARSTATELABELS block in the nexus file or calculated as the number of different character codes that occur in the alignment for a given character if it is not given in the CHARSTATELABELS block.</p>
+<p>Each partition is assigned a site model with the appropriate Lewis MK substitution model, i.e., Lewis MK model with the same number of states as the number of states for characters in the partition. The clock models and trees for each partition are linked by default, that is, all partitions are considered to evolve on the same tree and under the same clock model. For each Lewis MK model you can specify <i>Gamma category count</i> and either fix or estimate <i>Shape</i> parameter in the <i>Site Model</i> panel. Leave <i>Proportion Invariant</i> fixed to zero.</p>
+<p>Further you can specify other parts of the analysis as usual and save the output XML file.</p>
+<h2>Example XML</h2>
+<p>If you have followed the instructions above correctly you should get the same XML as <a class="external text" href="https://github.com/CompEvol/morph-models/blob/master/examples/M3982.xml" rel="nofollow">here</a>. You can now run BEAST2 with the resulting XML file.</p>
+	
+

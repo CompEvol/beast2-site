@@ -1,0 +1,33 @@
+---
+layout: post
+title: What is new in v2.4.3 
+tags: []
+---
+
+	
+
+		
+		<h2>BEAUti</h2>
+<p>If you want to sample tip dates, you can create an MRCA prior in the priors panel (by clicking the little &#8216;+&#8217; button at the bottom of the screen). Once you specified the set of taxa and an age distribution, click the &#8216;tips only&#8217; checkbox, and a tip sampling operator will be automatically added.</p>
+<h3>Multi-monophyletic constraints through Newick</h3>
+<p>BEAUti now allows packages to specify add package specific priors; when you click the &#8216;+&#8217; button at the bottom of the priors tab, and a package (such as BEASTLabs that can add a multi-monophyletic prior) provides a new prior a dialog pops up showing a list to choose from. By default, and MRCA prior is added if no other package provides anything. The multi-monophyletic prior from BEASTLabs allows you to specify a large number of monophyletic constraints through a tree in Newick format.</p>
+<h3>Microsattelite support</h3>
+<p>Another way packages now can extend BEAUti is by catering for package specific file formats. For example, the BEASTvntr package reads in alignments from a comma separated file format and interprets them as numbers of tandem repeats. The BEASTvntr provides microsattelite support. </p>
+<h3>Misc</h3>
+<p>Gamma distribution now allows multiple parameterisations: shape/scale, shape/rate, shape/mean, and one parameter, but defaults to the shape/scale as in previous version.</p>
+<p>When saving a file to XML from BEAUti, all packages used in the XML are now encoded in XML, so when starting BEAST on a different computer, it can provide better error reporting of missing packages.</p>
+<p>Better looking on high-res screens.</p>
+<h2>BEAST</h2>
+<p>Allow multiple citation annotations per class.</p>
+<p>Allow trait sets with unspecified dates instead of failing when not all taxa had a date specified.</p>
+<p>Allow multiple arguments to Sum so you can add values from various sources. </p>
+<p>Improved error reporting, as usual.</p>
+<h2>Package Manager</h2>
+<p>The GUI version of the package manager now has links to documentation. By clicking the link of a particular package, a web browser opens that should bring you a page with package specific information.</p>
+<p>Some work has been done to make the layout of the package manager look better.</p>
+<h2>Misc</h2>
+<p>TreeAnnotator fix for phylogeography in low-mem mode &#8212; previously, any meta data in array format such as location information was ignored.</p>
+<p>LogCombiner suppresses duplicate &#8216;=&#8217; in tree output.</p>
+	
+	
+	

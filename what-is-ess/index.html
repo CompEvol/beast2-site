@@ -1,0 +1,31 @@
+---
+layout: site
+title: What is ESS? 
+tags: [ess]
+---
+
+	
+		<p class="toc_title">Contents</p><ul class="toc_list"><li><a href="#How_do_I_calculate_an_ESS">1 How do I calculate an ESS?</a></li><li><a href="#Why_do_I_need_to_increase_it">2 Why do I need to increase it?</a></li><li><a href="#What_size_ESS_is_adequate">3 What size ESS is adequate?</a></li><li><a href="#Do_I_need_adequate_ESSs_for_all_my_parameters">4 Do I need adequate ESSs for all my parameters?</a></li><li><a href="#Is_the_ESS_important_if_I_am_interested_in_the_sample_of_trees">5 Is the ESS important if I am interested in the sample of trees?</a></li></ul>
+<p>The <a title="Glossary" href="../glossary/index.html#ESS">Effective Sample Size (ESS)</a> of a parameter sampled from an <a title="Glossary" href="http://www.beast2.org/Glossary#MCMC">MCMC</a> (such as <a title="BEAST" href="http://www.beast2.org/BEAST">BEAST</a>) is the number of effectively independent draws from the posterior distribution that the Markov chain is equivalent to.</p>
+<h4>How do I calculate an ESS?</h4>
+<dl>
+<dd>The simplest way is to load your <a title="BEAST" href="http://www.beast2.org/BEAST">BEAST</a> log files into <a title="Tracer" href="http://www.beast2.org/Tracer">Tracer</a>.</dd>
+</dl>
+<h4>Why do I need to increase it?</h4>
+<dl>
+<dd>If the ESS of a parameter is small then the estimate of the posterior distribution of that parameter will be poor. In <a title="Tracer" href="http://www.beast2.org/Tracer">Tracer</a> you can calculate the standard deviation of the estimated mean of a parameter. If the ESS is small then the standard deviation will be large. This is exactly the same as the sample size of an experiment consisting of measurements.</dd>
+</dl>
+<h4>What size ESS is adequate?</h4>
+<dl>
+<dd>The larger the better. <a title="Tracer" href="http://www.beast2.org/Tracer">Tracer</a> flags up ESSs &lt; 100 but this may be liberal and &gt; 200 would be better. On the other hand chasing ESSs &gt; 10000 may be a waste of computational resources.</dd>
+</dl>
+<h4>Do I need adequate ESSs for all my parameters?</h4>
+<dl>
+<dd>Possibly not. Really low ESSs may be indicative of poor <a title="Glossary" href="http://www.beast2.org/Glossary#Mixing">mixing</a> but if a couple of parameters that you are not interested in are a little low it probably doesn&#8217;t matter. The likelihoods (both of the tree and coalescent model) should have decent ESSs.</dd>
+</dl>
+<h4>Is the ESS important if I am interested in the sample of trees?</h4>
+<dl>
+<dd>Definitely. At the moment we don&#8217;t have anyway of directly examining the ESS of the tree or the clade frequencies. Therefore, it is important that the continuous parameters and likelihoods have adequate ESS to demonstrate good <a title="Glossary" href="http://www.beast2.org/Glossary#Mixing">mixing</a> of the MCMC.</dd>
+</dl>
+	
+

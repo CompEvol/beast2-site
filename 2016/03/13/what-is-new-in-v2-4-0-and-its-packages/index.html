@@ -1,0 +1,32 @@
+---
+layout: post
+title: What is new in v2.4.0 and its packages 
+tags: []
+---
+
+	
+
+		
+		<h2>BEAST improved performance</h2>
+<p>BEAST is up to 2x faster when using proportion invariant sites and BEAGLE. When using proportion invariant in combination with gamma rate heterogeneity, it still is faster than before.</p>
+<p>BEAST always had a &#8220;beagle_instance&#8221; command line flag, that was essentially ignored. This is now replaced by an  flag that actually works, and is named &#8220;instances&#8221; since it works both with java and BEAGLE tree likelihoods.</p>
+<p>By default, the treelikelihood is now threaded for analyses using the Standard template in BEAUti. The number of threads used per treelikelihood is determined by the &#8220;instances&#8221; flag, but can be overridden using the &#8220;threads&#8221; attribute of ThreadedTreeLikelihood (which was migrated from the BEASTLabs package). </p>
+<p>Further, there are a few minor performance improvements, including faster MRCAPrior handling.</p>
+<p>A bug in StartBeastStartState was fixed to work with calibrations with other than the CalibratedYule prior.</p>
+<h2>BEAUti</h2>
+<p>The parametric distributions in priors panel now show mean as well as median of the distribution.</p>
+<p>There is better taxon management preventing adding numbers to taxon names </p>
+<p>The layout tip dates panel was improved to deal with changing window sizes.</p>
+<p>A bug in *BEAST clock cloning is fixed.</p>
+<p>Allow setting branch length as substitution option on tree logger, which was previously not possible.&#8217;</p>
+<p>Improved JSON export of BEAST analyses (just use json as extension to the file when saving) and using a library with a more sensible license.</p>
+<h2>Package manager</h2>
+<p>The package manager has been changed so it can read all package information (including that of older versions) from a single package file. A bigger change is that BEAST is now treated as a separate package: when you start any of the BEAST applications, it loads the beast.jar file from the user package directory, and if it is not already there, will put a copy in that place. This makes it much easier to upgrade BEAST: just select BEAST in the package list and click the install/update button.</p>
+<p>The GUI of the package manager is improved, among other things, showing by colour whether a package can be installed.</p>
+<h2>For developers</h2>
+<p>The biggest change with this release is really for developers, as outlined in a separate post <a href="../../../../2016/02/04/what-will-change-in-v2-4-0-for-developers/index.html">here</a>.</p>
+<h2>Packages</h2>
+<p>Due to some API changes, all packages have been re-released. Some packages have not been updated yet, but will be soon. New packages expected soon that have not been available before include <a href="https://github.com/genomescale/starbeast2">startbeast2</a> and <a href="https://github.com/Anaphory/correlatedcharacters">correlated characters</a>.</p>
+	
+	
+	

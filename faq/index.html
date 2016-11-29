@@ -1,0 +1,214 @@
+---
+layout: site
+title: FAQ 
+tags: []
+---
+
+	
+		<p class="toc_title">Contents</p><ul class="toc_list"><li><a href="#Introduction">1 Introduction</a><ul><li><a href="#What_can_BEAST_do">1.1 What can BEAST do?</a></li></ul></li><li><a href="#Installing_and_running_BEAST">2 Installing and running BEAST</a><ul><li><a href="#How_do_I_install_and_run_BEAST">2.1 How do I install and run BEAST?</a></li><li><a href="#How_do_I_use_BEAGLE_with_BEAST">2.2 How do I use BEAGLE with BEAST? </a></li></ul></li><li><a href="#Evolutionary_rates_and_time_scales">3 Evolutionary rates and time scales</a><ul><li><a href="#I_have_X_sequences_sampled_over_a_Y_year_time_span_are_they_enough_to_estimate_the_substitution_rate">3.1 I have X sequences sampled over a Y year time span; are they enough to estimate the substitution rate?</a></li></ul></li><li><a href="#Parameters">4 Parameters</a><ul><li><a href="#What_do_all_the_parameters_domean">4.1 What do all the parameters do/mean?</a></li></ul></li><li><a href="#Optimizing_operators">5 Optimizing operators</a><ul><li><a href="#Do_I_need_to_worry_about_optimizing_operators_if_my_ESSs_are_okay">5.1 Do I need to worry about optimizing operators if my ESSs are okay?</a></li><li><a href="#Why_does_the_operator_analysis_continue_to_suggest_that_I_decrease_my_8216s_size_attribute_in_order_to_improve_my_acceptance_probability">5.2 Why does the operator analysis continue to suggest that I decrease my &#8216;s size attribute in order to improve my acceptance probability?</a></li></ul></li><li><a href="#Starting_tree_and_fixing_trees">6 Starting tree and fixing trees</a><ul><li><a href="#Can_you_designate_a_user-defined_starting_tree">6.1 Can you designate a user-defined starting tree?</a></li><li><a href="#How_can_you_keep_this_topology_constant_while_estimating_other_parameters_eg_node_height">6.2 How can you keep this topology constant while estimating other parameters, e.g., node height?</a></li></ul></li><li><a href="#Setting_up_models">7 Setting up models</a><ul><li><a href="#How_do_I_tell_BEAST_to_use_an_outgroup">7.1 How do I tell BEAST to use an outgroup?</a></li><li><a href="#How_do_I_run_BEAST_without_data_to_sample_the_Prior">7.2 How do I run BEAST without data to sample the Prior?</a></li><li><a href="#Does_it_matter_what_order_the_Priors_Likelihoods_come_in_the_XML">7.3 Does it matter what order the Priors &amp; Likelihoods come in the XML?</a></li><li><a href="#How_do_tree_prior_distributions_effect_estimation_of_rates_and_dates">7.4 How do tree prior distributions effect estimation of rates and dates?</a></li></ul></li><li><a href="#Effective_Sample_Size_ESS_of_parameters">8 Effective Sample Size (ESS) of parameters</a></li><li><a href="#Interpreting_the_results">9 Interpreting the results</a><ul><li><a href="#How_do_I_do_model_comparison">9.1 How do I do model comparison?</a></li><li><a href="#How_do_I_summarize_the_posterior_distribution_of_trees">9.2 How do I summarize the posterior distribution of trees?</a></li></ul></li><li><a href="#Error_messages">10 Error messages</a><ul><li><a href="#What_does_the_error_message_I_am_getting_mean">10.1 What does the error message I am getting mean?</a></li><li><a href="#Why_is_BEAST_telling_me_that_8220the_initial_model_is_invalid_because_the_state_has_a_zero_likelihood8221">10.2 Why is BEAST telling me that &#8220;the initial model is invalid because the state has a zero likelihood&#8221;?</a></li><li><a href="#BEAST_seems_to_run_but_the_posterior_is_reported_as_question_mark_and_the_none_of_the_values_change">10.3 BEAST seems to run but the posterior is reported as ? (question mark) and the none of the values change</a></li><li><a href="#I_am_getting_the_error_8220javalangOutofMemoryError_Java_heap_space8221_Is_there_a_way_I_can_increase_the_memory_for_the_program">10.4 I am getting the error &#8220;java.lang.OutofMemoryError Java heap space&#8221;, Is there a way I can increase the memory for the program?</a></li><li><a href="#I_still_get_an_OutofMemoryError_in_TreeAnnotator_even_when_I_use_all_the_memory_in_the_machine">10.5 I still get an OutofMemoryError in TreeAnnotator even when I use all the memory in the machine</a></li></ul></li><li><a href="#How_to_set_up_tips_sampling">11 How to set up tips sampling</a></li><li><a href="#Questions_that_haven8217t_been_done_yet">12 Questions that haven&#8217;t been done yet:</a><ul><li><a href="#Creating_XML_Input">12.1 Creating XML Input</a></li><li><a href="#Complex_models_and_hypothesis_testing">12.2 Complex models and hypothesis testing</a></li><li><a href="#How_do_you_test_alternative_demographic_scenarios_with_BEAST">12.3 How do you test alternative demographic scenarios with BEAST?</a></li></ul></li></ul>
+<h2>Introduction</h2>
+<h3>What can BEAST do?</h3>
+<dl>
+<dd><a title="What can BEAST do?" href="../what-can-beast-do/index.html">A description of some of the analyses that can be performed using BEAST can be found here.</a></dd>
+<dd><a title="Tutorials" href="../tutorials/index.html">See also the list of tutorials.</a></dd>
+</dl>
+<h2>Installing and running BEAST</h2>
+<h3>How do I install and run BEAST?</h3>
+<dl>
+<dd>That depends on the operating system you are using. Please look at the README file that was included in the package you downloaded.</dd>
+</dl>
+<h3>How do I use BEAGLE with BEAST? </h3>
+<dl>
+<dd>How it is installed and used with BEAST depends on the platform: <a class="external free" href="https://github.com/beagle-dev/beagle-lib/wiki" rel="nofollow">https://github.com/beagle-dev/beagle-lib/wiki</a></dd>
+</dl>
+<h2>Evolutionary rates and time scales</h2>
+<h3>I have X sequences sampled over a Y year time span; are they enough to estimate the substitution rate?</h3>
+<dl>
+<dd>It depends on the substitution rate. If the substitution rate is high enough to produce a substantial number of substitutions in the Y years then it may work. The easiest thing is to simply try it and see. It would be best to start with a simple model &#8211; HKY, constant population size and a strict molecular clock. If that seems to behave well then you might consider a more realisitic model, depending on the question you are trying to answer. If the time span is insufficient to provide information about the substitution rate then BEAST will not converge and the age of the root of the tree will simply increase to a very large value (and the rate will drop towards zero).</dd>
+</dl>
+<h2>Parameters</h2>
+<h3>What do all the parameters do/mean?</h3>
+<dl>
+<dd><a title="Parameters" href="../parameters/index.html">Look here for a description of the model parameters.</a></dd>
+</dl>
+<h2>Optimizing operators</h2>
+<h3>Do I need to worry about optimizing operators if my ESSs are okay?</h3>
+<dl>
+<dd>No. Tuning the operators will only increase the efficiency of the sampling &#8211; resulting in better ESSs for the same chain length. If you are already getting suitable ESSs then that is fine. <a title="Increasing ESSs" href="../increasing-esss/index.html">See this tutorial for more details about this subject</a></dd>
+</dl>
+<h3>Why does the operator analysis continue to suggest that I decrease my <code></code>&#8216;s <code>size</code> attribute in order to improve my acceptance probability?</h3>
+<dl>
+<dd>The <code>size</code> value in the <code></code> operator should be proportional to the height of your tree (say about 10% initially). If the tree is uncalibrated then the height of the tree is given in _substitutions per site_ which can be very small.</dd>
+</dl>
+<h2>Starting tree and fixing trees</h2>
+<h3>Can you designate a user-defined starting tree?</h3>
+<dl>
+<dd>Yes, you can insert a NEWICK format tree into the XML to act as a starting tree &#8211; see this how-to: <a title="Fix starting tree" href="../fix-starting-tree/index.html">Fix starting tree</a></dd>
+</dl>
+<h3>How can you keep this topology constant while estimating other parameters, e.g., node height?</h3>
+<dl>
+<dd>Remove all the operators that act on the <code>Tree</code>. In BEAUti you can do this by setting the weight of the following operators to zero: narrow exchange, wide exchange, Wilson Balding and subtree slide. Alternatively, you can remove these operators from the XML. Without these operators, or when they have zero weight, the actual topology of the tree won&#8217;t change.</dd>
+</dl>
+<h2>Setting up models</h2>
+<h3>How do I tell BEAST to use an outgroup?</h3>
+<dl>
+<dd>The simple answer is that you may not want to &#8211; BEAST will sample the root position along with the rest of the nodes in the tree. If you then calculate the proportion of trees that have a particular root, you obtain a posterior probability for this root position. However if you have a strong prior for an outgroup then you can constrain the ingroup to be monophyletic. <a title="Constraints Of Monophyly" href="../constraints-of-monophyly/index.html">See this tutorial for details of how to do this</a>.</dd>
+</dl>
+<h3>How do I run BEAST without data to sample the Prior?</h3>
+<p>In BEAUti, on the MCMC tab, click the Sample From Prior checkbox, save the XML and run with BEAST. In the XML, set <code>sampleFromPrior='true'</code> on the mcmc element.</p>
+<h3>Does it matter what order the Priors &amp; Likelihoods come in the XML?</h3>
+<dl>
+<dd>No.</dd>
+</dl>
+<h3>How do tree prior distributions effect estimation of rates and dates?</h3>
+<dl>
+<dd><a title="Tree priors and dating" href="../tree-priors-and-dating/index.html">See this page for a discussion of this question.</a></dd>
+</dl>
+<h2>Effective Sample Size (ESS) of parameters</h2>
+<p><a href="..//what-is-ess/index.html">See this page for information about ESS</a>.</p>
+<h2>Interpreting the results</h2>
+<h3>How do I do model comparison?</h3>
+<dl>
+<dd><a title="Model comparison" href="../model-comparison/index.html">See this page for a description of model comparison using BEAST and how to do it.</a></dd>
+</dl>
+<h3>How do I summarize the posterior distribution of trees?</h3>
+<dl>
+<dd><a title="Summarizing posterior trees" href="../summarizing-posterior-trees/index.html">See this page for various approaches to summarizing trees.</a></dd>
+</dl>
+<h2>Error messages</h2>
+<h3>What does the error message I am getting mean?</h3>
+<dl>
+<dd>Look at the <a title="Error Messages" href="../error-messages/index.html">Error Messages</a> page for details of the different error messages.</dd>
+</dl>
+<h3>Why is BEAST telling me that &#8220;the initial model is invalid because the state has a zero likelihood&#8221;?</h3>
+<dl>
+<dd>There are essentially three reasons that you can get the &#8220;initial model is invalid&#8221; error.</dd>
+</dl>
+<dl>
+<dd>Firstly, your initial tree could violate one or more of the boolean priors (priors with hard bounds including constraints on the monophyly of clades). This can be fixed by providing a starting tree that conforms to these constraints using the <code></code> element in the XML file. See <a title="Fix starting tree" href="../fix-starting-tree/index.html">this tutorial</a> for details about how to use a starting tree. The starting tree should contain all constrained clades and the root node and any clade MRCAs should fit within any uniform priors (or translated exponential or lognormal priors). This means the provided NEWICK format tree should be rooted with branch length in the units of time being used in the priors. Technically it doesn&#8217;t matter whether the initial tree is ultrametric because BEAST will adjust it until it is. However, this process alters the ages of the nodes of the tree and thus could cause it to violate the hard bounds. If the constraint is on the age of the root of the tree, BEAST can be told to rescale the entire tree so that the root has a particular age. This is done by adding an initialiser</dd>
+</dl>
+<p>attribute to the <code></code> element:</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<mcmc>
+<init spec='beast.util.TreeParser' initial='@tree' newick='(...my newick tree here...);'/>
+...
+</mcmc>{% endhighlight %}			
+			
+		
+
+<p></p>
+<dl>
+<dd>Secondly, the initial tree could be particularly far from the optimum which may cause the calculation of the likelihood of the sequences to fail. More technically, the likelihood of a particular site is calculated by traversing the tree and taking the product of the probability for each branch. If the individual probabilities are small (because the data doesn&#8217;t fit the tree) then this product can rapidly approach, and will eventually be rounded to, zero. This is more likely to occur if there are many sequences as there are more probabilities to multiply. Once the likelihood for a given site is calculated, the logarithm is taken and then summed across all sites and thus long sequences do not cause this problem. The only solution to this problem is to start with a better tree (such as the UPGMA option in BEAUti) or a reasonably optimal starting tree.</dd>
+</dl>
+<dl>
+<dd>Thirdly, if you are using calibrations and estimating or specifying a rate of substitution, it is possible that the initial value for the rate is too small or too large which can also cause the underflow problems when the branches are scaled from units of time to units of substitutions using the rate. One potential reason the rate might be inappropriate is if the calibrations and tree is given in units of millions of years (e.g., a root of 10My) whereas the rate is given in units of substitutions per year (e.g., a rate of 1.0E-8 subst. per year). If you multiply the initial rate with the initial age of the tree it should be in the sort of range you would expect for the genetic divergence of the gene you are using (probably 0.01-1.0 &#8211; genes are usually selected to have diversity but not so much that they are saturated).</dd>
+</dl>
+<hr />
+<dl>
+<dd>We have also added a mechanism for rescaling the likelihood of the tree as it is calculated to avoid numerical underflows. Turning this on should help for large trees in cases where an initial likelihood was zero. To turn this on you need to add &#8216;useScaling=&#8221;true&#8221;&#8216; to the treeLikelihood element(s) in the BEAST XML file. Search for the line:</dd>
+</dl>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<distribution ... id="treeLikelihood">{% endhighlight %}			
+			
+		
+
+<p></p>
+<dl>
+<dd>and change it to:</dd>
+</dl>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<distribution ... id="treeLikelihood" scaling="always">{% endhighlight %}			
+			
+		
+
+<p></p>
+<dl>
+<dd>If you are using codon partitioning there will be more than one treeLikelihood element.</dd>
+</dl>
+<h3>BEAST seems to run but the posterior is reported as ? (question mark) and the none of the values change</h3>
+<dl>
+<dd>This can happen when using a complex coalescent prior such as the Logistic. The problem is that the particular set of starting parameters may result in probabilities close to zero. Try altering the starting values of the coalescent model parameters.</dd>
+</dl>
+<h3>I am getting the error &#8220;java.lang.OutofMemoryError Java heap space&#8221;, Is there a way I can increase the memory for the program?</h3>
+<dl>
+<dd>Look at the <a title="Increasing Memory Usage" href="../increasing-memory-usage/index.html">Increasing Memory Usage</a> page for details of increasing the memory available to BEAST and the other programs.</dd>
+</dl>
+<h3>I still get an OutofMemoryError in TreeAnnotator even when I use all the memory in the machine</h3>
+<dl>
+<dd>This is usually due to very large tree files being loaded into TreeAnnotator. It is unlikely that more than 10,000 trees are necessary to give good estimates of well supported nodes so if you are trying to load hundreds of thousands of trees then you may well have problems (and reach the memory limitations of your computer). When running BEAST it is a good idea to adjust the sampling frequency of the log files to obtain about 10,000 samples when you change the chain length. For existing log files, you can use LogCombiner to &#8216;thin&#8217; out the trees at a lower sampling frequency.</dd>
+</dl>
+<h2>How to set up tips sampling</h2>
+<ul>
+<li>Create a prior on the tip you want to sample. In BEAUti you can create it in the priors panel by clicking the little + button at the bottom. You can specify a taxon, say &#8216;Human&#8217;, give it a name like HumanTip that identifies the taxon. Creating the prior ensures the tip value gets logged in the tracelog.</li>
+</ul>
+<ul>
+<li>Make sure the prior is on the tip. For the taxon for which you want to specify a prior distributin select the combobox next to the button with the name of the taxonset on it, and choose &#8220;uniform&#8221; if you want to specify a range, or &#8220;lognormal&#8221; (recommended, since it does not stretch out below zero) or &#8220;normal&#8221; (easier to interpret, but has the danger of putting considerably probability mass in the future) if you want to specify a log-normal or normal distribution. Then, click the little triangle next to the taxon button, and it should show a panel where you can set of the parameters for the distribution, and some statistics are shown to help you get an impression of the parameter choices.</li>
+</ul>
+<ul>
+<li>Also in the priors panel, when you click the little triangle next to the prior, it shows the &#8216;tipsonly&#8217; flag. Make sure it is checked.</li>
+</ul>
+<ul>
+<li>Add an operator to sample the tip. BEAUti support is not optimal. The best way to do this is to save the file from BEAUti, open it in a text editor and add the following XML fragment:</li>
+</ul>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<operator id="TipDatesRandomWalker" windowSize="1" spec="TipDatesRandomWalker" taxonset="@HumanTip" tree="@Tree.t:dna" weight="1.0"/>{% endhighlight %}			
+			
+		
+
+<p>Make sure the taxonset has the same name as the taxonset you specified, so we have taxonset=&#8221;@HumanTip&#8221; when the tip is called HumanTip (note, leave the @ in there). If there are different data ranges for tips you need to specify a TipDatesRandomWalker for each of them. Make sure the id attribute is unique, for example by numbering them:</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<operator id="TipDatesRandomWalker1" windowSize="1" spec="TipDatesRandomWalker" taxonset="@HumanTip" tree="@Tree.t:dna" weight="1.0"/>
+ <operator id="TipDatesRandomWalker2" windowSize="1" spec="TipDatesRandomWalker" taxonset="@ChimpTip" tree="@Tree.t:dna" weight="1.0"/>
+ <operator id="TipDatesRandomWalker3" windowSize="1" spec="TipDatesRandomWalker" taxonset="@GibbonTip" tree="@Tree.t:dna" weight="1.0"/>{% endhighlight %}			
+			
+		
+
+<p>Also make sure that the tree refers to the tree that you want to sample (here tree=&#8221;@Tree.t:dna&#8221;). Typically, it is named &#8220;Tree.t:&#8221; + the partition name, or if you renamed the tree in the paritions panel, use that name.</p>
+<h2>Questions that haven&#8217;t been done yet:</h2>
+<h3>Creating XML Input</h3>
+<dl>
+<dt>What is a &#8220;Double”?</dt>
+</dl>
+<h3>Complex models and hypothesis testing</h3>
+<dl>
+<dt>Is it possible to divide the data into partitions and assign different site models to each partition?</dt>
+</dl>
+<p>Yes,you can. Take a look at these <a title="Tutorials" href="../tutorials/index.html">tutorials</a></p>
+<p>The differences between these two tutorial: Tutorial 8: The different genes(locus) have different alignments. For example, the alignment for gene1 are &#8220;alignment1&#8221;, the alignment for gene2 are &#8220;alignment2&#8221;, the alignment for gene3 are &#8220;alignment3&#8221;;</p>
+<p>I think according to this tutorial, the different alignments of genes(locus) can have different taxons. For example, the &#8220;alignment1&#8221; have taxon A,taxon B,taxon C,taxon D; the &#8220;alignment2&#8221; have taxon A,taxon B,taxon C,taxon E; the &#8220;alignment3&#8221; have taxon A,taxon B,taxon C,taxon D, taxon E.</p>
+<p>Tutorial 6: The different genes(locus) are in one alignment; I think this tutorial will work well if all of your genes have all the same taxa;</p>
+<dl>
+<dt>
+<h3>How do you test alternative demographic scenarios with BEAST?</h3>
+</dt>
+</dl>
+	
+

@@ -1,0 +1,11 @@
+	<aside id="recent-posts" class="widget widget_recent_entries">		
+		<div id="primary-sidebar" class="primary-sidebar widget-area widget widget_recent_entries" role="complementary">
+			<h1 class="widget-title">Recent Posts</h1>
+				<ul>
+					{% for post in site.posts limit:5 %}
+    					<div class="side-bar-link"><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></div> 
+				        <div class="post-date">{{ post.date | date: '%B %d, %Y'}}</div>
+				    {% endfor %}
+				</ul>
+		</div>
+	</aside>			

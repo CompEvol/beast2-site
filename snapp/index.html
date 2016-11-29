@@ -1,0 +1,86 @@
+---
+layout: site
+title: SNAPP 
+tags: []
+---
+
+	
+		<p class="toc_title">Contents</p><ul class="toc_list"><li><a href="#Introduction">1 Introduction </a></li><li><a href="#Documentation">2 Documentation </a></li><li><a href="#Installing_SNAPP">3 Installing SNAPP</a></li><li><a href="#Converting_Sequences">4 Converting Sequences</a></li><li><a href="#Running_SNAPP">5 Running SNAPP </a></li><li><a href="#Analysing_Results">6 Analysing Results </a></li><li><a href="#Support_Links">7 Support &amp; Links </a></li><li><a href="#Bugs_and_planned_features">8 Bugs and planned features</a></li><li><a href="#Citation">9 Citation </a></li><li><a href="#Acknowledgements">10 Acknowledgements </a></li></ul>
+<h2><img class="alignnone size-full wp-image-455" src="..//files/2015/05/Snapp.png" alt="SNAPP" width="700" height="157" srcset="http://beast2.org/files/2015/05/Snapp.png 700w, http://beast2.org/files/2015/05/Snapp-300x67.png 300w" sizes="(max-width: 700px) 100vw, 700px" /></h2>
+<h2>Introduction </h2>
+<p>SNAPP (SNP and AFLP Package for Phylogenetic analysis) is package for inferring species trees and species demographics from independent (unlinked) biallelic markers such as well spaced SNPs. It implements a full coalescent model, but uses a novel algorithm to integrate over all possible gene trees, rather than sampling them explicitly.</p>
+<p>Like a standard BEAST analysis, a SNAPP analysis is controlled using a specially formatted XML file. This file can be created from scratch, or by using the graphical user interface in BEAUTi. After setting up the analysis in BEAUTi you can take the XML file and use it to run BEAST on any computer or server.</p>
+<p>Like BEAST and MrBayes, a SNAPP analysis does not output a single tree. Rather, it uses Markov chain Monte Carlo (MCMC) to generate multiple trees (and corresponding parameter values), each of which is a sample from the posterior distribution of species trees and parameters. The trees and parameter values are output as two files. As with all MCMC analyses, care must be taken when interpreting these outputs. For example, it is necessary to check convergence and be prepared to consider multiple plausible species trees, instead of just one. The file containing parameter values can be analysed using the Tracer software. As with all MCMC software, it is advisable to run multiple analyses, possibly tweaking proposal parameters, to validate an analysis.</p>
+<p>SNAPP is built on top of Beast 2. More information on Beast 2 can be obtained at <a class="external text" href="http://beast2.org" rel="nofollow">Beast 2 web site</a>.</p>
+<h2>Documentation </h2>
+<p><a class="external text" href="https://github.com/BEAST2-Dev/SNAPP/releases/download/v1.2.0/SNAPP.pdf" rel="nofollow">A rough guide to SNAPP</a></p>
+<p><a title="SNAPP-FAQ" href="http://www.beast2.org/SNAPP-FAQ">SNAPP-FAQ</a></p>
+<p><a title="BFD*" href="http://www.beast2.org/BFD*">Bayes Factor Delimitation (*with genomic data)</a></p>
+<h2>Installing SNAPP</h2>
+<p>SNAPP requires BEAST to be installed (download from <a class="external free" href="..//index.html" rel="nofollow">http://beast2.org</a>) . Once BEAST is installed, installing SNAPP is simply a matter of starting BEAUti (part of BEAST) and select the File/Manage packages menu. A list appears from which you select SNAPP &#8212; then hit the install button.<br />
+Within the SNAPP package will be the following directories:</p>
+<p>Directory Contents</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}doc/       Documentation of SNAPP
+examples/  Some NEXUS and XML files
+lib/       Java &amp; native libraries used by SNAPP
+templates/ Templates to initiate BEAUti {% endhighlight %}			
+			
+		
+
+<p></p>
+<h2>Converting Sequences</h2>
+<p>A program called &#8220;BEAUti&#8221; will import data in NEXUS format, allow you to select various models and options and generate an XML file ready for use in SNAPP.</p>
+<p>To run BEAUti simply double-click the &#8220;BEAUti&#8221; icon in the SNAPP folder. If this doesn&#8217;t work then you may not have Java installed correctly. Try opening an terminal/command prompt and typing:</p>
+<p>java -cp lib/SNAPP.jar beast.app.beauti.Beauti</p>
+<h2>Running SNAPP </h2>
+<p>To run a SNAPP analysis simply double-click the BEAST icon. You will be asked to select a SNAPP XML input file.</p>
+<p>Alternatively open a terminal/Command window and type:</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}java -jar lib/beast.jar input.xml{% endhighlight %}			
+			
+		
+
+<p>Where &#8220;input.xml&#8221; is the name of a SNAPP XML format file. This file can either be created from scratch using a text editor or be created by the BEAUti program from a NEXUS format file.</p>
+<h2>Analysing Results </h2>
+<p>DensiTree is provided with BEAST to visually analyse tree sets. It can be used to draw trees where branch width indicate population sizes.</p>
+<p>Furthermore, TreeSetAnalyser is provided with SNAPP to analyse tree sets. It takes as input a tree set produced by SNAPP, and compares with a tree if provided (e.g. the original used to simulate data from). It Outputs</p>
+<ol>
+<li>Size of the 95% credible set.</li>
+<li>Probabilities of the top 20 (?) trees</li>
+<li>Whether or not the true tree is in the credible set.</li>
+</ol>
+<p>Also, if a tree is provided, population sizes for the branches in the tree will be printed. By running TreeSetAnalyser once (without tree argument) a topology can be selected. Running the TreeSetAnalyser again, but now with a tree argument will show population sizes.</p>
+<p>To start TreeSetAnalyser, open the BEAST AppStore (double click the AppStore icon) and a window pops up where you can select applications. TreeSetAnalyser is one of them. Double click the TreeSetAnalyser icon and TreeSetAnalyser will be started.</p>
+<p>A powerful graphical program for analysing MCMC log files (it can also analyse output from MrBayes and other MCMCs). This is called &#8216;Tracer&#8217; and is available from the Tracer web site:</p>
+<p><a class="external text" href="http://tree.bio.ed.ac.uk/software/tracer/" rel="nofollow">Tracer</a></p>
+<p>Alternatively, LogCombiner &amp; TreeAnnotator distributed with Beast can be used. LogCombiner can combine log or tree files from multiple runs of SNAPP into a single combined results file (after removing appropriate burn-ins). TreeAnnotator can summarize a sample of trees from SNAPP using a single target tree, annotating it with posterior probabilities, HPD node heights and rates. This tree can then be viewed in a new program called &#8216;FigTree&#8217; which is available from:</p>
+<p><a class="external text" href="http://tree.bio.ed.ac.uk/software/figtree" rel="nofollow">FigTree</a></p>
+<h2>Support &amp; Links </h2>
+<p>SNAPP is an extremely complex program and as such will inevitably have bugs. Discussion can be found on the <a class="external text" href="http://groups.google.com/group/beast-users" rel="nofollow">BEAST mailing list</a>.</p>
+<p>Alternatively, you can email us to discuss any problems if you think the mailing list is not appropriate: <a class="external text" href="mailto:david.bryant@otago.ac.nz" rel="nofollow">David Bryant</a> and/or <a class="external text" href="mailto:remco@cs.auckland.ac.nz" rel="nofollow">Remco Bouckaert</a></p>
+<p>Source code distributed under the GNU Lesser General Public License: <a class="external text" href="https://github.com/BEAST2-Dev/SNAPP" rel="nofollow">code</a></p>
+<h2><a class="new" title="Bugs and planned features (page does not exist)" href="https://github.com/BEAST2-Dev/SNAPP/issues">Bugs and planned features</a></h2>
+<p>Unfortunately, we have absolutely no funding for this project at the moment, but are implementing improvements and bug fixes as time permits. This is an open source project, and we strongly encourage you to get involved if there are some features you&#8217;d like to see added.</p>
+<p>Below is a (partial) list of work planned.</p>
+<ol>
+<li>Allow inclusion of constant characters in BEAUTI.</li>
+<li>More extensive corrections for acquisition biases.</li>
+<li>Inclusion of sequence error corrections.</li>
+</ol>
+<h2>Citation </h2>
+<p>Bryant, David, Remco Bouckaert, Joseph Felsenstein, Noah A. Rosenberg, and Arindam RoyChoudhury. &#8220;Inferring species trees directly from biallelic genetic markers: bypassing gene trees in a full coalescent analysis.&#8221; Molecular biology and evolution 29, no. 8 (2012): 1917-1932.</p>
+<h2>Acknowledgements </h2>
+<p>Thanks for supplying code or assisting with the creation or testing of SNAPP 2 development team.</p>
+	
+

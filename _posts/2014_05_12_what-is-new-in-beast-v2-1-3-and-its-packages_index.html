@@ -1,0 +1,19 @@
+---
+layout: post
+title: What is new in BEAST v2.1.3 and its packages 
+tags: [beast-2,v2-1-3]
+---
+
+	
+
+		
+		<p style="color:gray">12 May 2014 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+<p>The main reason for this release is to fix bugs in <b>BEAUti for *BEAST</b> &#8212; previously, the NodeReheight operator did not get assigned any gene trees. As a consequence, the topology of the species tree did not change (much) in an analysis produced by BEAUti 2.1.2. Further, when a calibration with timing information is placed on the species tree in BEAUti, all clock rates of gene trees in the analysis should be estimated. By default, one of the genes has its clock rate fixed to one, while the remaining genes have their clock rate estimated. BEAUti now ensures the clock rate of all genes are automatically set to estimated (if the mode/automatic set clock rates is checked, which it is by default). A regression test was added to the code ensuring that the *BEAST tutorial (as well as the other two tutorials) produces the numbers as expected.</p>
+<p>An <b>AppStore</b> application is added that can be started by double clicking the AppStore icon, just like one would start BEAST or BEAUti. The AppStore makes it easy to start applications defined in packages, such as the TreeSetAnalyser in SNAPP for producing statistics from tree files produces in a SNAPP analysis. Starting package applications otherwise would involve cumbersome setting up of class paths from the command line.</p>
+<p><b>Fasta</b> file imported were mostly classified as datatype of amino acid when imported into BEAUti. Now, the file extension is used (.fna = nucleotide), and a smarter patter matching rule applied to detect whether the type is nucleotide instead of amino acid.</p>
+<p>When using the log normal distribution in a prior in BEAUti it now displays the distribution properly in the chart.</p>
+<p>When an MRCA prior is put on a clade, and it is selected as monophyletic the proportion of the time the clade is monophyletic used to be part of the log file and get stuck at 1. With many such priors, displaying these in Tracer caused clogging. Now, this statistic is not logger any more.</p>
+<p>The upgrade button in the PackageManager now actually upgrades a package.</p>
+<p>BEASTShell, a package for scripting BEAST, is under heavy development and an very early release is already available (see <a href="https://github.com/CompEvol/beastshell">details</a>).</p>
+	
+	

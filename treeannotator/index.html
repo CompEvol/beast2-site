@@ -1,0 +1,28 @@
+---
+layout: site
+title: TreeAnnotator 
+tags: []
+---
+
+	
+		<p class="toc_title">Contents</p><ul class="toc_list"><li><a href="#BurnIn">1 BurnIn </a></li><li><a href="#Posterior_probability_limit">2 Posterior probability limit </a></li><li><a href="#Target_tree_type">3 Target tree type </a></li><li><a href="#Node_heights">4 Node heights </a></li><li><a href="#Target_tree_file">5 Target tree file </a></li><li><a href="#Input_tree_file">6 Input tree file </a></li><li><a href="#Output_file">7 Output file </a></li><li><a href="#Appendix">8 Appendix </a></li></ul>
+<p>This program assists in summarizing the information from a sample of trees produced by BEAST onto a single “target” tree. The summary information includes the posterior probabilities of the nodes in the target tree, the posterior estimates and HPD limits of the node heights and (in the case of a relaxed molecular clock model) the rates.</p>
+<h2>BurnIn </h2>
+<p>This option allows you to select the amount of burn-in, i.e., the number of samples that will be discarded at the start of the run, so that you are only analysing the part of the trace that is in equilibrium.</p>
+<h2>Posterior probability limit </h2>
+<p>This is the same as specifying a a limit for bootstrapping in PAUP*. Posterior summaries will only be calculated for the nodes in the target tree that have a posterior probability greater than the specified limit.</p>
+<h2>Target tree type </h2>
+<p>If you select the “Maximum clade credibility” option then the node height and rate statistics will be summarized on the tree in the posterior sample that has the maximum sum of posterior probabilities on its n − 2 internal nodes. This tree is not necessarily the ma jority-rule consensus tree. If you select the “User target tree” then the tree statistics will be summarized on a user-specified tree. This could, for example, be a ma jority-rule consensus tree constructed from the posterior tree sample using PAUP*.</p>
+<h2>Node heights </h2>
+<p>This option allows you select how the node heights are summarised on the target tree. You can choose to keep the heights that the target tree has, or rescale it to reflect the posterior mean/median node heights for the clades contained in the target tree.</p>
+<h2>Target tree file </h2>
+<p>This option allows you to select and input the target tree. This option will only be available if you have selected “User target tree” from the “Target tree type” combo menu.</p>
+<h2>Input tree file </h2>
+<p>This option allows you to select the input tree file (the tree file produced by a BEAST analysis).</p>
+<h2>Output file </h2>
+<p>This option allows you to select or create a file that the summarized tree data will be saved to.</p>
+<p>Once you click run, TreeAnnotator will start to summarize the tree data produced by BEAST. In the JAVA window TreeAnnotator will state the number of trees that have been read, will find the best fit tree specified under the “Target tree type”. The progress of this will be monitored by the * symbols moving across the screen. TreeAnnotator will also give you a clade support statistic before writing the annotated tree to file. This file can then be analysed in FigTree.</p>
+<h2>Appendix </h2>
+<p>Nexus Meta Comment Format: <a class="external free" href="http://code.google.com/p/beast-mcmc/wiki/NexusMetacommentFormat" rel="nofollow">http://code.google.com/p/beast-mcmc/wiki/NexusMetacommentFormat</a></p>
+	
+

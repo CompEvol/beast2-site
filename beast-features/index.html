@@ -1,0 +1,683 @@
+---
+layout: site
+title: BEAST Features 
+tags: []
+---
+
+	
+		<p class="toc_title">Contents</p><ul class="toc_list"><li><a href="#General_features">1 General features</a></li><li><a href="#Substitution_models">2 Substitution models</a></li><li><a href="#Trait_evolution">3 Trait evolution</a></li><li><a href="#Partition_models">4 Partition models</a></li><li><a href="#Molecular_clock_models">5 Molecular clock models</a></li><li><a href="#Coalescent_tree_priors">6 Coalescent tree priors</a></li><li><a href="#Birth-death_tree_priors">7 Birth-death tree priors</a></li><li><a href="#Species_tree_prior_Hierarchical_tree_priors">8 Species tree prior / Hierarchical tree priors </a></li><li><a href="#Statistical_phylogeography">9 Statistical phylogeography</a></li><li><a href="#Miscellaneous">10 Miscellaneous</a></li></ul>
+<p>The tables below list the main evolutionary models supported by BEAST 2. For ease of comparison BEAST 1.8 is also included, but you should consult the <a class="external text" href="http://beast.bio.ed.ac.uk" rel="nofollow">BEAST1</a> website for definitive information about that version of the platform, as keeping this table up-to-date is rather challenging. Green means the model has been published and extensively tested. Yellow means the method has either not yet been published in a peer-reviewed journal, or that it has been implemented (and perhaps published) but not extensively tested for general use. The &#8220;Model reference&#8221; is the citation for the original description of the model (not necessarily in a Bayesian context). The links to papers in the &#8220;BEAST 2.x&#8221; column are to the paper that describes the implementation of the model in the BEAST framework.</p>
+<h3>General features</h3>
+<table class="wikitable" style="text-align: center; width: 100%;" border="1">
+<tbody>
+<tr>
+<th style="text-align: center; width: 24%;" width="24%"></th>
+<th style="text-align: center; width: 16%;">BEAST 2.x</th>
+<th style="text-align: center; width: 16%;">BEAST 1.8</th>
+<th style="text-align: center; width: 16%;">Model reference</th>
+<th style="text-align: center; width: 18%;">Example XML (2.x)</th>
+<th style="text-align: center; width: 10%;">Package (2.x)</th>
+</tr>
+<tr>
+<th style="text-align: left;" colspan="6">Framework</th>
+</tr>
+<tr>
+<td style="text-align: left;">Manuscript</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003537" rel="nofollow">beast2</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.biomedcentral.com/1471-2148/7/214" rel="nofollow">beast14</a>, <a class="external text" href="http://mbe.oxfordjournals.org/content/29/8/1969.long" rel="nofollow">beast17</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">Website</td>
+<td><a class="external autonumber" href="http://beast2.org" rel="nofollow">[1]</a></td>
+<td><a class="external autonumber" href="http://beast.bio.ed.ac.uk" rel="nofollow">[2]</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th style="text-align: left;" colspan="6">Data type</th>
+</tr>
+<tr>
+<td style="text-align: left;">DNA/RNA</td>
+<td style="background: LightGreen;"><a class="external text" href="http://github.com/CompEvol/beast2/tree/v2.1.3/src/beast/evolution/datatype/Nucleotide.java" rel="nofollow">Nucleotide</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://code.google.com/p/beast-mcmc/source/browse/branches/beast_release_1_8_0/src/dr/evolution/datatype/Nucleotides.java" rel="nofollow">Nucleotides</a></td>
+<td></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testRNA.xml" rel="nofollow">testRNA.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Amino acid</td>
+<td style="background: LightGreen;"><a class="external text" href="http://github.com/CompEvol/beast2/tree/v2.1.3/src/beast/evolution/datatype/Aminoacid.java" rel="nofollow">Aminoacid</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://code.google.com/p/beast-mcmc/source/browse/branches/beast_release_1_8_0/src/dr/evolution/datatype/AminoAcids.java" rel="nofollow">AminoAcids</a></td>
+<td></td>
+<td></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Binary</td>
+<td style="background: LightGreen;"><a class="external text" href="http://github.com/CompEvol/beast2/tree/v2.1.3/src/beast/evolution/datatype/Binary.java" rel="nofollow">Binary</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://code.google.com/p/beast-mcmc/source/browse/branches/beast_release_1_8_0/src/dr/evolution/datatype/TwoStates.java" rel="nofollow">TwoStates</a></td>
+<td></td>
+<td></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Microsatellite</td>
+<td><a class="external text" href="https://github.com/CompEvol/beast2/issues/4" rel="nofollow">Issue #4</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.genetics.org/content/188/1/151.full" rel="nofollow">wu2011</a></td>
+<td><a class="external text" href="http://www.genetics.org/content/168/1/383.full" rel="nofollow">sainudiin2004</a>, <a class="external text" href="http://www.genetics.org/content/188/1/151.full" rel="nofollow">wu2011</a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<th style="text-align: left;" colspan="6">Tree models</th>
+</tr>
+<tr>
+<td style="text-align: left;">Bifurcating contemporaneous time-tree</td>
+<td style="background: LightGreen;"></td>
+<td style="background: LightGreen;"></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">Bifurcating heterochronous time-tree</td>
+<td style="background: LightGreen;"></td>
+<td style="background: LightGreen;"></td>
+<td></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testTipDates.xml" rel="nofollow">testTipDates.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Sampled-ancestor time-tree</td>
+<td style="background: LightGreen;"><a class="external text" href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003919" rel="nofollow">gavryushkina2014</a></td>
+<td>x</td>
+<td><a class="external text" href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003919" rel="nofollow">gavryushkina2014</a></td>
+<td><a class="external text" href="https://github.com/gavryushkina/sampled-ancestors/blob/master/examples/testSA.xml" rel="nofollow">testSA.xml</a></td>
+<td><a class="external text" href="https://github.com/gavryushkina/sampled-ancestors" rel="nofollow">sampled-ancestors</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">ClonalOrigin ancestral gene-conversion graph</td>
+<td style="background: LightGreen;"><a href="http://biorxiv.org/content/early/2016/06/15/059105">vaughan2016</a></td>
+<td>x</td>
+<td><a class="external text" href="http://www.genetics.org/content/186/4/1435.full" rel="nofollow">didelot2010</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th style="text-align: left;" colspan="6">Simulation</th>
+</tr>
+<tr>
+<td style="text-align: left;">Sequence alignment simulation</td>
+<td style="background: LightGreen;"><a class="external text" href="http://code.google.com/p/beast2/source/browse/#svn%2Ftags%2FRelease-2.1.0%2Fsrc%2Fbeast%2Fapp%2Fseqgen" rel="nofollow">seqgen</a></td>
+<td style="background: LightYellow;"><a class="external text" href="http://code.google.com/p/beast-mcmc/source/browse/branches/beast_release_1_8_0/src/dr/#dr%2Fapp%2Fseqgen" rel="nofollow">seqgen</a></td>
+<td></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testSeqGen.xml" rel="nofollow">testSeqGen.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Tree and phylodynamics simulation (MASTER)</td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/30/6/1480.short" rel="nofollow">vaughan2013</a></td>
+<td>x</td>
+<td><a class="external text" href="http://mbe.oxfordjournals.org/content/30/6/1480.short" rel="nofollow">vaughan2013</a></td>
+<td>examples in <a class="external text" href="https://github.com/CompEvol/MASTER/wiki#tutorials" rel="nofollow">tutorials</a></td>
+<td><a class="external text" href="http://tgvaughan.github.io/MASTER/" rel="nofollow">MASTER</a></td>
+</tr>
+</tbody>
+</table>
+<h3>Substitution models</h3>
+<table class="wikitable" style="text-align: center; width: 100%;" border="1">
+<tbody>
+<tr>
+<th style="text-align: center; width: 24%;" width="24%"></th>
+<th style="text-align: center; width: 16%;">BEAST 2.x</th>
+<th style="text-align: center; width: 16%;">BEAST 1.8</th>
+<th style="text-align: center; width: 16%;">Model reference</th>
+<th style="text-align: center; width: 18%;">Example XML (2.x)</th>
+<th style="text-align: center; width: 10%;">Package (2.x)</th>
+</tr>
+<tr>
+<td style="text-align: left;">Jukes-Cantor (JC69)</td>
+<td style="background: LightGreen;"><a class="external text" href="http://github.com/CompEvol/beast2/tree/v2.1.3/src/beast/evolution/substitutionmodel/JukesCantor.java" rel="nofollow">JukesCantor</a></td>
+<td style="background: LightGreen;">(use HKY, equal freqs, kappa=1)</td>
+<td>Jukes &amp; Cantor (1969)</td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testJukesCantor.xml" rel="nofollow">testJukesCantor.xml</a> (in trunk)</td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">HKY85</td>
+<td style="background: LightGreen;"><a class="external text" href="http://github.com/CompEvol/beast2/tree/v2.1.3/src/beast/evolution/substitutionmodel/HKY.java" rel="nofollow">HKY</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://code.google.com/p/beast-mcmc/source/browse/branches/beast_release_1_8_0/src/dr/evomodel/substmodel/HKY.java" rel="nofollow">HKY</a></td>
+<td><a class="external text" href="http://www.ncbi.nlm.nih.gov/pubmed/3934395" rel="nofollow">hasegawa1985</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testHKY.xml" rel="nofollow">testHKY.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">TN93</td>
+<td style="background: LightGreen;"><a class="external text" href="http://github.com/CompEvol/beast2/tree/v2.1.3/src/beast/evolution/substitutionmodel/TN93.java" rel="nofollow">TN93</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://code.google.com/p/beast-mcmc/source/browse/branches/beast_release_1_8_0/src/dr/evomodel/substmodel/TN93.java" rel="nofollow">TN93</a></td>
+<td><a class="external text" href="http://mbe.oxfordjournals.org/content/10/3/512.long" rel="nofollow">tamura1993</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testTN93.xml" rel="nofollow">testTN93.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">GTR</td>
+<td style="background: LightGreen;"><a class="external text" href="http://github.com/CompEvol/beast2/tree/v2.1.3/src/beast/evolution/substitutionmodel/GTR.java" rel="nofollow">GTR</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://code.google.com/p/beast-mcmc/source/browse/branches/beast_release_1_8_0/src/dr/evomodel/substmodel/GTR.java" rel="nofollow">GTR</a></td>
+<td><a class="external text" href="../files/2015/05/T86.pdf" rel="nofollow">tavare1986</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testGTR.xml" rel="nofollow">testGTR.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Gamma-distributed rate heterogeneity among sites</td>
+<td style="background: LightGreen;"></td>
+<td style="background: LightGreen;"></td>
+<td><a class="external text" href="http://www.ncbi.nlm.nih.gov/pubmed/7932792" rel="nofollow">yang1994</a></td>
+<td></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Codon position model (SRD06)</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.ncbi.nlm.nih.gov/pubmed/16177232" rel="nofollow">shapiro2006</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.ncbi.nlm.nih.gov/pubmed/16177232" rel="nofollow">shapiro2006</a></td>
+<td><a class="external text" href="http://www.ncbi.nlm.nih.gov/pubmed/7968486" rel="nofollow">goldman1994</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testSRD06.xml" rel="nofollow">testSRD06.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Reversible-jump Based (RB)</td>
+<td style="background: LightGreen;"><a class="external text" href="http://code.google.com/p/rb-beast/source/browse/trunk/src/beast/evolution/substitutionmodel/RB.java" rel="nofollow">RB</a></td>
+<td>x</td>
+<td><a class="external text" href="http://europepmc.org/abstract/MED/23792904" rel="nofollow">bouckaert2013</a></td>
+<td><a class="external text" href="http://code.google.com/p/rb-beast/source/browse/trunk/examples/testApe.xml" rel="nofollow">testApe.xml</a></td>
+<td><a class="external text" href="http://code.google.com/p/rb-beast" rel="nofollow">RBS</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Covarion model</td>
+<td style="background: LightGreen;"><a class="external autonumber" href="http://code.google.com/p/beast2/source/browse/#svn%2Ftags%2FRelease-2.1.0%2Fsrc%2Fbeast%2Fevolution%2Fsubstitutionmodel" rel="nofollow">[3]</a></td>
+<td style="background: LightGreen;"><a class="external autonumber" href="http://code.google.com/p/beast-mcmc/source/browse/branches/beast_release_1_8_0/src/dr/evomodel/#evomodel%2Fsubstmodel" rel="nofollow">[4]</a></td>
+<td></td>
+<td></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Microsatellite models</td>
+<td><a class="external text" href="https://github.com/CompEvol/beast2/issues/4" rel="nofollow">Issue #4</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.genetics.org/content/188/1/151.long" rel="nofollow">wu2011</a></td>
+<td><a class="external text" href="http://www.genetics.org/content/188/1/151.long" rel="nofollow">wu2011</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>Trait evolution</h3>
+<table class="wikitable" style="text-align: center; width: 100%;" border="1">
+<tbody>
+<tr>
+<th style="text-align: center; width: 24%;" width="24%"></th>
+<th style="text-align: center; width: 16%;">BEAST 2.x</th>
+<th style="text-align: center; width: 16%;">BEAST 1.8</th>
+<th style="text-align: center; width: 16%;">Model reference</th>
+<th style="text-align: center; width: 18%;">Example XML (2.x)</th>
+<th style="text-align: center; width: 10%;">Package (2.x)</th>
+</tr>
+<tr>
+<td style="text-align: left;">Antigenic evolution</td>
+<td>x</td>
+<td style="background: LightYellow;"><a class="external text" href="http://arxiv.org/abs/1304.3637" rel="nofollow">bedford2013</a></td>
+<td><a class="external text" href="http://arxiv.org/abs/1304.3637" rel="nofollow">bedford2013</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>Partition models</h3>
+<table class="wikitable" style="text-align: center; width: 100%;" border="1">
+<tbody>
+<tr>
+<th style="text-align: center; width: 24%;" width="24%"></th>
+<th style="text-align: center; width: 16%;">BEAST 2.x</th>
+<th style="text-align: center; width: 16%;">BEAST 1.8</th>
+<th style="text-align: center; width: 16%;">Model reference</th>
+<th style="text-align: center; width: 18%;">Example XML (2.x)</th>
+<th style="text-align: center; width: 10%;">Package (2.x)</th>
+</tr>
+<tr>
+<td style="text-align: left;">Dirichlet process prior site partition model</td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/30/3/669.long" rel="nofollow">wu2013</a></td>
+<td>x</td>
+<td><a class="external text" href="http://mbe.oxfordjournals.org/content/30/3/669.long" rel="nofollow">wu2013</a></td>
+<td><a class="external text" href="http://code.google.com/p/subst-bma/source/browse/trunk/examples/primate_SDPM2_sc.xml" rel="nofollow">primate_SDPM2_sc.xml</a></td>
+<td><a class="external text" href="http://code.google.com/p/subst-bma/" rel="nofollow">subst-bma</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Dirichlet process site-block partition model</td>
+<td style="background: LightYellow;">in preparation</td>
+<td>x</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">Reversible-jump partition boundary model</td>
+<td style="background: LightYellow;">in preparation</td>
+<td>x</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>Molecular clock models</h3>
+<table class="wikitable" style="text-align: center; width: 100%;" border="1">
+<tbody>
+<tr>
+<th style="text-align: center; width: 24%;" width="24%"></th>
+<th style="text-align: center; width: 16%;">BEAST 2.x</th>
+<th style="text-align: center; width: 16%;">BEAST 1.8</th>
+<th style="text-align: center; width: 16%;">Model reference</th>
+<th style="text-align: center; width: 18%;">Example XML (2.x)</th>
+<th style="text-align: center; width: 10%;">Package (2.x)</th>
+</tr>
+<tr>
+<td style="text-align: left;">Strict molecular clock</td>
+<td style="background: LightGreen;"><a class="external text" href="http://github.com/CompEvol/beast2/tree/v2.1.3/src/beast/evolution/branchratemodel/StrictClockModel.java" rel="nofollow">StrictClockModel</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://code.google.com/p/beast-mcmc/source/browse/branches/beast_release_1_8_0/src/dr/evomodel/branchratemodel/StrictClockBranchRates.java" rel="nofollow">StrictClockBranchRates</a></td>
+<td><a class="external text" href="http://www.ncbi.nlm.nih.gov/pubmed/5876245" rel="nofollow">zuckerkandl1965</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/beast2vs1/testStrictClock.xml" rel="nofollow">testStrictClock.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Uncorrelated lognormal relaxed molecular clock</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.plosbiology.org/article/info%3Adoi%2F10.1371%2Fjournal.pbio.0040088" rel="nofollow">drummond2006</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.plosbiology.org/article/info%3Adoi%2F10.1371%2Fjournal.pbio.0040088" rel="nofollow">drummond2006</a></td>
+<td><a class="external text" href="http://www.plosbiology.org/article/info%3Adoi%2F10.1371%2Fjournal.pbio.0040088" rel="nofollow">drummond2006</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testRelaxedClock.xml" rel="nofollow">testRelaxedClock.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Random local molecular clock</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.biomedcentral.com/1741-7007/8/114" rel="nofollow">drummond2010</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.biomedcentral.com/1741-7007/8/114" rel="nofollow">drummond2010</a></td>
+<td><a class="external text" href="http://www.biomedcentral.com/1741-7007/8/114" rel="nofollow">drummond2010</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testRelaxedClock.xml" rel="nofollow">testRandomLocalClock.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Model-averaged uncorrelated relaxed molecular clock</td>
+<td><a class="external text" href="https://github.com/CompEvol/beast2/issues/170" rel="nofollow">issue #170</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/29/2/751.full" rel="nofollow">li2012</a></td>
+<td><a class="external text" href="http://mbe.oxfordjournals.org/content/29/2/751.full" rel="nofollow">li2012</a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td style="text-align: left;">Auto-correlated relaxed molecular clock</td>
+<td>x</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=15758207" rel="nofollow">ho2005</a></td>
+<td><a class="external text" href="http://mbe.oxfordjournals.org/content/15/12/1647.short" rel="nofollow">thorne1998</a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+</tbody>
+</table>
+<h3>Coalescent tree priors</h3>
+<table class="wikitable" style="text-align: center; width: 100%;" border="1">
+<tbody>
+<tr>
+<th style="text-align: center; width: 24%;" width="24%"></th>
+<th style="text-align: center; width: 16%;">BEAST 2.x</th>
+<th style="text-align: center; width: 16%;">BEAST 1.8</th>
+<th style="text-align: center; width: 16%;">Model reference</th>
+<th style="text-align: center; width: 18%;">Example XML (2.x)</th>
+<th style="text-align: center; width: 10%;">Package (2.x)</th>
+</tr>
+<tr>
+<td style="text-align: left;">Constant size</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.genetics.org/content/161/3/1307.abstract" rel="nofollow">drummond2002</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.genetics.org/content/161/3/1307.abstract" rel="nofollow">drummond2002</a></td>
+<td><a class="external text" href="http://www.sciencedirect.com/science/article/pii/0304414982900114" rel="nofollow">kingman1982</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testCoalescent.xml" rel="nofollow">testCoalescent.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Exponential growth</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.genetics.org/content/161/3/1307.abstract" rel="nofollow">drummond2002</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.genetics.org/content/161/3/1307.abstract" rel="nofollow">drummond2002</a></td>
+<td><a class="external text" href="http://www.genetics.org/content/149/1/429.abstract" rel="nofollow">kuhner1998</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testExponentialGrowth.xml" rel="nofollow">testExponentialGrowth.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Logistic growth</td>
+<td>x</td>
+<td style="background: LightGreen;"></td>
+<td></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td style="text-align: left;">Expansion growth</td>
+<td>x</td>
+<td style="background: LightGreen;"></td>
+<td><a class="external text" href="http://rstb.royalsocietypublishing.org/content/344/1310/403.short" rel="nofollow">griffiths1994</a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td style="text-align: left;">Bayesian skyline</td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/22/5/1185.full" rel="nofollow">drummond2005</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/22/5/1185.full" rel="nofollow">drummond2005</a></td>
+<td><a class="external text" href="http://mbe.oxfordjournals.org/content/22/5/1185.full" rel="nofollow">drummond2005</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testBSP.xml" rel="nofollow">testBSP.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Extended Bayesian skyline</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.biomedcentral.com/1471-2148/8/289/" rel="nofollow">heled2008</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.biomedcentral.com/1471-2148/8/289/" rel="nofollow">heled2008</a></td>
+<td><a class="external text" href="http://www.biomedcentral.com/1471-2148/8/289/" rel="nofollow">heled2008</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testEBSP.xml" rel="nofollow">testEBSP.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">GMRF Bayesian Skyride</td>
+<td><a class="external text" href="https://github.com/CompEvol/beast2/issues/172" rel="nofollow">Issue #172</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/25/7/1459.long" rel="nofollow">minin2008</a></td>
+<td><a class="external text" href="http://mbe.oxfordjournals.org/content/25/7/1459.long" rel="nofollow">minin2008</a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td style="text-align: left;">Bayesian skygrid</td>
+<td><a class="external text" href="https://github.com/CompEvol/beast2/issues/131" rel="nofollow">Issue #131</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/30/3/713.short" rel="nofollow">gill2013</a></td>
+<td><a class="external text" href="http://mbe.oxfordjournals.org/content/30/3/713.short" rel="nofollow">gill2013</a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td style="text-align: left;">Deterministic closed SIR</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.genetics.org/content/early/2014/12/19/genetics.114.172791.abstract" rel="nofollow">popinga2014</a></td>
+<td style="background: LightYellow;"><a class="external text" href="http://rstb.royalsocietypublishing.org/content/368/1614/20120314.long" rel="nofollow">dearlove2013</a></td>
+<td><a class="external text" href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3249372/" rel="nofollow">volz2012</a></td>
+<td><a class="external text" href="https://github.com/BEAST2-Dev/phylodynamics/blob/master/examples/coalSIR/DeterCoalSIR_HIVcluster1.xml" rel="nofollow">DeterCoalSIR_HIVcluster1.xml</a></td>
+<td><a class="external text" href="https://github.com/BEAST2-Dev/phylodynamics" rel="nofollow">phylodynamics</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Stochastic closed SIR</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.genetics.org/content/early/2014/12/19/genetics.114.172791.abstract" rel="nofollow">popinga2014</a></td>
+<td>x</td>
+<td><a class="external text" href="http://www.genetics.org/content/early/2014/12/19/genetics.114.172791.abstract" rel="nofollow">popinga2014</a></td>
+<td><a class="external text" href="https://github.com/BEAST2-Dev/phylodynamics/blob/master/examples/coalSIR/StochCoalSIR_HIVcluster1.xml" rel="nofollow">StochCoalSIR_HIVcluster1.xml</a></td>
+<td><a class="external text" href="https://github.com/BEAST2-Dev/phylodynamics" rel="nofollow">phylodynamics</a></td>
+</tr>
+</tbody>
+</table>
+<h3>Birth-death tree priors</h3>
+<table class="wikitable" style="text-align: center; width: 100%;" border="1">
+<tbody>
+<tr>
+<th style="text-align: center; width: 24%;"></th>
+<th style="text-align: center; width: 16%;">BEAST 2.x</th>
+<th style="text-align: center; width: 16%;">BEAST 1.8</th>
+<th style="text-align: center; width: 16%;">Model reference</th>
+<th style="text-align: center; width: 18%;">Example XML (2.x)</th>
+<th style="text-align: center; width: 10%;">Package (2.x)</th>
+</tr>
+<tr>
+<td style="text-align: left;">Yule</td>
+<td style="background: LightGreen;"></td>
+<td style="background: LightGreen;"></td>
+<td><a class="external text" href="http://www.jstor.org/discover/10.2307/92117?uid=3738776&amp;uid=2&amp;uid=4&amp;sid=21103204789833" rel="nofollow">yule1924</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testYuleOneSite.xml" rel="nofollow">testYuleOneSite.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Yule with one calibration</td>
+<td style="background: LightGreen;"><a class="external text" href="http://sysbio.oxfordjournals.org/content/61/1/138.long" rel="nofollow">heled2012</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://sysbio.oxfordjournals.org/content/61/1/138.long" rel="nofollow">heled2012</a></td>
+<td><a class="external text" href="http://sysbio.oxfordjournals.org/content/61/1/138.long" rel="nofollow">heled2012</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testCalYule_5t_2c.xml" rel="nofollow">testCalYule_5t_2c.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Birth-death (with incomplete sampling)</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.ncbi.nlm.nih.gov/pubmed/19631666" rel="nofollow">stadler2009</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://arxiv.org/abs/0803.0153" rel="nofollow">gernhard2008</a></td>
+<td><a class="external text" href="http://arxiv.org/abs/0803.0153" rel="nofollow">gernhard2008</a>, <a class="external text" href="http://www.ncbi.nlm.nih.gov/pubmed/19631666" rel="nofollow">stadler2009</a></td>
+<td></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Calibrated birth-death</td>
+<td style="background: LightGreen;"><a class="external text" href="http://sysbio.oxfordjournals.org/content/64/3/369.full" rel="nofollow">heled2014</a></td>
+<td>x</td>
+<td><a class="external text" href="http://arxiv.org/abs/1311.4921" rel="nofollow">heled2013</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">Birth-death serial sampling</td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/29/1/347.full" rel="nofollow">stadler2012</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/29/1/347.full" rel="nofollow">stadler2012</a></td>
+<td><a class="external text" href="http://mbe.oxfordjournals.org/content/29/1/347.full" rel="nofollow">stadler2012</a></td>
+<td></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Birth-death serial skyline</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.pnas.org/content/110/1/228.full" rel="nofollow">stadler2013</a></td>
+<td>x</td>
+<td><a class="external text" href="http://www.pnas.org/content/110/1/228.full" rel="nofollow">stadler2013</a></td>
+<td><a class="external text" href="http://code.google.com/p/bdssm-beast2/source/browse/trunk/examples/BDSKY_contemp.xml" rel="nofollow">BDSKY_contemp.xml</a></td>
+<td><a class="external text" href="http://code.google.com/p/bdssm-beast2/" rel="nofollow">bdssm</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Fossilized birth-death process</td>
+<td style="background: LightGreen;"><a class="external text" href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003919" rel="nofollow">gavryushkina2014</a></td>
+<td>x</td>
+<td><a class="external text" href="http://www.pnas.org/content/early/2014/07/08/1319091111.full.pdf+html" rel="nofollow">heath2014</a></td>
+<td><a class="external text" href="https://github.com/CompEvol/sampled-ancestors/blob/master/examples/bears.xml" rel="nofollow">bears.xml</a></td>
+<td><a class="external text" href="https://github.com/gavryushkina/sampled-ancestors" rel="nofollow">sampled-ancestors</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Birth-death SIR</td>
+<td style="background: LightGreen;"><a class="external text" href="http://rsif.royalsocietypublishing.org/content/11/94/20131106" rel="nofollow">kühnert2014</a></td>
+<td>x</td>
+<td><a class="external text" href="http://rsif.royalsocietypublishing.org/content/11/94/20131106" rel="nofollow">kühnert2014</a></td>
+<td><a class="external text" href="http://code.google.com/p/phylodynamics/source/browse/trunk/examples/BDSIR.xml" rel="nofollow">BDSIR.xml</a></td>
+<td><a class="external text" href="http://code.google.com/p/phylodynamics/" rel="nofollow">phylodynamics</a></td>
+</tr>
+</tbody>
+</table>
+<h3>Species tree prior / Hierarchical tree priors </h3>
+<table class="wikitable" style="text-align: center; width: 100%;" border="1">
+<tbody>
+<tr>
+<th style="text-align: center; width: 24%;"></th>
+<th style="text-align: center; width: 16%;">BEAST 2.x</th>
+<th style="text-align: center; width: 16%;">BEAST 1.8</th>
+<th style="text-align: center; width: 16%;">Model reference</th>
+<th style="text-align: center; width: 18%;">Example XML (2.x)</th>
+<th style="text-align: center; width: 10%;">Package (2.x)</th>
+</tr>
+<tr>
+<td style="text-align: left;">*BEAST, multi-{species, gene, individual}</td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/27/3/570.full" rel="nofollow">heled2010</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/27/3/570.full" rel="nofollow">heled2010</a></td>
+<td><a class="external text" href="http://mbe.oxfordjournals.org/content/27/3/570.full" rel="nofollow">heled2010</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2/blob/v2.1.3/examples/testStarBeast.xml" rel="nofollow">testStarBeast.xml</a></td>
+<td><a class="external text" href="http://github.com/CompEvol/beast2" rel="nofollow">core</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">SNAPP (for SNP data)</td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/early/2012/04/18/molbev.mss086.full" rel="nofollow">bryant2012</a></td>
+<td>x</td>
+<td><a class="external text" href="http://mbe.oxfordjournals.org/content/early/2012/04/18/molbev.mss086.full" rel="nofollow">bryant2012</a></td>
+<td><a class="external text" href="http://code.google.com/p/snap-mcmc/source/browse/trunk/examples/test1.xml" rel="nofollow">test1.xml</a></td>
+<td><a class="external text" href="../snapp/index.html" rel="nofollow">SNAPP</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Complete transmission trees</td>
+<td>x</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003505" rel="nofollow">vrancken2014</a></td>
+<td><a class="external text" href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003505" rel="nofollow">vrancken2014</a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+</tbody>
+</table>
+<h3>Statistical phylogeography</h3>
+<table class="wikitable" style="text-align: center; width: 100%;" border="1">
+<tbody>
+<tr>
+<th style="text-align: center; width: 24%;"></th>
+<th style="text-align: center; width: 16%;">BEAST 2.x</th>
+<th style="text-align: center; width: 16%;">BEAST 1.8</th>
+<th style="text-align: center; width: 16%;">Model reference</th>
+<th style="text-align: center; width: 18%;">Example XML (2.x)</th>
+<th style="text-align: center; width: 10%;">Package (2.x)</th>
+</tr>
+<tr>
+<td style="text-align: left;">Discrete-state &#8220;mugration&#8221; model</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.1000520" rel="nofollow">lemey2009</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.1000520" rel="nofollow">lemey2009</a></td>
+<td><a class="external text" href="http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.1000520" rel="nofollow">lemey2009</a></td>
+<td><a class="external text" href="http://code.google.com/p/beast-classic/source/browse/trunk/examples/H5N1_HA_discrete2.xml" rel="nofollow">H5N1_HA_discrete2</a></td>
+<td><a class="external text" href="http://code.google.com/p/beast-classic/" rel="nofollow">beast-classic</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">&#8220;Relaxed random-walk&#8221; model</td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/27/8/1877.full" rel="nofollow">lemey2010</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/27/8/1877.full" rel="nofollow">lemey2010</a></td>
+<td><a class="external text" href="http://mbe.oxfordjournals.org/content/27/8/1877.full" rel="nofollow">lemey2010</a></td>
+<td><a class="external text" href="http://code.google.com/p/beast-classic/source/browse/trunk/examples/RacRABV_LogNRRW2.xml" rel="nofollow">RacRABV</a></td>
+<td><a class="external text" href="http://code.google.com/p/beast-classic/" rel="nofollow">beast-classic</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">&#8220;Landscape-aware&#8221; model</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.ncbi.nlm.nih.gov/pubmed/22923579" rel="nofollow">bouckaert2012</a></td>
+<td>x</td>
+<td><a class="external text" href="http://www.ncbi.nlm.nih.gov/pubmed/22923579" rel="nofollow">bouckaert2012</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: left;">Generalized linear model</td>
+<td>x</td>
+<td style="background: LightYellow;">in revision</td>
+<td></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td style="text-align: left;">Biased diffusion</td>
+<td>x</td>
+<td style="background: LightYellow;"></td>
+<td></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td style="text-align: left;">Structured coalescent</td>
+<td style="background: LightGreen;"><a class="external text" href="http://bioinformatics.oxfordjournals.org/content/early/2014/05/14/bioinformatics.btu201.full" rel="nofollow">vaughan2014</a></td>
+<td>x</td>
+<td></td>
+<td><a class="external text" href="https://raw.github.com/CompEvol/MultiTypeTree/master/examples/structuredCoalescent.xml" rel="nofollow">structuredCoalescent.xml</a></td>
+<td><a class="external text" href="http://tgvaughan.github.io/MultiTypeTree/" rel="nofollow">MultiTypeTree</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Structured birth-death model</td>
+<td style="background: LightYellow;">in preparation</td>
+<td>x</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>Miscellaneous</h3>
+<table class="wikitable" style="text-align: center; width: 100%;" border="1">
+<tbody>
+<tr>
+<th style="text-align: center; width: 24%;"></th>
+<th style="text-align: center; width: 16%;">BEAST 2.x</th>
+<th style="text-align: center; width: 16%;">BEAST 1.8</th>
+<th style="text-align: center; width: 16%;">Model reference</th>
+<th style="text-align: center; width: 18%;">Example XML (2.x)</th>
+<th style="text-align: center; width: 10%;">Package (2.x)</th>
+</tr>
+<tr>
+<td style="text-align: left;">Epoch models</td>
+<td>x</td>
+<td style="background: LightYellow;"><a class="external text" href="http://arxiv.org/abs/1309.3075" rel="nofollow">bielejec2013</a></td>
+<td><a class="external text" href="http://arxiv.org/abs/1309.3075" rel="nofollow">bielejec2013</a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sequence error (and post-mortem damage) models</td>
+<td><a class="external text" href="https://github.com/CompEvol/beast2/issues/173" rel="nofollow">Issue #173</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/26/2/245.full" rel="nofollow">rambaut2009</a></td>
+<td><a class="external text" href="http://mbe.oxfordjournals.org/content/26/2/245.full" rel="nofollow">rambaut2009</a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tip-date sampling</td>
+<td><a class="external text" href="https://github.com/CompEvol/beast2/issues/41" rel="nofollow">Issue #41</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://mbe.oxfordjournals.org/content/28/2/879.full" rel="nofollow">shapiro2011</a></td>
+<td><a class="external text" href="https://researchspace.auckland.ac.nz/handle/2292/1053" rel="nofollow">drummond2002, Section 6.3</a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td style="text-align: left;">Lie Markov models</td>
+<td style="background: LightGreen;"><a class="external autonumber" href="https://github.com/MichaelWoodhams/BeastLieMarkov/" rel="nofollow">[5]</a></td>
+<td>x</td>
+<td><a class="external autonumber" href="http://arxiv.org/abs/1412.1525" rel="nofollow">[6]</a></td>
+<td></td>
+<td>LMM</td>
+</tr>
+<tr>
+<td style="text-align: left;">Spherical diffusion model</td>
+<td style="background: LightGreen;"><a class="external autonumber" href="https://github.com/BEAST2-Dev/beast-geo" rel="nofollow">[7]</a></td>
+<td>x</td>
+<td><a class="external autonumber" href="http://dx.doi.org/10.1101/016311 " rel="nofollow">bouckaert2015</a></td>
+<td></td>
+<td>GEO_SPHERE</td>
+</tr>
+<tr>
+<td style="text-align: left;">DISSECT</td>
+<td style="background: LightGreen;"><a class="external autonumber" href="http://indriid.com/dissectinbeast.html" rel="nofollow">[9]</a></td>
+<td style="background: LightGreen;"><a class="external autonumber" href="http://indriid.com/dissectinbeast.html" rel="nofollow">[10]</a></td>
+<td><a class="external autonumber" href="http://indriid.com/2015/2015-01-07-tests-on-priors.pdf" rel="nofollow">[11]</a></td>
+<td></td>
+<td>DISSECT</td>
+</tr>
+<tr>
+<td style="text-align: left;">STACEY</td>
+<td style="background: LightGreen;"><a class="external autonumber" href="http://indriid.com/dissectinbeast.html" rel="nofollow">[12]</a></td>
+<td>x</td>
+<td><a class="external autonumber" href="http://indriid.com/2014/species-delim-paper-v8.pdf" rel="nofollow">[13]</a></td>
+<td></td>
+<td>STACEY</td>
+</tr>
+<tr>
+<td style="text-align: left;">Scripting</td>
+<td style="background: LightGreen;"><a class="external autonumber" href="https://github.com/CompEvol/beastshell" rel="nofollow">beastshell</a></td>
+<td>x</td>
+<td>NA</td>
+<td></td>
+<td>BEASTShell</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p></p>
+	
+

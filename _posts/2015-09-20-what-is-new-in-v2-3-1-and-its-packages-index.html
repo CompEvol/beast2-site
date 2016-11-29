@@ -1,0 +1,38 @@
+---
+layout: post
+title: What is new in v2.3.1 and its packages 
+tags: []
+---
+
+	
+
+		
+		<h2>BEAUti fixes</h2>
+<p>Robustify (un)linking of partitions.</p>
+<p>Improved Fasta import.</p>
+<h2>BEAST</h2>
+<p>Support for probability vectors for uncertain sequences (see <tt>examples/testJukesCantorShortUncertain.xml</tt>), which are alignments where  characters are encoded as a distribution.</p>
+<p>Improved error messages.</p>
+<h2>TreeAnnotator</h2>
+<p>TreeAnnotator has a flag to make it use less memory. The original implementation loaded all trees in memory, which could take up quite a bit of space, especially because the default memory limits were set to 1GB (now increased to 4GB). Setting the flag causes TreeAnnotator not to load the whole tree set in memory, just a single tree at the time.</p>
+<p>TreeAnnotator now recognises <tt>-b</tt> as flag to specify burn-in.</p>
+<h2>AppStore, LogCombiners, LogAnalyser</h2>
+<p>Command line interface are improved for these applications. Use <tt>application -help</tt> to see details.</p>
+<h2>Misc</h2>
+<p>Tree parsing is now based on Antlr instead of a hand crafted parser.</p>
+<p>        DensiTree updated to v2.2.3.</p>
+<p>        BinaryCovarion model option to run as reversible model. The original implementation did not take the hidden frequencies in account when setting up the rate matrix, resulting in an irreversible model in case the hidden frequencies deviated from (0.5, 0.5). Set the <tt>mode="REVERSIBLE"</tt> attribute in the XML to make it do so.</p>
+<p>        Set log level by environment variable. There are five log-levels (error, warning, info, debug, trace) which from left to right log increasingly more information. Only BEAST has a flag to set the level, but other applications do not. Now, you can set an environment variable <tt>beast.log.level</tt> to the desired value. Either set it external variable, e.g. <tt> export beast.log.level=debug</tt> on Linux, or add as directive to java through <tt>java -Dbeast.log.level=debug -cp beast.jar ....</tt>.</p>
+<h2><a href="https://bitbucket.org/nicofmay/basta-bayesian-structured-coalescent-approximation/">BASTA</a></h2>
+<p>A package for approximate structured coalescent, now allows Bayesian stochastic variable selection.</p>
+<h2>BACTER</h2>
+<p>A package providing limited support for ancestral recombination graphs a la ClonalOrigin, but with all the substitution models and other support provided by BEAST.<br />
+Documentation <a href="http://tgvaughan.github.io/bacter/">here</a>.</p>
+<h2>BEASTLabs</h2>
+<p>More efficient handling of many monophyletic constraints through the <tt>MultiMonophyletic</tt> prior</p>
+<p>A few operators were added to deal with multiple monophyletic constraints, including restricted subtree slide (<tt>RestrictedSubtreeSlide</tt>), restricted nearest neighbour interchange (<tt>NNI</tt>), and restricted subtree prune regraft (<tt>SPR</tt>).</p>
+<h2>Others</h2>
+<p>Many refinements in other packages were made as well, so upgrading to the latest version will be worth it.</p>
+	
+	
+	

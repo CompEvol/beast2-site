@@ -1,0 +1,49 @@
+.scrolling {
+    position: fixed;
+    top: 0;
+    left: 220px;
+}
+
+article {
+    margin-left: 140px;
+    padding: 1em;
+    overflow: hidden;
+}
+
+pre > code {
+    overflow-wrap: normal;
+    white-space: pre;
+    overflow: auto;
+}
+
+/* Blog styling */
+
+div.post_content img {
+    max-width: 100%;
+}
+
+/* Vertical row alignment */
+
+@media (min-width: 768px) { 
+    .row.vertical-align {
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Italicize mailto links */
+
+a[href^="mailto:"] {
+    font-style: italic;
+}
+
+/* Drop shadow for images */
+
+.drop-shadow {
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+}
+
+
+
+

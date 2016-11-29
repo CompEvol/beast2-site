@@ -1,0 +1,24 @@
+---
+layout: post
+title: What is new in v2.4.1 
+tags: []
+---
+
+	
+
+		
+		<h2>BEAUti</h2>
+<p>BEAUti now allows imports of calibrations from NEXUS files, so you can specify tip dates, distributions on tip dates, monophyletic constraints and clade calibrations in a NEXUS file. This is especially handy when there are a large number of calibrations or when a large number of clades need to be defined.</p>
+<p>BEAUti now has a &#8220;File/Launch Apps&#8221; menu to start applications provided by packages, such as the GUI for doing a Path Sampling analysis (as the AppStore does).</p>
+<p>In Windows and Linux, the *BEAST template went missing at the second time BEAUti was started due to a bug in the way packages are handled. This is fixed now.</p>
+<p>Streamlined upgrades of BEAST so when you can upgrade BEAST as simple as upgrading any package. When upgrading BEAST, BEAUti exits and when restarting it downloads the latest version &#8212; which may take a little time.</p>
+<h2>BEAST</h2>
+<p>On OSX, a common problem was that a CUDA driver was installed to support BEAGLE, but that there is no hardware that is CUDA enabled. The result was a crash of BEAST without an error message, which made it hard to find out what went wrong. In this version a test is done for this condition, and if it exists, instructions are provided on how to uninstall CUDA drivers, which should fix the problem.</p>
+<p>The CLI script for BEAST should have less trouble loading the BEAGLE library in Linux and OSX.</p>
+<p>Two operators have improved operator tuning resulting in slightly better performance (higher ESSs) in most cases.</p>
+<p>There are some improvements in reporting error conditions, which should help diagnose problems.</p>
+<h2>LogAnalyser</h2>
+<p>A bug crept into v2.4.0 causing LogAnalyser not to show progress on loading and processing the log file when started from CLI, which is fixed now.</p>
+	
+	
+	

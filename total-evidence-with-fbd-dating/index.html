@@ -1,0 +1,36 @@
+---
+layout: site
+title: Total-evidence with FBD dating 
+tags: []
+---
+
+	
+		<p>Total-evidence with FBD analysis utilises molecular sequence data of extant species, morphological data of fossil and extant species and fossilisation dates of fossils to infer the phylogeny including divergence times and macroevolutionary parameters.</p>
+<p>To run such an analysis in BEAST2 you need to install SA (sampled-ancestor) version 1.1.3 and morph-models version 1.0.2 packages.</p>
+<p>The molecular and morphological data should be in two separate NEXUS files. The set of taxa and label should be identical in both files. Thus molecular data file should have &#8220;empty&#8221; sequences for fossil taxa, e.i., sequences filled with gaps or question marks, for example. There are examples of <a href="https://github.com/CompEvol/morph-models/blob/master/examples/nexus/penguins_dna.nex">molecular data NEXUS file</a> and <a href="https://github.com/CompEvol/morph-models/blob/master/examples/nexus/penguins_morph.nex">morphological data NEXUS file</a>.</p>
+<h2>Creating XML in BEAUti</h2>
+<p>BEAUti supports most of the features of a total-evidence analysis. To create an XML file run BEAUti and hit the plus button at the left bottom corner and choose <i>Add Morphological Data</i> or choose <i>Add Morphological Data</i> from the File menu to load morphological data. BEAUti will automatically partition the data matrix with respect to the number of states for each character. BEAUti determines the number of state for a character according to the description in the CHARSTATELABELS block. If there is no description for a character then BEAUti counts the number of different symbols that occur in the corresponding column. BEAUti will ask you whether to condition on coding only variable characters (Lewis Mkv model). For this example, we do not choose this option because the taxa were pulled randomly from a real data set and constant characters may occur in the morphological data matrix although in most cases you need to condition on coding only variable characters. Next load the molecular alignment as usual (choose <i>Import Alignment</i>). </p>
+<p>Now you need to link the trees for all data. To do this select all the partitions and hit <i>Link Trees</i> button. Then rename tree fields for all partitions with one name, say, tree. </p>
+<p>Now go to the <i>Tip Dates</i> panel and select <i>Use tip dates</i>. For the example NEXUS files, the dates are parts of the taxon names and we choose <i>dates sepcified as years before present</i> (the dates are actually in million years) and guess dates <i>after last _</i>.  </p>
+<p>Further, go to the <i>Site Model</i> panel. We choose four categories for Gamma variation model and estimate <i>Shape</i> parameter for the DNA partition. For morphological partitions, we keep the default model which is Lewis Mk with no Gamma variation. Note that a model with Gamma variation across morphological characters with a shared Gamma shape parameter for all partitions would fit this data better, however this setting is not currently available in BEAUti. See below how to add this option to the resulting XML file. We choose <i>Relaxed Clock Log Normal</i> models for both partitions on the <i>Clock Model</i> panel. </p>
+<p>Then go to the <i>Priors</i> panel and choose <i>Fossilised Birth Death Model</i> as a tree prior distribution. Now we need to adjust the settings of the tree prior. Hit the arrow button to see available parameters with starting values. We leave the default starting values for all parameters except for <i>Diversification Rate</i> which should be within [0,0.1] interval. So we set 0.05 starting value for the diversification rate. Also for this example only a fraction of extant species is included in the analysis. So <i>Rho</i> parameter should be estimated (select estimate box next to this parameter). On the same panel, we also need to change the priors for the time of origin and diversification rate. Set Uniform(0,150) for <i>Origin</i> and Uniform(0,0.1) for <i>Diversification Rate</i>. We choose LogNormal(-5.5, 2) for the mean of the log-noramally distributed morphological clock rates and LogNormal(-3.5, 1) for molecular clock rates.  </p>
+<p>Further go to the <i>MCMC</i> panel and rename log files: say, set penguins.log name for <i>tracelog</i> and penguins.tree for <i>treelog</i>. Set <i>Log Every</i> to 10000 for the tree log to obtain reasonable file size. Now you are ready to save the XML specification. You can compare the resulting XML file with <a href="https://github.com/CompEvol/morph-models/blob/master/examples/penguins.xml">an example XML file</a> (with some edits described below) obtained by following this tutorial. </p>
+<h2>Editing XML to add extra features</h2>
+<p>After you prepared the XML file you can run it with BEAST. There are a few things that you might want to change manually in this XML. First of all, to speed up the mixing merge two relaxedUpDownOperators to simultaneously scale both mean clock rates up and tree down (see comments in <a href="https://github.com/CompEvol/morph-models/blob/master/examples/penguins.xml">the example XML file</a>). </p>
+<p>You may also add age ranges for fossil samples as described <a href="..//divergence-dating-with-sampled-ancestors-fbd-model/index.html">here</a>.  </p>
+<p>To add Gamma variation across morphological characters with shared Gamma shape set Gamma categories to four and estimate Shape parameter for one of the Lewis Mk models when you specify the analysis in BEAUti. If you add Gamma variation to partition two then you need to add attributes:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}gammaCategoryCount="4" shape="@gammaShape.s:penguins_morph2"{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>to site models for remaining morphological partitions and remove existing shape parameters from these models (see comments in <a href="https://github.com/CompEvol/morph-models/blob/master/examples/penguins.xml">the example XML file</a>). </p>
+	
+

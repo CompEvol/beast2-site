@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <title>{{ site.title }}</title>
+
+    <link rel="stylesheet" href="{{site.baseurl}}/css/genericons.css">
+    <link rel="stylesheet" href="{{site.baseurl}}/css/syntax.css">
+    <link rel="stylesheet" href="{{site.baseurl}}/css/wordpress-style.css">
+    <link rel="stylesheet" href="{{site.baseurl}}/css/style.css">
+  </head>
+
+  <body>
+	<script src="http://code.jquery.com/jquery-1.7.1.js"></script><!--https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script-->
+
+    {% include navbar.html %}
+    {% include sidebar.html %}
+				<article class="page type-page status-publish">
+<div id="main" class="site-main">
+	<div id="main-content" class="main-content">
+		<div id="primary" class="content-area">
+				<header class="entry-header"><h1 class="entry-title">{{page.title}}</h1></header>
+			<div id="content" class="site-content" role="main">
+      				{{ content }}	
+    		</div>
+    	</div>
+    </div>
+</div>
+				</article>
+
+
+  </body>
+</html>

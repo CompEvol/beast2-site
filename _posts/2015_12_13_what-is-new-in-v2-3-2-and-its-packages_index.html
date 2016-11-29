@@ -1,0 +1,43 @@
+---
+layout: post
+title: What is new in v2.3.2 and its packages 
+tags: []
+---
+
+	
+
+		
+		<p>Main reason for this release is to get the path corrected so Standard and StarBeast templates are visible under templates menu. In the v2.3.1 they got lost due to a new way of handling search paths. But there are many other reasons to upgrade to this release as pointed out below.</p>
+<h2>BEAUti</h2>
+<p>A fix of import of traits from file when partitions are split into say codon positions.</p>
+<p>A fix for cloning of scripts with partition information.</p>
+<p>Set up weights correctly of FixedMeanRate operator when ascertainment correction is applied. Previously, ascertainment correction columns were included in the weights.</p>
+<p>Allows ParameterInputEditor to edit Parameter inputs.</p>
+<p>Ensure when focus is on an editable field in Taxon set dialog the last value entered is captured when switching tabs.</p>
+<h2>BEAST</h2>
+<p>A &#8220;-validate&#8221; command line option for was added for parsing XML files without running them. This can be useful for just testing whether an XML file is correct, without having to stop the MCMC run and delete log files that are being created.</p>
+<p>The MRCAPrior is now much more efficient. This gives performance improvements when there is little data and many MRCAPriors.</p>
+<p>The way of generating random trees has been robustified.</p>
+<p>More robust storing the state file on Windows.</p>
+<h2>LogCombiner</h2>
+<p>Ensured in the GUI version of LogCombiner burn in editing finished properly. The burn in was previously ignored if the burn in field was edited and the focus left on the edit field when pressing the run button.ds</p>
+<h2>LogAnalyser</h2>
+<p>LogAnalyser now has one line per file mode, so you can analyse multiple files and instead of having all info printed as blocks it can output all results for a single log file on a single line. This is handy when importing in R for further post-processing.</p>
+<p>A CLI script added in the bin directory for ease of launch.</p>
+<h2>Error messages</h2>
+<p>More sensible error messages in many classes, for instance TreeParser, RPNCalculator, NodeReheight.</p>
+<p>DensiTree is updated to version 2.2.4.</p>
+<h2>Packages</h2>
+<p>New releases of the following packages were created since the release v2.3.1:<br />
+* BACTER,<br />
+* GEO_SHERE,<br />
+* STACEY,<br />
+* bModelTest,<br />
+* SNAPP,<br />
+* BASTA,<br />
+* RBS.<br />
+* MultiTypTree and<br />
+* MASTER.</p>
+	
+	
+	

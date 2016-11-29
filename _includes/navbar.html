@@ -1,0 +1,124 @@
+<script>
+function toggleSearch() {
+var that = document.getElementById("search-toggleX");
+                       wrapper = document.getElementById("search-container");
+                       container = document.getElementById("search-toggleA")
+
+                        toggleClass(that, 'active' );
+                        toggleClass(wrapper, 'hide' );
+
+    
+
+                        if ( that.className.matches( '\bactive\b' ) ) {
+                                container.attr( 'aria-expanded', 'true' );
+                        } else {
+                                container.attr( 'aria-expanded', 'false' );
+                        }
+                        document.getElementById('query').focus();
+}
+
+function toggleClass(element, className){
+    if (!element || !className){
+        return;
+    }
+
+    var classString = element.className, nameIndex = classString.indexOf(className);
+    if (nameIndex == -1) {
+        classString += ' ' + className;
+    }
+    else {
+        classString = classString.substr(0, nameIndex) + classString.substr(nameIndex+className.length);
+    }
+    element.className = classString;
+}
+</script>
+
+<div class="navbar navbar-default">
+  <div class="navbar container">
+    <div class="navbar-header0" align="left">
+		<a href='{{site.baseurl}}/'><img src="{{site.baseurl}}/images/cropped-beast2-logo.png"/></a>
+    </div>
+  </div>
+</div>
+
+			<div class="search-toggle" id="search-toggleX" onclick="toggleSearch()">
+				<a id="search-toggleA" class="screen-reader-text" aria-expanded="false" onclick="toggleSearch()" aria-controls="search-container">Search</a>
+				<!--a href="#search-container" class="screen-reader-text" aria-expanded="false" onclick="toggleSearch()" aria-controls="search-container">Search</a-->
+			</div>
+    		<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="menu-beast-menu-container"><ul id="primary-menu" class="nav-menu">
+<li id="menu-item-590"  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-590 {% if page.url == '/' %} current_page_item {% endif %}"><a href="{{site.baseurl}}/">About</a></li>
+<li id="menu-item-12"   class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12 {% if page.url == '/book/' %} current_page_item {% endif %}"><a href="{{site.baseurl}}/book/">Book</a></li>
+<li id="menu-item-501"  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-501 {% if page.url == '/citation/' %} current_page_item {% endif %}"><a href="{{site.baseurl}}/citation/">Citation</a></li>
+<li id="menu-item-14"   class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14 {% if page.url == '/tutorials/' %} current_page_item {% endif %}"><a href="{{site.baseurl}}/tutorials/">Tutorials</a></li>
+<li id="menu-item-602"  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-602 {% if page.url == '/faq/' %} current_page_item {% endif %}"><a href="{{site.baseurl}}/faq/">FAQ</a></li>
+<li id="menu-item-604"  class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-604 {% if page.url == '/blog/' %} current_page_item {% endif %}"><a href="{{site.baseurl}}/blog/">Blog</a></li>
+<li id="menu-item-1323" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1323 {% if page.url == '/package-development-guide/' %} current_page_item {% endif %}"><a href="{{site.baseurl}}/package-development-guide/">Developers</a><ul class="sub-menu">
+<li id="menu-item-15"  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-15"><a href="https://github.com/CompEvol/beast2">Source Code</a></li>
+<li id="menu-item-676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-676"><a href="{{site.baseurl}}/writing-a-beast-2-package/">Writing a BEAST 2 Package</a></li>
+</ul></li>
+</ul></div>			
+</nav>
+	
+			<div id="search-container" class="search-box search-box-wrapper hide">
+				<form role="search" method="get" class="search-form" action="http://beast2.org/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input id="query" type="text" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>
+	</div>
+
+<!-- search entry script -->
+
+<script>
+var input = document.getElementById("query");
+input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode == 13) {
+    	// both duckduckgo and startpage work fine
+	    window.location = "https://www.startpage.com/do/search?query=site:beast2.org+" + input.value;
+	    //window.location = "https://www.duckduckgo.com/?q=site:beast2.org+" + input.value;
+	    // google requires the user to hit enter again when redirected to google.com
+	    //window.location = "https://www.google.com/?q=site:beast2.org+" + input.value;
+    }
+});
+
+$(window).scroll(function(){
+	var p = document.getElementById("primary-navigation");
+	
+    var classString = p.className;
+    var nameIndex = classString.indexOf('scrolling');
+    if (document.documentElement.scrollTop > p.offsetTop) { //document.body.scrollTop > p.offset().top || document.documentElement.scrollTop > p.offset().top) {
+    	if (nameIndex == -1) {
+        	classString += ' scrolling';
+    	}
+	} else {
+    	if (nameIndex != -1) {
+        	classString = classString.substr(0, nameIndex) + classString.substr(nameIndex+9);
+		}
+	}
+    p.className = classString;
+//  $('#primary-navigation').toggleClass('scrolling', $(window).scrollTop() > $('#primary-navigation').offset().top);
+});
+
+</script>
+
+
+
+<!-- google analytics -->
+<!--        <script>
+                if (typeof ga === 'undefined') {
+                  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                  ga('create','UA-47201501-1', 'beast2.org');                  ga('send', 'pageview');
+                                }
+            </script> 
+-->
+

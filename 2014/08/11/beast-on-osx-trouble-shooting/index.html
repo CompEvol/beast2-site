@@ -1,0 +1,135 @@
+---
+layout: post
+title: BEAST on OSX trouble shooting 
+tags: []
+---
+
+	
+
+		
+		<p style="color:gray">11 August 2014 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+<p>Just this week I got a new Mac laptop, and could experience first hand what it is to install BEAST on a virgin machine. There are number of reasons why BEAST will not start on Apple OSX, and we have a look at the most common causes and how to solve them. </p>
+<h2>DMG is &#8216;damaged&#8217;</h2>
+<p>First of all, after <a href='http://beast2.org'>downloading</a> BEAST and OSX may respond to opening the dmg file by showing a dialog with the message that the file is damaged and offers a choice of deleting or canceling the action.</p>
+<p><img src='../../../..//files/2014/08/MacDmgDamaged.png'/></p>
+<p>By default, security settings on Mavericks is that only apps downloaded from Mac App Store and from identified developers are opened, and anything else is treated with the message shown above. To fix this, open the security and privacy settings &#8212; click the apple icon in the top left corner, then click System Preferences, and select Security &amp; Privacy. A window similar to this will be shown:</p>
+<p><img src='../../../..//files/2014/08/MacSecuritySettings.png'/></p>
+<p>You need to change that to allow apps from anywhere. Once you click that, a window pops up asking whether you want to make your computer less secure. No worries &#8212; after starting BEAST once, you can set it back to a more secure setting.</p>
+<p><img src="../../../..//files/2014/08/MacSecuritySettings2.png"/></p>
+<h2>Cannot be opened</h2>
+<p>Another message that can pop up is that BEAST or BEAUti cannot be opened &#8212; something similar to this </p>
+<p><img src="../../../..//files/2014/08/MacSecurity.png"/></p>
+<p>(Had to doctor this screenshot a bit to show beast instead of the app I started). Again, change the security settings (temporarily) to allow applications from anywhere, as outlined above.</p>
+<h2>Need to install Java 6?</h2>
+<p>Now the dmg file should open and you can drag BEAST to the Applications folder. Double clicking BEAUti or BEAST may result in a message asking you to install Java 6. This may seem strange if you already have Java 7 or higher installed. </p>
+<p><img src="../../../..//files/2014/08/MacNeedJava6.png"/></p>
+<p>It does not change your default Java installation if you click &#8216;install&#8217; &#8212; Java 6 will be installed next to Java 7 or 8, but will not become the default for command line usage.<br />
+(you may want to create a symbolic link to trick OSX in thinking Java 6 is already installed if you already have Java 7 &#8212; <a href='http://apple.stackexchange.com/questions/58203/mountain-lion-with-java-7-only/58841#58841'>details here</a>).</p>
+<h2>BEAST does not start from the command line</h2>
+<p>When you run BEAST or BEAUti from the command line, you can be confronted by a somewhat mysterious message like this:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}Exception in thread "main" java.lang.UnsupportedClassVersionError: beast/app/beauti/Beauti : Unsupported major.minor version 52.0{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>BEAST v2.1.x requires Java 6 and v2.2.x requires Java 8. It is possible that you do not have the correct version of Java installed. To test which version you have, in a terminal use &#8220;java -version&#8221;, which should display something like this:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}~> java -version
+java version "1.8.0_11"
+Java(TM) SE Runtime Environment (build 1.8.0_11-b12)
+Java HotSpot(TM) 64-Bit Server VM (build 25.11-b03, mixed mode){% endhighlight %}			
+			
+		
+
+<p></p>
+<p>(~> is the command prompt, and should not be typed. Anything with out ~> is output to screen.) If you do not have the correct Java version installed, you can do so from <a href='http://java.com'>java.com</a> or for Java 8 <a href='http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html'>oracle</a>. It is possible that you have more than one version of Java installed, and that the default version happens to be an older version. To change the default version is a bit fiddly, but can be done from a terminal by changing a symbolic link in <tt>/System/Library/Frameworks/JavaVM.framework/Versions/</tt> like so:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}~> cd /System/Library/Frameworks/JavaVM.framework/Versions/
+~> ls
+CurrentJDK{% endhighlight %}			
+			
+		
+
+<p>If it shows something else, e.g., <tt>Current</tt> replace <tt>CurrentJDK</tt> with the name of that link.</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}~> rm CurrentJDK
+~> ls /Library/Java/JavaVirtualMachines/
+jdk1.7.0_21.jdk     jdk1.8.0_11.jdk{% endhighlight %}			
+			
+		
+
+<p>Now, just select one of the Java versions, say <tt>jdk1.8.0_11.jdk</tt> and add the link</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}~> ln -s /Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/ CurrentJDK{% endhighlight %}			
+			
+		
+
+<p>Don&#8217;t forget to replace <tt>CurrentJDK</tt> with <tt>Current</tt> if that is what you had before.</p>
+<h2>BEAGLE and CUDA</h2>
+<p><a href='https://code.google.com/p/beagle-lib/'>BEAGLE</a> is a library for performing Felsenstein&#8217;s peeling algorithm much more efficiently than can be done in Java. To install it for Mac is straightforward, but sometimes it does not work. One of the reasons is that the BEAGLE installer makes it easy to let you install CUDA as well. The CUDA library is useful only when you have an NVIDA graphics card. Most Macs that I&#8217;ve seen do not have an NVIDIA card, and on these machines you can see errors similar to this:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}CUDA error: "Driver not initialized" from file <GPUInterfaceCUDA.cpp>, line 169.{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>What you need to do is uninstall the CUDA driver &#8212; reinstalling the BEAGLE library may be helpful as well.</p>
+<p>Uninstalling CUDA drivers is a bit of a mission, since files go in a number of places, and there is no uninstaller. What <a href='https://discussions.apple.com/message/25238529'>should work</a> is to delete all of the following files</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}/Library/Frameworks/CUDA.framework
+/Library/LaunchAgents/com.nvidia.CUDASoftwareUpdate.plist
+/Library/PreferencePanes/CUDA Preferences.prefPane
+/System/Library/Extensions/CUDA
+/System/Library/StartupItems/CUDA
+/usr/local/cuda/lib/libcuda.dylib{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>then reboot, and CUDA should be uninstalled.</p>
+<h2>Accessing packages</h2>
+<p>BEAST packages typically come with usefule examples and documentation. On OSX, packages are stored in <tt>~/Library/Application Support/BEAST/2.1/</tt> and each package has its own directory with the name of the package. The OSX Finder does not show the <tt>~/Library</tt> folder by default. To open the folder, click the Go-item in the menu bar, then hit the alt-key. Now &#8216;Library&#8217; appears under the Go-menu. Select the Library-item and a new folder opens from where you can browse to the BEAST package.</p>
+	
+	
+	

@@ -1,0 +1,67 @@
+---
+layout: site
+title: Intellij 
+tags: []
+---
+
+	
+		<p>Graham Jones has a <a class="external text" href="http://www.indriid.com/2014/beast2-intellij.html" rel="nofollow">page</a> describing how to set up BEAST2 development in IntelliJ. We will update the below to reflect it in the near future.</p>
+<h2>Setting up a beast2 project in Intellij</h2>
+<p>The source code can be cloned from Github using ’git clone <a class="external free" href="https://github.com/CompEvol/beast2.git" rel="nofollow">https://github.com/CompEvol/beast2.git</a> and set up as a project in Intellij, named beast2.</p>
+<ul>
+<li>Menu: File =&gt; Import Project.. (<b>NOT</b> New Project&#8230;)</li>
+<li>Choose the &#8220;beast2&#8221; folder where the source code is cloned, and click &#8220;OK&#8221;</li>
+<li>Keep the default setting &#8220;Create project from existing sources&#8221; and click &#8220;Next&#8221;</li>
+<li>Accept name, location, and click &#8220;Next&#8221;</li>
+<li>Accept source folders, and click &#8220;Next&#8221;</li>
+<li>Accept libraries, and click &#8220;Next&#8221;</li>
+<li>Accept module structure, and click &#8220;Next&#8221;</li>
+<li>Accept JDK (&gt; 1.6), and click &#8220;Next&#8221;</li>
+<li>click &#8220;Finish&#8221;</li>
+<li>Menu: Build =&gt; Make project</li>
+</ul>
+<h2>Setting up an add-on in Intellij</h2>
+<p>This assumes that Beast2 source code is cloned and set up as a project in Intellij, named beast2.</p>
+<p>To set up a new Add-on to Beast 2 in Intellij</p>
+<ul>
+<li>Create new project</li>
+<li>Import Beast 2 as follows:</li>
+</ul>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}   Choose menu File/New Module
+   then choose ’Import existing module’
+   select the button for browsing the file to be imported.
+   Then go to the Beast 2 source folder where you select Beast2.iml file.
+   Press OK{% endhighlight %}			
+			
+		
+
+<p></p>
+<ul>
+<li>Add dependency on Beast 2 as follows:</li>
+</ul>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}   Choose menu File/Project structure.
+   Select Modules tab
+   Select your new module
+   Press Add button, select Module Dependencies
+   Select the Beast 2 module
+   Press OK{% endhighlight %}			
+			
+		
+
+<p></p>
+	
+

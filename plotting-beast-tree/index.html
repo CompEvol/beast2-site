@@ -1,0 +1,23 @@
+---
+layout: site
+title: Plotting *BEAST tree 
+tags: []
+---
+
+	
+		<p>You need DensiTree version 2.1.5 or better. You can draw the branch widths representing population sizes of the summary tree by choosing the appropriate settings under the line width tab.</p>
+<p>One way to get a gene tree inside a species tree is by exporting the summary tree as png file, and use it as the background image (menu File/Background image) of the gene tree. You probably have to edit the background image in a bitmap editor first to ensure the summary tree is of the same length as the gene tree by adding a root branch.</p>
+<p>Also, the taxa of the gene tree will not directly fit the species tree, so you have to move them around a bit till they fit nicely. There is a cumbersome way to do this, but it means starting DensiTree from the command line with a special option, so start as</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %} java -jar DensiTree -allowLeafsToBeMovedIKnowThisMessesUpInternalCladePositions{% endhighlight %}			
+			
+		
+
+<p>Then select central layout, then show clades (under the clades tab), and you can drag clades with the mouse. You will find that the clades representing internal nodes may move to unexpected locations, but that is what the special option is meant to say.</p>
+	
+

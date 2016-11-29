@@ -1,0 +1,118 @@
+---
+layout: post
+title: Load Balancing 
+tags: [beagle,beast-2,beastlabs,performance,v2-2-0]
+---
+
+	
+
+		
+		<p style="color:gray">18 August 2014 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+<p>If you have a good graphics cards, you can use it with BEAGLE to increase the speed of BEAST runs. If you have multiple graphics cards, when starting BEAST from the command line, the <tt>-beagle_order</tt> flag can be used to tell which thread goes on which GPU. Start BEAST with the <tt>-beagle_info</tt> flag to find out what kind of hardware you have and which numbers they are.</p>
+<p>For example, I get on my aging univesity computer, the following output:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}                  BEAST v2.2.0 Prerelease, 2002-2014
+       Bayesian Evolutionary Analysis Sampling Trees
+                 Designed and developed by
+Remco Bouckaert, Alexei J. Drummond, Andrew Rambaut and Marc A. Suchard
+                              
+               Department of Computer Science
+                   University of Auckland
+                  remco@cs.auckland.ac.nz
+                  alexei@cs.auckland.ac.nz
+                              
+             Institute of Evolutionary Biology
+                  University of Edinburgh
+                     a.rambaut@ed.ac.uk
+                              
+              David Geffen School of Medicine
+           University of California, Los Angeles
+                     msuchard@ucla.edu
+                              
+                Downloads, Help & Resources:
+              	http://beast2.cs.auckland.ac.nz
+                              
+Source code distributed under the GNU Lesser General Public License:
+              	http://code.google.com/p/beast2
+                              
+                     BEAST developers:
+	Alex Alekseyenko, Trevor Bedford, Erik Bloomquist, Joseph Heled, 
+	Sebastian Hoehna, Denise Kuehnert, Philippe Lemey, Wai Lok Sibon Li, 
+	Gerton Lunter, Sidney Markowitz, Vladimir Minin, Michael Defoin Platel, 
+          	Oliver Pybus, Chieh-Hsi Wu, Walter Xie
+                              
+                         Thanks to:
+    	Roald Forsberg, Beth Shapiro and Korbinian Strimmer
+
+BEAGLE resources available:
+0 : CPU
+    Flags: PRECISION_SINGLE PRECISION_DOUBLE COMPUTATION_SYNCH EIGEN_REAL EIGEN_COMPLEX SCALING_MANUAL SCALING_AUTO SCALING_ALWAYS SCALING_DYNAMIC SCALERS_RAW SCALERS_LOG VECTOR_SSE VECTOR_NONE THREADING_NONE PROCESSOR_CPU
+
+
+1 : GeForce GTX 295
+    Global memory (MB): 896
+    Clock speed (Ghz): 1.24
+    Number of cores: 240
+    Flags: PRECISION_SINGLE PRECISION_DOUBLE COMPUTATION_SYNCH EIGEN_REAL EIGEN_COMPLEX SCALING_MANUAL SCALING_AUTO SCALING_ALWAYS SCALING_DYNAMIC SCALERS_RAW SCALERS_LOG VECTOR_NONE THREADING_NONE PROCESSOR_GPU FRAMEWORK_CUDA
+
+
+2 : GeForce GTX 295
+    Global memory (MB): 895
+    Clock speed (Ghz): 1.24
+    Number of cores: 240
+    Flags: PRECISION_SINGLE PRECISION_DOUBLE COMPUTATION_SYNCH EIGEN_REAL EIGEN_COMPLEX SCALING_MANUAL SCALING_AUTO SCALING_ALWAYS SCALING_DYNAMIC SCALERS_RAW SCALERS_LOG VECTOR_NONE THREADING_NONE PROCESSOR_GPU FRAMEWORK_CUDA
+
+
+3 : GeForce GTX 295
+    Global memory (MB): 896
+    Clock speed (Ghz): 1.24
+    Number of cores: 240
+    Flags: PRECISION_SINGLE PRECISION_DOUBLE COMPUTATION_SYNCH EIGEN_REAL EIGEN_COMPLEX SCALING_MANUAL SCALING_AUTO SCALING_ALWAYS SCALING_DYNAMIC SCALERS_RAW SCALERS_LOG VECTOR_NONE THREADING_NONE PROCESSOR_GPU FRAMEWORK_CUDA
+
+
+4 : GeForce GTX 295
+    Global memory (MB): 896
+    Clock speed (Ghz): 1.24
+    Number of cores: 240
+    Flags: PRECISION_SINGLE PRECISION_DOUBLE COMPUTATION_SYNCH EIGEN_REAL EIGEN_COMPLEX SCALING_MANUAL SCALING_AUTO SCALING_ALWAYS SCALING_DYNAMIC SCALERS_RAW SCALERS_LOG VECTOR_NONE THREADING_NONE PROCESSOR_GPU FRAMEWORK_CUDA{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>It shows there are 4 GPUs numbered 1 to 4 as well as a CPU numbered 0. It also reports some statistics like the number of cores and memory on each GPU. I understand that on OSX due to a bug in the OpenCL library the reported statistics are somewhat exaggerated (e.g. it reports 280 cores on my Macbook air while the HD Graphics 5000 only has 40). </p>
+<p>If I have an analysis with two partitions, or one partition, but using the <tt>ThreadedTreeLikelihood</tt> instead of the <tt>TreeLikelihood</tt>, and I would start a job with</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}beast -beagle_order 2,4 -threads 2 beast.xml{% endhighlight %}			
+			
+		
+
+<p>it will use two threads, and the first will use GPU number 2 and the second will use GPU number 4. So, you can divide your data among these cards such that all of your GPUs are utilised. </p>
+<p>But what if your dataset is too large to fit on one or more of your GPUs? Then, using the <tt>-beagle_order</tt> flag can be used with some of the partitions using GPUs and others using CPUs. Say, you have a single GPU numbered 1, and a CPU numbered 0, then using</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}beast -beagle_order 0,0,0,1 -threads 4 beast.xml{% endhighlight %}			
+			
+		
+
+<p>will place the first three threads on the CPU and the last on the GPU. Typically, the CPU and GPU do not run at the same speed and I&#8217;ll assume the GPU is much faster. What you will see when running the above is then that the three CPU threads are running behind the GPU. So, the GPU thread will be waiting on the CPU threads to finish, and this shows up in CPU load being well below 400% On Mac or Linux I use &#8216;top&#8217; to see how much CPU load there is. If you could put less data on the CPUs and more on the GPU, you could utilise your computer more efficient.</p>
+<p>Now you can &#8212; this requires BEAST v2.2.0-pre release, and BEASTlabs for v2.2.0. The <tt>ThreadedTreeLikelihood</tt> has a <tt>proportions</tt> attribute where you can specify how much of the data should go into a thread. By default, the <tt>ThreadedTreeLikelihood</tt> splits up the data in equal parts, which is fine if you only use CPU or only GPU. But when you mix, the proportions specifies proportions of patterns used per thread as space delimited string. This is useful when using a mixture of BEAGLE devices that run at different speeds, e.g GPU and CPU. The string is duplicated if there are more threads than proportions specified. For example, &#8216;1 2&#8242; as well as &#8217;33 66&#8217; with 2 threads specifies that the first thread gets one third of the patterns and the second two thirds. With 3 threads, it is interpreted as &#8216;1 2 1&#8217; = 25%, 50%, 25% and with 7 threads it is &#8216;1 2 1 2 1 2 1&#8217; = 10% 20% 10% 20% 10% 20% 10%. If not specified, all threads get the same proportion of patterns.</p>
+<p>By keeping an eye on CPU utilisation, you can see how changing proportions have an impact on CPU load.</p>
+<p>Note that mixing the <tt>-beagle_GPU</tt> and <tt>-beagle_SSE</tt> flag causes all threads to use CPUs, so the CPU necessarily cannot use the SSE instructions, which means in most practical cases some speed is lost.</p>
+	
+	

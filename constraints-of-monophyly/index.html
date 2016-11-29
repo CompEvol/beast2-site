@@ -1,0 +1,66 @@
+---
+layout: site
+title: Constraints Of Monophyly 
+tags: []
+---
+
+	
+		<h2>Using BEAUti</h2>
+<p>Constraining a clade to be monphyletic is easiest done in via <a title="BEAUti" href="..//BEAUti/index.html">BEAUti</a> from the &#8220;Priors&#8221; tab and selecting the &#8220;+&#8221; button at the bottom of the screen. A window is shown where you can specify the taxa of a clade and the name of the clade.</p>
+<p><img class="alignnone size-full wp-image-400" src="..//files/2015/05/TaxonSetEditor.png" alt="TaxonSetEditor" width="485" height="306" srcset="http://beast2.org/files/2015/05/TaxonSetEditor.png 485w, http://beast2.org/files/2015/05/TaxonSetEditor-300x189.png 300w" sizes="(max-width: 485px) 100vw, 485px" /></p>
+<p>&nbsp;</p>
+<p>When closing, a new entry appears in the priors panel. Click the monophyletic checkbox to ensure the clade is forced to be monophyletic.</p>
+<p><img class="alignnone size-full wp-image-401" src="..//files/2015/05/Monophyletic.png" alt="Monophyletic" width="859" height="481" srcset="http://beast2.org/files/2015/05/Monophyletic.png 859w, http://beast2.org/files/2015/05/Monophyletic-300x168.png 300w" sizes="(max-width: 859px) 100vw, 859px" /></p>
+<p>&nbsp;</p>
+<h2>By editing XML </h2>
+<p>Firstly create a <code>distribution</code> that contains the group you want to constrain to be monophyletic. By adding the distribution element directly to the XML inside the element with id &#8220;prior&#8221; like so:</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<distribution id="ph.prior" spec="beast.math.distributions.MRCAPrior" tree="@Tree.t:xyz">
+      <taxonset id="ph" spec="TaxonSet">
+             <taxon id="Homo_sapiens" spec="Taxon"/>
+             <taxon id="Pan" spec="Taxon"/>
+      </taxonset>
+</distribution>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p><strong>Note 1</strong>: the tree constrained here is <code>Tree.t:xyz</code> &#8212; you need to change <code>xyz</code> so that it matches the name of the tree you want to constrain.<br />
+<strong>Note 2</strong>: if the taxon is already specified before (because it is already in another constraint, or when you start with a SNAPP analysis), you should refer to that taxon instead of creating a new one, like so: <code>&lt;taxon idref="Homo_sapiens"/&gt;</code>, so leave out the <code>spec</code> attribute and replace <code>id</code> with <code>idref</code>.</p>
+<p>To constrain the taxonset to be monophyletic, add a <code>monophyletic="true"</code> attribute to the distribution:</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<distribution id="ph.prior" monophyletic="true" spec="beast.math.distributions.MRCAPrior" tree="@Tree.t:xyz">
+      <taxonset id="ph" spec="TaxonSet">
+             <taxon id="Homo_sapiens" spec="Taxon"/>
+             <taxon id="Pan" spec="Taxon"/>
+      </taxonset>
+</distribution>{% endhighlight %}			
+			
+		
+
+<p>If you add this to the log file then it displays the height of the ph clade in the log file.</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}  <log idref='ph.prior'/>{% endhighlight %}			
+			
+		
+
+<p>But you will have to provide a starting tree that is valid to begin with so the default random starting tree won&#8217;t work. The easiest way to do this is by using a randomtree as starting tree (the default in BEAUti) or to supply your own initial tree. <a title="Fix starting tree" href="..//fix-starting-tree/index.html">See this tutorial for details of how to do this</a>.</p>
+<h2>Rooting trees using an outgroup </h2>
+<p>You can use this technique to root the sampled trees using an outgroup. First create a <code>distibution</code>, as above, containing your <i>ingroup</i> taxa. Then follow the above instructions to keep your ingroup monophyletic with respect to the outgroup. Note that this is essentially a <a title="Glossary" href="..//glossary/index.html">prior</a> and you may wish to estimate the posterior probability that you outgroup is indeed an outgroup.</p>
+	
+

@@ -1,0 +1,29 @@
+---
+layout: post
+title: Path sampling with a GUI 
+tags: [appstore,beast-2,gui,model-selection-v-1-0-2,path-sampling]
+---
+
+	
+
+		
+		<p style="color:gray">14 July 2014 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+<p><b>Requires the model-selection package version 1.0.2 or better.</b> See <a href='../../../..//managing-packages/index.html'>here</a> how to manage packages.</p>
+<p>Instead of editing the XML, as explained in the <a href='../../../..//path-sampling/index.html'>BEAST website</a>, a path sampling, or stepping stone analysis can be set up using a GUI as well. First, launch the appstore &#8212; there should be an icon labelled &#8216;AppStore&#8217; when BEAST is installed, just double click that.</p>
+<p><img src="../../../..//files/2014/07/path-sampling0.png"></p>
+<p>When you filter applications on MODEL-SELECTION using the drop-down box at the top of the AppStore, there should be an icon labelled Path Sampler and another labelled Path Sample Analysis. Launch the Path Sampler by double clicking the icon.</p>
+<p><img src="../../../..//files/2014/07/path-sampling1.png"></p>
+<p>A dialog pops up showing a range of options for setting up the path sampling or stepping stone analysis. As you can see, one of the inputs called Model1 is the XML file containing the BEAST analysis for which you want to estimate the marginal likelihood. Here we selected <tt>normalTest-1.xml</tt> which is in the examples directory of the MODEL-SELECTION package.</p>
+<p>Set the other parameters as appropriate. Note that in this screen-shot we chose 4 steps just to ran it fast, but that does not mean that 4 steps is sufficient. You want to keep increasing the number of steps till the marginal likelihood estimate remains constant. There is no rule of thumb other than this to find the number of steps as far as I know.</p>
+<p><img src="../../../..//files/2014/07/path-sampling3.png"></p>
+<p>If you already ran a path sampling analysis before, you want to overwrite the log files, and click the &#8220;Delete old logs&#8221; check box.</p>
+<p>Once you click OK, the analysis is started (if you left the Do Not Run check-box unchecked) and a window pops up showing progress of the analysis. At the end, the marginal likelihood estimate is printed:</p>
+<p><img src="../../../..//files/2014/07/path-sampling4.png"></p>
+<p>If you selected &#8220;Do not run&#8221;, all files and directories will be created, but the analysis is not run yet. You can run them by kicking of the run.sh/run.bat scripts (depending on your operating system). Once the analysis is run &#8212; or for some steps re-run if something went wrong &#8212; you need to start the path-sample analyser to calculate the ML estimate from the individual steps. This is easy &#8212; from the AppStore launch the path-sampling analyser:</p>
+<p><img src="../../../..//files/2014/07/path-sampling5.png"></p>
+<p>A window pops up where you can specify the same path sampling parameters as used for the analysis:</p>
+<p><img src="../../../..//files/2014/07/path-sampling7.png"></p>
+<p>When you click OK, a window pops up where after a little while the marginal likelihood estimate is printed:</p>
+<p><img src="../../../..//files/2014/07/path-sampling6.png"></p>
+	
+	

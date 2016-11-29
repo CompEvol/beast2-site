@@ -1,0 +1,14 @@
+---
+layout: site
+title: Model comparison 
+tags: []
+---
+
+	
+		<p>A couple of times in the past we have been guilty of publishing papers in which the mean log posteriors of two models were compared with AIC. This is not a theoretically sound method for model comparison in a Bayesian setting because the AIC is designed to be used to compare the (penalized) maximum likelihood of two models.</p>
+<p>The most sound theoretical framework for model comparison in a Bayesian framework is calculation of the Bayes Factor (BF), which is the ratio of the marginal likelihoods (marginal with respect to the prior) of the two models. Generally speaking calculating the BF involves a Bayesian MCMC that averages over both models (using something called &#8216;reversible jump&#8217; MCMC), and this is not something that can be done in BEAST (yet). However there are a couple of ways of approximately calculating the marginal likelihood of each model (and therefore the Bayes factor between them) that can be done by processing the output of two BEAST analyses. A simple method first described by Newton and Raftery (1994) computes the Bayes factor via importance sampling (with the posterior as the importance distribution). With this importance distribution it turns out that the harmonic mean of the sampled likelihoods (<b>not</b> the sampled posterior probabilities) is an estimator of the marginal likelihood. So by calculating the harmonic mean of the likelihood from the posterior output of each of the models and then taking the difference (in log space) you get the log BF and you can look up this number in a table to decide when the BF (log BF) is big enough to strongly favour one model over the other (BF &gt; 20 is strong support for favoured model).</p>
+<h3>How to do</h3>
+<h3>Citation</h3>
+<p>Suchard MA, Weiss RE and Sinsheimer JS (2001) &#8216;Bayesian Selection of Continuous-Time Markov Chain Evolutionary Models&#8217; <i>Molecular Biology and Evolution</i> <b>18</b>:1001-1013</p>
+	
+

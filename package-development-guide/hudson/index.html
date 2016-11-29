@@ -1,0 +1,162 @@
+---
+layout: site
+title: Hudson 
+tags: []
+---
+
+	
+		<p class="toc_title">Contents</p><ul class="toc_list"><li><a href="#Setting_up_Hudson">1 Setting up Hudson </a><ul><li><a href="#Setting_up_vncserver_on_Hudson_machine">1.1 Setting up vncserver on Hudson machine </a></li><li><a href="#Setting_up_Xvnc-plugin_on_Hudson">1.2 Setting up Xvnc-plugin on Hudson </a></li></ul></li><li><a href="#Setting_up_Hudson_for_BEAST2">2 Setting up Hudson for BEAST2 </a></li><li><a href="#Setting_up_Hudson_for_and_add-on_to_BEAST2">3 Setting up Hudson for and add-on to BEAST2 </a></li><li><a href="#Restarting_Hudson">4 Restarting Hudson</a></li></ul>
+<h2>Setting up Hudson </h2>
+<p>Preliminaries: we need vncserver to be set up for Fest based tests. This involves setting up vncserver on the Hudson machine and installing the Xvnc plugin on Hudson</p>
+<h3>Setting up vncserver on Hudson machine </h3>
+<p>install vnc4server</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}   sudo apt-get install vnc4server{% endhighlight %}			
+			
+		
+
+<p>set up password for vncserver for user hudson</p>
+<p>1. log in as hudson (or whatever user the hudson process runs under)</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}   sudo su - hudson{% endhighlight %}			
+			
+		
+
+<p>2. start up vncserver, this asks for pwd</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}   vncserver{% endhighlight %}			
+			
+		
+
+<p>3. kill vncserver (assuming vncserver was started on display 1)</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}   vncserver -kill :1{% endhighlight %}			
+			
+		
+
+<p></p>
+<h3>Setting up Xvnc-plugin on Hudson </h3>
+<p>Go to Hudson main page</p>
+<p>Click Manage Hudson</p>
+<p>Click Manage Plugins</p>
+<p>Select &#8216;Hudson Xvnc plugin&#8217; from available plugins and click install at bottom of page</p>
+<p>Goto Manage Hudson, click Configure System</p>
+<p>Under Xvnc, entere for Command line</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}   /usr/bin/vncserver :$DISPLAY_NUMBER -geometry 1280x1024{% endhighlight %}			
+			
+		
+
+<p>Enter for base display number</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}   10{% endhighlight %}			
+			
+		
+
+<p>Click Save</p>
+<h2>Setting up Hudson for BEAST2 </h2>
+<p>Assuming Hudson is installed &#8212; as it is currently at <a class="external free" href="http://hudson.cs.auckland.ac.nz/" rel="nofollow">http://hudson.cs.auckland.ac.nz/</a></p>
+<ol>
+<li>create Hudson project BEAST2 through the web interface</li>
+<li>under Source Code Management, click Subversion, and enter</li>
+</ol>
+<p>Repository URL: <a href="https://github.com/CompEvol/beast2">https://github.com/CompEvol/beast2</a> and Local module directory (optional) beast2</p>
+<ol>
+<li>under build triggers, set Poll SCM to &#8216;* * * * *&#8217;</li>
+<li>make sure that the Ant target is build_jar_all_BEAST</li>
+<li>under Post-build actions, check Publish Junit test result reports, and enter beast2/build/junitreport/*.xml</li>
+<li>ssh into hudson machine and go to the directory /usr/share/tomcat6/.hudson/jobs</li>
+<li>create a symbolic link beast2 -&gt; BEAST2/workspace/beast2/</li>
+</ol>
+<ol>
+<li>create Hudson project BEAST2-GUI through the web interface like for BEAST2 (only the web-part, not the symbolic link part).</li>
+<li>make sure that the Ant targets compile-all and junitb are added</li>
+<li>make sure the &#8216;Run Xvnc during build&#8217; checkbox is checked.</li>
+</ol>
+<h2>Setting up Hudson for and add-on to BEAST2 </h2>
+<p>Add-ons can assume that beast2, and all other add-ons, are in the parent directory of the add-on. To achieve this on Hudson:</p>
+<ul>
+<li>create Hudson project MYADDON through the web interface</li>
+<li>set up Subversion, ant and junit test stuff</li>
+<li>ssh into hudson machine and go to the directory /usr/share/tomcat6/.hudson/jobs</li>
+<li>create a directory &#8216;myaddon&#8217;</li>
+<li>goto /usr/share/tomcat6/.hudson/jobs/MYADDON</li>
+<li>delete directory &#8216;workspace&#8217;</li>
+</ul>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %} sudo rmdir workspace{% endhighlight %}			
+			
+		
+
+<p></p>
+<ul>
+<li>create symbolic link workspace -&gt; ../myaddon</li>
+</ul>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %} sudo ln -s ../myaddon/ workspace{% endhighlight %}			
+			
+		
+
+<p></p>
+<ul>
+<li>make directory myaddon accessible for Hudson</li>
+</ul>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}sudo chown tomcat6 ../myaddon
+sudo chgrp tomcat6 ../myaddon{% endhighlight %}			
+			
+		
+
+<p>Note that the Hudson name of the add-on and the add-on itself are in different case.</p>
+<h2>Restarting Hudson</h2>
+<p>Log into <tt>hudson.cs.auckland.ac.nz</tt> and restart tomcat using <tt>sudo /etc/init.d/tomcat6 -restart</tt>.</p>
+	
+

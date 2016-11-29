@@ -1,0 +1,59 @@
+---
+layout: site
+title: Error Messages 
+tags: []
+---
+
+	
+		<h2>BEAST Error Messages</h2>
+<dl>
+<dt><code>"[Fatal Error] testHKY.xml:1:1: Content is not allowed in prolog."</code></dt>
+<dd></dd>
+<dt><code>"[Fatal Error] testHKY.xml:2:8: Attribute name "X" associated with an element type "beast" must be followed by the ' = ' character."</code></dt>
+<dd></dd>
+<dt><code>"[Fatal Error] testHKY.xml:2:20: Element type "beast" must be followed by either attribute specifications, "&gt;" or "/&gt;"."</code></dt>
+<dd></dd>
+</dl>
+<dl>
+<dd>Fatal Errors most likely occur because the input file was not actually an XML file.</dd>
+</dl>
+<dl>
+<dt><code>"Error "</code></dt>
+<dd></dd>
+<dd>The input file was recognized as an XML file but the content was not as expected by BEAST. The exact element in the file will be listed along with details of the problem. For example,</dd>
+<dd></dd>
+</dl>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}Error 124 parsing the xml input file
+
+This plugin (alignment) has no input with name dataTypeX. Choose one of these inputs: sequence,statecount,dataType,userDataType,strip
+
+Error detected about here:
+  
+<beast>	 	 
+    <data id='alignment'>      {% endhighlight %}			
+			
+		
+
+<p></p>
+<dl>
+<dd>In this case, although the input file was a valid XML document, there was an error in the syntax that BEAST requires. For example, above, a data-element does not conform to the requirement that inputs should be named one of sequence, statecount, dataType, userDataType, and strip.</dd>
+</dl>
+<dl>
+<dt><code>"Start likelihood: -Infinity after 11 initialisation attempts"</code></dt>
+<dd></dd>
+<dd>Look at the answer to this <a title="FAQ" href="../faq//index.html#Why_is_BEAST_telling_me_that_.22the_initial_model_is_invalid_because_the_state_has_a_zero_likelihood.22.3F/index.html">FAQ question</a> for possible reasons for this error and solutions.</dd>
+</dl>
+<dl>
+<dt><code>"java.lang.OutofMemoryError Java heap space"</code></dt>
+<dd></dd>
+<dd>Look at the <a title="Increasing Memory Usage" href="../increasing-memory-usage/index.html">Increasing Memory Usage</a> page for details of increasing the memory available to BEAST and the other programs.</dd>
+</dl>
+	
+

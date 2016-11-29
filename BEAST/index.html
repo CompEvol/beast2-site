@@ -1,0 +1,166 @@
+---
+layout: site
+title: BEAST 1 vs 2 performance benchmarking 
+tags: []
+---
+
+	
+
+		
+		<p style="color: gray;">March 2016 by <a href="mailto:remco@cs.auckland.ac.nz">Remco Bouckaert</a>, <a href="mailto:tgvaughan@gmail.com">Tim Vaughan</a>, <a href="mailto:walter@cs.auckland.ac.nz">Walter Xie</a>, and <a href="mailto:alexei@cs.auckland.ac.nz">Alexei Drummond</a></p>
+<p>Recently, a few users reported problems with BEAST 2 performance, concluding it was worse than BEAST 1. This puzzled us, because BEAST 1 and 2 share the same core algorithms, and both spend most of their time doing phylogenetic likelihood calculations, which is optimised using <a href="https://github.com/beagle-dev/beagle-lib">BEAGLE</a>, a library shared by both programs. In fact, recently we changed the way that BEAST 2 handles proportion invariant categories, saving some phylogenetic likelihood calculations, so in theory it should be faster when using a proportion of invariant sites in the model. So, we became curious whether there are real performance differences between BEAST 1 and 2 and decided to do a benchmark. We expected them to perform roughly the same on GTR and GRT+G analyses, and BEAST 2 to do better on GTR+I and GTR+G+I analyses.</p>
+<p>The picture below summarises the speed of BEAST 2 over BEAST 1 using 1, 2, 4 thread(s) in the 3 different operation systems. As you can see the performance is very similar for GTR and GTR+G, with BEAST2 being perhaps slight faster (although this could be due to debugging that BEAST1 performs at the start of the chain):<br />
+</p>
+<p><img src="../files/2016/04/1-thread-perf-all.png" alt="single thread" /></p>
+<p><img src="../files/2016/04/2-threads-perf-all.png" alt="double threads" /></p>
+<p><img src="../files/2016/04/4-threads-perf-all.png" alt="four threads" /></p>
+<h2>What we did</h2>
+<h3>Analyses</h3>
+<p>BEAST can do many kinds of analyses, but for the purpose of this benchmark, we want to see whether the TreeLikelihood calculations, which typically dominate the computational time of MCMC runs, are comparable. To see the impact of the way BEAST 2 handles proportion invariant, we want to have an analysis with and without a proportion invariant category. And since many analyses use gamma rate heterogeneity with and without proportion invariants, we end up with four variants:</p>
+<ul>
+<li>GTR</li>
+<li>GTR + 4 gamma categories</li>
+<li>GTR + proportion invariant</li>
+<li>GTR + 4 gamma categories + proportion invariant</li>
+</ul>
+<p>To keep things otherwise simple, we use a Yule tree prior, a strict clock and start with a random tree. To be practical, we set up the analysis in BEAUti 1 and 2, just importing an alignment, choosing the site model, setting the tree prior in BEAST 1 (BEAST 2 uses Yule by default) and save to file. As it turns out, the analyses produced that way are almost the same, but there are some small differences in the operator settings. Due to auto-optimisation, they will eventually become almost the same, but to make the two analyses as equal as possible we edited the XML so that they have the same operator weights and tuning values. Also, the population size used to generate the random starting tree differed so these were made the same as well.</p>
+<p>The MCMC runs were run for 1 million steps in order to make them long enough that the slightly different ways extra likelihood calculations are done at the start for debugging purposes has little effect on the outcome. Also, with longer runs JIT compiler differences are eliminated. We took care to run the different programs under the same circumstances, on a computer not doing any other jobs at the time.</p>
+<p>This whole process was <a href="https://github.com/CompEvol/benchmark">automated</a> to deal with the various data sets we wanted to test.</p>
+<h3>Threading</h3>
+<p>The way to set up threads in BEAST 2 is a bit cumbersome (v2.4.0 improves things a lot), so perhaps the reason is different configurations of threading. Therefore, we want to see what the impact of threading is. That led us to 3 variants:</p>
+<ul>
+<li>1 thread BEAGLE SSE</li>
+<li>2 thread BEAGLE SSE</li>
+<li>4 thread BEAGLE SSE</li>
+</ul>
+<p>For BEAST 1, we used the flags -overwrite -beagle_instances. For BEAST 2 we used -overwrite -threads for the SSE runs. For all cases, we verified that both programs use the same settings of BEAGLE as reported at the start of the run.</p>
+<h3>Data sets</h3>
+<p>To get an impression of the impact of different data, we randomly selected a number of data sets from <a href="https://treebase.org/">treebase.org</a> with a number of sizes. We also used the data sets from the BEAST 1 examples <a href="https://github.com/beast-dev/beast-mcmc/tree/master/examples/release/Benchmarks">benchmark directory</a> giving a total of 15 data sets.</p>
+<table>
+<tbody>
+<tr>
+<td>dataset</td>
+<td>taxa</td>
+<td>sites</td>
+<td>patterns</td>
+</tr>
+<tr>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+</tr>
+<tr>
+<td>M1044</td>
+<td>50</td>
+<td>1133</td>
+<td>493</td>
+</tr>
+<tr>
+<td>M1366</td>
+<td>41</td>
+<td>1137</td>
+<td>769</td>
+</tr>
+<tr>
+<td>M1510</td>
+<td>36</td>
+<td>1812</td>
+<td>1020</td>
+</tr>
+<tr>
+<td>M1748</td>
+<td>67</td>
+<td>955</td>
+<td>336</td>
+</tr>
+<tr>
+<td>M1749</td>
+<td>74</td>
+<td>2253</td>
+<td>1673</td>
+</tr>
+<tr>
+<td>M1809</td>
+<td>59</td>
+<td>1824</td>
+<td>1037</td>
+</tr>
+<tr>
+<td>M336</td>
+<td>27</td>
+<td>1949</td>
+<td>934</td>
+</tr>
+<tr>
+<td>M3475</td>
+<td>50</td>
+<td>378</td>
+<td>256</td>
+</tr>
+<tr>
+<td>M501</td>
+<td>29</td>
+<td>2520</td>
+<td>1253</td>
+</tr>
+<tr>
+<td>M520</td>
+<td>67</td>
+<td>1098</td>
+<td>534</td>
+</tr>
+<tr>
+<td>M755</td>
+<td>64</td>
+<td>1008</td>
+<td>407</td>
+</tr>
+<tr>
+<td>M767</td>
+<td>71</td>
+<td>1082</td>
+<td>446</td>
+</tr>
+<tr>
+<td>benchmark1</td>
+<td>1441</td>
+<td>98</td>
+<td>593</td>
+</tr>
+<tr>
+<td>benchmark2</td>
+<td>62</td>
+<td>10869</td>
+<td>5565</td>
+</tr>
+<tr>
+<td>old_benchmark</td>
+<td>17</td>
+<td>1485</td>
+<td>138</td>
+</tr>
+</tbody>
+</table>
+<h3>Versions</h3>
+<p>To have a fair comparison, we used the latest versions currently avaiable v1.8.3 and v2.4.0.</p>
+<h2>Results</h2>
+<p><br />
+The images below show the run time for 1, 2, 4 thread(s) in Linux, where <em>1.8.3(t0)</em> presents no threading pool for single thread in BEAST 1.8.3.</p>
+<ul>
+<li>1 thread:<br />
+<img src="../files/2016/04/1-thread-linux.png" alt="1 thread Linux" /></li>
+<li>2 threads:<br />
+<img src="../files/2016/04/2-threads-linux.png" alt="2 threads Linux" /></li>
+<li>4 threads:<br />
+<img src="../files/2016/04/4-threads-linux.png" alt="4 threads Linux" /></li>
+</ul>
+<p>With increasing number of threads, the difference in run time in seconds decreases, but BEAST 2 is almost always slightly faster than BEAST 1 in these comparisons. However, it turned out that the data sets are too small for four threads to be of much use &#8212; the four threaded runs tended to be slower than for two threads, which is optimal for most of these datasets for both BEAST versions. This may also be a function of the hardware used.</p>
+<p>Cursory checks of ESSs for BEAST 1 and 2 in Tracer did not show any substantial difference, which is not surprising since the same mixture of operators was used. Also, parameter estimates tended to agree between some randomly selected analyses.</p>
+<p>To make sure that it differences are not OS dependent, we ran the analyses on Windows 7, OS X and Linux, but did not find any substantial differences between the operating systems.</p>
+<h2>Conclusions</h2>
+<p>To our surprise, we found that BEAST 2 is slightly faster than BEAST 1. This is not what we expected since both programs perform the same analysis using the same BEAGLE library. Although we did our best to compare apples with apples, it is possible we overlooked something, so let us know if you find anything that can explain the differences in performance.</p>
+<p>If you want to replicate these runs, you can find them in the benchmark repository on <a href="https://github.com/CompEvol/benchmark">https://github.com/CompEvol/benchmark</a>, which includes the data, some instructions and scripts to run them.</p>
+	
+	
+	

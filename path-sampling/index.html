@@ -1,0 +1,186 @@
+---
+layout: site
+title: Path Sampling 
+tags: []
+---
+
+	
+		<p class="toc_title">Contents</p><ul class="toc_list"><li><a href="#Set_up">1 Set up </a></li><li><a href="#Example_file">2 Example file </a></li><li><a href="#Setting_up_an_analysis_for_a_cluster">3 Setting up an analysis for a cluster </a></li><li><a href="#Calculating_Bayes_factors">4 Calculating Bayes factors </a></li><li><a href="#Resuming_steps">5 Resuming steps </a></li><li><a href="#SNAPP">6 SNAPP </a></li><li><a href="#Running_as_mulitple_jobs">7 Running as mulitple jobs </a></li><li><a href="#Trouble_shooting">8 Trouble shooting </a></li></ul>
+<p>[see also blog post on <a href="../2014/07/14/path-sampling-with-a-gui/index.html">Path sampling with a GUI</a>.]</p>
+<h2>Set up </h2>
+<p>To set up a path sampling analysis, you need the model-selection package (pre BEAST version 2.1.2, it was in the beastii add-on) and edit the XML for the analysis.</p>
+<p>Essentially, you need to wrap the run-element of the original analysis into a run element for the path sampler and rename the run element to mcmc like so</p>
+<ul>
+<li>rename the run element from the XML analysis into mcmc (do not forget to rename the closing element &lt;/run&gt; into &lt;/mcmc&gt;)</li>
+<li>insert before the mcmc element the following fragment:</li>
+</ul>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}   cd $(dir)
+   java -cp $(java.class.path) beast.app.beastapp.BeastMain $(resume/overwrite) -java -seed $(seed) beast.xml{% endhighlight %}			
+			
+		
+
+<p></p>
+<ul>
+<li>insert &lt;/run&gt; after the closing &lt;/mcmc&gt; element.</li>
+</ul>
+<p>The new run element has the following parameters:</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}nrOfSteps        the number of steps to use, default 8
+alpha            alpha parameter of Beta(alpha,1) distribution used to space out steps, 
+                 default 0.3If alpha &lt;= 0, uniform intervals are used.
+rootdir          root directory for storing particle states and log files (default /tmp)
+mcmc             MCMC analysis used to specify model and operations in each of the 
+                 particles
+chainLength      number of sample to run a chain for a single step Default: 100000
+burnInPercentage burn-In Percentage used for analysing log files Default: 50
+preBurnin        number of samples that are discarded for the first step, but not the 
+                 others Default: 100000
+value            script for launching a job. $(dir) is replaced by the directory associated 
+                 with the particle $(java.class.path) is replaced by a java class path used 
+                 to launch this application $(java.library.path) is replaced by a java library 
+                 path used to launch this application $(seed) is replaced by a random number 
+                 seed that differs with every launch $(host) is replaced by a host from the 
+                 list of hosts
+hosts            comma separated list of hosts. If there are k hosts in the list, for particle 
+                 i the term $(host) in the script will be replaced by the (i modulo k) host in 
+                 the list. Note that whitespace is removed
+deleteOldLogs    delete existing log files from root dir
+doNotRun         Set up all files but do not run analysis if true.
+                 This can be useful for setting up an analysis on a cluster{% endhighlight %}			
+			
+		
+
+<p>You can BEAST with multiple threads to make it run several chains in parallel (e.g. using the -threads option from the command line).</p>
+<p>At the end of the run, the marginal likelihood estimate is printed. Also, in the directory specified by &#8216;rootdir&#8217; for each step a subdirectory is created with the steps in it.</p>
+<p>To recalculate the marginal likelihood estimates from the logs, run</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %} appstore PathSampleAnalyser &lt;nrofsteps&gt; &lt;alpha&gt; &lt;rootdir&gt; &lt;burninpercentage&gt;{% endhighlight %}			
+			
+		
+
+<p>where nrofsteps, alpha, rootdir, burninpercentage should match the ones specified in the XML file.</p>
+<p>You can use <a title="Tracer" href="http://www.beast2.org/wiki/index.php/Tracer">Tracer</a> to inspect the log files for the various steps to make sure that th e burn-in used is sufficiently large.</p>
+<h2>Example file </h2>
+<p>In the $(BEAST-add-on)/model-selection/examples directory, there is a file testPathSampler.xml that should run, where $(BEAST-add-on) is the add-on directory on your operating system.</p>
+<p>See <a class="mw-redirect" title="Manage Add-ons" href="http://www.beast2.org/wiki/index.php/Manage_Add-ons#Installation_directories">Manage_Add-ons#Installation_directories</a> for finding out what $(BEAST-add-on) is on your machine.</p>
+<h2>Setting up an analysis for a cluster </h2>
+<p>The path sampler will write shell scripts (for Mac, Linux) and batch files (for Windows) in the rootdir, one for every thread. These shell scripts can be executed separately. Once all scripts have been executed you need to run the PathSampleAnalyser to get the marginal likelihood estimate.</p>
+<p>The number of batch files is determined by the number of threads used for running the XML. These batch files can be submitted to a cluster.</p>
+<h2>Calculating Bayes factors </h2>
+<p>At the end of a pathsampling run, the marginal likelihood estimate is reported, e.g.</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %} Step        theta         likelihood   contribution ESS
+ 0            0            -19678.4774  -27.5334     15.1987      
+ 1            0.0015       -9950.7265   -113.8373    16.9272      
+ 2            0.0154       -6848.3262   -285.8846    39.1143      
+ 3            0.0593       -6153.3842   -580.8173    41.1282      
+ 4            0.1548       -6039.2476   -1028.7865   58.0664      
+ 5            0.3258       -6005.1028   -1633.722    24.3111      
+ 6            0.5982       -5990.5743   -2405.6227   14.0319      
+ 7            1            -5985.3503   0            8.9284       
+ marginal L estimate =-6076.203746592951{% endhighlight %}			
+			
+		
+
+<p>You can use the value after &#8220;marginal L estimate&#8221; to compare models.</p>
+<p>Say, the marginal likelihood estimate value for model 1 is X and the value for model 2 is Y, then the Bayes factor comparing model s1 and 2 is is X-Y. If this difference is positive, then the Bayes factor is in favour of model 1, if it is negative, it is in favour of model 2.</p>
+<h2>Resuming steps </h2>
+<p>If you suspect one or more of the steps did not run for long enough judging from a low ESS, you can resume the chain for that path for a little longer by resuming the chain.</p>
+<p>The path sampler will write shell scripts (for Mac, Linux) and batch files (for Windows) in each of the step dirs called resume.sh or resume.bat. Execute them for the appropriate step and then run the PathSampleAnalyser.</p>
+<h2>SNAPP </h2>
+<p>Older versions of SNAPP (&lt;1.1.10) use a non-standard MCMC loop. To use path sampling with a SNAPP analysis, you have to pre-process your XML file as follows:</p>
+<p>1. replace snap.MCMC with beast.core.MCMC</p>
+<p>2. copy the stateDistribution outside the run element, for example copy it to just before the run element.</p>
+<p>3. See if the XML file runs. If not, and if there are any attributes that are not recognised on the run element, remove these.</p>
+<p>Now you can follow the instructions above to do a path-sampling analysis.</p>
+<h2>Running as mulitple jobs </h2>
+<ul>
+<li>In the XML, add doNotRun=&#8217;true&#8217; to the run element. This ensures that you can start the analysis by hand, giving you control over which computer runs the jobs.</li>
+<li>Run BEAST on the XML file with -threads X where X is the number of separate jobs you want to run (e.g. the number of cores on the computer).</li>
+<li>Check that in the root directory specified in the XML for creating step directories, there are now X files called run0.sh run1.sh &#8230;. runX.sh on Mac or Linux and run0.bat, run1.bat,&#8230;, runX.bat on Windows.</li>
+<li>Start each of these scripts.</li>
+<li>Run the PathSampleAnalyser to get an estimate of the marginal likelihood.</li>
+</ul>
+<h2>Trouble shooting </h2>
+<p>Make sure no newline missing in the XML. The line that says</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}   cd $(dir) java -cp $(java.class.path) beast.app.beastapp.BeastMain $(resume/overwrite) -java -seed $(seed) beast.xml {% endhighlight %}			
+			
+		
+
+<p>should be two lines</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %} cd $(dir) 
+ java -cp $(java.class.path) beast.app.beastapp.BeastMain $(resume/overwrite) -java -seed $(seed) beast.xml {% endhighlight %}			
+			
+		
+
+<p>If you still have problems running, check that the script file (assuming your rootdir is /tmp/step/</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}   /tmp/step/step0/run.bat{% endhighlight %}			
+			
+		
+
+<p>contains two lines, one starting with &#8220;cd&#8221; and one starting with &#8220;java&#8221;. If not, the newlines inserted in the XML did not get through to the batch file.</p>
+<p>On windows note is the slashes in the rootdir. Not</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}   rootdir="/temp/step/"{% endhighlight %}			
+			
+		
+
+<p>but</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}   rootdir="\temp\steps\"{% endhighlight %}			
+			
+		
+
+<p></p>
+	
+

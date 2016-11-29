@@ -1,0 +1,208 @@
+---
+layout: post
+title: BEAST Apps for the AppStore 
+tags: [application,appstore,beast-2]
+---
+
+	
+
+		
+		<p style="color:gray">4 August 2014 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+<p>Say, you have some post-processing classes written for your package and you want to make it available to users. Since the class is in your package, say <tt>mypackage.addon.jar</tt> and most likely you need classes from BEAST-core or other packages, it is a nuisance to set the class path from the command line. You&#8217;ll and up having to do something like</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}java -cp /path/to/beast/lib/beast.jar:~/.beast/2.1/MyPackage/lib/mypackage.addon.jar beast.app.tools.MyTool arg1 arg2 arg3{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>This is especially cumbersome to explain to users since these paths depend on where BEAST is installed and where packages are installed. These paths are operating system dependent. One solution to this is to use the BEAST AppStore. This is an application that comes with BEAST. It picks up information from the <tt>version.xml</tt> file. You specify an <tt>addonapp</tt> element with a description, class, default arguments and an icon. For example, the model-selection package contains an application to run a path sampling analysis, which is encoded like so:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<addon name='MODEL-SELECTION' version='1.0.2'>
+    <depends on='beast2' atleast='2.1.2'/>
+    <addonapp description="Path sampler"
+              class="beast.app.tools.PathSampler"
+              args=""
+              icon="beast/app/tools/ps.png"
+            />
+</addon>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>When you start the AppStore, it will look like this:</p>
+<p><img src="..//files/2014/07/path-sampling1.png">
+</p>
+<p>If you launch it from the AppStore, you probably want to launch it as a GUI, since Windows and Mac users won&#8217;t be able to see any terminal input otherwise. You can write your own GUI in Swing or JavaFX if you like, but there are a few helper classes that make it very easy to write GUI applications with BEAST. The recipe is as follows:</p>
+<ol>
+<li> Create a class for your App that derives from <tt>beast.core.Runnable</tt>.
+<li> Specify <tt>Input</tt>s for each of the arguments for your application.
+<li> Implement the <tt>run()</tt> method to pick up values from inputs and run your app.
+<li> Create a class to launch the App.
+<li> Update the <tt>version.xml</tt> file
+</ol>
+<h2>Path sample analyser application<br />
+<h2>
+<h3>Step 1: create class for App</h3>
+<p>The path sample analyser lives in the class <tt>beast.inference.PathSampleAnalyser</tt> and derives from <tt>beast.core.Runnable</tt>.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}@Description("Reads logs produces through PathSampler and estimates marginal likelihood")
+public class PathSampleAnalyser extends beast.core.Runnable {
+}{% endhighlight %}			
+			
+		
+
+<p></p>
+<h3>Step 2: specify inputs</h3>
+<p>For the path sample analyser, we need a root directory, alpha, number of steps and burnin as a percentage. So, we add the following Inputs to the class.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}public Input<String> rootDirInput = new Input<String>("rootdir", "root directory for storing particle states and log files (default /tmp)", "/tmp");
+public Input<Double> alphaInput = new Input<Double>("alpha", "alpha parameter of Beta(alpha,1) distribution used to space out steps, default 0.3" +
+		"If alpha <= 0, uniform intervals are used.", 0.3);
+public Input<Integer> stepsInput = new Input<Integer>("nrOfSteps", "the number of steps to use, default 8", 8);
+public Input<Integer> burnInPercentageInput = new Input<Integer>("burnInPercentage", "burn-In Percentage used for analysing log files", 50);{% endhighlight %}			
+			
+		
+
+<p></p>
+<h3>Step 3: implement <tt>run()</tt> method</h3>
+<p>The actual post-processing happens in the method <tt>estimateMarginalLikelihood</tt>. The <tt>run</tt> method just gather info from the inputs and passes it to that worker method.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}@Override
+public void run() throws Exception {
+    // do the work
+    double marginalL = estimateMarginalLikelihood(
+			stepsInput.get(), 
+			alphaInput.get(), 
+			rootDirInput.get(), 
+			burnInPercentageInput.get());
+
+	// report the result       
+	System.out.println("marginal L estimate = " + marginalL);
+}{% endhighlight %}			
+			
+		
+
+<p></p>
+<h3>Step 4: Create launcher class</h3>
+<p>Create a class to launch the App. This is the class that you register in the <tt>version.xml</tt> file. The following bit of code can be used as a template for your own app &#8212; just replace the class for the <tt>analyser</tt> variable and update name and title. It uses two utility classes <tt>beast.app.util.Application</tt> and <tt>beast.app.util.ConsoleApp</tt>  (currently in the model-selection package, but it should probably move somewhere else). You can also suppress inputs that you do not want to expose to the user.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}package beast.app.tools;
+
+import beast.app.beauti.BeautiConfig;
+import beast.app.beauti.BeautiDoc;
+import beast.app.draw.BEASTObjectDialog;
+import beast.app.draw.BEASTObjectPanel;
+import beast.app.util.Application;
+import beast.app.util.ConsoleApp;
+
+//command line interface to PathSampleAnalyser
+public class PathSampleAnalyser {
+		
+	public static void main(final String[] args) throws Exception {
+		Application main = null;
+		try {
+			// create the runnable class with application that we want to launch
+			beast.inference.PathSampleAnalyser analyser = new beast.inference.PathSampleAnalyser();
+			
+			// need to set the ID of the BEAST-object
+			analyser.setID("PathSampleAnalyser");
+			
+			// then initialise
+			analyser.initAndValidate();
+			
+			// create BeautiDoc and beauti configuration
+			BeautiDoc doc = new BeautiDoc();
+			doc.beautiConfig = new BeautiConfig();
+			doc.beautiConfig.initAndValidate();
+
+			// This is how you suppress an input that we don't want to expose to the user
+			// doc.beautiConfig.suppressPlugins.add(analyser.getClass().getName() + ".input-name");
+
+		
+			// create panel with entries for the application
+			BEASTObjectPanel panel = new BEASTObjectPanel(analyser, analyser.getClass(), doc);
+			
+			// wrap panel in a dialog
+			BEASTObjectDialog dialog = new BEASTObjectDialog(panel, null);
+			if (dialog.showDialog()) {
+				dialog.accept(analyser, doc);
+				analyser.initAndValidate();
+
+				// create a console to show standard error and standard output
+				analyser.consoleApp = new ConsoleApp("PathSampleAnalyser", // name 
+						"Path Sample Analyser: " + analyser.rootDirInput.get() // console title
+						);
+
+				analyser.run();
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			if (main != null) {
+				System.out.println(main.getUsage());
+			}
+		}
+	}
+
+}{% endhighlight %}			
+			
+		
+
+<p></p>
+<h3> Update the <tt>version.xml</tt> file</h3>
+<p>Add an <tt>addonapp</tt> element to the <tt>version.xml</tt> file, so the AppStore can pick it up.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}    <addonapp description="Path Sample Analyser"
+              class="beast.app.tools.PathSamplerAnalyser"
+              args=""
+              icon="beast/app/tools/ps.png"
+            />{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>When launching the PathSampleAnalyser from the AppStore, it looks like this:</p>
+<p><img src="..//files/2014/07/path-sampling7.png"></p>
+	
+	

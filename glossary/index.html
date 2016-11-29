@@ -1,0 +1,79 @@
+---
+layout: site
+title: Glossary 
+tags: []
+---
+
+	
+		<p class="toc_title">Contents</p><ul class="toc_list"><li><a href="#Bayesian">1 Bayesian</a></li><li><a href="#Burn-In">2 Burn-In</a></li><li><a href="#Coalescent">3 Coalescent</a></li><li><a href="#Convergence">4 Convergence</a></li><li><a href="#Equilibrium">5 Equilibrium</a></li><li><a href="#ESS">6 ESS</a></li><li><a href="#HPD">7 HPD</a></li><li><a href="#Likelihood">8 Likelihood</a></li><li><a href="#MCMC">9 MCMC</a></li><li><a href="#Mixing">10 Mixing</a></li><li><a href="#Molecular_Clock">11 Molecular Clock</a></li><li><a href="#Operator">12 Operator</a></li><li><a href="#Posterior">13 Posterior</a></li><li><a href="#Prior">14 Prior</a></li><li><a href="#Sampling">15 Sampling</a></li><li><a href="#Sampling_Frequency">16 Sampling Frequency</a></li><li><a href="#Tip-Date">17 Tip-Date</a></li></ul>
+<p>A description of some of the terms and acronyms used.</p>
+<h4>Bayesian</h4>
+<dl>
+<dd>Bayesian inference is a branch of statistical inference that permits the use of prior knowledge in assessing the probability of model parameters in the presence of new data. Bayesian inference has been termed &#8216;subjective&#8217; inference because it allows a certain subjectivity in the selection of the prior distribution. The prior distribution can strongly affect the posterior (the results). We regard Bayesian inference as a useful tool for exploratory analysis of data and as a way to rigorously compare different sets of assumptions. However use of priors necessarily implies a greater responsibility of the researcher to assure that they are not introducing unintentional biases into their results through their priors. For this reason it is very important to test the sensitivity of your conclusions to different prior distributions.</dd>
+</dl>
+<h4>Burn-In</h4>
+<dl>
+<dd>Set of samples at the start of the MCMC run that are discarded. Often, a random starting state has very low posterior support, and it takes a number of proposals before reaching an area of the state space that has much better posterior support. Keeping the initial (low posterior) states results in biased estimates since it is assumed that in the MCMC sample each state is sampled proportional to its posterior, while the starting samples are represented much more often than would be expected, so these are discarded.</dd>
+</dl>
+<h4>Coalescent</h4>
+<dl>
+<dd>The coalescent is a prior distribution on tree shape that links the divergence times of a genealogy (tree of individuals from the same population) with the demographic history of the population.</dd>
+</dl>
+<h4>Convergence</h4>
+<dl>
+<dd>When an MCMC chain samples from the stationary distribution, it is said to have reached convergence. In Tracer, this is evident when the parameter of interest has a trace that does not show a trend up or down any more. Determining how many steps are required for convergence is quite hard, but in general when the ESS is at least 200, the trace looks like a hairy caterpillar and repeated runs result in very similar estimates there is a good chance convergence is reached.</dd>
+</dl>
+<h4>Equilibrium</h4>
+<dl>
+<dd>An MCMC chain is said to be in equilibrium if it has reached the stationary distribution, regardless from which starting position is used.</dd>
+</dl>
+<h4>ESS</h4>
+<dl>
+<dd>Effective Sample Size &#8211; The number of effectively independent draws from the posterior distribution that the Markov chain is equivalent to. See <a href="../what-is-ess/index.html">this page</a> for more detail.</dd>
+</dl>
+<h4>HPD</h4>
+<dl>
+<dd>Highest Posterior Density &#8211; The x% highest posterior density interval is the shortest interval in parameter space that contains x% of the posterior probability.</dd>
+</dl>
+<h4>Likelihood</h4>
+<dl>
+<dd>The likelihood Pr{D|Parameters, Tree} is the probability of the observed sequence data given the model of evolution (i.e. the tree, the transition/transversion ratio, gamma shape parameter, proportion of invariable sites, mutation rate _et cetera_).</dd>
+</dl>
+<h4>MCMC</h4>
+<dl>
+<dd>Markov chain Monte Carlo &#8211; this is a stochastic algorithm for drawing samples from a posterior distribution, so as to get an estimate of the distribution.</dd>
+</dl>
+<h4>Mixing</h4>
+<dl>
+<dd>In MCMC parlance, mixing refers to efficiency with which the MCMC algorithm samples a parameter, or set of a parameters. If an MCMC chain is mixing well, it implies that autocorrelation in the chain is low, ESS is high and the estimates obtained are accurate. A chain that is mixing well will have parameter traces that look like straight hairy caterpillars, with the chain fluctuating so rapidly around the equilibrium that their are no obvious trends. Tutorial 2 has a picture of a trace that shows (after burn-in) this hairy caterpillar expectation.</dd>
+</dl>
+<h4>Molecular Clock</h4>
+<dl>
+<dd>The molecular clock is a hypothesis that mutation rates and substitution rates do not vary among lineages in a tree. Therefore, if all the lineages of a tree are from the same time they should all have the same genetic distance from the root. An extension of the molecular clock concept to sequences from different times implies that the distance of a particular sequence from the root of the tree should be proportional to the amount of time that has accumulated from the root to the sampling time of that sequence. Thus a plot of root-to-tip distances against sampling times should yield a positive linear correlation with a slope equal to the mutation rate. The molecular clock hypothesis is a fundamental assumption of all models in <a title="BEAST" href="http://www.beast2.org/">BEAST</a>.</dd>
+</dl>
+<h4>Operator</h4>
+<dl>
+<dd>In MCMC parlance, an operator is a method of proposing a new state in the MCMC chain. Operators act by perturbing the current state. The current state includes the tree topology, node heights, substitution parameters and population parameters. Most operators change only one of these components when they propose a new state. Thus adjacent states of the Markov chain are highly correlated as they share many aspects of their state.</dd>
+</dl>
+<h4>Posterior</h4>
+<dl>
+<dd>The posterior probability distribution &#8211; The posterior (or posterior probability density) is the entity that an MCMC analysis attempts to obtain an estimate of. The posterior is the probability distribution over the parameter state space, given the data under the chosen model of evolution. The posterior P(Parameters, Tree|Data) is the (normalized) product of the likelihood, Pr{Data|Parameters, Tree}, and the prior P(Parameters, Tree).</dd>
+</dl>
+<h4>Prior</h4>
+<dl>
+<dd>The prior probability distribution &#8211; The prior is the probability distribution over the parameter space, prior to seeing the data. The prior represents your prior belief or prior assumptions about the probabilities of different parameter values before you have analyzed the data. The prior is combined with the likelihood to yield the posterior. In most applications of <a title="BEAST" href="http://www.beast2.org/">BEAST</a> the prior is either uniform or a coalescent prior on the tree shape.</dd>
+</dl>
+<h4>Sampling</h4>
+<dl>
+<dd>Sampling is the main function of an MCMC run. An MCMC analysis generates a series of samples from the posterior distribution. These samples are correlated because each sample is generated by a small perturbation of the previous sample. The <a href="../glossary/index.html#ESS/index.html">ESS</a> of the MCMC chain is an estimate of the number of independent samples that an MCMC represents.</dd>
+</dl>
+<h4>Sampling Frequency</h4>
+<dl>
+<dd>The interval at which samples are logged to file.</dd>
+</dl>
+<h4>Tip-Date</h4>
+<dl>
+<dd><a class="external text" href="http://mobyle.pasteur.fr/cgi-bin/portal.py?#forms::tipdate" rel="nofollow">A program that can obtain Maximum Likelihood (ML) estimates of mutation rate</a> from a set of non-contemporaneous sequences assuming a molecular clock and a known tree topology. <a title="BEAST" href="http://www.beast2.org/">BEAST</a> offers a very similar method of analysis, but with the added benefits of relaxing the need for a known tree topology and providing the ability to incorporate priors.</dd>
+</dl>
+	
+

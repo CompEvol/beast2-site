@@ -1,0 +1,34 @@
+---
+layout: site
+title: Divergence dating with sampled ancestors (FBD model) 
+tags: []
+---
+
+	
+		<p class="toc_title">Contents</p><ul class="toc_list"><li><a href="#BEAST2_version">1 BEAST2 version</a></li><li><a href="#Sampled_ancestor_package">2 Sampled ancestor package</a></li><li><a href="#Setting_up_the_analysis_in_BEAUti">3 Setting up the analysis in BEAUti</a></li><li><a href="#Analysing_the_posterior_distribution_of_trees">4 Analysing the posterior distribution of trees</a></li><li><a href="#Troubleshooting">5 Troubleshooting</a></li></ul>
+<h2>BEAST2 version</h2>
+<p>To use divergence dating download the latest BEAST release (v2.2.0 or higher) <a class="external text" href="https://github.com/CompEvol/beast2/releases/" rel="nofollow">here</a></p>
+<h2>Sampled ancestor package</h2>
+<p>Then install the sampled-ancestor package using BEAUti 2 package manager. Open BEAUti 2 and in the file menu choose &#8220;Manage packages&#8221;. Then install SA package. See <a title="Managing Packages" href="http://www.beast2.org/Managing-Packages">Managing Packages</a> for more details. If you want to use the skyline variant of the fossilised birth-death model then you also need to install BDSKY package.</p>
+<h2>Setting up the analysis in BEAUti</h2>
+<p>The set up of the divergence dating analysis using sampled ancestor models is similar to setting up a regular <a class="external text" href="https://github.com/CompEvol/beast2/blob/master/doc/tutorials/DivergenceDating/DivergenceDatingTutorialv2.0.3.pdf?raw=true" rel="nofollow">divergence dating</a> analysis.</p>
+<p>It differs in two ways:</p>
+<p>First you need a nexus file which includes all fossil taxa with empty sequences. It is also helpful to include ages for fossil and extant taxa in taxon names otherwise you will need to specify the age for each taxon manually. An example nexus file <a class="external text" href="https://github.com/CompEvol/sampled-ancestors/blob/master/examples/nexus/bears.nex" rel="nofollow">bears.nex</a> goes with the package. Upload the nexus file to BEAUti. Manage linking trees and clock models if there are partitions in your analysis. There are no partitions in the example. Then switch to the Tip dates panel and tick &#8220;Use tip dates&#8221; box. Now specify the ages for fossil and extant taxa. The ages are usually measured as a distance from the present so you might need to choose &#8220;Before the present&#8221; instead &#8220;Since some time in the past&#8221;. If the age is a part of a taxon name then push &#8220;Guess&#8221; button and pick the right pattern. For the example nexus file, we choose &#8220;use everything after last _&#8221;. See also <a class="external text" href="http://github.com/CompEvol/beast2/blob/master/doc/tutorials/GeneralNotes.pdf" rel="nofollow">general notes</a> for more details on using &#8220;Guess&#8221; option.</p>
+<p>Further proceed with the site and clock model specification as usual. We do not change the default site model but choose the uncorrelated log-normal relaxed clock model.</p>
+<p>The second main difference is the tree prior distribution. Choose the fossilised birth-death model (or the skyline variant) from the list of possible tree priors. This model has parameters: origin, diversification rate, turnover rate, sampling proportion and rho parameter. In the default settings, rho parameter is fixed to one. It is important to fix at least one parameter or place an informative prior on it because there is no comparative data for fossil taxa. For more information on this model see <a class="external text" href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003919" rel="nofollow">the paper</a>.</p>
+<p>Further you may also place monophyletic constraints on groups of taxa. To do this hit the plus button on the Priors panel, give a name to the taxon set and pick the taxa that have to be in the taxon set. For our example we choose all taxa from Canidae species: Canis lupus, Hesperocyon gregarius, Caedocyon tedfordi, Osbornodon sesnoni, Cormocyon copei, Borophagus diversidens. After you push the ok button the prior for this taxon set appears on the panel. Tick the monophyletic box next to it and leave none as a prior. See <a title="Constraints Of Monophyly" href="../constraints-of-monophyly/index.html">Constraints Of Monophyly</a>. You might choose a prior distribution for the most recent common ancestor of this taxon set. In this case, it is particularly important to sample from the prior before running the analysis to see the resulting tree prior distribution.</p>
+<p>Adjust the chain length and save the file.</p>
+<p>The resulting file <a class="external text" href="https://github.com/CompEvol/sampled-ancestors/blob/master/examples/bears.xml" rel="nofollow">bears.xml</a> goes with the package.</p>
+<p>It is also possible to specify age ranges for fossil taxa. Currently, one can do this manually adding operators to the resulting xml file. An example file <a class="external text" href="https://github.com/CompEvol/sampled-ancestors/blob/master/examples/bears_ranges.xml" rel="nofollow">bears_ranges.xml</a> goes with the package. In this example file, a range for one taxon is specified (see SampledNodeRandomWalker operator specification with comments at the end of the file).</p>
+<h2>Analysing the posterior distribution of trees</h2>
+<h2>Troubleshooting</h2>
+<p>A common exception you might encounter is:</p>
+<p>java.lang.Exception: Could not find a proper state to initialise. Perhaps try another seed.</p>
+<p>in combination with one of:</p>
+<p>P(FBD.t:bears) = -Infinity (was NaN)</p>
+<p>P(FBD.t:bears) = Infinity (was NaN)</p>
+<p>P(FBD.t:bears) = NaN (was NaN)</p>
+<p>This might happen for several reasons. To resolve it, first, check whether all the initial values for parameters are valid, that is, they are within the ranges of corresponding prior distributions and whether the time of origin is older than the ages of all sampled nodes and older than the root if a starting tree is specified by a newick tree.</p>
+<p>If all the initial values are valid then try to change initial values of parameters because the tree likelihood function (FBD tree prior) may become infinity (in this case, P(FBD.t:bears) = Infinity (was NaN) or = NaN (was NaN) is reported) or negative infinity due to numerical approximations for some combinations of parameters. Also if a random tree is used it can simulate a tree which is older than the time of origin. In this case try to adjust the population size parameter or make the initial value of the time of origin larger if the prior distribution allows this.</p>
+	
+

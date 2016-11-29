@@ -1,0 +1,349 @@
+---
+layout: post
+title: BEAST package for a tree prior 
+tags: [bdsky,beast-2,beauti,tree-prior]
+---
+
+	
+
+		
+		<p style="color:gray">23 June 2014 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+<p>The birth-death skyline model \cite{Stadler} is a tree prior that can deal with serially sampled tip dates. It can be implemented as a lean <tt>CalculationNode</tt>, which takes a set of five parameters that can be estimated as input, plus an input for the number of intervals in the skyline model. The birth and death rate, and the sampling rate have gamma priors on them, and there are a few functions of the parameters we want to log. The complete model is illustrated in below. The parameters, tree, operators, priors and loggers are already available in BEAST. The loggers use the <tt>RPNcalculator</tt> class to calculate a simple arithmetic function of the parameters. This only leaves code to be developed for the details of the birth-death skyline model itself.</p>
+<p><img src="..//files/2014/06/bdsky.png" alt="bdsky" /></p>
+<p>The Birth-Death Skyline model consists of a tree prior, six parameters, a number of operators on these parameters, some priors on these parameters, two specialised loggers, and a set of rules to connect model, e.g., the tree to the prior, the loggers to the trace-log, etc. For clarity, the links between parameters and state are omitted as well as the links between parameters and trace-log.</p>
+<h2>Step 1: Write BEASTObject &#8211; develop code</h2>
+<p>The code was developed by Denise K\&#8221;uhnert, and we will have a look at some of the more interesting areas. It starts with a proper description.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}@Description("Adaptation of Tanja Stadler's BirthDeathSamplingModel, to allow for birth and death rates to change at times t_i"){% endhighlight %}			
+			
+		
+
+<p></p>
+<p>The class definition starts defining the five parameter inputs and the input for the number of intervals. Further, there is a boolean input that influences the behaviour.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}public class BirthDeathSkylineModel extends SpeciesTreeDistribution {
+public Input<RealParameter> intervalTimes =
+        new Input<RealParameter>("intervalTimes", "The times t_i specifying when rate changes can occur", (RealParameter) null);
+...
+public Input<Boolean> forceRateChange =
+        new Input<Boolean>("forceRateChange", "If there is more than one interval and we estimate the time of rate change, do we enforce it to be within the tree interval? Default true", true);{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>Then follow the member variables for shadowing input parameters and storing intermediate results. This is a thin <tt>CalculationNode</tt> so there are no member variables for storing/restoring intermediate results.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}double t_root;
+int m;
+protected double[] p0_iMinus1;
+...
+}{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>The <tt>initAndValidate</tt> method sets up member variables and does some sanity checks on the inputs. </p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}@Override
+public void initAndValidate() throws Exception {
+    super.initAndValidate();
+
+    m = intervalNumber.get().getValue();
+
+    if (intervalTimes.get() != null){
+        if (intervalTimes.get().getDimension() != m)
+            throw new RuntimeException("Length of intervalTimes parameter should equal to intervalNumber (" + m + ")");
+        timesFromXML = true;
+    }
+}{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>Then, a few hundreds of lines of code are omitted, which perform the actual calculations. The method of interest for a tree-prior is <tt>calculateTreeLogLikelihood</tt> for a tree. We refer to the actual code for details, but this is where the most interesting part of the class resides.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}@Override
+public double calculateTreeLogLikelihood(Tree tree) {
+    m = intervalNumber.get().getValue();
+	// details omitted ...
+    return logP;
+}{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>Finally, the implementation of the <tt>CalculationNode</tt> is minimal, since this is a thin <tt>CalculationNode</tt>. The methods <tt>store</tt> and <tt>restore</tt> are not even overridden, and just use the base implementation, while <tt>requiresRecalculation</tt> is the most minimal implementation possible.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}@Override
+protected boolean requiresRecalculation() {
+    return true;
+}{% endhighlight %}			
+			
+		
+
+<p></p>
+<h2>Step 2: Test BEASTObject</h2>
+<p>To test the new BEASTObject, write JUnit tests and create an example XML file, which typically goes in the examples directory. This example file can work as a blue-print for the BEAUti template to a large extend.</p>
+<h2>Step 3: Write BEAUti template}</h2>
+<p>We will go through the BEAUti template highlighting some of the aspects. Some of the detail is omitted for brevity and replaced by `&#8230;&#8217; . Since a BEAUti template is in BEAST XML format, we start with a BEAST 2 header. For brevity, we introduce</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<beast version='2.0'
+       namespace='beast.app.beauti:...'>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>This prior is a tree-prior, and wherever the main template has a merge point for tree priors, this prior should be made available. <tt>mergewith</tt> is a reserved XML element name, so no <tt>spec</tt> attribute is necessary.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<mergewith point='treePriorTemplates'>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>This is the start of the sub-template definition. Again, there is no <tt>spec</tt> attribute, but this time it is assumed that the main template has a map-element that maps the <tt>subtemplate</tt> element name to the <tt>BeautiSubTemplate</tt> class. Likewise, <tt>connect</tt> is mapped to <tt>BeautiConnector</tt> to make things more readable.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<map name='connect'>beast.app.beauti.BeautiConnector</map>
+<map name='subtemplate'>beast.app.beauti.BeautiSubTemplate</map>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>The sub-template has an id, which is used in combo-boxes in BEAUti to identify this model. The <tt>class</tt> attribute indicate that the sub-template produces a BEASTObject of this type. One task of BEAUti is to create new BEASTObjects, and connect them to an input. The way BEAUti finds potential BEASTObjects to connect an input with is by testing whether the type of an input is compatible with the type of a sub-template. If so, the sub-template is listed in the combo-box for the input in the <tt>BEASTObjectInputEditor</tt>. The <tt>mainid</tt> id identifies the BEASTObject that has the type listed in <tt>class</tt>. Note the <tt>$(n)</tt> part of the <tt>mainid</tt> attribute. A sub-template is created in the context of a partition, and wherever there is the string <tt>$(n)</tt> in the sub-template this is replaced by the name of the partition.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<subtemplate id='BirthDeathSkyline' class='beast.evolution.speciation.BirthDeathSkylineModel' mainid='BirthDeathSky.$(n)'>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>The sub-template starts with a CDATA-section describing the model. The order is not important, but here it was chosen to start with the five parameters that can be estimated for the model, the birth and death rates, interval times, sampling rate and original root height. Then there is an integer parameter that probably should be an integer input for the number of intervals in the skyline model. These parameters are used by the <tt>BirthDeathSkylineModel</tt> BEASTObject defined below. The BEASTObject has a tree as input, and assumes the main-template provides a tree with id <tt>Tree.t:$(n)</tt> where <tt>$(n)</tt> the partition name.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<![CDATA[
+<parameter id="birthRate.$(n)" value="1. 1. 1." lower="0." upper="Infinity"/>
+<parameter id="deathRate.$(n)" value="0.02" lower="0." upper="Infinity"/>
+<parameter id="intervalTimes.$(n)" value="0. 0.002 0.01" />	
+<parameter id="samplingRate.$(n)" value=".007" lower="0." upper="Infinity"/>
+<parameter id="orig_root.$(n)" value ="1." lower="0." upper="Infinity"/>  	
+<intervalNumber id="intervalNumber.$(n)" spec="beast.core.parameter.IntegerParameter"  value="3" estimate='false'/>	
+
+<BirthDeathSkylineModel spec="BirthDeathSkylineModel" id="BirthDeathSky.$(n)" tree="@Tree.$(n)" 
+	intervalNumber="@intervalNumber.$(n)" 
+	intervalTimes="@intervalTimes.$(n)"
+	birthRate="@birthRate.$(n)" 
+	deathRate="@deathRate.$(n)" 
+	samplingRate="@samplingRate.$(n)"
+	orig_root=@orig_root.$(n)"> 
+</BirthDeathSkylineModel>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>The parameters need a proper prior, defined in the following few lines.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<distribution id="birthPrior.$(n)" spec="beast.math.distributions.Prior" x="@birthRate.$(n)">
+	<distr spec="beast.math.distributions.Gamma" alpha="20" beta="2." offset="0."/>
+</distribution>
+<!-- more priors ... -->{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>We do not only want to log the parameters, but also a few functions of parameters, namely the sampling rate divided by the sum of death and sampling rate. The <tt>RPNcalculator</tt> is a BEASTObject that can be used to calculate simple arithmetic expressions in reverse Polish notation, which is useful for logging.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<RPNcalculator spec="beast.math.statistic.RPNcalculator" id="psi/(psi+death).$(n)" expression="samplingRate.$(n) deathRate.$(n) samplingRate.$(n) + /">
+	<parameter idref="deathRate.$(n)"/>
+	<parameter idref="samplingRate.$(n)"/>        
+</RPNcalculator>
+
+<!-- RPNcalculator for R_0.$(n) ... ->{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>Finally, we need to define operators on the parameters. Most of the operators here are scale-operators, with the exception of an up-down operator.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<operator id='birthOperator.$(n)' spec='ScaleOperator' scaleFactor=".75" weight="3" parameter="@birthRate.$(n)"/>
+<!-- more scale operators .... -->
+<operator id="updownBD.$(n)" spec="UpDownOperator" scaleFactor=".75" weight="10">
+	 <up idref="birthRate.$(n)"/>
+	 <down idref="deathRate.$(n)"/>
+	 <down idref="samplingRate.$(n)"/>
+</operator>
+]]>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>To complete the sub-template, we need to define rules for connecting the BEASTObjects defined in the CDATA-section with relevant parts of the main template. <tt> BeautiConnector</tt> specifies a BEASTObject to connect from through the <tt> srcID</tt> attribute, a BEASTObject to connect to through the <tt> targetID</tt> template and a <tt> inputName</tt> specifies the name of the input in the target BEASTObject to connect with. Finally, the connector is only activated when some conditions are met. If the connection is not met, BEAUti will attempt to disconnect the link (if it exists). The conditions are separated by the &#8216;and&#8217; keyword in the <tt> if</tt> attribute. The conditions are typically of the form <tt>inposterior(BirthDeathSky.$(n))</tt>, which tests whether the BEASTObject with id <tt>BirthDeathSky.$(n)</tt> is a predecessor of a BEASTObject with id <tt>posterior</tt> in the model. Further, there are conditions of the form <tt>Tree.$(n)/estimate=true</tt>, are typically used to test whether an input value of a BEASTObject is a certain value. This is mostly relevant to test whether <tt>StateNode</tt>s are estimated or not, since if they are not estimated no operator should be defined on it, and logging is not very useful. Let&#8217;s have a look at a few connectors.</p>
+<p>Connectors are tested in order of appearance. It is always a good idea to make the first connector the one connecting the main BEASTObject in the sub-template, since if this main BEASTObject is disconnected, most of the others should be disconnected as well. For this tree-prior, the tree&#8217;s <tt>estimate</tt> flag can become false when the tree for the partition is linked.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<connect srcID='BirthDeathSky.$(n)' targetID='prior' inputName='distribution' if='inposterior(BirthDeathSky.$(n)) and Tree.$(n)/estimate=true'/>
+\end{lstlisting}}
+Next, connect priors on parameters to the prior BEASTObject provided by the main template.
+{\color{blue}\scriptsize\begin{lstlisting}[language=XML,firstnumber=last,breaklines=true]
+<connect srcID='birthPrior.$(n)' targetID='prior' inputName='distribution' if='inposterior(BirthDeathSky.$(n)) and birthRate.$(n)/estimate=true'/>
+<!- likewise for death and sampling rate prior ... ->{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>Connect scale operators, and up-down operator. Note that the up-down operator takes as input the birth, death and sampling rate, but if one of these rates is fixed by the user in BEAUti, the link should be disconnected. So, there are three rules for deciding whether these rates should be connected to the operator.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<connect srcID='birthOperator.$(n)' targetID='mcmc' inputName='operator'     if='inposterior(BirthDeathSky.$(n)) and birthRate.$(n)/estimate=true'/>
+<!-- more scale oparetors ...->
+<connect srcID='updownBD.$(n)' targetID='mcmc' inputName='operator'     if='inposterior(BirthDeathSky.$(n))'/>
+<connect srcID='birthRate.$(n)' targetID='updownBD.$(n)' inputName='up'     if='inposterior(BirthDeathSky.$(n)) and birthRate.$(n)/estimate=true'/>
+<connect srcID='samplingRate.$(n)' targetID='updownBD.$(n)' inputName='down'     if='inposterior(BirthDeathSky.$(n)) and samplingRate.$(n)/estimate=true'/>
+<connect srcID='deathRate.$(n)' targetID='updownBD.$(n)' inputName='down'     if='inposterior(BirthDeathSky.$(n)) and deathRate.$(n)/estimate=true'/>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>Connect the birth-death skyline prior to the log.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<connect srcID='BirthDeathSky.$(n)' targetID='tracelog' inputName='log' if='inposterior(BirthDeathSky.$(n))'/>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>Since connecting all five parameters to the <tt>State</tt> and the <tt>tracelog</tt> is a bit tedious, we can use a plate construction.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<plate var='p' range='birthRate,deathRate,intervalTimes,samplingRate,orig_root'>
+        <connect srcID='$(p).$(n)' targetID='state' inputName='stateNode' if='inposterior(BirthDeathSky.$(n)) and $(p).$(n)/estimate=true'/>
+        <connect srcID='$(p).$(n)' targetID='tracelog' inputName='log' if='inposterior(BirthDeathSky.$(n)) and $(p).$(n)/estimate=true'/>
+</plate>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>Finally, add RPN calculators as loggers, and close all XML elements that were opened so far.</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<connect srcID='R_0.$(n)' targetID='tracelog' inputName='log' if='inposterior(BirthDeathSky.$(n))'/>
+    <connect srcID='psi/(psi+death).$(n)' targetID='tracelog' inputName='log' if='inposterior(BirthDeathSky.$(n))'/>
+</subtemplate>
+</mergewith>
+</beast>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>To see the complete BEAUti template, install the BDSKY-package using the package manager in BEAUti. The file will be stored under <tt> $USER/.beauti2/BDSKY/templates/BDSKY.xml</tt>.</p>
+<h2>Step 4: Update build script to create package</h2>
+<p>Since an package is a zip-file that contains some bits and pieces, it is probably easiest to have a look at a build file for an existing package and copy the relevant parts to your own build file.</p>
+<h2>Step 5: Publish package by link on website</h2>
+<p>For BEAUti to pick up the package, the package needs to be published on the BEAST 2 website. See <a href='..//index.html'>the BEAST site</a> for further details and package tutorials.</p>
+	
+	

@@ -1,0 +1,49 @@
+---
+layout: post
+title: What is new in BEAST v2.3.0 and its packages 
+tags: []
+---
+
+	
+
+		
+		<p style="color: gray;">26 May 2015 by <a href="mailto:remco@cs.auckland.ac.nz">Remco Bouckaert</a></p>
+<p>The main improvement is in BEAUti fixes. There are a few bugs, especially with cloning and linking/unlinkig partitions that are fixed. The templates for tree priors have been reorganised, since they some times interferred.</p>
+<p>The File-menu in BEAUti is reorganised so it is easier to access files from packages. On the Mac, packages are installed in a rather hard to find folder. With the new menu, it is easy to select a working directory, then import an alignment or open an example file from the package.</p>
+<p>The File menu has entries for creating new partitions directly, which saves one click every time an alignment is imported.</p>
+<p>The build scripts have been updated so that each applications automatically loads <tt>beast.jar</tt> instead of having the whole file duplicated in each application, giving smaller footprint for Mac and Windows. This also makes it easier to update using the latest development build; just replace the <tt>beast.jar</tt> file with the one from <a href="http://hudson.cs.auckland.ac.nz/job/BEAST2/lastSuccessfulBuild/artifact/build/dist/beast.jar">here</a> and you are running the development version.</p>
+<p>There are a few bug-fixes, in particual, issues with synchronisation affecting <tt>ThreadedTreeLikelihood</tt> from the BEASTLabs package, a fix in <tt>EigenDecomposition</tt> affecting asymmetric rate matrices (which caused problems with ancestral reconstruction from the BEAST-CLASSIC package).<br />
+Furthre, the code is updated such that dependency on taxon order is reduced, making multiple partition handling more robust</p>
+<p>The <tt>LogCombiner</tt> command line interface is improved so it can take multipe log files as argument, so you can use wildcards to specify multiple files, like so:</p>
+<p>logcombiner -log beast.*.log</p>
+<p>This version can keep running v2.2 and its packages alongside v2.3, so no need to delete old packages any more.</p>
+<p>DensiTree is updated to v2.2.2.</p>
+<h2>Package added since the <a href="http://blog.beast2.org/2014/05/12/what-is-new-in-beast-v2-1-3-and-its-packages/">last</a> udpate on this blog</h2>
+<p>There are now 20 packages, many of them added since the last update.</p>
+<h3>MGSM: multi-gamma site model</h3>
+<p>Unlike the standard gamma rate heterogeneity model, which uses a single shape parameter, the multi-gamma site model allows the shape parameter to vary over branches. This leads often to better model fit and can result in significantly different divergence time estimates. Preprint on <a href="http://biorxiv.org/content/early/2015/04/15/018101">bioRxiv</a>.</p>
+<p>Comes with BEAUti support.</p>
+<h3>Spherial geography</h3>
+<p>Phyleographical model that assumes heterogeneious diffusion on a sphere, which for large areas can give significantly different results than continuous geography by diffusion on a plane. For a tutorial see <a href="https://github.com/CompEvol/CBAN/releases/download/v2.2.0/phylogeography_s.v.0.0.5.pdf">here</a>. Preprint on <a href="http://biorxiv.org/content/early/2015/03/09/016311">bioRxiv</a>.</p>
+<p>Comes with BEAUti support.</p>
+<h3>bModelTest</h3>
+<p>A package for nucleotide models that uses reversible jump between a number of substitution models, with and without gamma rate heterogeneity and with and without proportion invariant sites. So, these parts of the model will be estimated during the MCMC run and do not need to be specified beforehand any more. Preprint on <a href="http://biorxiv.org/content/early/2015/06/11/020792">bioRxiv</a>.</p>
+<p>Comes with BEAUti support.</p>
+<h3>Morphological-models</h3>
+<p>Implements the LewisMK model for morphological data, see <a href="../../../../morphological-models/index.html">morphological models</a>. Deals with ambiguities and nexus files for morpholocial data.</p>
+<p>Comes with BEAUti support.</p>
+<h3>Sampled ancestors</h3>
+<p>Described <a href="http://blog.beast2.org/2014/09/02/sampled-ancestor-trees-in-beast/"> previously</a>.</p>
+<h3>The coalescent SIR model</h3>
+<p>Described <a href="http://blog.beast2.org/2014/08/18/the-coalescent-sir-model-in-beast/">previously</a>.</p>
+<h3>Metroplolis coupled MCMC</h3>
+<p>Aka MCMCMC or MC3. More <a href="../../../../2016/09/27/metropolis-coupled-mcmcmc3-works/index.html">here</a>.</p>
+<h3>Species delimitation with DISSECT and STACEY</h3>
+<p>Methods for species delimitation based on the multi species coalescent, so this is useful for data that could be analysed using *BEAST. More on this soon.</p>
+<h3>Bayesian structured coalescent approximation with BASTA</h3>
+<p>Approximation of the structured coalescent which allows a large number of demes than the pure structured coalescent as for example implemented in the MultiTypeTree package.</p>
+<h3>More tutorials</h3>
+<p>Check out the list of tutorials, and howtos on the <a href="../../../../tutorials/index.html">wiki</a>.</p>
+	
+	
+	

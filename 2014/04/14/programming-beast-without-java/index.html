@@ -1,0 +1,197 @@
+---
+layout: post
+title: Programming BEAST without Java 
+tags: [beast-2,beastlabs,feast,javascript,python,reverse-polish-notation,scripting,v2-1-2]
+---
+
+	
+
+		
+		<p style="color:gray">14 April 2014 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+<p>If you want to log say a simple function of a parameter or set of parameters, programming a logger in Java is often overkill. A much simpler way is to use some of the scripting functionality that in BEAST. There are a number of options;</p>
+<li><tt>RPNCalculator</tt> which takes expressions in <a href='https://en.wikipedia.org/wiki/Reverse_Polish_notation'>reverse polish notation</a></li>
+<li><tt>ExpParser</tt> in the <tt>MASTER?</tt> package, you can use which takes arithmetic expressions</li>
+<li><tt>Script</tt> in the <tt>BEASTLabs</tt> package, you can use complex arithmetic expressions as well as functions</li>
+<h2>RPNCalculator</h2>
+<p><tt>RPNCalculator</tt> is the simplest and most primitive of the lot. It takes as input a set of <tt>Function</tt>s and an expression in reverse Polish notation (RPN). RPN is stack based, and takes arguments first, and whenever an operator is pushed on the stack, it uses the top most positions to execute the operator. So &#8220;2 3 +&#8221; returns 5, &#8220;2 2 2 / /&#8221; return 0.5 as does &#8220;2 2 2 * /&#8221;. Variable names are resolved by the IDs of the arguments. Below, a complete XML fragment </p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<RPNcalculator spec="beast.math.statistic.RPNcalculator" id="Yminus1TimesX" expression="x y 1 - *"> <!-- (y-1)*x -->
+	<parameter idref="x"/>
+	<parameter idref="y"/>  
+</RPNcalculator>{% endhighlight %}			
+			
+		
+
+<p></p>
+<h2>ExpCalculator</h2>
+<p><tt>ExpCalculator</tt> can be found in the <a href='https://github.com/tgvaughan/feast'><tt>feast</tt></a> package and allows simple expressions to used as a <tt>Function</tt>. For example, to calculate the Eucledian distance to the point (20,50), you could use the following:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<parameter id="x" >20</parameter>
+<parameter id="y" >50</parameter>
+
+<parameter id="R" spec='feast.ExpCalculator' expression="sqrt((x-20)^2+(y-50)^2)">
+	<parameter idref="x"/>
+	<parameter idref="y"/>
+</parameter>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>There is also a <tt>ExpCalculatorDistribution</tt> that you can use as a distribution where you can specify an expression to represent to log-density of the distribution. For example &#8212; ignoring constants &#8212; a normal distribtion could be specified like so:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<distribution spec="feast.ExpCalculatorDistribution" id="target" expression="exp(-R^2/2)" parameter='@R'/>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>which can be used in for example the prior. For more information, see the <a href='https://github.com/tgvaughan/feast'><tt>feast</tt></a> package.</p>
+<h2>Script</h2>
+<p>To use <tt>Script</tt> you need to install the <tt>BEASTLab</tt> package (see <a href='../../../..//managing-packages/index.html'>the BEAST website</a> for how to install packages).</p>
+<p>With <tt>beast.util.Script</tt> you can now run complex mathematical expressions like</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}3 * sin(a[0]) + log(a[1]) * b {% endhighlight %}			
+			
+		
+
+<p></p>
+<p>where <tt>a</tt> is a <tt>Function</tt> with 2 dimensions and <tt>b</tt> a single values <tt>Function</tt>. Parameters and Distributions are <tt>Function</tt>s, so you can use these for your expressions. Since <tt>Script</tt> is also a <tt>Function</tt> you can use the result of a <tt>Script</tt> in another <tt>Script</tt>.</p>
+<p>Script has an input named <tt>x</tt>, and every <tt>Function</tt> and the variable names in the expression must match the ID of the input-value. A complete XML fragment for logging the above expression with two parameters <tt>a</tt> and <tt>b</tt> could look something like this:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<parameter id='a'>1.0 2.0</parameter>
+<parameter id='b'>3.0</parameter>
+
+<log spec='beast.util.Script' expression='3 * sin(a[0]) + log(a[1]) * b'>
+	<x idref='a'/>
+	<x idref='b'/>
+</log>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>With <tt>Script</tt>, you can define complex and recursive functions, for example factorial, like so:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}function fac(x) {
+        if (x <= 1) {return 1;}
+        return x * fac(x-1);
+}
+
+function f(a) {return fac(a);}{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>Note that if you specify a scripts instead of an expression, the engine always<br />
+calls function <tt>f</tt> with arguments of the inputs <tt>x</tt> in order of appearance. The function specification goes as text inside the element, unlike an expression, which goes inside the <tt>expression</tt> attribute. An XML fragment logging the factorial of parameter <tt>a</tt> could look something like this:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<parameter id='a'>5.0</parameter>
+
+<log spec='beast.util.Script'>
+	<x idref='a'/>
+
+	function fac(x) {
+		    if (x &lt;= 1) {return 1;}
+		    return x * fac(x-1);
+	}
+
+	function f(a) {return fac(a);}
+
+</log>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>Note that because the text is XML, any XML character (especially &#8216;<' and '&amp;') need to be escaped. The <= in the above script must replaced by &amp;lt;=. To prevent this, you can wrap the text in a CDATA block, of which the content is not interpreted as XML but taken as is.
+
+</p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<parameter id='a'>5.0</parameter>
+
+<log spec='beast.util.Script' x='@a'>
+<![CDATA[
+	function fac(x) {
+		    if (x <= 1) {return 1;}
+		    return x * fac(x-1);
+	}
+
+	function f(a) {return fac(a);}
+]]>
+</log>{% endhighlight %}			
+			
+		
+
+<p>
+
+
+<h3>Script syntax</h3>
+<p>By default, the <tt>Script</tt> uses <a href='https://en.wikipedia.org/wiki/JavaScript'><tt>JavaScript</tt></a> syntax for coding expressions and functions. For expressions, the <tt>Math</tt> scope is used, so any Math-function is available, so the following functions are available: <tt>abs(), acos(), asin(), atan(), atan2(), ceil(), cos(), exp(), floor(), log(), max(), min(), pow(), random(), round(), sin(), sqrt(), tan()</tt>. A disadvantage is that debugging is awkward to put it mildly. If it does not compile, the ScriptEngine does not offer much clues to where things go wrong.</p>
+<p>You can specify other script engines by setting the <tt>engine</tt> attribute to one of <tt>JavaScript, python, jruby,</tt> or <tt>groovy</tt> and provided the script engine is available in your class path, you can use other syntax for specifying a script (though not for expressions). For example, to use python, you need to include <a href='http://www.jython.org/downloads.html'>jython</a> in the class path, and set <tt>engine='python'</tt> on the Script element. A factorial logger could be done like this in python:</p>
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight ruby %}<log spec='beast.util.Script' x='@a' engine='python'>
+<![CDATA[
+def f(n):
+    if n <= 1:
+        return 1
+    else:
+        return n * f(n-1)
+]]>
+</log>{% endhighlight %}			
+			
+		
+
+<p></p>
+<p>So far, these scripts are rather simple, and can effectively only useable for logging of advanced information. In a later blog, we will look how to use scripts in other situations. But for now happy scripting!</p>
+	
+	
