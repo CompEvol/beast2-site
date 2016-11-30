@@ -16,7 +16,7 @@ tags: [beast-2,tips-sampling,xml]
 </ol>
 <h2>Tip calibration in BEAUti</h2>
 <p>To set up a calibration, the easiest way to do this is by adding a calibration in BEAUti: in the priors panel, hit the little plus (&#8216;+&#8217;) button at the bottom of the screen, then specify the leaf you want to sample and give it a unique name. After hitting the OK button, open the details of the prior by pressing the little triangle next to the taxonset (here Homo_sapiens.prior) and a screen shows up like this:</p>
-<p><img src="..//files/2015/06/tipprior.png"/></p>
+<p><img src="{{ site.baseurl }}/images/tipprior.png"/></p>
 <p>Make sure the Tipsonly box is checked. If you have multiple tips with the same calibration you can put all of these in the same taxonset. With the tipsonly-flag set, the calibration will be applied to the leafs instead of the most recent common ancestor of the set of tips.</p>
 <h2>Tip calibration in XML</h2>
 <p>You can also use add an MRCAPrior to the XML inside the distribution element with id=&#8221;prior&#8221; like so:</p>

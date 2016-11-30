@@ -18,10 +18,10 @@ tags: [beast-2,beauti,clock-rates,rates,substitution-rates]
 <p>The way to think of the substitution rate is that it is a relative rate with respect to other partitions, while the clock rate is the overall rate for substitutions per site per year (or any other unit of time you choose to use). So, substitution rates will be numbers close to 1, while clock rates tend to be small numbers, such as 4e-9 substitutions per site per year.</p>
 <h2>Substitution rates</h2>
 <p>To set up the substitution rates, use this chart:</p>
-<p><img src="../files/2015/06/HelpBEASTActsWeird2.png"/> </p>
+<p><img src="{{ site.baseurl }}/images/HelpBEASTActsWeird2.png"/> </p>
 <h2>Standard analysis</h2>
 <p>For an analysis using the Standard template, you can go to the clock model tab and use this chart to set up the clock rate:</p>
-<p><img src="../files/2015/06/HelpBEASTActsWeird1.png"/> </p>
+<p><img src="{{ site.baseurl }}/images/HelpBEASTActsWeird1.png"/> </p>
 <p>* Partitions can be ordered arbitrarily. With the first partition I mean the one for which there are either calibrations, tip dates or a rate from the literature, which usually is the first partition listed in the list of clocks, but may be a later one as well.</p>
 <p>** Set the clock rate to &#8220;1e-x&#8221; where x is a number that is somewhere in the region you expect it for your data helps to get through burn-in faster. You could leave it at the default value of 1.0, but it just takes longer to reach convergence. Assuming you are using years as units of time, workable values are 1e-9 for nuclear data, 1e-6 for mitochondrial, bacterial and DNA viral data and 1e-4 for RNA viral data, but if you have more specific information about your sequences it helps to use it to specify starting value.</p>
 <h2>*BEAST analysis</h2>

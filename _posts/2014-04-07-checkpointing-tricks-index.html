@@ -10,7 +10,7 @@ tags: [beast2,checkpointing,performance,resume,v2-1-2]
 		<p style="color:gray">7 April 2014 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
 <p>BEAST 2 stores its internal state occasionally when running an MCMC chain. This means that you can run a chain for a number of samples then resume the chain where it was stopped. This is especially handy when your computer power supply is not very stable or you run BEAST on a cluster that limits the length of jobs.</p>
 <p>To resume a run, just select the resume option from the BEAST dialog, or if you run from the command line, use the <tt>-resume</tt> option</p>
-<p><img alt="" src="..//files/2014/04/resume.png" /></p>
+<p><img alt="" src="{{ site.baseurl }}/images/resume.png" /></p>
 <h2>Fast model selection/Skipping Burn-in</h2>
 <p>Disclaimer: this is for exploratory analysis only. For the full analysis running different chains (say 4) till convergence from different random starting points is the recommended way.</p>
 <p>Having said this, exploring different models can take a lot of time, choosing different clock models and their configurations, choosing different tree priors, and substitution models with and without gamma heterogeneity and what have you. Exploring all these settings takes time and often it turns out that many models can be dismissed due to their bad performance. However, every time you change settings you have to go through burn-in. If you set of taxa is small, this is no issue, but if you have many taxa and use models with slow convergence, it may pay to use the partial state of a previous run</p>
@@ -34,10 +34,10 @@ tags: [beast2,checkpointing,performance,resume,v2-1-2]
 <p>Now, in BEAUti, you can change the site model to use 4 gamma categories and estimate the shape parameter (click check box with &#8216;estimate&#8217; next to it), &#8212; also, change the log file names &#8212; and save as <tt>anolis2.xml</tt>. If you copy <tt>anolis.xml.state</tt> to <tt>anolis2.xml.state</tt> and run BEAST on <tt>anolis2.xml</tt> it will use the end state for the tree, birth rate, kappa and frequency parameters of the <tt>anolis.xml</tt> run as the starting state of the <tt>anolis2.xml</tt> run. For the gamma rate, it will use the setting provided in BEAUti.</p>
 <p>You will notice a rise in posterior from about -22428 to -20328 and a rise in log likelihood from about -22453 to -20345 a whopping 2000 log points improvement. The 95% HDP intervals for the likelihood do not even overlap, so adding gamma<br />
 heterogeneity helps in fitting the model considerably in this case and the without heterogeneity model does not be considered any further.</p>
-<p><img alt="" src="..//files/2014/04/posterior.png" /></p>
+<p><img alt="" src="{{ site.baseurl }}/images/posterior.png" /></p>
 <p>The trees are shaped considerably different as well:</p>
-<p><img alt="" src="..//files/2014/04/anolis.png" />
-<img alt="" src="..//files/2014/04/anolis2.png" /></p>
+<p><img alt="" src="{{ site.baseurl }}/images/anolis.png" />
+<img alt="" src="{{ site.baseurl }}/images/anolis2.png" /></p>
 <p>Of course, the anolis dataset with only 29 taxa and 1456 characters in the alignment is just a toy example and there is not such a large gain in speed, but for larger analyses re-using a state can help considerably.</p>
 <h2>Speeding up MCMC (in some cases)</h2>
 <p>When the tree is sampled from a bad area &#8212; which is almost always is initially, if you start with a random tree &#8212; the calculation of the treelikelihood can run into numerical trouble. It will switch to &#8216;scaling partials&#8217;, which can result in a severe performance hit. After a while, the tree can move to an area with higher likelihood and scaling is not required any more. One would think that scaling could be switched off after a while, but that is not always desirable. There are a number of schemes, like NONE, ALWAYS, and DYNAMIC, but we are waiting for the scheme that always works. The code promises this scheme:</p>

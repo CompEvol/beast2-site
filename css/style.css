@@ -47,3 +47,26 @@ a[href^="mailto:"] {
 
 
 
+
+.PageNavigation {
+  font-size: 14px;
+  display: block;
+  width: 80%;
+  overflow: hidden;
+  float:left;
+}
+
+.PageNavigation a {
+  display: inline;
+  width: 25%;
+  float: left;
+  margin: 1em 0;
+}
+
+.PageNavigation .next {
+  text-align: right;
+}
+.PageNavigation .blogindex {
+  text-align: center;
+}
+

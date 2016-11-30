@@ -61,9 +61,9 @@ tags: [beast-2,simulation,simulation-study,v2-1-2]
 <p>If you save the XML as <tt>simluator.xml</tt> you can run it using BEAST, and it will produce a file called <tt>gammaShapeSequence.xml</tt> containing a sequence alignment with 10000 characters.</p>
 <h2>Setting up an analysis</h2>
 <p>Next step is to create a BEAST MCMC analysis file. The easiest way to do this is using BEAUti. Open BEAUti using the (default) Standard template. Import the alignment from the generated file <tt>gammaShapeSequence.xml</tt>. Go to the Sitemodel panel, and change the substitution model to HKY. Then, set the number of categories to 4, and click the estimate checkbox next to the shape. The panel should look something like this:</p>
-<p><img src="..//files/2014/04/BEAUtiSitePanel.png"/></p>
+<p><img src="{{ site.baseurl }}/images/BEAUtiSitePanel.png"/></p>
 <p> Save the file as <tt>analysis.xml</tt>. After running the analysis with BEAST, and using tracer to inspect the log file <tt>SequenceSimulator.log</tt>, tracer could report something like this:</p>
-<p><img src="..//files/2014/04/tracer.png"/></p>
+<p><img src="{{ site.baseurl }}/images/tracer.png"/></p>
 <p>As you can see, the gamma shape is estimated as 1.287 with a 95% HPD Interval of [0.8596, 1.7296], so the original gamma shape value of 1.0 is in the 95% HPD Interval. So, it appears that the gamma shape parameter can be estimated. How about the bias? Perhaps we should run the simulation a few more time and see how it behaves over say 10 independently generated alignments.</p>
 <h2>Repeating this 10x</h2>
 <p>To repeat the above &#8212; simulate sequences, merge with an analysis, and run the analysis &#8212; say 10 times, we can adjust the XML script simply by adding the following:</p>
@@ -177,7 +177,7 @@ tags: [beast-2,simulation,simulation-study,v2-1-2]
 <p>It is probably also a good idea to set the <tt>chainLength="4000000"</tt> in <tt>analysis.xml</tt>. Rerun BEAST on <tt>simluator10.xml</tt>.</p>
 <p>Now we can run the 10 simulator files and get log file <tt>SequenceSimulator-0.log</tt>, <tt>SequenceSimulator-1.log</tt>, &#8230; <tt>SequenceSimulator-9.log</tt>.</p>
 <p>Analysing the log files can be done with tracer with the 10 log files. For the 10 log files, we can select the combined log, which looks something like this:</p>
-<p><img src="..//files/2014/04/tracer10.png"/></p>
+<p><img src="{{ site.baseurl }}/images/tracer10.png"/></p>
 <p>The mean estimate over 10 runs is 1.0752 with 95% HPD Interval of [0.7423, 1.503], so the gamma shape used for generating the data is close to the mean and it is firmly in the 95% HPD interval.</p>
 <h2>Repeating 10x for 21 different gamma shape values</h2>
 <p>So, it looks like the gamma shape value can be infered when the value is 1.0. How about other values? To test this, we can change the <tt>simulator.xml</tt> file for different values of the shape parameter, and run the analysis 10 times for each gamma shape.</p>
@@ -343,6 +343,6 @@ java -Dprefix=15.0 -cp beast.jar beast.util.LogAnalyser SequenceSimulator-15.log
 
 <p></p>
 <p>This gives the following graph showing the estimate of shape parameter against the value used for simulating the data. Over all, there is a close match, except for large values of the shape parameter.</p>
-<p><img src="..//files/2014/04/Rplot.png"/></p>
+<p><img src="{{ site.baseurl }}/images/Rplot.png"/></p>
 	
 	

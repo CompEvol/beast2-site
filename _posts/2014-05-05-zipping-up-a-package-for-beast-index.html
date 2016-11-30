@@ -57,7 +57,7 @@ Total time: 9 seconds{% endhighlight %}
 
 <p></p>
 <h2>Roll your own</h2>
-<p>You might want to read the relevant chapter in the <a href="..//book/index.html">BEAST book</a> to start with.</p>
+<p>You might want to read the relevant chapter in the <a href="index.html">BEAST book</a> to start with.</p>
 <p>BEAST looks for jar files inside the package directory where each package has its own subdirectory. It only picks up jar files if they are in the <tt>lib</tt> directory. Likewise, BEAUti templates are only picked up from XML files in the <tt>templates</tt> directory.</p>
 <p>By convention, the following directory structure with some of the files are expected:</p>
 
@@ -86,13 +86,13 @@ Total time: 9 seconds{% endhighlight %}
 <p>You might want to name your zip file something along the lines of <tt>mypackage.addon.v1.0.0.zip</tt> to keep track of version numbers and indicating the purpose of the file.</p>
 <h2>Trouble shooting</h2>
 <p><b>The ant file fails:</b> typically, ant produces sensible error messages, so read these! Typos, missing files, misnamed directories are not uncommon.</p>
-<p><b>BEAST does not load the jar file:</b> perhaps it is in the wrong location. BEAST expects <tt>mypackage.jar</tt> to be in the location <tt>$BEAST/2.1/MyPackage/lib/mypacakage.jar</tt> where $BEAST is the <a href="..//managing-packages/index.html">package directory for your OS</a>, 2.1 is the version number (major=2, minor=1, patchnr=any) of BEAST. If you happen to zip all files in the <tt>addon</tt> directory, your jar file may end p in <tt>$BEAST/2.1/MyPackage/addon/lib/mypacakage.jar</tt> where it is ignored.</p>
+<p><b>BEAST does not load the jar file:</b> perhaps it is in the wrong location. BEAST expects <tt>mypackage.jar</tt> to be in the location <tt>$BEAST/2.1/MyPackage/lib/mypacakage.jar</tt> where $BEAST is the <a href="index.html">package directory for your OS</a>, 2.1 is the version number (major=2, minor=1, patchnr=any) of BEAST. If you happen to zip all files in the <tt>addon</tt> directory, your jar file may end p in <tt>$BEAST/2.1/MyPackage/addon/lib/mypacakage.jar</tt> where it is ignored.</p>
 <p><b>BEAST says wrong version nr:</b> the jar file is compiled against a java version newer than 1.6. Many users are still using Java 6, so we try to keep the code Java 1.6 compatible for now. To fix this, ensure the jar file is 1.6 compatible.</p>
 <p><b>BEAUti template does not load:</b> perhaps it is not in the correct location. BEAUti tries to load templates of packages by loading any XML file from the directory <tt>$BEAST/2.1/MyPackage/templates/</tt>. If your template is in another location, it will be ignored.</p>
 <h2>Installing the package</h2>
 <p>Some options:</p>
 <ul>
-<li>let me know the url where the zip file is available on web and I wil add it to the list of packages that BEAUti uses to <a href="..//managing-packages/index.html">manage packages</a>. This way, everyone that install BEAST/BEAUti has access to the package immediately.</li>
+<li>let me know the url where the zip file is available on web and I wil add it to the list of packages that BEAUti uses to <a href="index.html">manage packages</a>. This way, everyone that install BEAST/BEAUti has access to the package immediately.</li>
 <li>ask users to unzip your zip file in the BEAST pacakge directory, which can be a bit awkward.</li>
 <li>maintain your own package XML file (similar to the one <a href="https://github.com/CompEvol/CBAN/blob/master/packages2.3.1.xml">here</a>, and tell users the url of the package XML file. In the package manager in BEAUti, you can add this url using the <tt>Manage package locations</tt> button.</li>
 </ul>

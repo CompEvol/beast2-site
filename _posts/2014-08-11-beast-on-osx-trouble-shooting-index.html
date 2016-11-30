@@ -11,18 +11,18 @@ tags: []
 <p>Just this week I got a new Mac laptop, and could experience first hand what it is to install BEAST on a virgin machine. There are number of reasons why BEAST will not start on Apple OSX, and we have a look at the most common causes and how to solve them. </p>
 <h2>DMG is &#8216;damaged&#8217;</h2>
 <p>First of all, after <a href='http://beast2.org'>downloading</a> BEAST and OSX may respond to opening the dmg file by showing a dialog with the message that the file is damaged and offers a choice of deleting or canceling the action.</p>
-<p><img src='..//files/2014/08/MacDmgDamaged.png'/></p>
+<p><img src='{{ site.baseurl }}/images/MacDmgDamaged.png'/></p>
 <p>By default, security settings on Mavericks is that only apps downloaded from Mac App Store and from identified developers are opened, and anything else is treated with the message shown above. To fix this, open the security and privacy settings &#8212; click the apple icon in the top left corner, then click System Preferences, and select Security &amp; Privacy. A window similar to this will be shown:</p>
-<p><img src='..//files/2014/08/MacSecuritySettings.png'/></p>
+<p><img src='{{ site.baseurl }}/images/MacSecuritySettings.png'/></p>
 <p>You need to change that to allow apps from anywhere. Once you click that, a window pops up asking whether you want to make your computer less secure. No worries &#8212; after starting BEAST once, you can set it back to a more secure setting.</p>
-<p><img src="..//files/2014/08/MacSecuritySettings2.png"/></p>
+<p><img src="{{ site.baseurl }}/images/MacSecuritySettings2.png"/></p>
 <h2>Cannot be opened</h2>
 <p>Another message that can pop up is that BEAST or BEAUti cannot be opened &#8212; something similar to this </p>
-<p><img src="..//files/2014/08/MacSecurity.png"/></p>
+<p><img src="{{ site.baseurl }}/images/MacSecurity.png"/></p>
 <p>(Had to doctor this screenshot a bit to show beast instead of the app I started). Again, change the security settings (temporarily) to allow applications from anywhere, as outlined above.</p>
 <h2>Need to install Java 6?</h2>
 <p>Now the dmg file should open and you can drag BEAST to the Applications folder. Double clicking BEAUti or BEAST may result in a message asking you to install Java 6. This may seem strange if you already have Java 7 or higher installed. </p>
-<p><img src="..//files/2014/08/MacNeedJava6.png"/></p>
+<p><img src="{{ site.baseurl }}/images/MacNeedJava6.png"/></p>
 <p>It does not change your default Java installation if you click &#8216;install&#8217; &#8212; Java 6 will be installed next to Java 7 or 8, but will not become the default for command line usage.<br />
 (you may want to create a symbolic link to trick OSX in thinking Java 6 is already installed if you already have Java 7 &#8212; <a href='http://apple.stackexchange.com/questions/58203/mountain-lion-with-java-7-only/58841#58841'>details here</a>).</p>
 <h2>BEAST does not start from the command line</h2>

@@ -8,7 +8,7 @@ tags: [beast-2,beastshell,simulation-study,v2-1-3]
 
 		
 		<p style="color:gray">2 June 2014 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
-<p>A <a href='../2014/04/28/simulation-studies-with-beast-2/index.html'>few weeks ago</a>, we had a look at a simultion study with BEAST, using the <tt>SequenceSimulator</tt>, <tt>LogAnalyser</tt> and R. Let&#8217;s do that study again, but now with <a href='https://github.com/CompEvol/beastshell'>BEASTShell</a>, a package for scripting BEAST-objects. It is based on BeanShell, but has special extentions to conveniently deal with <tt>BEASTObject</tt> classes.</p>
+<p>A <a href='index.html'>few weeks ago</a>, we had a look at a simultion study with BEAST, using the <tt>SequenceSimulator</tt>, <tt>LogAnalyser</tt> and R. Let&#8217;s do that study again, but now with <a href='https://github.com/CompEvol/beastshell'>BEASTShell</a>, a package for scripting BEAST-objects. It is based on BeanShell, but has special extentions to conveniently deal with <tt>BEASTObject</tt> classes.</p>
 <p>In the previous blog, I sampled sequences for a range of shape parameter values that seemed reasonable in my experience. However, the model assumes an exponential prior distribution over the shape parameters with mean 1, so arguably, that information is sufficient to draw shape values from. In this study, we will</p>
 <ol>
 <li>sample 100 values of the shape parameter from this prior distribution,</li>
@@ -235,7 +235,7 @@ p = new Plot(x=shapes, y=estimate, title="Gamma shape\nsimulation", xAxisTitle="
 
 <p></p>
 <p>Once you ran the script, something similar to the following image should appear in the file Sample_Chart.png.</p>
-<p><img src='..//files/2014/05/Sample_Chart.png'/></p>
+<p><img src='{{ site.baseurl }}/images/Sample_Chart.png'/></p>
 <p>Looks like the shape parameter can be fairly reliably recovered from a large range of shape values. Only at the extremes &#8212; below 0.05 and over 15 &#8212; the prior is drawing the estimate to the mean.</p>
 	
 	

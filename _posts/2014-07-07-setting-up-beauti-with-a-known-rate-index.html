@@ -12,11 +12,11 @@ tags: [beast-2,beuti,log-normal,normal,prior,rates]
 <p>We call the genes gene1, gene2 and gene3, and the rate is say 2.3 substitutions per site per million year. There are a number of things you can do:</p>
 <h3>Linked genes</h3>
 <p>If the genes are linked, for example, because they are all mitochondrial genes, you would use a single tree for all genes. Link trees for all partitions in the partition panel in BEAUti, and it should look something like this:</p>
-<p><img src="..//files/2014/07/linked-genes.png"/></p>
+<p><img src="{{ site.baseurl }}/images/linked-genes.png"/></p>
 <p>If the rate is known for the first gene, go to the Clock model tab, fill in the clock rate for the gene you have a rate for and BEAUti conveniently fixes the rate for that partition and marks the others as estimated.</p>
-<p><img src="..//files/2014/07/clock-models.png"/></p>
+<p><img src="{{ site.baseurl }}/images/clock-models.png"/></p>
 <p>If the gene with the known rate is not the first partition, you have to uncheck the &#8220;Mode/Automatic set clock rates&#8221;.</p>
-<p><img src="..//files/2014/07/auto-set-clock-rate.png"/></p>
+<p><img src="{{ site.baseurl }}/images/auto-set-clock-rate.png"/></p>
 <p>Then go to the clock model panel, where you can set the estimate box for each of the genes you want to estimate and uncheck it for the gene with the known rate.</p>
 <h3>Independent genes</h3>
 <p>If all three genes are unlinked, use a *BEAST analysis where you have an independent gene tree for each of your genes. Essentially, the same scenario for clock rates as for the single tree applies.</p>
@@ -31,7 +31,7 @@ tags: [beast-2,beuti,log-normal,normal,prior,rates]
 <h3>Use a log-normal prior!</h3>
 <p>A much better alternative is to use a log-normal prior, which has a range over the positive numbers only. For small values of the standard deviation, it is shaped like a bell-curve. Just like the normal distribution, it only requires two parameters to specify, but requires no lower bound to be set on the rate, since negative values are automatically out of range.</p>
 <p>It is easy to configure the log-normal prior in BEAUti, by setting the mean &#8220;M&#8221; to 2.3, check the &#8220;Mean in real space&#8221; box (as opposed to in log space) and set the standard deviation &#8220;S&#8221; by matching the 95% interval to [2.05, 2.55]. This means matching the 2.5% quantile to 2.05 and the  97.5% quantile to approximately 2.55. A bit of fiddling with the numbers shows that S=0.059 is a reasonable match.</p>
-<p><img src="..//files/2014/07/clock-rate-prior.png"/></p>
+<p><img src="{{ site.baseurl }}/images/clock-rate-prior.png"/></p>
 <p>You still want to verify that the rate is distributed according to your rate prior (by inspecting the trace file in Tracer) and is not influenced by the tree prior too much.</p>
 	
 	

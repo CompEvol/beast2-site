@@ -34,3 +34,8 @@ paginate: 10
 collections:
     orphans:
         output: true
+
+
+#site map
+#gems:
+#  - jekyll-sitemap

@@ -47,7 +47,7 @@ bsh % {% endhighlight %}
 <h2>BEASTStudio</h2>
 <p>BEASTStudio is a basic IDE for BEASTShell and is probably a good starting point to get familiar with BEASTShell. There are many other ways to run BEASTShell scripts, including in a text-only console, in programs, as servlet, etc., but BEASTStudio is the easiest to get started. There is lots of help, demos and documentation, as well as editors with syntax colouring, a history of everything in the console and a variable inspector showing all available variables and their values. So, there is lots of interactive feedback when exploring BEASTShell programs.</p>
 <p><center><br />
-<img src="..//files/2014/05/BEASTStudio.png" alt="" /></center></p>
+<img src="{{ site.baseurl }}/images/BEASTStudio.png" alt="" /></center></p>
 <h3>BEASTStudio requires JavaFX</h3>
 <p>BEASTStudio relies on JavaFX, which means you need to run Java 7 or better, (or install JavaFX separately for Java 6, which only <a href="http://stackoverflow.com/questions/13696061/will-java-6-latest-run-javafx-2-out-of-the-box">appears<br />
 to work on windows</a>). If you run Java 8, JavaFX is loaded automatically, and you do not need to worry about it. If you run Java 7, it depends on the update whether it loads JavaFX or not.</p>
@@ -108,7 +108,7 @@ data = new Alignment(sequence=human, sequence=chimp);{% endhighlight %}
 
 <p></p>
 <h2>Calculating tree statistics</h2>
-<p>One of the things we hoped to make easier (see <a href="..//2014/05/14/scripting-languages-for-beast/index.html">previous post</a>) is to calculate statistics on trees, such as the length of a tree. We can define the length of a tree for example like so</p>
+<p>One of the things we hoped to make easier (see <a href="index.html">previous post</a>) is to calculate statistics on trees, such as the length of a tree. We can define the length of a tree for example like so</p>
 
 		
 		
@@ -338,11 +338,11 @@ bsh %  ?data{% endhighlight %}
 		
 
 <p>Also, check out the code used in the chart-demo.</p>
-<p><img src="..//files/2014/05/plots.png" alt="" /></p>
+<p><img src="{{ site.baseurl }}/images/plots.png" alt="" /></p>
 <p>To create plots of trees, check out the classes <tt>beast.graphics.RootedTreeDrawing</tt> for single rooted trees, <tt>beast.graphics.UnrootedTreeDrawing</tt> for unrooted trees and <tt>beast.graphics.TreeDrawingGrid</tt> to draw multiple trees on a single plot.</p>
 <p>All of the classes mentioned here will produce output in the plot-pane of BEASTStudio when new objects of them are created.</p>
 <h2>Learning more</h2>
 <p>The best way to learn more is to run the demos &#8212; read the output on the console while running the demo. Read the documentation and browse the help screen in BEASTStudio.</p>
-<p>Next week, we will have a look on how to perform the simulation study we did <a href="..//2014/04/28/simulation-studies-with-beast-2/index.html">before</a>, but with much less hassle using BEASTShell.</p>
+<p>Next week, we will have a look on how to perform the simulation study we did <a href="index.html">before</a>, but with much less hassle using BEASTShell.</p>
 	
 	

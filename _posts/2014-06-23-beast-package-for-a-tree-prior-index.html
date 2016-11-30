@@ -9,7 +9,7 @@ tags: [bdsky,beast-2,beauti,tree-prior]
 		
 		<p style="color:gray">23 June 2014 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
 <p>The birth-death skyline model \cite{Stadler} is a tree prior that can deal with serially sampled tip dates. It can be implemented as a lean <tt>CalculationNode</tt>, which takes a set of five parameters that can be estimated as input, plus an input for the number of intervals in the skyline model. The birth and death rate, and the sampling rate have gamma priors on them, and there are a few functions of the parameters we want to log. The complete model is illustrated in below. The parameters, tree, operators, priors and loggers are already available in BEAST. The loggers use the <tt>RPNcalculator</tt> class to calculate a simple arithmetic function of the parameters. This only leaves code to be developed for the details of the birth-death skyline model itself.</p>
-<p><img src="..//files/2014/06/bdsky.png" alt="bdsky" /></p>
+<p><img src="{{ site.baseurl }}/images/bdsky.png" alt="bdsky" /></p>
 <p>The Birth-Death Skyline model consists of a tree prior, six parameters, a number of operators on these parameters, some priors on these parameters, two specialised loggers, and a set of rules to connect model, e.g., the tree to the prior, the loggers to the trace-log, etc. For clarity, the links between parameters and state are omitted as well as the links between parameters and trace-log.</p>
 <h2>Step 1: Write BEASTObject &#8211; develop code</h2>
 <p>The code was developed by Denise K\&#8221;uhnert, and we will have a look at some of the more interesting areas. It starts with a proper description.</p>
@@ -344,6 +344,6 @@ Next, connect priors on parameters to the prior BEASTObject provided by the main
 <h2>Step 4: Update build script to create package</h2>
 <p>Since an package is a zip-file that contains some bits and pieces, it is probably easiest to have a look at a build file for an existing package and copy the relevant parts to your own build file.</p>
 <h2>Step 5: Publish package by link on website</h2>
-<p>For BEAUti to pick up the package, the package needs to be published on the BEAST 2 website. See <a href='..//index.html'>the BEAST site</a> for further details and package tutorials.</p>
+<p>For BEAUti to pick up the package, the package needs to be published on the BEAST 2 website. See <a href='index.html'>the BEAST site</a> for further details and package tutorials.</p>
 	
 	

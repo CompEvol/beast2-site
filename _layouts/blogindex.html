@@ -22,20 +22,17 @@
 		<div id="primary" class="content-area">
 				<header class="entry-header"><h1 class="entry-title">{{page.title}}</h1></header>
 			<div id="content" class="site-content" role="main">
-      				{{ content }}	
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{site.baseurl}}/{{ post.url }}">{{ post.title }}</a>
+      <div class="post-date">{{ post.date | date: '%B %d, %Y'}}</div>
+    </li>
+  {% endfor %}
+</ul>
     		</div>
     	</div>
     </div>
-</div>
-
-<div class="PageNavigation">
-  {% if page.previous.url %}
-    <a class="prev" href="{{site.baseurl}}{{page.previous.url}}">&laquo; {{page.previous.title}}</a>
-  {% endif %}
-  	<a class="blogindex" href="{{site.baseurl}}/blogindex.html">Blog index<a>
-  {% if page.next.url %}
-    <a class="next" href="{{site.baseurl}}{{page.next.url}}">{{page.next.title}} &raquo;</a>
-  {% endif %}
 </div>
 				</article>
 
