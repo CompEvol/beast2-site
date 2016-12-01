@@ -1122,6 +1122,7 @@ a.post-thumbnail:hover {
 	margin-bottom: 12px;
 	margin: 0 0 12px 0;
 	text-transform: uppercase;
+	max-width:70%;
 }
 
 .entry-title a {
@@ -1681,12 +1682,15 @@ a.post-thumbnail:hover {
 	margin: 24px auto 48px;
 	max-width: 474px;
 	padding: 0 10px;
+	float: left;
+	margin-left:440px;
+	text-align: center:
 }
 
 .post-navigation a,
 .image-navigation .previous-image,
 .image-navigation .next-image {
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottomx: 1px solid rgba(0, 0, 0, 0.1);
 	padding: 11px 0 12px;
 	width: 100%;
 }

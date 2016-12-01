@@ -12,7 +12,7 @@
   </head>
 
   <body>
-	<script src="{{site.baseurl}}/jquery-3.1.1.min.js"/>
+	<script src="{{site.baseurl}}/jquery-3.1.1.min.js"></script>
 
     {% include navbar.html %}
     {% include sidebar.html %}
@@ -27,7 +27,22 @@
     	</div>
     </div>
 </div>
+				</article>
 
+
+<nav class="navigation post-navigation" role="navigation">
+	<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+  {% if page.previous.url %}
+	<a href="{{site.baseurl}}{{page.previous.url}}" rel="prev"><span class="meta-nav">Previous Post</span>&laquo; {{page.previous.title}}</a>
+  {% endif %}
+  {% if page.next.url %}
+    <a class="next" href="{{site.baseurl}}{{page.next.url}}" rel="next"><span class="meta-nav">Next Post</span>{{page.next.title}} &raquo;</a>
+  {% endif %}
+  	<a href="{{site.baseurl}}/blogindex.html">Blog index<a>
+		</div>
+</nav>
+<!--
 <div class="PageNavigation">
   {% if page.previous.url %}
     <a class="prev" href="{{site.baseurl}}{{page.previous.url}}">&laquo; {{page.previous.title}}</a>
@@ -37,7 +52,7 @@
     <a class="next" href="{{site.baseurl}}{{page.next.url}}">{{page.next.title}} &raquo;</a>
   {% endif %}
 </div>
-				</article>
+-->
 
 
   </body>
