@@ -1,0 +1,19 @@
+---
+layout: site
+title: Error 404 -- Page not found
+permalink: /404.html
+---
+
+
+
+<p>You can search the site (click the blue search icon above).
+Or, perhaps you are looking for one of these pages:</p>
+
+<ul>
+  {% for page in site.pages %}
+    <li>
+      <a href="{{site.baseurl}}/{{ post.url }}">{{ page.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+ 
