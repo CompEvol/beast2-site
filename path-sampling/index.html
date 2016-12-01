@@ -5,7 +5,7 @@ tags: []
 ---
 
 	
-		<p class="toc_title">Contents</p><ul class="toc_list"><li><a href="#Set_up">1 Set up </a></li><li><a href="#Example_file">2 Example file </a></li><li><a href="#Setting_up_an_analysis_for_a_cluster">3 Setting up an analysis for a cluster </a></li><li><a href="#Calculating_Bayes_factors">4 Calculating Bayes factors </a></li><li><a href="#Resuming_steps">5 Resuming steps </a></li><li><a href="#SNAPP">6 SNAPP </a></li><li><a href="#Running_as_mulitple_jobs">7 Running as mulitple jobs </a></li><li><a href="#Trouble_shooting">8 Trouble shooting </a></li></ul>
+		
 <p>[see also blog post on <a href="../2014/07/14/path-sampling-with-a-gui/index.html">Path sampling with a GUI</a>.]</p>
 <h2>Set up </h2>
 <p>To set up a path sampling analysis, you need the model-selection package (pre BEAST version 2.1.2, it was in the beastii add-on) and edit the XML for the analysis.</p>
@@ -21,7 +21,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %}   cd $(dir)
+			{% highlight xml %}   cd $(dir)
    java -cp $(java.class.path) beast.app.beastapp.BeastMain $(resume/overwrite) -java -seed $(seed) beast.xml{% endhighlight %}			
 			
 		
@@ -37,7 +37,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %}nrOfSteps        the number of steps to use, default 8
+			{% highlight xml %}nrOfSteps        the number of steps to use, default 8
 alpha            alpha parameter of Beta(alpha,1) distribution used to space out steps, 
                  default 0.3If alpha &lt;= 0, uniform intervals are used.
 rootdir          root directory for storing particle states and log files (default /tmp)
@@ -71,7 +71,7 @@ doNotRun         Set up all files but do not run analysis if true.
 			
 			
 			
-			{% highlight ruby %} appstore PathSampleAnalyser &lt;nrofsteps&gt; &lt;alpha&gt; &lt;rootdir&gt; &lt;burninpercentage&gt;{% endhighlight %}			
+			{% highlight xml %} appstore PathSampleAnalyser &lt;nrofsteps&gt; &lt;alpha&gt; &lt;rootdir&gt; &lt;burninpercentage&gt;{% endhighlight %}			
 			
 		
 
@@ -91,7 +91,7 @@ doNotRun         Set up all files but do not run analysis if true.
 			
 			
 			
-			{% highlight ruby %} Step        theta         likelihood   contribution ESS
+			{% highlight xml %} Step        theta         likelihood   contribution ESS
  0            0            -19678.4774  -27.5334     15.1987      
  1            0.0015       -9950.7265   -113.8373    16.9272      
  2            0.0154       -6848.3262   -285.8846    39.1143      
@@ -131,7 +131,7 @@ doNotRun         Set up all files but do not run analysis if true.
 			
 			
 			
-			{% highlight ruby %}   cd $(dir) java -cp $(java.class.path) beast.app.beastapp.BeastMain $(resume/overwrite) -java -seed $(seed) beast.xml {% endhighlight %}			
+			{% highlight xml %}   cd $(dir) java -cp $(java.class.path) beast.app.beastapp.BeastMain $(resume/overwrite) -java -seed $(seed) beast.xml {% endhighlight %}			
 			
 		
 
@@ -142,7 +142,7 @@ doNotRun         Set up all files but do not run analysis if true.
 			
 			
 			
-			{% highlight ruby %} cd $(dir) 
+			{% highlight xml %} cd $(dir) 
  java -cp $(java.class.path) beast.app.beastapp.BeastMain $(resume/overwrite) -java -seed $(seed) beast.xml {% endhighlight %}			
 			
 		
@@ -154,7 +154,7 @@ doNotRun         Set up all files but do not run analysis if true.
 			
 			
 			
-			{% highlight ruby %}   /tmp/step/step0/run.bat{% endhighlight %}			
+			{% highlight xml %}   /tmp/step/step0/run.bat{% endhighlight %}			
 			
 		
 
@@ -166,7 +166,7 @@ doNotRun         Set up all files but do not run analysis if true.
 			
 			
 			
-			{% highlight ruby %}   rootdir="/temp/step/"{% endhighlight %}			
+			{% highlight xml %}   rootdir="/temp/step/"{% endhighlight %}			
 			
 		
 
@@ -177,7 +177,7 @@ doNotRun         Set up all files but do not run analysis if true.
 			
 			
 			
-			{% highlight ruby %}   rootdir="\temp\steps\"{% endhighlight %}			
+			{% highlight xml %}   rootdir="\temp\steps\"{% endhighlight %}			
 			
 		
 

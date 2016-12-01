@@ -5,7 +5,7 @@ tags: []
 ---
 
 	
-		<p class="toc_title">Contents</p><ul class="toc_list"><li><a href="#BEAGLE">1 BEAGLE </a></li><li><a href="#ThreadedTreelikelihood">2 ThreadedTreelikelihood </a></li><li><a href="#AncestralTreelikelihood">3 AncestralTreelikelihood </a></li><li><a href="#Multiple_partitions_CompoundDistribution">4 Multiple partitions: CompoundDistribution </a></li><li><a href="#Particle_Filter">5 Particle Filter </a></li></ul>
+		
 <p>The majority of computing time is spent in calculating the treelikelihood, so we will concentrate on tips on how to speed up this calculation. There are no hard and fast rules, and you have to try a few combinations to see what works best for your data.</p>
 <p>In general, when there are many patterns and/or a large number of states, BEAGLE GPU works best. Often BEAGLE SSE gives good performance on medium data sets, or when there are few patterns. For nucleotide data, ThreadedTreeLikelihood can be helpful.</p>
 <h2>BEAGLE </h2>
@@ -22,7 +22,7 @@ By default, BEAST tries to use BEAGLE for treelikelihood calculations, if it is 
 			
 			
 			
-			{% highlight ruby %}   spec="TreeLikelihood" {% endhighlight %}			
+			{% highlight xml %}   spec="TreeLikelihood" {% endhighlight %}			
 			
 		
 
@@ -33,7 +33,7 @@ By default, BEAST tries to use BEAGLE for treelikelihood calculations, if it is 
 			
 			
 			
-			{% highlight ruby %}   spec="ThreadedTreeLikelihood".{% endhighlight %}			
+			{% highlight xml %}   spec="ThreadedTreeLikelihood".{% endhighlight %}			
 			
 		
 
@@ -44,7 +44,7 @@ By default, BEAST tries to use BEAGLE for treelikelihood calculations, if it is 
 			
 			
 			
-			{% highlight ruby %}   spec="ThreadedTreeLikelihood" useJava='false'{% endhighlight %}			
+			{% highlight xml %}   spec="ThreadedTreeLikelihood" useJava='false'{% endhighlight %}			
 			
 		
 
@@ -56,7 +56,7 @@ If you want to limit the number of threads used for splitting the patterns, use 
 			
 			
 			
-			{% highlight ruby %}   spec="ThreadedTreeLikelihood" threads='3'{% endhighlight %}			
+			{% highlight xml %}   spec="ThreadedTreeLikelihood" threads='3'{% endhighlight %}			
 			
 		
 
@@ -67,7 +67,7 @@ If you want to limit the number of threads used for splitting the patterns, use 
 			
 			
 			
-			{% highlight ruby %}   beast -instances 3 -threads 3 xyz.xml{% endhighlight %}			
+			{% highlight xml %}   beast -instances 3 -threads 3 xyz.xml{% endhighlight %}			
 			
 		
 
@@ -83,7 +83,7 @@ If you want to limit the number of threads used for splitting the patterns, use 
 			
 			
 			
-			{% highlight ruby %}distribution spec='CompoundDistribution' id='likelihood' useThreads='true'>
+			{% highlight xml %}distribution spec='CompoundDistribution' id='likelihood' useThreads='true'>
  <distribution idref="treeLikelihood.CP1+2"/>	 	 
  <distribution idref="treeLikelihood.CP3"/>
  </distribution>  {% endhighlight %}			
@@ -101,7 +101,7 @@ If you want to limit the number of threads used for splitting the patterns, use 
 			
 			
 			
-			{% highlight ruby %}<run chainLength="10000000" id="mcmc" spec="MCMC">{% endhighlight %}			
+			{% highlight xml %}<run chainLength="10000000" id="mcmc" spec="MCMC">{% endhighlight %}			
 			
 		
 
@@ -112,7 +112,7 @@ If you want to limit the number of threads used for splitting the patterns, use 
 			
 			
 			
-			{% highlight ruby %}<run spec="beast.inference.ParticleFilter" id="pf" nrofparticles='8' stepsize='25000' rootdir='/tmp/particle' launcher='beast.inference.ParticleLauncherByFile'> 
+			{% highlight xml %}<run spec="beast.inference.ParticleFilter" id="pf" nrofparticles='8' stepsize='25000' rootdir='/tmp/particle' launcher='beast.inference.ParticleLauncherByFile'> 
  #!/bin/sh
  cd $(dir)
  java -Dbeast.particle.dir=$(dir) -Dbeast.debug=false -Djava.library.path=$(java.library.path) -cp $(java.class.path) beast.app.BeastMCMC -resume -seed $(seed) $(dir)/beast.xml &gt;&gt; $(dir)/beast.log 2&gt;&amp;1 
@@ -127,7 +127,7 @@ If you want to limit the number of threads used for splitting the patterns, use 
 			
 			
 			
-			{% highlight ruby %}   </mcmc>
+			{% highlight xml %}   </mcmc>
  </run>	 	{% endhighlight %}			
 			
 		
@@ -139,7 +139,7 @@ If you want to limit the number of threads used for splitting the patterns, use 
 			
 			
 			
-			{% highlight ruby %}   <mcmc spec="beast.inference.MCMCParticleAsync" id="mcmc" chainLength="1000000" stepsize='25000' >{% endhighlight %}			
+			{% highlight xml %}   <mcmc spec="beast.inference.MCMCParticleAsync" id="mcmc" chainLength="1000000" stepsize='25000' >{% endhighlight %}			
 			
 		
 
@@ -151,7 +151,7 @@ If you want to limit the number of threads used for splitting the patterns, use 
 			
 			
 			
-			{% highlight ruby %} $(dir) working directory for the particle, including rootdir specified in run (ParticleFilter) element
+			{% highlight xml %} $(dir) working directory for the particle, including rootdir specified in run (ParticleFilter) element
  $(java.class.path) class path used for launching BEAST
  $(java.library.path) path used for launching BEAST
  $(seed) random number seed for the particle, each particle gets a unique seed{% endhighlight %}			
@@ -165,7 +165,7 @@ If you want to limit the number of threads used for splitting the patterns, use 
 			
 			
 			
-			{% highlight ruby %}<run spec="beast.inference.ParticleFilter" id="pf" nrofparticles="50" stepsize="25000" rootdir="particleset3"
+			{% highlight xml %}<run spec="beast.inference.ParticleFilter" id="pf" nrofparticles="50" stepsize="25000" rootdir="particleset3"
  launcher="beast.inference.ParticleLauncherByFile"> 
    echo "#@ shell = /bin/sh"&gt; $(dir)/particle.job
    echo "#@ job_name = birds"&gt;&gt; $(dir)/particle.job

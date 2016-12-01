@@ -5,7 +5,7 @@ tags: []
 ---
 
 	
-		<p class="toc_title">Contents</p><ul class="toc_list"><li><a href="#Setting_up_Hudson">1 Setting up Hudson </a><ul><li><a href="#Setting_up_vncserver_on_Hudson_machine">1.1 Setting up vncserver on Hudson machine </a></li><li><a href="#Setting_up_Xvnc-plugin_on_Hudson">1.2 Setting up Xvnc-plugin on Hudson </a></li></ul></li><li><a href="#Setting_up_Hudson_for_BEAST2">2 Setting up Hudson for BEAST2 </a></li><li><a href="#Setting_up_Hudson_for_and_add-on_to_BEAST2">3 Setting up Hudson for and add-on to BEAST2 </a></li><li><a href="#Restarting_Hudson">4 Restarting Hudson</a></li></ul>
+		
 <h2>Setting up Hudson </h2>
 <p>Preliminaries: we need vncserver to be set up for Fest based tests. This involves setting up vncserver on the Hudson machine and installing the Xvnc plugin on Hudson</p>
 <h3>Setting up vncserver on Hudson machine </h3>
@@ -16,7 +16,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %}   sudo apt-get install vnc4server{% endhighlight %}			
+			{% highlight xml %}   sudo apt-get install vnc4server{% endhighlight %}			
 			
 		
 
@@ -28,7 +28,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %}   sudo su - hudson{% endhighlight %}			
+			{% highlight xml %}   sudo su - hudson{% endhighlight %}			
 			
 		
 
@@ -39,7 +39,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %}   vncserver{% endhighlight %}			
+			{% highlight xml %}   vncserver{% endhighlight %}			
 			
 		
 
@@ -50,7 +50,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %}   vncserver -kill :1{% endhighlight %}			
+			{% highlight xml %}   vncserver -kill :1{% endhighlight %}			
 			
 		
 
@@ -68,7 +68,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %}   /usr/bin/vncserver :$DISPLAY_NUMBER -geometry 1280x1024{% endhighlight %}			
+			{% highlight xml %}   /usr/bin/vncserver :$DISPLAY_NUMBER -geometry 1280x1024{% endhighlight %}			
 			
 		
 
@@ -79,7 +79,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %}   10{% endhighlight %}			
+			{% highlight xml %}   10{% endhighlight %}			
 			
 		
 
@@ -120,7 +120,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %} sudo rmdir workspace{% endhighlight %}			
+			{% highlight xml %} sudo rmdir workspace{% endhighlight %}			
 			
 		
 
@@ -135,7 +135,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %} sudo ln -s ../myaddon/ workspace{% endhighlight %}			
+			{% highlight xml %} sudo ln -s ../myaddon/ workspace{% endhighlight %}			
 			
 		
 
@@ -150,7 +150,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %}sudo chown tomcat6 ../myaddon
+			{% highlight xml %}sudo chown tomcat6 ../myaddon
 sudo chgrp tomcat6 ../myaddon{% endhighlight %}			
 			
 		

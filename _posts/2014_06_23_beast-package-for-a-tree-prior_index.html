@@ -20,7 +20,7 @@ tags: [bdsky,beast-2,beauti,tree-prior]
 			
 			
 			
-			{% highlight ruby %}@Description("Adaptation of Tanja Stadler's BirthDeathSamplingModel, to allow for birth and death rates to change at times t_i"){% endhighlight %}			
+			{% highlight xml %}@Description("Adaptation of Tanja Stadler's BirthDeathSamplingModel, to allow for birth and death rates to change at times t_i"){% endhighlight %}			
 			
 		
 
@@ -33,7 +33,7 @@ tags: [bdsky,beast-2,beauti,tree-prior]
 			
 			
 			
-			{% highlight ruby %}public class BirthDeathSkylineModel extends SpeciesTreeDistribution {
+			{% highlight xml %}public class BirthDeathSkylineModel extends SpeciesTreeDistribution {
 public Input<RealParameter> intervalTimes =
         new Input<RealParameter>("intervalTimes", "The times t_i specifying when rate changes can occur", (RealParameter) null);
 ...
@@ -51,7 +51,7 @@ public Input<Boolean> forceRateChange =
 			
 			
 			
-			{% highlight ruby %}double t_root;
+			{% highlight xml %}double t_root;
 int m;
 protected double[] p0_iMinus1;
 ...
@@ -68,7 +68,7 @@ protected double[] p0_iMinus1;
 			
 			
 			
-			{% highlight ruby %}@Override
+			{% highlight xml %}@Override
 public void initAndValidate() throws Exception {
     super.initAndValidate();
 
@@ -92,7 +92,7 @@ public void initAndValidate() throws Exception {
 			
 			
 			
-			{% highlight ruby %}@Override
+			{% highlight xml %}@Override
 public double calculateTreeLogLikelihood(Tree tree) {
     m = intervalNumber.get().getValue();
 	// details omitted ...
@@ -110,7 +110,7 @@ public double calculateTreeLogLikelihood(Tree tree) {
 			
 			
 			
-			{% highlight ruby %}@Override
+			{% highlight xml %}@Override
 protected boolean requiresRecalculation() {
     return true;
 }{% endhighlight %}			
@@ -129,7 +129,7 @@ protected boolean requiresRecalculation() {
 			
 			
 			
-			{% highlight ruby %}<beast version='2.0'
+			{% highlight xml %}<beast version='2.0'
        namespace='beast.app.beauti:...'>{% endhighlight %}			
 			
 		
@@ -143,7 +143,7 @@ protected boolean requiresRecalculation() {
 			
 			
 			
-			{% highlight ruby %}<mergewith point='treePriorTemplates'>{% endhighlight %}			
+			{% highlight xml %}<mergewith point='treePriorTemplates'>{% endhighlight %}			
 			
 		
 
@@ -156,7 +156,7 @@ protected boolean requiresRecalculation() {
 			
 			
 			
-			{% highlight ruby %}<map name='connect'>beast.app.beauti.BeautiConnector</map>
+			{% highlight xml %}<map name='connect'>beast.app.beauti.BeautiConnector</map>
 <map name='subtemplate'>beast.app.beauti.BeautiSubTemplate</map>{% endhighlight %}			
 			
 		
@@ -170,7 +170,7 @@ protected boolean requiresRecalculation() {
 			
 			
 			
-			{% highlight ruby %}<subtemplate id='BirthDeathSkyline' class='beast.evolution.speciation.BirthDeathSkylineModel' mainid='BirthDeathSky.$(n)'>{% endhighlight %}			
+			{% highlight xml %}<subtemplate id='BirthDeathSkyline' class='beast.evolution.speciation.BirthDeathSkylineModel' mainid='BirthDeathSky.$(n)'>{% endhighlight %}			
 			
 		
 
@@ -183,7 +183,7 @@ protected boolean requiresRecalculation() {
 			
 			
 			
-			{% highlight ruby %}<![CDATA[
+			{% highlight xml %}<![CDATA[
 <parameter id="birthRate.$(n)" value="1. 1. 1." lower="0." upper="Infinity"/>
 <parameter id="deathRate.$(n)" value="0.02" lower="0." upper="Infinity"/>
 <parameter id="intervalTimes.$(n)" value="0. 0.002 0.01" />	
@@ -211,7 +211,7 @@ protected boolean requiresRecalculation() {
 			
 			
 			
-			{% highlight ruby %}<distribution id="birthPrior.$(n)" spec="beast.math.distributions.Prior" x="@birthRate.$(n)">
+			{% highlight xml %}<distribution id="birthPrior.$(n)" spec="beast.math.distributions.Prior" x="@birthRate.$(n)">
 	<distr spec="beast.math.distributions.Gamma" alpha="20" beta="2." offset="0."/>
 </distribution>
 <!-- more priors ... -->{% endhighlight %}			
@@ -227,7 +227,7 @@ protected boolean requiresRecalculation() {
 			
 			
 			
-			{% highlight ruby %}<RPNcalculator spec="beast.math.statistic.RPNcalculator" id="psi/(psi+death).$(n)" expression="samplingRate.$(n) deathRate.$(n) samplingRate.$(n) + /">
+			{% highlight xml %}<RPNcalculator spec="beast.math.statistic.RPNcalculator" id="psi/(psi+death).$(n)" expression="samplingRate.$(n) deathRate.$(n) samplingRate.$(n) + /">
 	<parameter idref="deathRate.$(n)"/>
 	<parameter idref="samplingRate.$(n)"/>        
 </RPNcalculator>
@@ -245,7 +245,7 @@ protected boolean requiresRecalculation() {
 			
 			
 			
-			{% highlight ruby %}<operator id='birthOperator.$(n)' spec='ScaleOperator' scaleFactor=".75" weight="3" parameter="@birthRate.$(n)"/>
+			{% highlight xml %}<operator id='birthOperator.$(n)' spec='ScaleOperator' scaleFactor=".75" weight="3" parameter="@birthRate.$(n)"/>
 <!-- more scale operators .... -->
 <operator id="updownBD.$(n)" spec="UpDownOperator" scaleFactor=".75" weight="10">
 	 <up idref="birthRate.$(n)"/>
@@ -266,7 +266,7 @@ protected boolean requiresRecalculation() {
 			
 			
 			
-			{% highlight ruby %}<connect srcID='BirthDeathSky.$(n)' targetID='prior' inputName='distribution' if='inposterior(BirthDeathSky.$(n)) and Tree.$(n)/estimate=true'/>
+			{% highlight xml %}<connect srcID='BirthDeathSky.$(n)' targetID='prior' inputName='distribution' if='inposterior(BirthDeathSky.$(n)) and Tree.$(n)/estimate=true'/>
 \end{lstlisting}}
 Next, connect priors on parameters to the prior BEASTObject provided by the main template.
 {\color{blue}\scriptsize\begin{lstlisting}[language=XML,firstnumber=last,breaklines=true]
@@ -284,7 +284,7 @@ Next, connect priors on parameters to the prior BEASTObject provided by the main
 			
 			
 			
-			{% highlight ruby %}<connect srcID='birthOperator.$(n)' targetID='mcmc' inputName='operator'     if='inposterior(BirthDeathSky.$(n)) and birthRate.$(n)/estimate=true'/>
+			{% highlight xml %}<connect srcID='birthOperator.$(n)' targetID='mcmc' inputName='operator'     if='inposterior(BirthDeathSky.$(n)) and birthRate.$(n)/estimate=true'/>
 <!-- more scale oparetors ...->
 <connect srcID='updownBD.$(n)' targetID='mcmc' inputName='operator'     if='inposterior(BirthDeathSky.$(n))'/>
 <connect srcID='birthRate.$(n)' targetID='updownBD.$(n)' inputName='up'     if='inposterior(BirthDeathSky.$(n)) and birthRate.$(n)/estimate=true'/>
@@ -302,7 +302,7 @@ Next, connect priors on parameters to the prior BEASTObject provided by the main
 			
 			
 			
-			{% highlight ruby %}<connect srcID='BirthDeathSky.$(n)' targetID='tracelog' inputName='log' if='inposterior(BirthDeathSky.$(n))'/>{% endhighlight %}			
+			{% highlight xml %}<connect srcID='BirthDeathSky.$(n)' targetID='tracelog' inputName='log' if='inposterior(BirthDeathSky.$(n))'/>{% endhighlight %}			
 			
 		
 
@@ -315,7 +315,7 @@ Next, connect priors on parameters to the prior BEASTObject provided by the main
 			
 			
 			
-			{% highlight ruby %}<plate var='p' range='birthRate,deathRate,intervalTimes,samplingRate,orig_root'>
+			{% highlight xml %}<plate var='p' range='birthRate,deathRate,intervalTimes,samplingRate,orig_root'>
         <connect srcID='$(p).$(n)' targetID='state' inputName='stateNode' if='inposterior(BirthDeathSky.$(n)) and $(p).$(n)/estimate=true'/>
         <connect srcID='$(p).$(n)' targetID='tracelog' inputName='log' if='inposterior(BirthDeathSky.$(n)) and $(p).$(n)/estimate=true'/>
 </plate>{% endhighlight %}			
@@ -331,7 +331,7 @@ Next, connect priors on parameters to the prior BEASTObject provided by the main
 			
 			
 			
-			{% highlight ruby %}<connect srcID='R_0.$(n)' targetID='tracelog' inputName='log' if='inposterior(BirthDeathSky.$(n))'/>
+			{% highlight xml %}<connect srcID='R_0.$(n)' targetID='tracelog' inputName='log' if='inposterior(BirthDeathSky.$(n))'/>
     <connect srcID='psi/(psi+death).$(n)' targetID='tracelog' inputName='log' if='inposterior(BirthDeathSky.$(n))'/>
 </subtemplate>
 </mergewith>

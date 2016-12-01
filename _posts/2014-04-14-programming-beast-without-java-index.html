@@ -21,7 +21,7 @@ tags: [beast-2,beastlabs,feast,javascript,python,reverse-polish-notation,scripti
 			
 			
 			
-			{% highlight ruby %}<RPNcalculator spec="beast.math.statistic.RPNcalculator" id="Yminus1TimesX" expression="x y 1 - *"> <!-- (y-1)*x -->
+			{% highlight xml %}<RPNcalculator spec="beast.math.statistic.RPNcalculator" id="Yminus1TimesX" expression="x y 1 - *"> <!-- (y-1)*x -->
 	<parameter idref="x"/>
 	<parameter idref="y"/>  
 </RPNcalculator>{% endhighlight %}			
@@ -38,7 +38,7 @@ tags: [beast-2,beastlabs,feast,javascript,python,reverse-polish-notation,scripti
 			
 			
 			
-			{% highlight ruby %}<parameter id="x" >20</parameter>
+			{% highlight xml %}<parameter id="x" >20</parameter>
 <parameter id="y" >50</parameter>
 
 <parameter id="R" spec='feast.ExpCalculator' expression="sqrt((x-20)^2+(y-50)^2)">
@@ -57,7 +57,7 @@ tags: [beast-2,beastlabs,feast,javascript,python,reverse-polish-notation,scripti
 			
 			
 			
-			{% highlight ruby %}<distribution spec="feast.ExpCalculatorDistribution" id="target" expression="exp(-R^2/2)" parameter='@R'/>{% endhighlight %}			
+			{% highlight xml %}<distribution spec="feast.ExpCalculatorDistribution" id="target" expression="exp(-R^2/2)" parameter='@R'/>{% endhighlight %}			
 			
 		
 
@@ -73,7 +73,7 @@ tags: [beast-2,beastlabs,feast,javascript,python,reverse-polish-notation,scripti
 			
 			
 			
-			{% highlight ruby %}3 * sin(a[0]) + log(a[1]) * b {% endhighlight %}			
+			{% highlight xml %}3 * sin(a[0]) + log(a[1]) * b {% endhighlight %}			
 			
 		
 
@@ -87,7 +87,7 @@ tags: [beast-2,beastlabs,feast,javascript,python,reverse-polish-notation,scripti
 			
 			
 			
-			{% highlight ruby %}<parameter id='a'>1.0 2.0</parameter>
+			{% highlight xml %}<parameter id='a'>1.0 2.0</parameter>
 <parameter id='b'>3.0</parameter>
 
 <log spec='beast.util.Script' expression='3 * sin(a[0]) + log(a[1]) * b'>
@@ -106,7 +106,7 @@ tags: [beast-2,beastlabs,feast,javascript,python,reverse-polish-notation,scripti
 			
 			
 			
-			{% highlight ruby %}function fac(x) {
+			{% highlight xml %}function fac(x) {
         if (x <= 1) {return 1;}
         return x * fac(x-1);
 }
@@ -125,7 +125,7 @@ calls function <tt>f</tt> with arguments of the inputs <tt>x</tt> in order of ap
 			
 			
 			
-			{% highlight ruby %}<parameter id='a'>5.0</parameter>
+			{% highlight xml %}<parameter id='a'>5.0</parameter>
 
 <log spec='beast.util.Script'>
 	<x idref='a'/>
@@ -151,7 +151,7 @@ calls function <tt>f</tt> with arguments of the inputs <tt>x</tt> in order of ap
 			
 			
 			
-			{% highlight ruby %}<parameter id='a'>5.0</parameter>
+			{% highlight xml %}<parameter id='a'>5.0</parameter>
 
 <log spec='beast.util.Script' x='@a'>
 <![CDATA[
@@ -179,7 +179,7 @@ calls function <tt>f</tt> with arguments of the inputs <tt>x</tt> in order of ap
 			
 			
 			
-			{% highlight ruby %}<log spec='beast.util.Script' x='@a' engine='python'>
+			{% highlight xml %}<log spec='beast.util.Script' x='@a' engine='python'>
 <![CDATA[
 def f(n):
     if n <= 1:

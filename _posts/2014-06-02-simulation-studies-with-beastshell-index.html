@@ -25,7 +25,7 @@ tags: [beast-2,beastshell,simulation-study,v2-1-3]
 			
 			
 			
-			{% highlight ruby %}import beast.evolution.substitutionmodel.*;
+			{% highlight xml %}import beast.evolution.substitutionmodel.*;
 import beast.evolution.sitemodel.*;
 import beast.evolution.alignment.*;
 import beast.util.*;
@@ -43,7 +43,7 @@ import beast.app.shell.*;{% endhighlight %}
 			
 			
 			
-			{% highlight ruby %}shapes = rexp(100, 1.0);
+			{% highlight xml %}shapes = rexp(100, 1.0);
 estimate = new ArrayList<Double>();{% endhighlight %}			
 			
 		
@@ -56,7 +56,7 @@ estimate = new ArrayList<Double>();{% endhighlight %}
 			
 			
 			
-			{% highlight ruby %}data = new Alignment(
+			{% highlight xml %}data = new Alignment(
 		sequence=new Sequence(taxon="human",value="?"),
 		sequence=new Sequence(taxon="bonobo",value="?"),
 		sequence=new Sequence(taxon="chimp",value="?")
@@ -75,7 +75,7 @@ clockmodel = new beast.evolution.branchratemodel.StrictClockModel("1.0");{% endh
 			
 			
 			
-			{% highlight ruby %}	sitemodel = new SiteModel(gammaCategoryCount=4, substModel=hky, shape=""+shape0);
+			{% highlight xml %}	sitemodel = new SiteModel(gammaCategoryCount=4, substModel=hky, shape=""+shape0);
 <pre>
 Then, we specify which XML analysis, (we prepared in the previous <a href='http://blog.beast2.org/2014/04/28/simulation-studies-with-beast-2/'>blog</a>) we want to use to analyse the generated alignment, using
 <pre>
@@ -95,7 +95,7 @@ Now, we have all the components ready to set up the sequence simulator:
 			
 			
 			
-			{% highlight ruby %}	mcmc = (new XMLParser()).parseFile(new File("analysis-out.xml"));
+			{% highlight xml %}	mcmc = (new XMLParser()).parseFile(new File("analysis-out.xml"));
 	mcmc.run();{% endhighlight %}			
 			
 		
@@ -107,7 +107,7 @@ Now, we have all the components ready to set up the sequence simulator:
 			
 			
 			
-			{% highlight ruby %}	log = new LogAnalyser(new String[]{"SequenceSimulator.log"}, 2000, 10);
+			{% highlight xml %}	log = new LogAnalyser(new String[]{"SequenceSimulator.log"}, 2000, 10);
 	s = log.getMean("gammaShape");
 	estimate.add(s);{% endhighlight %}			
 			
@@ -121,7 +121,7 @@ Now, we have all the components ready to set up the sequence simulator:
 			
 			
 			
-			{% highlight ruby %}p = new Plot(x=shapes, y=estimate, title="Gamma shape\nsimulation", xAxisTitle="original", yAxisTitle="estimate", chartType="Scatter", isYAxisLogarithmic=true, isXAxisLogarithmic=true, output="png");{% endhighlight %}			
+			{% highlight xml %}p = new Plot(x=shapes, y=estimate, title="Gamma shape\nsimulation", xAxisTitle="original", yAxisTitle="estimate", chartType="Scatter", isYAxisLogarithmic=true, isXAxisLogarithmic=true, output="png");{% endhighlight %}			
 			
 		
 
@@ -133,7 +133,7 @@ Now, we have all the components ready to set up the sequence simulator:
 			
 			
 			
-			{% highlight ruby %}Logger.FILE_MODE = beast.core.Logger.LogFileMode.overwrite;{% endhighlight %}			
+			{% highlight xml %}Logger.FILE_MODE = beast.core.Logger.LogFileMode.overwrite;{% endhighlight %}			
 			
 		
 
@@ -145,7 +145,7 @@ Now, we have all the components ready to set up the sequence simulator:
 			
 			
 			
-			{% highlight ruby %}beagleFlags = beagle.BeagleFlag.VECTOR_SSE.getMask() | beagle.BeagleFlag.PROCESSOR_CPU.getMask();
+			{% highlight xml %}beagleFlags = beagle.BeagleFlag.VECTOR_SSE.getMask() | beagle.BeagleFlag.PROCESSOR_CPU.getMask();
 System.setProperty("beagle.preferred.flags", Long.toString(beagleFlags));{% endhighlight %}			
 			
 		
@@ -160,7 +160,7 @@ System.setProperty("beagle.preferred.flags", Long.toString(beagleFlags));{% endh
 			
 			
 			
-			{% highlight ruby %}// This script demonstrates a simulation study for the
+			{% highlight xml %}// This script demonstrates a simulation study for the
 // shape parameter in the gamma rate heterogeneity model.
 // Requirements: the file analysis.xml must be in the directory
 // from where this script is run.
@@ -229,7 +229,7 @@ p = new Plot(x=shapes, y=estimate, title="Gamma shape\nsimulation", xAxisTitle="
 			
 			
 			
-			{% highlight ruby %}java -cp beast.jar:bsh.jar bsh.Interpreter examples/simstudy.bsh{% endhighlight %}			
+			{% highlight xml %}java -cp beast.jar:bsh.jar bsh.Interpreter examples/simstudy.bsh{% endhighlight %}			
 			
 		
 

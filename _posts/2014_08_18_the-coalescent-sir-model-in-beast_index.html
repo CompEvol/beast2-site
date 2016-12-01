@@ -33,7 +33,7 @@ tags: [beast-2,birth-death-sir,coalescent-sir,epidemiology,v2-1-3]
 			
 			
 			
-			{% highlight ruby %}	<stateNode spec="RealParameter" id="volz.n_S0" value="999"/>
+			{% highlight xml %}	<stateNode spec="RealParameter" id="volz.n_S0" value="999"/>
 	<stateNode spec="RealParameter" id="volz.R0" value="2.5"/>
 	<stateNode spec="RealParameter" id="volz.gamma" value="0.30"/>
 	<stateNode spec="RealParameter" id="volz.origin" value="30"/>{% endhighlight %}			
@@ -49,7 +49,7 @@ tags: [beast-2,birth-death-sir,coalescent-sir,epidemiology,v2-1-3]
 			
 			
 			
-			{% highlight ruby %}	<distribution spec='beast.math.distributions.Prior' x="@volz.n_S0">
+			{% highlight xml %}	<distribution spec='beast.math.distributions.Prior' x="@volz.n_S0">
 		<distr spec='beast.math.distributions.LogNormalDistributionModel' M="7" S="1"/>
 	</distribution>
 	<distribution spec='beast.math.distributions.Prior' x="@volz.R0">
@@ -72,7 +72,7 @@ tags: [beast-2,birth-death-sir,coalescent-sir,epidemiology,v2-1-3]
 			
 			
 			
-			{% highlight ruby %}	<distribution id="coalescent" spec="Coalescent">
+			{% highlight xml %}	<distribution id="coalescent" spec="Coalescent">
 		<treeIntervals spec='TreeIntervals' id='TreeIntervals'>
 		    <tree idref="tree"/>
 		</treeIntervals>
@@ -97,7 +97,7 @@ tags: [beast-2,birth-death-sir,coalescent-sir,epidemiology,v2-1-3]
 			
 			
 			
-			{% highlight ruby %}	<operator id='S0' spec='ScaleOperator' scaleFactor="0.8" optimise="false" weight="1">
+			{% highlight xml %}	<operator id='S0' spec='ScaleOperator' scaleFactor="0.8" optimise="false" weight="1">
 		<parameter idref="volz.n_S0"/>
 	</operator>
 
@@ -124,7 +124,7 @@ tags: [beast-2,birth-death-sir,coalescent-sir,epidemiology,v2-1-3]
 			
 			
 			
-			{% highlight ruby %}	<operator id="updownTree" spec="UpDownOperator" scaleFactor=".95" optimise="false" weight="30">
+			{% highlight xml %}	<operator id="updownTree" spec="UpDownOperator" scaleFactor=".95" optimise="false" weight="30">
 		<up idref="clock.rate"/>
 		<down idref="tree"/>
 		<down idref="volz.origin"/>
@@ -140,7 +140,7 @@ tags: [beast-2,birth-death-sir,coalescent-sir,epidemiology,v2-1-3]
 			
 			
 			
-			{% highlight ruby %}	<log idref="volz.R0"/>
+			{% highlight xml %}	<log idref="volz.R0"/>
 	<log idref="volz.gamma"/>
 	<log idref="volz.n_S0"/>
 	<log idref="volz.origin"/>
@@ -159,7 +159,7 @@ tags: [beast-2,birth-death-sir,coalescent-sir,epidemiology,v2-1-3]
 			
 			
 			
-			{% highlight ruby %}	<distribution id="coalescent" spec="StochasticCoalescent" minTraj="20" minTrajSuccess="20">
+			{% highlight xml %}	<distribution id="coalescent" spec="StochasticCoalescent" minTraj="20" minTrajSuccess="20">
 		<treeIntervals spec='TreeIntervals' id='TreeIntervals'>
 		    <tree idref="tree"/>
 		</treeIntervals>

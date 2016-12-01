@@ -16,7 +16,7 @@ tags: [application,appstore,beast-2]
 			
 			
 			
-			{% highlight ruby %}java -cp /path/to/beast/lib/beast.jar:~/.beast/2.1/MyPackage/lib/mypackage.addon.jar beast.app.tools.MyTool arg1 arg2 arg3{% endhighlight %}			
+			{% highlight xml %}java -cp /path/to/beast/lib/beast.jar:~/.beast/2.1/MyPackage/lib/mypackage.addon.jar beast.app.tools.MyTool arg1 arg2 arg3{% endhighlight %}			
 			
 		
 
@@ -29,7 +29,7 @@ tags: [application,appstore,beast-2]
 			
 			
 			
-			{% highlight ruby %}<addon name='MODEL-SELECTION' version='1.0.2'>
+			{% highlight xml %}<addon name='MODEL-SELECTION' version='1.0.2'>
     <depends on='beast2' atleast='2.1.2'/>
     <addonapp description="Path sampler"
               class="beast.app.tools.PathSampler"
@@ -63,7 +63,7 @@ tags: [application,appstore,beast-2]
 			
 			
 			
-			{% highlight ruby %}@Description("Reads logs produces through PathSampler and estimates marginal likelihood")
+			{% highlight xml %}@Description("Reads logs produces through PathSampler and estimates marginal likelihood")
 public class PathSampleAnalyser extends beast.core.Runnable {
 }{% endhighlight %}			
 			
@@ -79,7 +79,7 @@ public class PathSampleAnalyser extends beast.core.Runnable {
 			
 			
 			
-			{% highlight ruby %}public Input<String> rootDirInput = new Input<String>("rootdir", "root directory for storing particle states and log files (default /tmp)", "/tmp");
+			{% highlight xml %}public Input<String> rootDirInput = new Input<String>("rootdir", "root directory for storing particle states and log files (default /tmp)", "/tmp");
 public Input<Double> alphaInput = new Input<Double>("alpha", "alpha parameter of Beta(alpha,1) distribution used to space out steps, default 0.3" +
 		"If alpha <= 0, uniform intervals are used.", 0.3);
 public Input<Integer> stepsInput = new Input<Integer>("nrOfSteps", "the number of steps to use, default 8", 8);
@@ -97,7 +97,7 @@ public Input<Integer> burnInPercentageInput = new Input<Integer>("burnInPercenta
 			
 			
 			
-			{% highlight ruby %}@Override
+			{% highlight xml %}@Override
 public void run() throws Exception {
     // do the work
     double marginalL = estimateMarginalLikelihood(
@@ -122,7 +122,7 @@ public void run() throws Exception {
 			
 			
 			
-			{% highlight ruby %}package beast.app.tools;
+			{% highlight xml %}package beast.app.tools;
 
 import beast.app.beauti.BeautiConfig;
 import beast.app.beauti.BeautiDoc;
@@ -193,7 +193,7 @@ public class PathSampleAnalyser {
 			
 			
 			
-			{% highlight ruby %}    <addonapp description="Path Sample Analyser"
+			{% highlight xml %}    <addonapp description="Path Sample Analyser"
               class="beast.app.tools.PathSamplerAnalyser"
               args=""
               icon="beast/app/tools/ps.png"

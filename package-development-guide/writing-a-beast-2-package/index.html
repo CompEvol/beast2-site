@@ -5,7 +5,7 @@ tags: []
 ---
 
 	
-		<p class="toc_title">Contents</p><ul class="toc_list"><li><a href="#Installing_Eclipse">1 Installing Eclipse</a></li><li><a href="#Downloading_the_BEAST_2_source">2 Downloading the BEAST 2 source</a></li><li><a href="#Creating_a_BEAST_2_project">3 Creating a BEAST 2 project</a></li><li><a href="#Creating_a_project_for_8220MyAddOn8221">4 Creating a project for &#8220;MyAddOn&#8221;</a></li><li><a href="#Creating_a_package_for_8220MyPackage8221">5 Creating a package for &#8220;MyPackage&#8221;</a></li><li><a href="#Creating_an_F84_class">6 Creating an F84 class</a><ul><li><a href="#Adding_the_k_parameter">6.1 Adding the k parameter</a></li><li><a href="#Adding_the_initAndValidate_method">6.2 Adding the initAndValidate method</a></li><li><a href="#Implementing_the_canHandleDataType_method">6.3 Implementing the canHandleDataType method</a></li><li><a href="#Implementing_the_getEigenDecomposition_method">6.4 Implementing the getEigenDecomposition method</a></li><li><a href="#Implementing_the_getTransitionProbabilities_method">6.5 Implementing the getTransitionProbabilities method</a></li><li><a href="#Adding_a_description_and_citation">6.6 Adding a description and citation</a></li></ul></li><li><a href="#Debugging_the_new_package_inside_Eclipse">7 Debugging the new package inside Eclipse</a><ul><li><a href="#Create_an_example_XML_file">7.1 Create an example XML file</a><ul><li><a href="#Create_an_examples_folder">7.1.1 Create an examples folder</a></li><li><a href="#Copy_and_rename_the_testHKYxml_file">7.1.2 Copy and rename the testHKY.xml file</a></li><li><a href="#Replace_HKYkappa_with_F84kF84_throughout_testF84xml">7.1.3 Replace HKY/kappa with F84/kF84 throughout testF84.xml</a></li></ul></li><li><a href="#Create_a_debug_configuration_in_Eclipse">7.2 Create a debug configuration in Eclipse</a></li><li><a href="#Running_in_debug_mode">7.3 Running in debug mode</a></li></ul></li><li><a href="#Adding_the_F84_model_to_BEAUti">8 Adding the F84 model to BEAUti</a><ul><li><a href="#Create_a_template">8.1 Create a template</a></li><li><a href="#Run_BEAUti">8.2 Run BEAUti</a></li><li><a href="#Run_the_f84examplexml_file">8.3 Run the f84example.xml file</a></li></ul></li><li><a href="#Preparing_your_package_for_release">9 Preparing your package for release</a><ul><li><a href="#Compile_beast2_using_ant">9.1 Compile beast2 using ant</a></li><li><a href="#Compile_MyAddOn_using_ant">9.2 Compile MyAddOn using ant</a></li><li><a href="#Move_the_package_to_a_place_where_BEAUti_can_find_it">9.3 Move the package to a place where BEAUti can find it</a></li></ul></li></ul>
+		
 <p>The goal of this tutorial is to illustrate how to create an package for BEAST 2. You will create an package that adds a new nucleotide substitution (F84) model to BEAST 2. The tutorial assumes that the reader is using MacOS 10.8.5, but the tutorial should be reasonably portable. This tutorial was created by the &#8220;Add-On Tutorial and SDK&#8221; breakout group at the third NESCent BEAST meeting, Dec. 5-8, 2011, and revised at the fourth NESCent BEAST meeting, Dec. 3-6, 2013. Please contact <a class="external text" href="mailto:paul.lewis@uconn.edu" rel="nofollow">Paul Lewis</a>, <a class="external text" href="mailto:beerli@fsu.edu" rel="nofollow">Peter Beerli</a>, or <a class="external text" href="mailto:remco@cs.auckland.ac.nz" rel="nofollow">Remco Bouckaert</a> with comments/suggestions.</p>
 <h2>Installing Eclipse</h2>
 <p>We will use the Eclipse IDE to manage the new package project, so the first step is to install Eclipse if you do not already have it on your system. Go to <a class="external free" href="http://www.eclipse.org/downloads/" rel="nofollow">http://www.eclipse.org/downloads/</a>and download &#8220;Eclipse IDE for Java Developers&#8221; for your system. For our MacOS 10.8.5 system, we unzipped the downloaded <i>eclipse-jee-kepler-SR1-macosx-cocoa-x86_64.tar.gz</i> file by double-clicking it, then moved the unpacked folder (named <i>eclipse</i>) to our Applications folder. You may wish to drag <i>Eclipse.app</i> to your dock to make it easy to open. On opening Eclipse for the first time, you will be asked to select a workspace. For the purpose of this tutorial, we will assume you chose this directory:</p>
@@ -15,7 +15,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %}$HOME/Documents/workspace{% endhighlight %}			
+			{% highlight xml %}$HOME/Documents/workspace{% endhighlight %}			
 			
 		
 
@@ -28,7 +28,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %}cd $HOME/Documents/workspace{% endhighlight %}			
+			{% highlight xml %}cd $HOME/Documents/workspace{% endhighlight %}			
 			
 		
 
@@ -39,7 +39,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %}svn checkout http://beast2.googlecode.com/svn/trunk/ beast2{% endhighlight %}			
+			{% highlight xml %}svn checkout http://beast2.googlecode.com/svn/trunk/ beast2{% endhighlight %}			
 			
 		
 
@@ -61,7 +61,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %}public class F84 {
+			{% highlight xml %}public class F84 {
 
 }{% endhighlight %}			
 			
@@ -74,7 +74,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %}package beast.evolution.substitutionmodel;
+			{% highlight xml %}package beast.evolution.substitutionmodel;
 
 public class F84 extends SubstitutionModel.Base {
 
@@ -89,7 +89,7 @@ public class F84 extends SubstitutionModel.Base {
 			
 			
 			
-			{% highlight ruby %}package beast.evolution.substitutionmodel;
+			{% highlight xml %}package beast.evolution.substitutionmodel;
 
 import beast.evolution.datatype.DataType;
 import beast.evolution.tree.Node;
@@ -127,7 +127,7 @@ public class F84 extends SubstitutionModel.Base {
 			
 			
 			
-			{% highlight ruby %}F84 extends SubstitutionModel.Base {
+			{% highlight xml %}F84 extends SubstitutionModel.Base {
    public Input<RealParameter> kF84 = new Input<RealParameter>("kF84", "k parameter in the F84 model", Validate.REQUIRED);
    .
    .
@@ -146,7 +146,7 @@ public class F84 extends SubstitutionModel.Base {
 			
 			
 			
-			{% highlight ruby %}import beast.core.Input;
+			{% highlight xml %}import beast.core.Input;
 import beast.core.Input.Validate;
 import beast.core.parameter.RealParameter;{% endhighlight %}			
 			
@@ -161,7 +161,7 @@ import beast.core.parameter.RealParameter;{% endhighlight %}
 			
 			
 			
-			{% highlight ruby %}   @Override
+			{% highlight xml %}   @Override
    public void initAndValidate() throws Exception {
    	super.initAndValidate();
    	kF84.get().setBounds(0.0, Double.POSITIVE_INFINITY);
@@ -178,7 +178,7 @@ import beast.core.parameter.RealParameter;{% endhighlight %}
 			
 			
 			
-			{% highlight ruby %}@Override
+			{% highlight xml %}@Override
 public boolean canHandleDataType(DataType dataType) {
    if (dataType instanceof Nucleotide) {
      return true;
@@ -195,7 +195,7 @@ public boolean canHandleDataType(DataType dataType) {
 			
 			
 			
-			{% highlight ruby %}import beast.evolution.datatype.Nucleotide;{% endhighlight %}			
+			{% highlight xml %}import beast.evolution.datatype.Nucleotide;{% endhighlight %}			
 			
 		
 
@@ -210,7 +210,7 @@ public boolean canHandleDataType(DataType dataType) {
 			
 			
 			
-			{% highlight ruby %}@Override
+			{% highlight xml %}@Override
 public void getTransitionProbabilities(Node node, double fStartTime, double fEndTime, double fRate, double[] matrix) {
        double[] freqs = frequencies.getFreqs();
        double freqA = freqs[0];
@@ -261,7 +261,7 @@ public void getTransitionProbabilities(Node node, double fStartTime, double fEnd
 			
 			
 			
-			{% highlight ruby %}@Description("F84 substitution model"){% endhighlight %}			
+			{% highlight xml %}@Description("F84 substitution model"){% endhighlight %}			
 			
 		
 
@@ -272,7 +272,7 @@ public void getTransitionProbabilities(Node node, double fStartTime, double fEnd
 			
 			
 			
-			{% highlight ruby %}@Citation("Kishino, H., and M. Hasegawa. 1989. Evaluation of the maximum likelihood estimate of the evolutionary tree topologies from DNA sequence data, and the branching order in Hominoidea. Journal of Molecular Evolution 29:170-179."){% endhighlight %}			
+			{% highlight xml %}@Citation("Kishino, H., and M. Hasegawa. 1989. Evaluation of the maximum likelihood estimate of the evolutionary tree topologies from DNA sequence data, and the branching order in Hominoidea. Journal of Molecular Evolution 29:170-179."){% endhighlight %}			
 			
 		
 
@@ -284,7 +284,7 @@ public void getTransitionProbabilities(Node node, double fStartTime, double fEnd
 			
 			
 			
-			{% highlight ruby %}import beast.core.Citation;
+			{% highlight xml %}import beast.core.Citation;
 import beast.core.Description;{% endhighlight %}			
 			
 		
@@ -317,7 +317,7 @@ import beast.core.Description;{% endhighlight %}
 			
 			
 			
-			{% highlight ruby %}        Sample treeLikelihood ESS(tre_ihood)       F84.kF84  ESS(F84.kF84)
+			{% highlight xml %}        Sample treeLikelihood ESS(tre_ihood)       F84.kF84  ESS(F84.kF84)
              0     -4448.0995              N         2.0                 N --
          10000     -1818.1884         2.0            5.8056         2.0    --
          20000     -1818.3355         3.0            5.9649         3.0    --
@@ -347,7 +347,7 @@ import beast.core.Description;{% endhighlight %}
 			
 			
 			
-			{% highlight ruby %}<beast version='2.0' 
+			{% highlight xml %}<beast version='2.0' 
 	namespace='beast.app.beauti:beast.core:beast.evolution.branchratemodel:beast.evolution.speciation:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood:beast.evolution:beast.math.distributions'>
 
 	<mergewith point='substModelTemplates'>
@@ -411,7 +411,7 @@ import beast.core.Description;{% endhighlight %}
 			
 			
 			
-			{% highlight ruby %}Tree                    1
+			{% highlight xml %}Tree                    1
 -------------------------
 -ln L         22466.61861
 Base frequencies:
@@ -431,7 +431,7 @@ Ti/tv:
 			
 			
 			
-			{% highlight ruby %}Base frequencies:
+			{% highlight xml %}Base frequencies:
   A              0.276
   C              0.274
   G              0.108
@@ -456,7 +456,7 @@ Ti/tv:
 			
 			
 			
-			{% highlight ruby %} <!-- Build F84 model -->
+			{% highlight xml %} <!-- Build F84 model -->
  <project basedir="." default="build_jar_all_F84" name="BUILD_F84">
  	<description>
  	Build F84.
@@ -626,7 +626,7 @@ Ti/tv:
 			
 			
 			
-			{% highlight ruby %}ant addon{% endhighlight %}			
+			{% highlight xml %}ant addon{% endhighlight %}			
 			
 		
 
@@ -639,7 +639,7 @@ Ti/tv:
 			
 			
 			
-			{% highlight ruby %}mkdir -p ~/.beast2/2.3/F84
+			{% highlight xml %}mkdir -p ~/.beast2/2.3/F84
 cp ~/workspace/beast2/build/dist/F84.addon.zip ~/.beast2/2.3/F84
 cd ~/.beast2/2.3/F84
 unzip F84.addon.zip
@@ -654,7 +654,7 @@ rm F84.addon.zip{% endhighlight %}
 			
 			
 			
-			{% highlight ruby %}$HOME
+			{% highlight xml %}$HOME
     .beast2
         2.3
             F84

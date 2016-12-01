@@ -27,7 +27,7 @@ tags: [beast-2,tips-sampling,xml]
 			
 			
 			
-			{% highlight ruby %}<distribution id="tip.Homo_sapiens" spec="beast.math.distributions.MRCAPrior" tipsonly="true" tree="@Tree.t:tree">
+			{% highlight xml %}<distribution id="tip.Homo_sapiens" spec="beast.math.distributions.MRCAPrior" tipsonly="true" tree="@Tree.t:tree">
   <taxonset id="tip.Homo_sapiens1" spec="TaxonSet">
     <taxon id="Homo_sapiens" spec="Taxon"/>
   </taxonset>
@@ -45,7 +45,7 @@ tags: [beast-2,tips-sampling,xml]
 			
 			
 			
-			{% highlight ruby %}Error 104 parsing the xml input file
+			{% highlight xml %}Error 104 parsing the xml input file
 
 IDs should be unique. Duplicate id 'Homo_sapiens' found{% endhighlight %}			
 			
@@ -63,7 +63,7 @@ IDs should be unique. Duplicate id 'Homo_sapiens' found{% endhighlight %}
 			
 			
 			
-			{% highlight ruby %}<operator id="TipDatesRandomWalker.01" 
+			{% highlight xml %}<operator id="TipDatesRandomWalker.01" 
 	windowSize="1" 
 	spec="TipDatesRandomWalker" 
 	taxonset="@tip.Homo_sapiens1" 
@@ -88,7 +88,7 @@ IDs should be unique. Duplicate id 'Homo_sapiens' found{% endhighlight %}
 			
 			
 			
-			{% highlight ruby %}<log idref="@tip.Homo_sapiens"/>{% endhighlight %}			
+			{% highlight xml %}<log idref="@tip.Homo_sapiens"/>{% endhighlight %}			
 			
 		
 

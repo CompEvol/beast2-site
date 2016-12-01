@@ -21,7 +21,7 @@ tags: []
 			
 			
 			
-			{% highlight ruby %}Start likelihood: -Infinity after 11 initialisation attempts
+			{% highlight xml %}Start likelihood: -Infinity after 11 initialisation attempts
 P(posterior) = -Infinity (was NaN)
 	P(prior) = -Infinity (was NaN)
 		P(CoalescentConstant.t:chr1) = -224.91126226515757 (was NaN)
@@ -120,7 +120,7 @@ So, what you can do if you have <tt>N</tt> states is set up a set of values such
 			
 			
 			
-			{% highlight ruby %}<substModel id="svs.s:location" rateIndicator="@rateIndicator.s:location" rates="@relativeGeoRates.s:location" spec="SVSGeneralSubstitutionModel"
+			{% highlight xml %}<substModel id="svs.s:location" rateIndicator="@rateIndicator.s:location" rates="@relativeGeoRates.s:location" spec="SVSGeneralSubstitutionModel"
     symmetric='false' eigenSystem="beast.evolution.substitutionmodel.RobustEigenSystem">
     <frequencies id="traitfreqs.s:location" spec="Frequencies">
         <parameter dimension="3" id="traitfrequencies.s:location" name="frequencies">0.33333333333</parameter>
