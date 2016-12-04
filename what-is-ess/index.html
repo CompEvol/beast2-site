@@ -6,26 +6,26 @@ tags: [ess]
 
 	
 		
-<p>The <a title="Glossary" href="../glossary/index.html#ESS">Effective Sample Size (ESS)</a> of a parameter sampled from an <a title="Glossary" href="http://www.beast2.org/Glossary#MCMC">MCMC</a> (such as <a title="BEAST" href="http://www.beast2.org/BEAST">BEAST</a>) is the number of effectively independent draws from the posterior distribution that the Markov chain is equivalent to.</p>
+<p>The <a title="Glossary" href="../glossary/index.html#ESS">Effective Sample Size (ESS)</a> of a parameter sampled from an <a title="Glossary" href="{{site.baseurl}}/Glossary/index#MCMC">MCMC</a> (such as <a title="BEAST" href="{{site.baseurl}}/BEAST">BEAST</a>) is the number of effectively independent draws from the posterior distribution that the Markov chain is equivalent to.</p>
 <h4>How do I calculate an ESS?</h4>
 <dl>
-<dd>The simplest way is to load your <a title="BEAST" href="http://www.beast2.org/BEAST">BEAST</a> log files into <a title="Tracer" href="http://www.beast2.org/Tracer">Tracer</a>.</dd>
+<dd>The simplest way is to load your <a title="BEAST" href="{{site.baseurl}}/BEAST">BEAST</a> log files into <a title="Tracer" href="{{site.baseurl}}/tracer-2">Tracer</a>.</dd>
 </dl>
 <h4>Why do I need to increase it?</h4>
 <dl>
-<dd>If the ESS of a parameter is small then the estimate of the posterior distribution of that parameter will be poor. In <a title="Tracer" href="http://www.beast2.org/Tracer">Tracer</a> you can calculate the standard deviation of the estimated mean of a parameter. If the ESS is small then the standard deviation will be large. This is exactly the same as the sample size of an experiment consisting of measurements.</dd>
+<dd>If the ESS of a parameter is small then the estimate of the posterior distribution of that parameter will be poor. In <a title="Tracer" href="{{site.baseurl}}/tracer-2">Tracer</a> you can calculate the standard deviation of the estimated mean of a parameter. If the ESS is small then the standard deviation will be large. This is exactly the same as the sample size of an experiment consisting of measurements.</dd>
 </dl>
 <h4>What size ESS is adequate?</h4>
 <dl>
-<dd>The larger the better. <a title="Tracer" href="http://www.beast2.org/Tracer">Tracer</a> flags up ESSs &lt; 100 but this may be liberal and &gt; 200 would be better. On the other hand chasing ESSs &gt; 10000 may be a waste of computational resources.</dd>
+<dd>The larger the better. <a title="Tracer" href="{{site.baseurl}}/tracer-2">Tracer</a> flags up ESSs &lt; 100 but this may be liberal and &gt; 200 would be better. On the other hand chasing ESSs &gt; 10000 may be a waste of computational resources.</dd>
 </dl>
 <h4>Do I need adequate ESSs for all my parameters?</h4>
 <dl>
-<dd>Possibly not. Really low ESSs may be indicative of poor <a title="Glossary" href="http://www.beast2.org/Glossary#Mixing">mixing</a> but if a couple of parameters that you are not interested in are a little low it probably doesn&#8217;t matter. The likelihoods (both of the tree and coalescent model) should have decent ESSs.</dd>
+<dd>Possibly not. Really low ESSs may be indicative of poor <a title="Glossary" href="{{site.baseurl}}/Glossary/index.html#Mixing">mixing</a> but if a couple of parameters that you are not interested in are a little low it probably doesn&#8217;t matter. The likelihoods (both of the tree and coalescent model) should have decent ESSs.</dd>
 </dl>
 <h4>Is the ESS important if I am interested in the sample of trees?</h4>
 <dl>
-<dd>Definitely. At the moment we don&#8217;t have anyway of directly examining the ESS of the tree or the clade frequencies. Therefore, it is important that the continuous parameters and likelihoods have adequate ESS to demonstrate good <a title="Glossary" href="http://www.beast2.org/Glossary#Mixing">mixing</a> of the MCMC.</dd>
+<dd>Definitely. At the moment we don&#8217;t have anyway of directly examining the ESS of the tree or the clade frequencies. Therefore, it is important that the continuous parameters and likelihoods have adequate ESS to demonstrate good <a title="Glossary" href="{{site.baseurl}}/Glossary/index.html#Mixing">mixing</a> of the MCMC.</dd>
 </dl>
 	
 

@@ -76,10 +76,10 @@ doNotRun         Set up all files but do not run analysis if true.
 		
 
 <p>where nrofsteps, alpha, rootdir, burninpercentage should match the ones specified in the XML file.</p>
-<p>You can use <a title="Tracer" href="http://www.beast2.org/wiki/index.php/Tracer">Tracer</a> to inspect the log files for the various steps to make sure that th e burn-in used is sufficiently large.</p>
+<p>You can use <a title="Tracer" href="{{site.baseurl}}/tracer-2">Tracer</a> to inspect the log files for the various steps to make sure that th e burn-in used is sufficiently large.</p>
 <h2>Example file </h2>
 <p>In the $(BEAST-add-on)/model-selection/examples directory, there is a file testPathSampler.xml that should run, where $(BEAST-add-on) is the add-on directory on your operating system.</p>
-<p>See <a class="mw-redirect" title="Manage Add-ons" href="http://www.beast2.org/wiki/index.php/Manage_Add-ons#Installation_directories">Manage_Add-ons#Installation_directories</a> for finding out what $(BEAST-add-on) is on your machine.</p>
+<p>See <a class="mw-redirect" title="Manage Add-ons" href="{{site.baseurl}}/managing-packages/index.html#Installation_directories">Manage_Add-ons#Installation_directories</a> for finding out what $(BEAST-add-on) is on your machine.</p>
 <h2>Setting up an analysis for a cluster </h2>
 <p>The path sampler will write shell scripts (for Mac, Linux) and batch files (for Windows) in the rootdir, one for every thread. These shell scripts can be executed separately. Once all scripts have been executed you need to run the PathSampleAnalyser to get the marginal likelihood estimate.</p>
 <p>The number of batch files is determined by the number of threads used for running the XML. These batch files can be submitted to a cluster.</p>

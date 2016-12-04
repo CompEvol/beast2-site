@@ -1,0 +1,48 @@
+---
+layout: site
+title: BFD*
+date: 2015-05-19 04:35:50.000000000 +12:00
+type: page
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _edit_last: '327'
+  _wp_page_template: default
+author:
+  login: alexei
+  email: alexei@cs.auckland.ac.nz
+  display_name: Alexei Drummond
+  first_name: Alexei
+  last_name: Drummond
+---
+<h2><span id="BFD.2A_:_Bayes_Factor_Delimitation_.28.2Awith_genomic_data.29" class="mw-headline">BFD* : Bayes Factor Delimitation (*with genomic data) </span></h2>
+<p>BFD* is a method to determine which species assignment of individual lineages is most plausible.</p>
+<h3><span id="What_you_need" class="mw-headline">What you need </span></h3>
+<ul>
+<li>BEAST 2 version 2.1 or better (see <a title="Main Page" href="/">download BEAST</a>).</li>
+<li>model-selection package (pre BEAST version 2.1.2, use the BEASTii package)</li>
+<li>SNAPP plugin version 1.1.4 or better (1.1.3 has a bug which sometimes halts running the analysis)</li>
+</ul>
+<p>The easiest way to <a class="mw-redirect" title="Manage Add-ons" href="/managing-packages">Manage Add-ons</a> (Plugins) and install/un-install them is to start up BEAUti and select the menu File/Manage Add-ons. A window pops up where you can select the plugins to (un)install.</p>
+<h3><span id="Setting_up_the_Base_Scenario" class="mw-headline">Setting up the Base Scenario </span></h3>
+<p>1. You can use BEAUti to set up a SNAPP analysis where the individual sequences are assigned according to the base scenario against you wish to test alternative scenarios.</p>
+<p>The <a class="external text" href="https://github.com/BEAST2-Dev/SNAPP/releases/download/v1.2.0/SNAPP.pdf" rel="nofollow">rough guide to SNAPP</a> has details on setting up an analysis and explains the impact of the various settings.</p>
+<p>2. Once the base scenario is set up in an XML file, the XML file needs to be edited so that a path-sampling analysis is set up. The page on <a title="Path Sampling" href="/path-sampling">Path Sampling</a> has details on how to set up such an analysis.</p>
+<p><i>Note that older versions of SNAPP (&lt;v1.1.10) use a non-standard MCMC element that needs to be replaced, see comments at the end of the <a title="Path Sampling" href="/path-sampling">Path Sampling</a> page</i></p>
+<p>3. Run the path-sampling analysis with BEAST, and the path sample analyser reports the marginal likelihood for this analysis.</p>
+<h3><span id="Setting_up_an_Alternative_Scenario" class="mw-headline">Setting up an Alternative Scenario </span></h3>
+<p>1. You might want to test a scenario where species are</p>
+<ul>
+<li>clumped -- e.g., assign all lineages from species A to species B --,</li>
+<li>split, -- e.g., assign some lineages from species A to a new species A' -- or</li>
+<li>have lineages reassigned -- e.g., relabel some lineages from species A to species B.</li>
+</ul>
+<p>Load the original XML analysis (not the path sampling analysis!) in BEAUti, and use the taxonset panel to assign lineages to species.</p>
+<p>2. Edit the XML to a path sampling analysis</p>
+<p>3. Run the path-sampling analysis.</p>
+<p>4. Calculate the difference in marginal likelihoods from the base scenario and the alternative scenario. The difference is the Bayes Factor (in logs) between the two scenarios.</p>
+<p>If the marginal likelihood of the base scenario is larger than the alternative scenario, this points towards evidence in favour of the base scenario.</p>
+<h3><span id="Citation" class="mw-headline">Citation </span></h3>
+<p>Adam D. Leaché, Matthew K. Fujita, Vladimir N. Minin, and Remco R Bouckaert. 2014. Species Delimitation using Genome-Wide SNP Data. Systematic Biology, doi:10.1093/sysbio/syu018.</p>

@@ -1,0 +1,30 @@
+---
+layout: site
+title: SNAPP-FAQ
+type: page
+tags: [snapp]
+---
+<h3><span id="Can_I_use_SNAPP_with_diploid_data.3F" class="mw-headline">Can I use SNAPP with diploid data?</span></h3>
+<p>Yes, under the assumption that sites or markers are unlinked. As usual, a SNP which is homozygous for allele 1 is coded by '2', a SNP which is homozygous fir allel '0' is coded by '0', and a heterozygous SNP is coded by '1'. Note that diploid individuals are effectively treated as two haploid individuals, with heterozygous alleles allocated at random.</p>
+<h3><span id="How_do_I_make_SNAPP_treat_the_data_as_dominant_AFLP_data.3F" class="mw-headline">How do I make SNAPP treat the data as dominant AFLP data?</span></h3>
+<p>Either:</p>
+<ol>
+<li>In BEAUTI, select the `Dominant' check box in the `Mutation Model' tab pane, or</li>
+<li>In the XML file, look for the tag determining the likelihood distribution within the tag determining the posterior distribution:</li>
+</ol>
+{% highlight xml %}  
+    
+       
+          
+                    ...
+          
+        
+    
+  
+{% endhighlight %}
+<p>Insert the option `dominant = "true"' as above.</p>
+<h3><span id="How_can_I_do_species_delimitation_with_SNP.2FAFLP_data.3F" class="mw-headline">How can I do species delimitation with SNP/AFLP data?</span></h3>
+<p>See <a title="BFD*" href="{{site.baseurl}/bfd">Bayes Factor Delimitation (*with genomic data)</a></p>
+<h3><span id="Can_BEAUti_process_VCF_data.3F" class="mw-headline">Can BEAUti process VCF data?</span></h3>
+<p>BEAUti can only handle nexus, fasta, and alignments in BEAST 1 and 2 xml format.</p>
+<p>There is a Perl script <a href="https://raw.githubusercontent.com/BEAST2-Dev/SNAPP/master/script/vcf2nex.pl">vcf2nex.pl </a>that may or may not help converting a vcf file to nexus, which then can be imported into BEAUti.</p>
