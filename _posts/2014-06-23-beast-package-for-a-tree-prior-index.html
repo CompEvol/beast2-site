@@ -20,7 +20,7 @@ tags: [bdsky,beast-2,beauti,tree-prior]
 			
 			
 			
-			{% highlight xml %}@Description("Adaptation of Tanja Stadler's BirthDeathSamplingModel, to allow for birth and death rates to change at times t_i"){% endhighlight %}			
+			{% highlight java %}@Description("Adaptation of Tanja Stadler's BirthDeathSamplingModel, to allow for birth and death rates to change at times t_i"){% endhighlight %}			
 			
 		
 
@@ -33,7 +33,7 @@ tags: [bdsky,beast-2,beauti,tree-prior]
 			
 			
 			
-			{% highlight xml %}public class BirthDeathSkylineModel extends SpeciesTreeDistribution {
+			{% highlight java %}public class BirthDeathSkylineModel extends SpeciesTreeDistribution {
 public Input<RealParameter> intervalTimes =
         new Input<RealParameter>("intervalTimes", "The times t_i specifying when rate changes can occur", (RealParameter) null);
 ...
@@ -51,7 +51,7 @@ public Input<Boolean> forceRateChange =
 			
 			
 			
-			{% highlight xml %}double t_root;
+			{% highlight java %}double t_root;
 int m;
 protected double[] p0_iMinus1;
 ...
@@ -68,7 +68,7 @@ protected double[] p0_iMinus1;
 			
 			
 			
-			{% highlight xml %}@Override
+			{% highlight java %}@Override
 public void initAndValidate() throws Exception {
     super.initAndValidate();
 
@@ -92,7 +92,7 @@ public void initAndValidate() throws Exception {
 			
 			
 			
-			{% highlight xml %}@Override
+			{% highlight java %}@Override
 public double calculateTreeLogLikelihood(Tree tree) {
     m = intervalNumber.get().getValue();
 	// details omitted ...
@@ -110,7 +110,7 @@ public double calculateTreeLogLikelihood(Tree tree) {
 			
 			
 			
-			{% highlight xml %}@Override
+			{% highlight java %}@Override
 protected boolean requiresRecalculation() {
     return true;
 }{% endhighlight %}			
@@ -197,7 +197,7 @@ protected boolean requiresRecalculation() {
 	birthRate="@birthRate.$(n)" 
 	deathRate="@deathRate.$(n)" 
 	samplingRate="@samplingRate.$(n)"
-	orig_root=@orig_root.$(n)"> 
+	orig_root="@orig_root.$(n)"> 
 </BirthDeathSkylineModel>{% endhighlight %}			
 			
 		
@@ -211,7 +211,7 @@ protected boolean requiresRecalculation() {
 			
 			
 			
-			{% highlight xml %}<distribution id="birthPrior.$(n)" spec="beast.math.distributions.Prior" x="@birthRate.$(n)">
+			{% highlight java %}<distribution id="birthPrior.$(n)" spec="beast.math.distributions.Prior" x="@birthRate.$(n)">
 	<distr spec="beast.math.distributions.Gamma" alpha="20" beta="2." offset="0."/>
 </distribution>
 <!-- more priors ... -->{% endhighlight %}			
@@ -227,7 +227,7 @@ protected boolean requiresRecalculation() {
 			
 			
 			
-			{% highlight xml %}<RPNcalculator spec="beast.math.statistic.RPNcalculator" id="psi/(psi+death).$(n)" expression="samplingRate.$(n) deathRate.$(n) samplingRate.$(n) + /">
+			{% highlight java %}<RPNcalculator spec="beast.math.statistic.RPNcalculator" id="psi/(psi+death).$(n)" expression="samplingRate.$(n) deathRate.$(n) samplingRate.$(n) + /">
 	<parameter idref="deathRate.$(n)"/>
 	<parameter idref="samplingRate.$(n)"/>        
 </RPNcalculator>
@@ -245,7 +245,7 @@ protected boolean requiresRecalculation() {
 			
 			
 			
-			{% highlight xml %}<operator id='birthOperator.$(n)' spec='ScaleOperator' scaleFactor=".75" weight="3" parameter="@birthRate.$(n)"/>
+			{% highlight java %}<operator id='birthOperator.$(n)' spec='ScaleOperator' scaleFactor=".75" weight="3" parameter="@birthRate.$(n)"/>
 <!-- more scale operators .... -->
 <operator id="updownBD.$(n)" spec="UpDownOperator" scaleFactor=".75" weight="10">
 	 <up idref="birthRate.$(n)"/>
@@ -285,7 +285,7 @@ Next, connect priors on parameters to the prior BEASTObject provided by the main
 			
 			
 			{% highlight xml %}<connect srcID='birthOperator.$(n)' targetID='mcmc' inputName='operator'     if='inposterior(BirthDeathSky.$(n)) and birthRate.$(n)/estimate=true'/>
-<!-- more scale oparetors ...->
+<!-- more scale oparetors ...-->
 <connect srcID='updownBD.$(n)' targetID='mcmc' inputName='operator'     if='inposterior(BirthDeathSky.$(n))'/>
 <connect srcID='birthRate.$(n)' targetID='updownBD.$(n)' inputName='up'     if='inposterior(BirthDeathSky.$(n)) and birthRate.$(n)/estimate=true'/>
 <connect srcID='samplingRate.$(n)' targetID='updownBD.$(n)' inputName='down'     if='inposterior(BirthDeathSky.$(n)) and samplingRate.$(n)/estimate=true'/>

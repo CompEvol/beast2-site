@@ -203,7 +203,7 @@ tags: [beast-2,simulation,simulation-study,v2-1-2]
 			
 			
 			
-			{% highlight xml %}~> java -cp beast.jar beast.util.LogAnalyser SequenceSimulator-9.log
+			{% highlight java %}~> java -cp beast.jar beast.util.LogAnalyser SequenceSimulator-9.log
 Loading SequenceSimulator-9.log skipping 400 log lines
 
 |---------|---------|---------|---------|---------|---------|---------|---------|
@@ -241,7 +241,7 @@ freqParameter.4 0.250755 0.000213 0.003567 0.250743 0.244575 0.258267 12875.19 2
 			
 			
 			
-			{% highlight xml %}~> java -Dprefix=1.0 -cp beast.jar beast.util.LogAnalyser SequenceSimulator-9.log
+			{% highlight java %}~> java -Dprefix=1.0 -cp beast.jar beast.util.LogAnalyser SequenceSimulator-9.log
 
 Loading SequenceSimulator-9.log skipping 400 log lines
 
@@ -280,7 +280,7 @@ freqParameter.4 1.0 0.250755 0.000213 0.003567 0.250743 0.244575 0.258267 12875.
 			
 			
 			
-			{% highlight xml %}~> java -Dprefix="1.0 9" -cp beast.jar beast.util.LogAnalyser SequenceSimulator-9.log{% endhighlight %}			
+			{% highlight java %}~> java -Dprefix="1.0 9" -cp beast.jar beast.util.LogAnalyser SequenceSimulator-9.log{% endhighlight %}			
 			
 		
 
@@ -293,7 +293,7 @@ freqParameter.4 1.0 0.250755 0.000213 0.003567 0.250743 0.244575 0.258267 12875.
 			
 			
 			
-			{% highlight xml %}item            prefix0 prefix1 mean     stderr   stddev   median   95%HPDlo 95%HPDup ACT      ESS      geometric-mean 
+			{% highlight java %}item            prefix0 prefix1 mean     stderr   stddev   median   95%HPDlo 95%HPDup ACT      ESS      geometric-mean 
 posterior       9 1.0 -28426.3 0.104762 1.962981 -28426.0 -28430.0 -28422.9 10256.42 351.0971 NaN     
 likelihood      9 1.0 -28422.3 0.104126 1.814905 -28422.0 -28425.7 -28419.3 11853.12 303.8017 NaN     
 prior           9 1.0 -4.05647 0.01505  0.768483 -3.79066 -5.60204 -3.26877 1381.170 2607.208 NaN     
@@ -318,7 +318,7 @@ freqParameter.4 9 1.0 0.250755 0.000213 0.003567 0.250743 0.244575 0.258267 1287
 			
 			
 			
-			{% highlight xml %}java -Dprefix=0.2 -cp beast.jar beast.util.LogAnalyser SequenceSimulator-0.2.log >> log.dat
+			{% highlight java %}java -Dprefix=0.2 -cp beast.jar beast.util.LogAnalyser SequenceSimulator-0.2.log >> log.dat
 java -Dprefix=0.3 -cp beast.jar beast.util.LogAnalyser SequenceSimulator-0.3.log >> log.dat
 java -Dprefix=0.4 -cp beast.jar beast.util.LogAnalyser SequenceSimulator-0.4.log >> log.dat
 ...
@@ -333,7 +333,7 @@ java -Dprefix=15.0 -cp beast.jar beast.util.LogAnalyser SequenceSimulator-15.log
 			
 			
 			
-			{% highlight xml %}> x <- read.table("log.dat",header=1)
+			{% highlight java %}> x <- read.table("log.dat",header=1)
 > s <- c(0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.5, 3.0, 4.0, 5.0, 7.5,10.0, 15.0)
 > plot(s,s,log="xy",ann=0);
 > lines(s,as.numeric(as.character(x[which(x$item=="gammaShape"),"mean"])))

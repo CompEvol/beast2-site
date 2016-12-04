@@ -70,7 +70,7 @@ calling initAndValidate(). BEASTShell does these three steps in one single state
 			
 			
 			
-			{% highlight xml %}import beast.evolution.alignment.*;
+			{% highlight java %}import beast.evolution.alignment.*;
 human = new Sequence(taxon="human", value="?"),{% endhighlight %}			
 			
 		
@@ -82,7 +82,7 @@ human = new Sequence(taxon="human", value="?"),{% endhighlight %}
 			
 			
 			
-			{% highlight xml %}import beast.evolution.alignment.*;
+			{% highlight java %}import beast.evolution.alignment.*;
 
 ... {
 Sequence human = new Sequence();
@@ -100,7 +100,7 @@ human.initAndValidate();
 			
 			
 			
-			{% highlight xml %}human = new Sequence(taxon="human", value="?"),
+			{% highlight java %}human = new Sequence(taxon="human", value="?"),
 chimp = new Sequence(taxon="chimp", value="?"),
 data = new Alignment(sequence=human, sequence=chimp);{% endhighlight %}			
 			
@@ -115,7 +115,7 @@ data = new Alignment(sequence=human, sequence=chimp);{% endhighlight %}
 			
 			
 			
-			{% highlight xml %}len(node) {
+			{% highlight java %}len(node) {
   if (node.isLeaf()) {
     return node.getLength();
   else 
@@ -137,7 +137,7 @@ len(tree.getRoot());
 			
 			
 			
-			{% highlight xml %}// implementation that recurses through the (potentially non-binary) tree
+			{% highlight java %}// implementation that recurses through the (potentially non-binary) tree
 len2(node) {
   if (node.isLeaf()) {
     return node.getLength();
@@ -166,7 +166,7 @@ len2(tree2.getRoot());
 			
 			
 			
-			{% highlight xml %}len3(tree) {
+			{% highlight java %}len3(tree) {
   len = 0;
   for (node : tree.getNodesAsArray())
       len += node.getLength();
@@ -190,7 +190,7 @@ len3(tree2);
 			
 			
 			
-			{% highlight xml %}bsh % help("print");
+			{% highlight java %}bsh % help("print");
 bsh % ?print
 bsh % help("dnorm");
 bsh % ?dnorm{% endhighlight %}			
@@ -204,7 +204,7 @@ bsh % ?dnorm{% endhighlight %}
 			
 			
 			
-			{% highlight xml %}bsh %  ?beast.core.MCMC
+			{% highlight java %}bsh %  ?beast.core.MCMC
 or, if you already created an MCMC object, asking help for the object will have the same results:
 bsh % tree = new beast.evolution.tree.Tree()
 bsh % ?tree
@@ -220,7 +220,7 @@ bsh % ??tree{% endhighlight %}
 			
 			
 			
-			{% highlight xml %}bsh %  help(java.util.ArrayList);
+			{% highlight java %}bsh %  help(java.util.ArrayList);
 bsh %  ??java.util.ArrayList;
 bsh %  data = new ArrayList();
 bsh %  ?data{% endhighlight %}			
@@ -332,7 +332,7 @@ bsh %  ?data{% endhighlight %}
 			
 			
 			
-			{% highlight xml %}?beast.app.shell.Plot
+			{% highlight java %}?beast.app.shell.Plot
 ?beast.app.shell.Series{% endhighlight %}			
 			
 		

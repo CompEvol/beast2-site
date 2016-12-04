@@ -17,7 +17,7 @@ tags: [beast-2,beastshell,scripting,string-processing]
 			
 			
 			
-			{% highlight xml %}	String s = "This is a multi-line\n" +
+			{% highlight java %}	String s = "This is a multi-line\n" +
 		"string that takes a lot of quotes\n"+
 		"and escape characters";
 	String [] parts = s.split("\n");{% endhighlight %}			
@@ -33,7 +33,7 @@ tags: [beast-2,beastshell,scripting,string-processing]
 			
 			
 			
-			{% highlight xml %}	String s = new StringBuilder().append("This is a multi-line\n").
+			{% highlight shell %}	String s = new StringBuilder().append("This is a multi-line\n").
 		.append("string that takes a lot of quotes\n").
 		.append("and escape characters").toString();
 	String [] parts = s.split("\n");{% endhighlight %}			
@@ -49,7 +49,7 @@ tags: [beast-2,beastshell,scripting,string-processing]
 			
 			
 			
-			{% highlight xml %}perl % $s = 'This is a multi-line
+			{% highlight perl %}perl % $s = 'This is a multi-line
 string without very much need
 for extra escape characters';
 perl % @parts = split('\n', $s);{% endhighlight %}			
@@ -65,7 +65,7 @@ perl % @parts = split('\n', $s);{% endhighlight %}
 			
 			
 			
-			{% highlight xml %}bsh %  s = """This is a multi-line
+			{% highlight java %}bsh %  s = """This is a multi-line
 string without very much need
 for extra escape characters""";
 bsh %  parts = s.split('\n');{% endhighlight %}			
@@ -80,7 +80,7 @@ bsh %  parts = s.split('\n');{% endhighlight %}
 			
 			
 			
-			{% highlight xml %}bsh %  s = """Darwin's Finches
+			{% highlight java %}bsh %  s = """Darwin's Finches
 Homo "Sapiens"
 Double quote=""""";
 bsh %  parts = s.split('\n');
@@ -101,7 +101,7 @@ bsh %  parts = s.split('\n');
 			
 			
 			
-			{% highlight xml %}bsh % s = """Darwin's Finches
+			{% highlight java %}bsh % s = """Darwin's Finches
 Triple quote=""""" + "\"";
 bsh %  parts = s.split('\n');
 // parts is now [Darwin's Finches, Triple quote="""]{% endhighlight %}			
@@ -117,7 +117,7 @@ bsh %  parts = s.split('\n');
 			
 			
 			
-			{% highlight xml %}import java.util.regex.Pattern;
+			{% highlight java %}import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class MatcherDemo {
@@ -147,7 +147,7 @@ public class MatcherDemo {
 			
 			
 			
-			{% highlight xml %}import java.util.regex.Pattern;
+			{% highlight java %}import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 REGEX = "\\bdog\\b";
@@ -172,7 +172,7 @@ while(m.find()) {
 			
 			
 			
-			{% highlight xml %}$REGEX =  "\\b(dog)\\b";
+			{% highlight java %}$REGEX =  "\\b(dog)\\b";
 $INPUT =  "dog dog dog doggie dogg";
 
 $count = 0;
@@ -226,7 +226,7 @@ while ($INPUT =~ /$REGEX/g) {
 			
 			
 			
-			{% highlight xml %}$REGEX =  "\\b(dog)\\b";
+			{% highlight java %}$REGEX =  "\\b(dog)\\b";
 $INPUT =  "dog dog dog doggie dogg";
 
 for(s : regexp(INPUT,REGEX)) {   
@@ -285,7 +285,7 @@ for(s : regexp(INPUT,REGEX)) {
 			
 			
 			
-			{% highlight xml %}// the original species and their sequences
+			{% highlight java %}// the original species and their sequences
 s="""Cyanocorax_mystacalis = {GU144828 GU144829 GU144831 GU144830}
 C.validus = {JQ023974} 
 Urocissa_erythrorhyncha = {JQ864482}
@@ -312,7 +312,7 @@ Cyanocorax_yucatanicus""";{% endhighlight %}
 			
 			
 			
-			{% highlight xml %}newtaxon(s, filter) {
+			{% highlight java %}newtaxon(s, filter) {
 	x = regexp(s, "(.*)=.*{(.*)}.*");
 	//if (!filter.matches("(?s).*\\b"+Matcher.quoteReplacement(x[1].trim())+"\\b.*")) {
 	if (!filter.matches("(?s).*\\b"+x[1].trim()+"\\b.*")) {
@@ -338,7 +338,7 @@ for (s : data) {newtaxon(s, filter);}{% endhighlight %}
 			
 			
 			
-			{% highlight xml %}newsequence(s, filter) {
+			{% highlight java %}newsequence(s, filter) {
 	x = regexp(s, "(.*)=.*{(.*)}.*");
 	if (!filter.matches("(?s).*\\b"+x[1].trim()+"\\b.*")) {
 		return;
