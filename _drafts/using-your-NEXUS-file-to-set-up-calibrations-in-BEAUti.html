@@ -1,0 +1,38 @@
+---
+layout: post
+title: Using your NEXUS file to set up calibrations in BEAUti
+tags: [BEAST2, BEAUti, NEXUS]
+---
+
+Probably the easiest to set up the analysis is preparing a NEXUS file with a dummy alignment (just use a single question mark for each alignment, grab gopher.ex from the beast2/examples/nexus and replace all taxon names with your religion names and replace sequence info with a single question mark, and make sure to set nchar=1) and add an assumptions block referring to the taxa in the alignment
+
+{% highlight java %}
+begin assumptions;
+calibrate Ancient_Greek = normal(2.45,0.1)
+calibrate Avestan = normal(2.5,0.05)
+calibrate Balto-Slavic = uniform(2.0,3.4)
+calibrate Iranian = offsetlognormal(2.6,0.4,0.8)
+end;
+{% endhighlight %}
+
+Note the punctuation: no semicolon other than at first line and at the end.
+
+When you import this in BEAUT v2.4.1 it will create an analysis where the tips are sampled and a prior is set up with these distributions.
+
+If you want to specify monophyletic constraints, first specify a taxes, like so:
+
+{% highlight java %}
+begin sets;
+taxset Old_Irish_Irish_Scots =  Irish Old_Irish Scottish_Gaelic;
+taxset Old_Norse_Icelandic_Faroese =  Icelandic Faroese Old_Norse;
+taxset AllEnglish =  English Old_English;
+end;
+{% endhighlight %}
+
+
+
+List of taxa should refer to taxa in the alignment. Again, note the punctuation, especially the semi colons at the end of each line.
+
+You can also specify a distribution on say AllEnglish in the assumptions block.
+
+Note that the assumptions must be specified after the sets.

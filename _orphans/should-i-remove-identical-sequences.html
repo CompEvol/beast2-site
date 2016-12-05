@@ -1,0 +1,12 @@
+---
+layout: site
+title: Should I remove identical sequences?
+tags: []
+---
+<p>BEAST is a method for sampling all trees that have a reasonable probability given the data. One of the assumptions underlying the BEAST program is that there is a binary tree that has generated the data. Just because (for example) three taxa have identical sequences doesn't mean that they are equally closely related in the true tree - it just means that there were no mutations (in the sampled part of the genome) down the ancestral history of those three taxa. In this case, BEAST would sample all three trees with equal probability ((A,B),C), (A,(B,C)), ((A,C),B). If you summarize the BEAST output as a single tree (presumably using TreeAnnotator which picks a specific tree from the trace that is representative and annotates it with posterior probabilities of clades) you will see some particular resolution of the identical sequences, based on the selected representative tree. But the posterior probability for that particular resolution will probably be low, since many other resolutions have also been sampled in the chain.</p>
+<dl>
+<dd>One of the results of the way that BEAST analyzes the data is that you get an estimate of how closely related these sequences are, even if the sequences are identical. This is possible because BEAST is essentially determining how old the common ancestor of these sequences could be given that no mutations were observed in the ancestral history of the identical sequences, and given the estimated substitution rate and sequence length. In terms of the identical sequences, the only node with the possibility of significant support would be the common ancestor of the identical sequences. If this is the case then you can confidently report the age of this node, but should not try to make any statements about relationships or divergence times within the group of identical sequences.</dd>
+</dl>
+<dl>
+<dd><b>Finally: A Population genetic reason not to remove identical sequences</b>: Imagine you have sampled 100 individuals and there are only 20 haplotypes. You are tempted to just analyze the 20 haplotypes. However since BEAST assumes random sampling,  the analysis will proceed as if you have randomly sampled 20 individuals from a population and you found every individual to have a unique haplotype. If this was actually the case you would conclude that the population must be very large and so will BEAST. So by removing all the identical sequences you will bias the results towards estimating a larger population.</dd>
+</dl>

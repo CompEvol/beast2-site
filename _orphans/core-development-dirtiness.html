@@ -1,0 +1,41 @@
+---
+layout: site
+title: 'Core Development: Dirtiness'
+tags: []
+---
+<p>This document describes the system implemented to propagate changes to the state and allow for updates and caching of calculations.</p>
+<p>A base class (a sibling to StateNode) called CalculationNode for all Plugins that do calculations based on the State.</p>
+<p>StateNodes get flagged as dirty if an operator changes them. They can also all be set to clean (after an evaluation) or dirty (to force a full evaluation). All CalculationNodes then set their dirtiness levels as follows:</p>
+<p>CalculationNode has a final package-private method checkDirtiness() which is called by MCMC on every CalculationNode prior to evaluation of the likelihood.</p>
+{% highlight xml %}   final void checkDirtiness() {
+       if (hasCheckedDirtiness) return;
+
+       if (hasDirtyInputs()) {
+           isDirty = requiresRecalculation();
+       }
+
+       hasCheckedDirtiness = true;
+   }
+{% endhighlight %}
+<p>This function returns immediately if it has already been called this round. Otherwise it checks if any of the inputs are dirty by calling isDirty() on them. Input.isDirty() checks if the enclosing plugin is a StateNode or CalculationNode and returns the result of isDirty() if so.</p>
+<p>The CalculationNode's implementation of isDirty() is as follows:</p>
+{% highlight xml %}   final boolean isDirty() {
+       if (!hasCheckedDirtiness) {
+           checkDirtiness();
+       }
+       return isDirty;
+   }
+{% endhighlight %}
+<p>If this function is called, and checkDirtiness() has not yet been called, it calls it now.</p>
+<p>CalculationNode's requiresRecalculation() method is overridden by implementing classes and should return true if any recalculation is going to be required by that node in the evaluation step. This will be based on the inputs but may be finer grained (i.e., if a particular aspect of the input has changed). The default is to return true (i.e., if any input is dirty, that CalculationNode isDirty).</p>
+<p>If a CalculationNode wants to control its dirtiness on a fine scale (i.e., if it is dependant on only an particular element of its Input) then it overrides requiresRecalculation() and sets its own flags to say what is going to be recalculated. However, it shouldn't actually do any calculation at this step.</p>
+<p>Once this phase is done, the evaluation phase starts at which stage the dirtiness doesn't change. But CalculationNode can still call isDirty() on Inputs and also things like isNodeDirty() on a tree.</p>
+<p>CalculationNode have two final package private methods Store() and Restore() that get called prior to the state being changed and after the move is rejected. These call protected methods storeCalculations() and restoreCalculations() which can be overridden in descendent classes.</p>
+<p>Thus the override-able methods in CalculationNodes are:</p>
+{% highlight xml %}boolean requiresRecalculation();
+{% endhighlight %}
+{% highlight xml %}void storeCalculations();
+{% endhighlight %}
+{% highlight xml %}void restoreCalculations();
+{% endhighlight %}
+<p>These have defaults which force recalculation every step. So constructing an efficient storage of calculations requires the developer to implement these 3 functions (but only these three).</p>

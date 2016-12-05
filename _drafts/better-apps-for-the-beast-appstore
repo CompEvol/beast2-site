@@ -1,0 +1,165 @@
+---
+layout:post
+title: Better Apps for the BEAST AppStore
+tags:[BEAST2,App launcher,AppStore]
+---
+
+Creating post-processing tools for packages becomes much easier when exporting data to HTML, and with the help of a little bit of JavaScript and style sheets, can be made to look good with little effort. There is also some support in BEASTLabs (v1.5.3) to make life easier. We will go through a few examples, and demonstrate how to
+<ul>
+<li>draw a simple trace log</li>
+<li>make a presentable table</li>
+<li>draw more complex graphs</li>
+</ul>
+
+<h2>Step 1: setting up a BEASTObject</h2>
+The first thing to do is set up a class derived from <tt>beast.core.Runnable</tt> and specify inputs. To draw a trace of a single entry from a trace log we need to know
+<ul>
+<li>the file name of the log file</li>
+<li>how much burnin to use</li>
+<li>the entry of the trace log to plot</li>
+</ul>
+So, we need 3 inputs,
+{% highlight java %}
+public class MiniTracerPlotly extends Runnable {
+	public Input<File> traceLogInput = new Input<>("file", "Input file containing a trace log", Validate.REQUIRED);
+	public Input<Integer> burninInput = new Input<>("burnin", "percentage of the log file to disregard as burn-in (default 10)", 10);
+	public Input<String> traceInput = new Input<>("trace", "name of the parameter/log entry to plot", "posterior");
+{% endhighlight %}
+and implement the initAndValidate method, which just copies the Input values into local variables:
+{% highlight java %}
+	private File tracelog;
+	private Integer burnin = 10;
+	private String trace = "posterior";
+
+	public void initAndValidate() {
+		this.tracelog = traceLogInput.get();
+		this.burnin = burninInput.get();
+		this.trace = traceInput.get();
+	}
+{% endhighlight %}
+
+<h2>Step 2: Add Application</h2>
+
+To make the class run, we just create a <tt>beast.app.util.Application</tt> and pass on this object and any command line arguments passed when starting:
+
+{% highlight java %}
+public static void main(String[] args) throws Exception {
+	new Application(new MiniTracerPlotly(), "MiniTracer", args);
+}
+{% endhighlight %}
+
+The <tt>Application</tt> checks whether there are any command line arguments. If so, it assumes it is started from the CLI, and calls <tt>initAndValidate()</tt> followed by <tt>run()</tt> on the MiniTracer. If not, it pops up a dialog, where you can enter any information and after pressing the OK button, <tt>initAndValidate()</tt> and then <tt>run()</tt> are called.
+
+
+<h2>Step 3: implement <tt>run()</tt></h2>
+
+The <tt>run()</tt> method does the actual work of loading the file, processing the data (not much here except finding the right column of the trace file) and writing an HTML page with a graph.
+
+{% highlight java %}
+	@Override
+	public void run() throws Exception {
+		if (burnin < 0) {
+			burnin = 0;
+		}
+		
+		LogAnalyser traces = new LogAnalyser(tracelog.getAbsolutePath(), burnin, false, false);
+		Double [] data = traces.getTrace(trace);
+		Double [] labels = traces.getTrace("Sample");
+
+{% endhighlight %}
+LogAnalyser loads trace logs from which you can get the data columns. Next, we write a bit of HTML that uses the Plotly library to plot a graph:
+
+{% highlight java %}		
+		// create plot.ly chart see http://plot.ly/ for documentation
+		String html = "<html>\n" + 
+		"<title>BEAST " + new BEASTVersion2().getVersionString() + ": miniTracer</title>\n" +
+		"<head>\n" +
+		"<script src='plotly-latest.min.js'></script>\n" +
+		"</head>\n" +
+		"<body>\n" +
+		"<h2>Trace of " + trace + " from " + tracelog.getPath() +"</h2>\n" +
+		"<div id='chart'/>\n" +
+		"<script>\n" +
+		"var data = [\n" +
+		"  {\n" +
+		"    x: " + Arrays.toString(labels)+ ",\n" +
+		"    y: " + Arrays.toString(data)+ ",\n" +
+		"    type: 'scatter'\n" +
+		"  }\n" +
+		"];\n" +
+		"\n" +
+		"Plotly.newPlot('chart', data);\n" +
+		"</script>\n" +
+		"<p>This is a simple graph with all settings at default. "
+		+ "Click the 'edit' button (which appears at the top of the graph when you hover over the graph) "
+		+ "to change the colours and other styles. "
+		+ "To see how the javascripts changes, click the JSON button in the style editor.</p>\n" +
+		"</body>\n" +
+		"</html>";
+{% endhighlight %}
+
+Now, we find a place to write the HTML file. Since we are going to load a javascript library and a stylesheet it is convenient to place the file in the package directory containing these files. The method <tt>Application.getPackagePath("BeastApp.addon.jar")</tt> finds you the package directory.
+{% highlight java %}	
+	// write html file in package dir + "/js/minitracer.html"
+	String jsPath = Application.getPackagePath("BeastApp.addon.jar") + "js";
+        FileWriter outfile = new FileWriter(jsPath + "/minitracer.html");
+        outfile.write(html);
+        outfile.close();
+{% endhighlight %}
+The only thing left now is to open the webpage in a browser. The <tt>Application.openUrl</tt> method allows you to do so conveniently:
+{% highlight java %}
+        // open html file in browser
+        Application.openUrl("file://" + jsPath + "/minitracer.html");
+	}
+{% endhighlight %}
+
+The complete code is <a href="https://github.com/rbouckaert/BeastApp/blob/master/src/examples/MiniTracerPlotly.java">here</a>.
+
+<h2>Step 4: launching the App</h2>
+To be able to launch the App, we need to add an entry in the <tt>version.xml</tt> file in the package, which looks something like this:
+{% highlight java %}
+<addon name='BeastApp' version='0.0.1'>
+        <depends on='beast2' atleast='2.4.1'/>
+        <depends on='BEASTLabs' atleast='1.5.2'/>
+
+        <addonapp description="MiniTracerPlotly"
+              class="examples.MiniTracerPlotly"
+              args=""
+        />
+</addon>
+{% endhighlight %}
+
+The version.xml file must be in the package directory to be picked up by the BEAST AppStore.
+
+After the package is installed, you can start the app from the command line via the <tt>appstore</tt> tool:
+
+{% highlight java %}
+/path/to/appstore MiniTracerPlotly -file trace.log -burnin 20 -trace prior
+{% endhighlight %}
+
+or via Beauti's File/Launch Apps, which open the AppStore dialog where you can pick the App from a list. 
+After selecting a file, adjusting any details and pressing OK, a console pops up showing progress in loading the trace log. 
+
+<img width="100%" src="https://raw.githubusercontent.com/rbouckaert/BeastApp/master/doc/images/progress.png"/>
+
+After it is finished, a web browser page should pop up that looks something like this:
+
+<img width="100%" src="https://raw.githubusercontent.com/rbouckaert/BeastApp/master/doc/images/plotly.png"/>
+
+Plotly lets you zoom in and scroll through the graph. Also, when you can edit the style of the graph by clicking the 'Edit' button in the graph:
+
+<img width="100%" src="https://raw.githubusercontent.com/rbouckaert/BeastApp/master/doc/images/plotly2.png"/>
+
+
+An alternative is to use the CanvasJS library -- see <a href="https://github.com/rbouckaert/BeastApp/blob/master/src/examples/MiniTracerCanvasJS.java">implementation here</a>, which looks something like this:
+
+<img width="100%" src="https://raw.githubusercontent.com/rbouckaert/BeastApp/master/doc/images/canvasjs.png"/>
+
+In the BeastApp package there is also an <a href="https://github.com/rbouckaert/BeastApp/blob/master/src/examples/TraceToTable.java">example</a> for creating tables that look something like this:
+
+<img width="100%" src="https://raw.githubusercontent.com/rbouckaert/BeastApp/master/doc/images/tracetable.png"/>
+
+There is even a dot-interpreter, which is used in the bModelTest package, and produces output that looks like so:
+
+<img width="100%" src="https://raw.githubusercontent.com/rbouckaert/BeastApp/master/doc/images/bmodeltest.png"/>
+

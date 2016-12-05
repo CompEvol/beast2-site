@@ -1,0 +1,22 @@
+---
+layout: site
+title: VSS package
+tags: []
+---
+<h2><span id="Variable_selection_based_substitution_model_package" class="mw-headline">Variable selection based substitution model package</span></h2>
+<p>This package is described in the [http:beast2.org/book.html | book].</p>
+<p>The package can be downloaded from <a class="external free" href="https://github.com/CompEvol/CBAN/releases/download/v2.1.2/VSS.addon.v1.0.0.zip" rel="nofollow">https://github.com/CompEvol/CBAN/releases/download/v2.1.2/VSS.addon.v1.0.0.zip</a> The package includes the source code and the BEAUti template.</p>
+<p>If this was not a toy example, it would be available in the package manager in BEAUti, but as it is it needs to be installed manually, which is as simple as unzipping the package file in the correct directory;</p>
+<ul>
+<li>create a VSS subdirectory</li>
+</ul>
+{% highlight xml %} for Windows in Users\YourName\BEAST.2\VSS
+ for Mac in /Users/YourName\/Library/Application Support/BEAST/2.2/VSS
+ for Linux /home/YourName/.beast/2.2/VSS
+{% endhighlight %}
+<ul>
+<li>unzip the file VSS.addon.v1.0.0.zip in the VSS directory</li>
+<li>start BEAUti, import a nucleotide alignment and the SiteModel panel should show VS as one of the choices for substitution model.</li>
+</ul>
+<p>The source code for the package is contained in VSS.src.jar -- just unzip VSS.src.jar to get at the files.</p>
+<p>The BEAUti template can be found in examples/VSS.xml.</p>

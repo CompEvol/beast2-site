@@ -1,0 +1,12 @@
+---
+layout: site
+title: Why is the distribution of the root height statistic not uniform using 'sample from prior'?
+tags: []
+---
+<p><b>Question</b>: I have a slight problem with BEAST. I have generated a configuration file with BEAUti. The prior on the root height is set as uniform (in the [74,200] range). I also selected the option 'sample from prior'. I then ran BEAST and obtained a log file. The problem is that the distribution of the root height statistic is not uniform. Is this a known problem or did I do something wrong?</p>
+<dl>
+<dd><b>Answer</b>: Your analysis also has a constant size coalescent prior specified on the tree. The "calibrated tree prior" is the product of the coalescent tree prior and the calibration density. Such a product-construction of the full tree prior can (and often does) lead to marginal prior distributions on the calibrated nodes that differ substantially from the calibration density specified on those nodes. This is not a bug unless you thought that you were specifying the marginal prior distribution of the node, rather than a calibration density that is considered an independent piece of prior information to the constant-size coalescent prior information. </dd>
+</dl>
+<dl>
+<dd>An alternative construction to the product-construction is the conditional-construction, where you specify the marginal prior distribution of the calibrated node and then compute the coalescent distribution *conditional* on the height H of the calibrated node. This gives priority of the calibration prior over the coalescent tree prior. Joseph and I have a paper submitted to Systematic Biology on the difference between these two prior constructions and we show how to do the second type with certain tree priors, but the general conditional-construction with multiple calibrations and arbitrary tree prior process is too hard for us to work out.</dd>
+</dl>

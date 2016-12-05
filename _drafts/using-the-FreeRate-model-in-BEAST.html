@@ -1,0 +1,55 @@
+---
+title: Using the FreeRate model in BEAST
+layout: post
+tags: [FreeRate model, BEAST2]
+---
+
+The FreeRate model is a site model, just like the gamma rate heterogeneity model, or <a href="https://github.com/BEAST2-Dev/MGSM"> multi gamma site models</a>. What makes the FreeRate model different is that it allows for estimating the rates as well as proportions of each of the rates. Unlike the gamma rate heterogeneity model, where the rates are determined through a single shape parameter and the weights are uniformly split among all categories, the FreeRate model has two parameters, <tt>rates</tt> and <tt>weights</tt> that are only limited to move by the condition that the sum of weights times rates equals one, and sum of weights is 1.0.</p>
+
+The BEAST implementation is a fully Bayesian implementation of the FreeRate model that can handle a category for proportion invariant as well.</p>
+
+To use this model, requires the RBS package (version at least v1.2.1). You need to edit the XML as follows, assuming we are starting with a model using gamma rate heterogeneity:</p>
+
+1. add weight and rates parameters to the state
+{% highlight xml %}
+<state id="state" storeEvery="1000">
+  <!-- parameters for FreeRateModel -->
+  <parameter dimension="4" estimate="true" id="FreeRateRates"
+        lower="0.001" name="stateNode" upper="100.0" value="1"/>
+  <parameter dimension="4" estimate="true" id="FreeRateWeights"
+        lower="0.001" name="stateNode" upper="100.0" value="0.25"/>
+  <!-- other StateNodes here -->
+</state>
+{% endhighlight %}
+
+2. change the site model to FreeRateModel
+{% highlight xml %}
+<siteModel id="SiteModel.alignment" spec="FreeRateModel" rates='@FreeRateRates' weights='@FreeRateWeights'
+	mutationRate="1.0" proportionInvariant="0.0">
+  ...
+{% endhighlight %}
+Note that any reference to the gamma shape, and gammaCategoryCount have been removed</p>
+
+3. add the FreeRateOperator to the list of operators
+
+{% highlight xml %}
+<operator id="FreeRateOperator.alignment" rates="@FreeRateRates" weights="@FreeRateWeights" spec="FreeRateOperator" weight="1.0"/>
+{% endhighlight %}
+
+4. add entries to trace logger
+
+{% highlight xml %}
+<logger fileName="freerate.log" id="tracelog" logEvery="1000" mode="autodetect" model="@posterior">
+    <!-- parameters for FreeRateModel -->
+    <log idref="FreeRateRates"/>
+    <log idref="FreeRateWeights"/>
+    <!-- other log entries here -->
+</logger>
+{% endhighlight %}
+
+And you should be able to run the model.
+
+<h2>Proportion invariant</h2>
+Note that this model can deal with a proportion invariant sites. In order to set up an analysis with proportion invariant sites, start with an analysis set up in BEAUti where a proportion invariant sites is specified in the site model panel, then proceed as above, but in Step 2, instead of adding <tt>proportionInvariant="0.0"</tt> as an attribute, you should replace it with a reference to the proportionInvariant parameter as in the XML produced by BEAUti.
+
+</p>

@@ -1,0 +1,28 @@
+---
+layout: site
+title: How do I specify constant sites for an alignment?
+tags: []
+---
+<p><span id="How_do_I_specify_constant_sites_for_an_alignment" class="mw-headline"></span>You can use a FilteredAlignment to insert constant sites and set the constantSiteWeights attribute. Say, your original alignment is called xyz, so the XML produced by BEAUti contains something like</p>
+{% highlight xml %}   <data id="xyz" name="alignment">
+</data>{% endhighlight %}
+<p>It is easiest to rename this to say xyzOriginal,</p>
+{% highlight xml %}   <data id="xyzOriginal" name="alignment">
+</data>{% endhighlight %}
+<p>then add another data element, just after the closing  element of the alignment would be a good spot, that say</p>
+{% highlight xml %}  <data id="xyz" spec="FilteredAlignment" filter="-" data="@xyzOriginal" constantsiteweights="100 200 300 400" />
+{% endhighlight %}
+<p>Note id='xyz' and data='@xyzOriginal' should match what you have in the XML.</p>
+<p>The constant weights at the end add weights for DNA in order A,C,G,T, so it adds 100 constant sites with all As, 200 with all Cs etc.</p>
+<p>In the output to screen, it should report statistics of the xyzOriginal as something like:</p>
+{% highlight xml %} 6 taxa
+ 768 sites
+ 69 patterns
+{% endhighlight %}
+<p>followed by statistics of the filtered alignment</p>
+{% highlight xml %} Filter -
+ 6 taxa
+ 768 sites + 1000 constant sites
+ 69 patterns
+{% endhighlight %}
+<p>where the total number of constant sites added are reported as well.</p>

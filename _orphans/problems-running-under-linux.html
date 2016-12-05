@@ -1,0 +1,53 @@
+---
+layout: site
+title: Problems running under Linux
+tags: []
+---
+<p>One problem you may encounter is the following error when attempting to run BEAST or BEAUti under Linux.</p>
+{% highlight java %}UTF8
+Exception in thread "main" java.lang.NoClassDefFoundError:
+dr.util.MessageLogHandler$MessageLogFormatter
+   at java.lang.Class.initializeClass(libgcj.so.90)
+   at dr.util.MessageLogHandler.&lt;init&gt;(Unknown Source)
+   at dr.app.beast.BeastMain.&lt;init&gt;(Unknown Source)
+   at dr.app.beast.BeastMain.main(Unknown Source)
+Caused by: java.lang.ClassNotFoundException:
+sun.security.action.GetPropertyAction not found in
+gnu.gcj.runtime.SystemClassLoader{urls=[file:/home/sr/little/
+BEAST.v1.4.7/lib/beast.jar],
+parent=gnu.gcj.runtime.ExtensionClassLoader{urls=[], parent=null}}
+   at java.net.URLClassLoader.findClass(libgcj.so.90)
+   at java.lang.ClassLoader.loadClass(libgcj.so.90)
+   at java.lang.ClassLoader.loadClass(libgcj.so.90)
+   at java.lang.Class.forName(libgcj.so.90)
+   at java.lang.Class.initializeClass(libgcj.so.90)
+   ...3 more
+{% endhighlight %}
+<dl>
+<dd>If you see this you are trying to run the programs with the wrong version of the JVM. Either you haven't installed the Java JVM or you have installed it but haven't told linux you want to use the Java JVM by default.</dd>
+</dl>
+<dl>
+<dd>The way to fix this will depend on what kind of linux you are running. If you are running Debian then use the <code>update-java-alternatives</code> command...</dd>
+</dl>
+{% highlight java %}$ sudo /usr/sbin/update-java-alternatives --config java
+
+There are 5 alternatives which provide `java'.
+
+  Selection    Alternative
+-----------------------------------------------
+          1    /usr/lib/jvm/java-6-sun/jre/bin/java
+          2    /usr/bin/gij-4.3
+          3    /usr/lib/jvm/ia32-java-6-sun/jre/bin/java
+*+        4    /usr/lib/jvm/java-gcj/jre/bin/java
+          5    /usr/bin/gij-4.2
+
+Press enter to keep the default[*], or type selection number: 1
+Using '/usr/lib/jvm/java-6-sun/jre/bin/java' to provide 'java'.
+
+{% endhighlight %}
+<dl>
+<dd>and you should be ready to run.</dd>
+</dl>
+<dl>
+<dd>Note: it's best not to use the <code>update-alternatives</code> command for this. Instead, use the <code>update-java-alternatives</code> because "The former just sets the symlinks for the /usr/bin/java alternative, whereas the <code>update-java-alternatives</code> sets all java-related symlink"</dd>
+</dl>

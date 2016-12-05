@@ -1,0 +1,53 @@
+---
+layout: site
+title: Core Development
+tags: []
+---
+<h2><span id="Introduction" class="mw-headline">Introduction </span></h2>
+<p>Here are some notes about coding style that we should probably try to adhere to to achieve a predictable and uniform look. They are mostly (all?) standard Java style but if there are any disagreements we can sort them out now and vote on them. This first attempt is off the top of my head so please edit if they deviate from any standard. Documentation</p>
+<p>One of the (well, my) motivation of going from Beast 1 to Beast II is that lack of documentation in Beast 1 now hampers progress. The good new is that little (less?) code documentation is necessary, since there are various facilities to help code documentation in Beast II:</p>
+<ul>
+<li>Plug-ins should be annotated by the @Description annotation at the top of a class.</li>
+</ul>
+<ul>
+<li>Input-constructors have a tipText argument that should describe the function of an Input.</li>
+</ul>
+<ul>
+<li>Plug-ins can be annotated by the @Citation annotation, if appropriate.</li>
+</ul>
+<p>These facilitates a.o. commenting the code, XML-documentation and GUI help information.</p>
+<h2><span id="Naming" class="mw-headline">Naming </span></h2>
+<ul>
+<li>Package Names are all small letters. This means word boundaries may be difficult and packages should attempt to be single word names if possible (and probably no more than 2). Example: beast.mypackage</li>
+</ul>
+<ul>
+<li>Class Names are inter-capitalated and start with a capital. Example: MyJavaClass?.</li>
+</ul>
+<ul>
+<li>Class Names are <b>unique</b> under a same path in the entire name space including BEAST 2 core, all depended packages and 3rd party libraries. A duplicated class name has to be created in a different path. For example, <i>beast.math.util.MathUtils</i> and <i>org.apache.commons.math.util.MathUtils</i> are fine, but you cannot create a class <i>MathUtils</i> again under the path <i>beast.math.util</i> in any other packages.</li>
+</ul>
+<ul>
+<li>Class members are inter-capitalated but start with a small letter. Example: myInstance</li>
+</ul>
+<ul>
+<li>Static final constants are all capitals with underscores to delimit words. Example: MY_CONSTANT</li>
+</ul>
+<ul>
+<li>As IDEs colour member variables/statics etc., we don't need to use codes/prefixes to denote these (or types). Yeah right...</li>
+</ul>
+<ul>
+<li>Use a full descriptive name (i.e., no contractions - these can be hard to predict and search for).</li>
+</ul>
+<ul>
+<li>No acronyms in public names unless really well-known and ubiquitous (i.e., MCMC).</li>
+</ul>
+<ul>
+<li>Acronyms that start a name that would normally start with a small lettter (class member) the whole acronym should be small letters (i.e., mcmcOptions).</li>
+</ul>
+<ul>
+<li><a class="external text" href="http://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html" rel="nofollow">Naming Conventions</a></li>
+</ul>
+<h2><span id="3rd_Party_Libraries" class="mw-headline">3rd Party Libraries </span></h2>
+<ul>
+<li>The same library (./lib/*.jar) will only be loaded once across all packagas. For example: commons-math3-3.1.1.jar is part of BEAST 2 core, so that the package developer cannot load it again in any other packages. Since jar files will only be dynamically loaded by BEAST at start-up and these jars are checked for duplicate classes, including a different version of commons-math*.jar in a package means it may not be loaded. Requests of upgrading 3rd party libraries can send to BEAST 2 development team.</li>
+</ul>

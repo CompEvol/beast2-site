@@ -1,0 +1,17 @@
+---
+layout: site
+title: 'Core Development: Design'
+tags: []
+---
+<h1><span id="Introduction" class="mw-headline">Introduction </span></h1>
+<p>These are an attempt so summarize our discussion on this but may include some of my personal biases. Please discuss/edit.</p>
+<h1><span id="Framework" class="mw-headline">Framework </span></h1>
+<p>We will provide an infrastructure for efficient MCMC that is independent of its actual application. This is currently the contents of beast.core and a few other packages but should probably be put in a separate top-level package to denote its independence. The 'BEAST2' project is then a implementation of the BEAST functionality for this infrastructure providing evolutionary analysis. This may mean that we simply have a beast.jar file in the plugins folder for the framework (although we would probably provide BEAST 'branded' application launchers etc).</p>
+<h1><span id="Details" class="mw-headline">Details </span></h1>
+<ul>
+<li>Plugin is a concrete class which most public components of the architecture will be derived from [AR - Plugin is currently concrete meaning we can instantiate it - is this desirable?].</li>
+<li>Any plugin that will contribute to the MCMC 'State' should be derived from StateNode.</li>
+<li>Optional functionality will be defined by interfaces which can be implemented if required (i.e., the interface Cacheable for plugins that need to cache intermediate calculations).</li>
+<li>These interfaces can provide an inner, abstract, implementation called Base that can provide boiler-plate functionality. Base will extend from Plugin (or some descendant of Plugin). If not requiring a 'mix-in' of behaviour, a concrete class can simply extend one of these Base classes.</li>
+<li>Where possible, Inputs should take, as a type for the generic, an interface (but the Input class checks that the actual instance extends Plugin at runtime). This allows a flexible mix-in behaviour.</li>
+</ul>

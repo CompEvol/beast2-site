@@ -1,0 +1,86 @@
+---
+layout: site
+title: BEAST 2.0.x XML
+tags: [Wiki]
+---
+<div id="content">
+<div id="bodyContent">
+<h2><span id="Reserved_attributes" class="mw-headline">Reserved attributes </span></h2>
+{% highlight xml %}<input id="’myId’" idref="’otherId’" name="’inputName’" spec="’x.y.z.MyClass’" />
+{% endhighlight %}
+<h2><span id="Reserved_elements" class="mw-headline">Reserved elements </span></h2>
+{% highlight xml %}run          must be beast.core.Runnable
+distribution must be beast.core.Distribution
+operator     must be beast.core.Operator
+logger       is beast.core.Logger
+data         is beast.evolution.alignment.Alignment
+sequence     is beast.evolution.alignment.Sequence
+state        is beast.core.State
+parameter    is beast.core.parameter.RealParameter
+tree         is beast.evolution.tree.Tree
+input        reserved name
+map          maps element name to class name
+plate        macro
+mergepoint   reserved for BEAUTi templates
+mergewith    reserved for BEAUTi templates
+{% endhighlight %}
+<h2><span id="Resolving_plug-in_class" class="mw-headline">Resolving plug-in class </span></h2>
+<ul>
+<li>specified in spec attribute</li>
+<li>if not, get from element2class map</li>
+<li>if not, use element name (and hope it shows up in the namespace somewhere).</li>
+</ul>
+<h2><span id="Resolving_input_name" class="mw-headline">Resolving input name </span></h2>
+<ul>
+<li>specified in name attribute</li>
+</ul>
+{% highlight xml %}<input name="xyz" />{% endhighlight %}
+<ul>
+<li>if not, use (non-reserved) attribute name</li>
+</ul>
+{% highlight xml %}<input xyz="3" />{% endhighlight %}
+<ul>
+<li>if not, use element name</li>
+</ul>
+{% highlight xml %}<xyz value="3" />{% endhighlight %}
+<ul>
+<li>if input, use ’value’ when there is text content, but no element content</li>
+</ul>
+{% highlight xml %}<input />3{% endhighlight %}
+<h2><span id="Resolving_input_value" class="mw-headline">Resolving input value </span></h2>
+<ul>
+<li>if idref is specified, use the referred object</li>
+</ul>
+{% highlight xml %}<input idref="other" />{% endhighlight %}
+<ul>
+<li>specified in value attribute</li>
+</ul>
+{% highlight xml %}<xyz value="3" />{% endhighlight %}
+<ul>
+<li>if not, use value of (non-reserved) attribute</li>
+</ul>
+{% highlight xml %}<input xyz="3" />{% endhighlight %}
+<ul>
+<li>if not, use text content when there is text content, but</li>
+</ul>
+<p>no element content</p>
+{% highlight xml %}<input />3{% endhighlight %}
+<h2><span id="Parsing_rules" class="mw-headline">Parsing rules </span></h2>
+<p>Processing non reserved attributes</p>
+{% highlight xml %}<input otherattribute="xyz" />{% endhighlight %}
+<p>equals</p>
+{% highlight xml %}<input />
+<input name="’otherAttribute’" value="’xyz’" />
+{% endhighlight %}
+<p>Processing non reserved element names</p>
+{% highlight xml %}<myelement />{% endhighlight %}
+<p>equals</p>
+{% highlight xml %}<input spec="’myElement’" name="’myElement’" />{% endhighlight %}
+<p>unless ’spec’ is a specified attribute, then that overrides, likewise for ’name’ Processing of text content (only when there are no enclosing elements)</p>
+{% highlight xml %}<input name="’data’" />xyz {% endhighlight %}
+<p>equals</p>
+{% highlight xml %}<input name="’data’" value="’xyz’/" />{% endhighlight %}
+<div class="visualClear"></div>
+</div>
+</div>
+<div id="mw-head" class="noprint"></div>
