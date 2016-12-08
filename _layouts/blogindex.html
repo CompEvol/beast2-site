@@ -1,41 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    
-    <title>{{ site.title }}</title>
 
-    <link rel="stylesheet" href="{{site.baseurl}}/css/genericons.css">
-    <link rel="stylesheet" href="{{site.baseurl}}/css/syntax.css">
-    <link rel="stylesheet" href="{{site.baseurl}}/css/wordpress-style.css">
-    <link rel="stylesheet" href="{{site.baseurl}}/css/style.css">
-    {% include analytics.html %}
-  </head>
+    {% include header.html %}
 
-  <body>
-	<script src="{{site.baseurl}}/jquery-3.1.1.min.js"/>
+    <body>
+        {% include navbar.html %}
+        {% include sidebar.html %}
 
-    {% include navbar.html %}
-    {% include sidebar.html %}
-				<article class="page type-page status-publish">
-<div id="main" class="site-main">
-	<div id="main-content" class="main-content">
-		<div id="primary" class="content-area">
-				<header class="entry-header"><h1 class="entry-title">{{page.title}}</h1></header>
-			<div id="content" class="site-content" role="main">
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{site.baseurl}}/{{ post.url }}">{{ post.title }}</a>
-      <div class="post-date">{{ post.date | date: '%B %d, %Y'}}</div>
-    </li>
-  {% endfor %}
-</ul>
-    		</div>
-    	</div>
-    </div>
-</div>
-				</article>
-
-
-  </body>
+        <article class="page type-page status-publish">
+            <div id="main" class="site-main">
+                <div id="main-content" class="main-content">
+                    <div id="primary" class="content-area">
+                        <header class="entry-header"><h1 class="entry-title">{{page.title}}</h1></header>
+                        <div id="content" class="site-content" role="main">
+                            <ul>
+                                {% for post in site.posts %}
+                                <li>
+                                    <a href="{{site.baseurl}}/{{ post.url }}">{{ post.title }}</a>
+                                    <div class="post-date">{{ post.date | date: '%B %d, %Y'}}</div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </body>
 </html>
