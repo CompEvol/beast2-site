@@ -17,7 +17,7 @@ title: BEAST 2
 email: 
 description: The extensible Bayesian phylogenetic analysis platform.
 
-baseurl: "/beast2-site" # the subpath of your site, e.g. /blog
+#baseurl: "/beast2-site" # the subpath of your site, e.g. /blog
 #baseurl: "" # the subpath of your site, e.g. /blog
 
 url: "http://beast2.org" # the base hostname & protocol for your site
