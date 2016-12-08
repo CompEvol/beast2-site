@@ -1,0 +1,62 @@
+---
+layout: site
+title: Sample a discrete trait 
+tags: []
+---
+
+	
+		<p>You need BEAST v2.1.0 and BEAST-classic v1.1.1. If you already have an older version of BEAST-classic installed, you have to re-install it to ensure you have version 1.1.1 or better &#8212; the addon manager in Beauti under the menu File/Mange add-ons will show which version you have installed.</p>
+<p>There is an small example file &#8220;examples/testDiscreteSmall.xml&#8221; that is installed with BEAST-classic v1.1.1.</p>
+<p>It is probably easiest to start creating an XML file using BEAUti by adding a discrete trait (See <a title="Tutorials" href="../tutorials/index.html">Ancestral reconstruction/Discrete phylogeography tutorial</a> for details).</p>
+<p>Then, you need to edit the XML, and</p>
+<p>1. add a LeaftTrait to the AncestralStateTreeLikelihood, for example in testDiscreteSmall.xml</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %} <leaftrait parameter='@trait(A_chicken_Fujian_1042_2005)' taxon='A_chicken_Fujian_1042_2005' spec='LeafTrait'/>{% endhighlight %}			
+			
+		
+
+<p>2. add a state-node to the state. In testDiscreteSmall.xml:</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %} <stateNode spec='parameter.IntegerParameter' id='trait(A_chicken_Fujian_1042_2005)' value='0'/>{% endhighlight %}			
+			
+		
+
+<p>3. add an operator to sample the trait:</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}   <operator id="IntegerOperator.blackbird_Hunan" spec="GeneralIntegerOperator" parameter="@trait(A_chicken_Fujian_1042_2005)" weight="30.0">
+       <index id='chicken_indices' spec='parameter.IntegerParameter' value='0 2'/>
+   </operator>{% endhighlight %}			
+			
+		
+
+<p>Note that the chicken_indices element shows the values that the trait is allowed to take. In this case, only 0 and 2, and state 1 is never sampled. These states coincide with the states defined for the location data type</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}   Hebei = 0,
+   HongKong = 1,
+   Guangdong = 2{% endhighlight %}			
+			
+		
+
+<p></p>
+	
+

@@ -1,0 +1,200 @@
+---
+layout: site
+title: Performance Suggestions 
+tags: []
+---
+
+	
+		
+<p>The majority of computing time is spent in calculating the treelikelihood, so we will concentrate on tips on how to speed up this calculation. There are no hard and fast rules, and you have to try a few combinations to see what works best for your data.</p>
+<p>In general, when there are many patterns and/or a large number of states, BEAGLE GPU works best. Often BEAGLE SSE gives good performance on medium data sets, or when there are few patterns. For nucleotide data, ThreadedTreeLikelihood can be helpful.</p>
+<h2>BEAGLE </h2>
+<p>BEAGLE is a high performance library that efficiently calculates treelikelihoods on CPU and GPUs. Note: a GPU is not necessary, BEAGLE can give considerable performance improvements on CPU as well. See <a class="external free" href="http://beast.bio.ed.ac.uk/BEAGLE" rel="nofollow">http://beast.bio.ed.ac.uk/BEAGLE</a> for more details. How it is installed and used with BEAST depends on the platform: <a class="external free" href="http://code.google.com/p/beagle-lib/w/list" rel="nofollow">http://code.google.com/p/beagle-lib/w/list</a><br />
+By default, BEAST tries to use BEAGLE for treelikelihood calculations, if it is installed. However, this does not always leads to performance improvements, especially with nucleotide data where there are few patterns. You can start BEAST with the -java command line flag to ensure BEAGLE is not considered. Some likelihoods that have a &#8216;useJava&#8217; flag (see below) to ensure only Java is considered.</p>
+<p>It is worth trying the -beagle_SSE option, which uses a CPU version optimised for the SSE instruction set, which most CPUs support.</p>
+<p><a title="BEAGLE + BEAST 2 in cluster" href="../beagle-beast-2-in-cluster/index.html">BEAGLE + BEAST 2 in cluster</a></p>
+<h2>ThreadedTreelikelihood </h2>
+<p>(In versions before v2.4.0, the BEASTlabs-package &#8212; see <a class="mw-redirect" title="Manage packages" href="../managing-packages/index.html">Manage packages</a> on how to install &#8212; contained the ThreadedTreeLikelihood). The ThreadedTreeLikelihood has a treelikelihood that splits up the patterns into equal parts and uses a thread for each of the parts.</p>
+<p>The number of parts is determined by the number of threads (and can be specified using the &#8216;threads&#8217; attribute). To use the ThreadedTreelikelihood, open the XML file in a text editor and change</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}   spec="TreeLikelihood" {% endhighlight %}			
+			
+		
+
+<p>to</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}   spec="ThreadedTreeLikelihood".{% endhighlight %}			
+			
+		
+
+<p>There is a flag &#8216;useJava&#8217; to indicate the calculation should use the Java treelikelihood, and not consider BEAGLE. (When using BEAST versions before v2.4.0, to use BEAGLE, set useJava=&#8217;false&#8217;</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}   spec="ThreadedTreeLikelihood" useJava='false'{% endhighlight %}			
+			
+		
+
+<p>)<br />
+If you want to limit the number of threads used for splitting the patterns, use the threads attribute. For example, to limit the number of partitions to 3, use</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}   spec="ThreadedTreeLikelihood" threads='3'{% endhighlight %}			
+			
+		
+
+<p>To run multiple BEAGLE instances with ThreadedTreeLikelihood&#8221;, the number of threads used to start BEAST must be at least the number of BEAGLE instances, so you would want to start BEAST using</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}   beast -instances 3 -threads 3 xyz.xml{% endhighlight %}			
+			
+		
+
+<p>if you want to use 3 BEAGLE instances (for versions before v2.4.0 use the -beagle_instances flag instead of -instances). Using only the &#8216;instances&#8217; flag but not the &#8216;threads&#8217; flag results in just 1 thread being created.</p>
+<h2>AncestralTreelikelihood </h2>
+<p>The beast-classic add-on (see <a class="mw-redirect" title="Manage Add-ons" href="../managing-packages/index.html">Manage packages</a> on how to install) has a Treelikelihood used for discrete phylogeography and ancestral reconstruction called AncestralTreelikelihood. Since it typically only uses a single site, threading does not help.</p>
+<p>There is a flag &#8216;useJava&#8217; to indicate the calculation should not consider BEAGLE.</p>
+<h2>Multiple partitions: CompoundDistribution </h2>
+<p>If you have multiple partitions, you can consider the useThreads flag of CompoundDistribution, which is false by default. If set to true, all distributions inside the CompoundDistribution will be calculated in parallel using the number of threads used to run BEAST.</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}distribution spec='CompoundDistribution' id='likelihood' useThreads='true'>
+ <distribution idref="treeLikelihood.CP1+2"/>	 	 
+ <distribution idref="treeLikelihood.CP3"/>
+ </distribution>  {% endhighlight %}			
+			
+		
+
+<p>If the treelikelihoods share parameters, e.g through a relaxed clock model, this may not always be safe.</p>
+<h2>Particle Filter </h2>
+<p>For large analysis, getting through burn-in is a considerable waste of time. When a good starting point can be found burn-in can be reduced, and particle filter approach allows for finding a good starting point relatively efficiently.</p>
+<p>For the adventurous, there is the beast.inference.ParticleLauncherByFile method in the BEASTLabs-add-on (see <a class="mw-redirect" title="Manage Add-ons" href="../managing-packages/index.html">Manage packages</a> on how to install). It runs a number of chains in parallel that communicate with each other through the file system on set intervals. When a chain gets too far behind, it samples a state from the other chains proportional to their posteriors (effectively taking the most likely most of the time).</p>
+<p>To convert a BEAST XML file, replace the run entry</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}<run chainLength="10000000" id="mcmc" spec="MCMC">{% endhighlight %}			
+			
+		
+
+<p>with</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}<run spec="beast.inference.ParticleFilter" id="pf" nrofparticles='8' stepsize='25000' rootdir='/tmp/particle' launcher='beast.inference.ParticleLauncherByFile'> 
+ #!/bin/sh
+ cd $(dir)
+ java -Dbeast.particle.dir=$(dir) -Dbeast.debug=false -Djava.library.path=$(java.library.path) -cp $(java.class.path) beast.app.BeastMCMC -resume -seed $(seed) $(dir)/beast.xml &gt;&gt; $(dir)/beast.log 2&gt;&amp;1 
+ exit{% endhighlight %}			
+			
+		
+
+<p>and do not forget to close the mcmc element, just before the &#038;lt/run> closing tag</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}   </mcmc>
+ </run>	 	{% endhighlight %}			
+			
+		
+
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}   <mcmc spec="beast.inference.MCMCParticleAsync" id="mcmc" chainLength="1000000" stepsize='25000' >{% endhighlight %}			
+			
+		
+
+<p>Inside rootdir, it creates subdirectories particleX where X is a number from 0 to nrofparticles.</p>
+<p>The text content of the run element is interpreted as a script, and it is executed for every particle. There are a few variables that are replaced before launching the script</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %} $(dir) working directory for the particle, including rootdir specified in run (ParticleFilter) element
+ $(java.class.path) class path used for launching BEAST
+ $(java.library.path) path used for launching BEAST
+ $(seed) random number seed for the particle, each particle gets a unique seed{% endhighlight %}			
+			
+		
+
+<p>You have to adapt the script for your own cluster. The example below is an example for the nesi-cluster using loadLeveler.</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}<run spec="beast.inference.ParticleFilter" id="pf" nrofparticles="50" stepsize="25000" rootdir="particleset3"
+ launcher="beast.inference.ParticleLauncherByFile"> 
+   echo "#@ shell = /bin/sh"&gt; $(dir)/particle.job
+   echo "#@ job_name = birds"&gt;&gt; $(dir)/particle.job
+   echo "#@ class = default"&gt;&gt; $(dir)/particle.job
+   echo "#class = gpu"&gt;&gt; $(dir)/particle.job
+   echo "#@ group = nesi"&gt;&gt; $(dir)/particle.job
+   echo "#@ account_no = /nz/nesi"&gt;&gt; $(dir)/particle.job
+   echo "#@ notify_user = remco@cs.auckland.ac.nz"&gt;&gt; $(dir)/particle.job
+   echo "#@ notification = complete"&gt;&gt; $(dir)/particle.job
+   echo "#@ wall_clock_limit = 700:00:00"&gt;&gt; $(dir)/particle.job
+   echo "#@ environment = COPY_ALL"&gt;&gt; $(dir)/particle.job
+   echo "#@ node_resources = ConsumableMemory(4096mb) ConsumableVirtualMemory(4096mb)"&gt;&gt; $(dir)/particle.job
+   echo "#@ job_type = parallel"&gt;&gt; $(dir)/particle.job
+   echo "#@ node = 1"&gt;&gt; $(dir)/particle.job
+   echo "#@ tasks_per_node = 5"&gt;&gt; $(dir)/particle.job
+   echo "#@ initialdir = \$(home)/birds/$(dir)"&gt;&gt; $(dir)/particle.job
+   echo "#@ output = \$(job_name).\$(jobid).out"&gt;&gt; $(dir)/particle.job
+   echo "#@ error = \$(job_name).\$(jobid).err"&gt;&gt; $(dir)/particle.job
+   echo "#@ queue"&gt;&gt; $(dir)/particle.job
+   echo ""&gt;&gt; $(dir)/particle.job
+   echo "export LD_LIBRARAY_PATH=/usr/local/lib:/share/apps/cuda/lib64:/share/apps/cuda/lib:\$LD_LIBRARAY_PATH"&gt;&gt; $(dir)/particle.job
+   echo "module load cuda"&gt;&gt; $(dir)/particle.job
+   echo ""&gt;&gt; $(dir)/particle.job
+   echo "java -Djava.library.path=/usr/local/lib -Dbeast.particle.dir=/home/rbou019/birds/$(dir) -cp /home/rbou019/birds/BEAST_CLASSIC.jar:/home/rbou019/birds/jam.jar:/home/rbou019/birds/colt.jar beast.app.beastapp.BeastMain -beagle -beagle_SSE -seed $(seed) -threads 5 -resume beast.xml "&gt;&gt; $(dir)/particle.job
+  #llsubmit $(dir)/particle.job
+<mcmc spec="beast.inference.MCMCParticleAsync" id="mcmc" chainLength="1000000000" >{% endhighlight %}			
+			
+		
+
+<p></p>
+	
+

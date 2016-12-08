@@ -1,0 +1,144 @@
+---
+layout: site
+title: BEAGLE + BEAST 2 in cluster 
+tags: []
+---
+
+	
+		
+<h3>BEAGLE + BEAST 2 in cluster </h3>
+<p>Cluster provides more computational power. Paralleling your BEAST jobs and using SSE in cluster could save you more than half of your commutation time.</p>
+<p>Here we show how BEAGLE options performed on the NeSI cluster (<a class="external text" href="http://www.nesi.org.nz/" rel="nofollow">http://www.nesi.org.nz</a>) and laptop (MacBookPro5,1: Intel Core 2 Duo). GPU option is not included in this comparison.</p>
+<table class="wikitable" border="1">
+<tbody>
+<tr>
+<th></th>
+<th>Laptop</th>
+<th>Cluster (Default)</th>
+<th>Cluster OpenMP (4 threads)</th>
+</tr>
+<tr>
+<td>Java</td>
+<td>15m17s</td>
+<td>11m55s</td>
+<td>7m9s</td>
+</tr>
+<tr>
+<td>BEAGLE</td>
+<td>9m24s</td>
+<td>7m45s</td>
+<td>6m25s</td>
+</tr>
+<tr>
+<td>BEAGLE SSE</td>
+<td>8m1s</td>
+<td>4m52s</td>
+<td>3m50s</td>
+</tr>
+</tbody>
+</table>
+<p>The speed is the minutes and seconds of per million samples, which is logged at the sample 36,000 by running the same xml using seed 777.</p>
+<h2>Command in laptop </h2>
+<p>Use Java likelihood calculation only, BEAGLE is not considered:</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}    java -jar beast.jar -seed 777 -java my.xml {% endhighlight %}			
+			
+		
+
+<p>Use beagle library but no SSE:</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}    java -jar beast.jar -seed 777 -beagle my.xml {% endhighlight %}			
+			
+		
+
+<p>Use beagle library and SSE extensions:</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}    java -jar beast.jar -seed 777 -beagle_SSE my.xml{% endhighlight %}			
+			
+		
+
+<p></p>
+<h2>Default template for cluster </h2>
+<p>The template below is to run a serial BEAST 2 job using BEAGLE SSE in cluster (Guide is <a class="external text" href="http://wiki.auckland.ac.nz/display/CER/Slurm+User+Guide" rel="nofollow">here</a>):</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}   #!/bin/sh
+   #SBATCH -J FILE                 # The job name
+   #SBATCH -A uoa???               # The account code
+   #SBATCH --time=12:00:00         # The walltime
+   #SBATCH --mem-per-cpu=16384     # Memory in MB ie. ? * 1024
+   #SBATCH -D ./                   # The initial directory
+   #SBATCH -o FILE_out.txt         # The output file
+   #SBATCH -e FILE_err.txt         # The error file{% endhighlight %}			
+			
+		
+
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}   module load beagle-lib/20140322-goolf-1.5.14
+   module load Java/1.8.0_5
+   srun java -Xmx10g -Djava.library.path=$BEAGLE_LIB_PATH -jar beast.jar -beagle_SSE -seed 777 my.xml {% endhighlight %}			
+			
+		
+
+<p></p>
+<h2>OpenMP (4 threads) template for cluster </h2>
+<p>The 4-thread <a class="external text" href="http://en.wikipedia.org/wiki/OpenMP" rel="nofollow">OpenMP</a> (Open Multi-Processing) template below is to run a parallel BEAST 2 job using BEAGLE SSE in cluster (Guide is <a class="external text" href="http://wiki.auckland.ac.nz/display/CER/Slurm+User+Guide" rel="nofollow">here</a>):</p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}   #!/bin/sh
+   #SBATCH -J FILE                 # The job name
+   #SBATCH -A uoa???               # The account code
+   #SBATCH --time=12:00:00         # The walltime
+   #SBATCH --mem-per-cpu=16384     # Memory in MB ie. ? * 1024
+   #SBATCH --cpus-per-task=4       # 4 OpenMP Threads
+   #SBATCH -D ./                   # The initial directory
+   #SBATCH -o FILE_out.txt         # The output file
+   #SBATCH -e FILE_err.txt         # The error file{% endhighlight %}			
+			
+		
+
+<p></p>
+
+		
+		
+			
+			
+			
+			{% highlight xml %}   module load beagle-lib/20140322-goolf-1.5.14
+   module load Java/1.8.0_5
+   srun java -Xmx10g -Djava.library.path=$BEAGLE_LIB_PATH -jar beast.jar -threads 4 -beagle_SSE -seed 777 my.xml {% endhighlight %}			
+			
+		
+
+<p></p>
+	
+
