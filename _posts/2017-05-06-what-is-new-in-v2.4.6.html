@@ -1,0 +1,33 @@
+---
+layout: post
+title: What is new in v2.4.6
+tags: []
+---
+
+	
+There are mainly a few enhancements and bug fixes in BEAUti.</p>
+
+<h2>BEAUti</h2>
+
+Starting trees can now be edited by showing the starting tree panel, which becomes visible by selecting the menu View/Show Starting tree panel. This is for the Standard template only, and does not work in the StarBeast template. It should be much less error prone to set up a different starting tree than editing the XML. Also, it is now possible to change the attributes of the random tree, like population size and maximum tree height, which makes it easier to get a starting tree that conforms to all constraints of the analysis, such as origin heights for advanced birth death tree priors.
+There is a choice of random tree, which used to be the default, a cluster tree (UPGMA, neighbor joining, and a number of other standard hierarchical clustering algorithms) and a newick tree. </p>
+
+BEAUti now allow alignments to be replaced, so old analyses can be used for new data. If you need to run the same kind of analyses for many alignments this can save quite a bit of time. To replace an alignment, select an alignment in the partition panel, click on the small 'r' button at the bottom of the screen, next to the '+', '-' and 'Split' buttons. A file chooser dialog is shows where you can select an alignment file that will replace the one selected in the partition panel.</p>
+
+There is a fix for a fasta file import bug that marked sequences as amino acid while it should be marked as nucleotide. This happened when importing a fasta file that was misclassified as amino acid alignment, and a dialog was shown where you can change the type. Unfortunately, only the data type for the alignment was changed but not the sequences, leading to hard to diagnose problems.</p>
+
+When splitting alignment on codon positions, previously the tree was unlinked. So splitting into three partitions at codon positions 1, 2 and 3 resulted in adding three trees. Now, BEAUti keeps the trees linked, which makes more sense from a biological point of view.</p>
+
+In the Site model panel, BEAUti now automatically set the estimate flag on the shape parameter when choosing more than 1 rate categories. You can still fix the shape parameter by un-checking the checkbox again, but since this is not usual, the shape is now estimated by default.</p>
+
+BEAUti allows visualisation of alignments, which is triggered by double clicking an alignment in the partition panel. Display of integer alignments as used in microsattelite analyses is now possible.</p>
+
+<h2>BEAST</h2>
+        Better documentation by updates of descriptions of classes and improved error messages.</p>
+        
+        More robust XMLParser, which can now deal more robustly with BEASTObject classes using the Param annotation in constructors.</p>
+        
+        Bug fix that prevents double counting of offset-input in ParametricDistribution.sample.</p>
+            
+<h2>Other</h2>
+        DensiTree version updated to v2.2.6.</p>

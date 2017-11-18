@@ -1,0 +1,73 @@
+---
+layout: post
+title: What is new in v2.4.5
+tags: []
+---
+
+<h2>Replicability support</h2>
+
+The biggest addition is that it is now possible to run an XML file with BEAST that uses 
+exactly the package versions that were used to create the XML in BEAUti. This means that
+changes in the XML due to changes in package versions are no longer a problem, and you can
+run an analysis with exactly those package versions of the original analysis.
+
+The way it works is that BEAUti adds a "required" attribute on the beast-element in the 
+XML containing packages and their versions used to set up the analysis. Of course, you can
+edit the XML by hand and change version numbers and add packages if you like. BEAST now has
+a "-strictversions" flag, so when you start BEAST that option it only loads packages and 
+versions as specified in the "required" attribute.
+
+Of course, the versions of these packages must be installed for BEAST to be able to load
+them. Therefore, the package manager in BEAUti now allows specifying specific versions of
+the package to install, and multiple package version can be installed side by side. By
+default, the latest version of the package that is installed will be loaded, unless the
+"-strictversions" flag is set. The addonmanager utility has a -version flag for specifying
+the package version to install, if you prefer installing packages from the command line.
+
+
+<h2>BEAUti</h2>
+Previously, it was possible to edit priors, but these editing actions could interere with
+cloning substitution and clock models. A
+
+When importing FASTA files, previously a single character other then A, C, G or T meant that
+the alignment was classified as amino acid, even if it is a nucleotide alignment. This 
+version counts the number of non-A,C,G,T characters and makes a better guess based on that
+number wrt total number of characters in the alignment. Furthermore, a dialog pops up 
+where you can change that guess if it was incorrect. If many alignments of the same datatype
+are loaded at the same time, you can choose to mark al as the same type so you don't have
+to close down the dialog for every of these alignments.
+
+MRCAPriors imported through NEXUS files (using a calibrate entry) were not logged in the
+trace log, but now they are.
+		
+<h2>BEAST</h2>
+There are a few tree parser fixes
+
+StarBeastStartState now takes bounds of parameters it sets in account so if you specify 
+a bounds on birth rate or any of the population sizes the initial state will not violate
+them. Previously, these bounds were ignored resulting in the analysis not being able to
+be started.
+
+Operator schedules can now be nested. This means that you can specify a portion of the 
+operator weights to  
+
+Improved error reporting (as usual).
+		
+<h2>Package manager</h2>
+Added -version flag to specify exactly which package version to install.	
+	
+<h2>TreeAnnotator</h2>
+Now calculates 2D HPD intervals by default (for phylogeography analyses). Spread3 requires the 
+uncertain intervals to be available, but they were not by default, resulting in confusion
+by several users.
+
+Added -nohpd2D flag to suppress 2D HPD interval calculation, since any 2-dimensional continuous
+trait that is logged on the tree will now by default gets a 2D HPD interval calculated. However,
+if the interval is not contiguous, TreeAnnotator produces a warning message, which may not
+be appropriate for any but geographical regions. This flag helps suppress the messages and
+reduces calculation time.
+
+Added -noSA flag to suppress tree set being seen as that of a sampled ancestor analysis.
+It can happen that a tree set contains a branch of length zero, which is interpreted by
+TreeAnnotator as a sampled ancestor tree. Setting this flag prevents this interpretation.
+

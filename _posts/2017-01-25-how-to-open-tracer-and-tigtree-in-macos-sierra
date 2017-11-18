@@ -1,0 +1,39 @@
+---
+layout: post
+title: How to open Tracer and FigTree in macOS Sierra
+tags: []
+---
+
+	
+
+		
+There are two known difficulties when using Tracer v1.6.0 and FigTree v1.4.2 with macOS Sierra:
+<ul>
+	<li>their reliance on a legacy version of Java (6), and</li>
+	<li>Sierra's stronger Gatekeeper security.</li>
+</ul>
+
+The 1st issue can be solved by downloading the <a href="https://support.apple.com/kb/DL1572?locale=en_US" target="_blank">Java for OS X 2015-001</a>. This won't change the default Java version in Sierra during my test. You can also check it after the installation using the command below:
+
+<code>java -version</code>
+
+After macOS Sierra introduces a stronger <a href="https://support.apple.com/en-us/ht202491" target="_blank">Gatekeeper</a>, the applications not from the App Store and identified developers become difficult to launch after the download. The error message below will pop up when Tracer v1.6 is opened at the first time.
+
+<img src="https://beast2.blogs.auckland.ac.nz/files/2017/01/securityTracer-2hcrcbl.png" />
+
+To open the application, find Gatekeeper options in <strong>Apple menu > System Preference > Security & Privacy > General tab</strong>, and click the button <strong>Open Anyway</strong>.
+
+<img src="https://beast2.blogs.auckland.ac.nz/files/2017/01/openTracer-10wsleq.png" />
+
+Go back to <strong>open</strong> the <strong>Tracer v1.6.0</strong> application, and choose <strong>Open</strong> in the dialog box to confirm the process. 
+
+<img src="https://beast2.blogs.auckland.ac.nz/files/2017/01/confirmOpenTracer-2cr2oqp.png" />
+
+After the Tracer or FigTree is successfully opened, you can open them straight away afterwards.
+
+Alternatively, removing com.apple.quarantine from the Tracer application will permanently solve the problem:
+
+<code>xattr -d -r com.apple.quarantine /Applications/Tracer\ v1.6.0.app</code>
+
+Best wishes,
+Walter

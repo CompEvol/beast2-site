@@ -1,0 +1,63 @@
+---
+layout: post
+title: What is new in v2.4.7 
+tags: []
+---
+
+This release fixes a large number of small issues, outlined below.
+
+<h2>BEAUti</h2>
+Relabel two buttons because they were hard to find: "Guess" is now "Auto configure" in tip dates panel. "+" button on priors panel is now "+ Add Prior".
+
+More sensible default date value for taxa without date specified in tip dates panel. The old default put 'zero' as the default date, but for example when all data is from  viruses sampled in the last 20 year, that default does not make sense, so it now becomes the data of the most recent sample.
+
+Make sure the appropriate tree is used in MRCAprior when there are multiple trees in the analysis.
+
+When there are many taxa with tip dates, it is convenient to specify these dates in the NEXUS file. The current version makes sure tips with 'fixed' distributions imported from Nexus do not get estimated.
+
+Robustify NEXUS parser, an ever continuing task.
+
+Taxa could be duplicated in taxon list in NexusParser, which could lead to numbered taxa. The duplication is prevented now.
+
+Prevent accidentally cloning of up-down-all operator when using the StarBeast template.
+	
+<h2>BEAST</h2>
+	Default locale set to English so full stops are used in NEXUS output.
+
+ 	Warn if Yule (or BD) conditions on root, but no root MRCAPrior is set.
+
+	Robustify resume 
+
+	Suppress "Overwrite (Y/N)?" message when BEAST runs in console.
+
+	Stop chain when encountering a +infinity posterior.
+
+	Check that taxon set is specified when using RandomTree.
+
+	Normalise stateNodes so XML characters ('"&<>) get escaped properly when writing state files.
+
+
+
+<h2>Appstore</h2>
+	Improved formatting of app list.
+
+<h2>TreeAnnotator</h2>
+	Now adds common ancestor height estimates as attributes.
+
+
+<h2>API updates</h2>
+Something for programmers to keep in mind are the following changes:
+
+	Changed access levels of a few methods in nexus parser so you can derive your own from the NexusParser class.
+
+	Add Tree scale and ScaleOperator test.
+
+	Add new Tree constructor from root node, which is convenient when you have a tree represented by Nodes only.
+
+	Add support for input/output of non-binary trees.
+
+	Add Input.set() method, which is useful when setting input values as alternative to setValue, which requires two arguments: the value to set and the object containing the input. The latter is necessary for determining the type of the Input if that was not already determined. When 
+
+	BeautiAlignmentProvider getAlignments method added to facilitate scripting (Beasy).
+
+	TreeParser correctly parses tree edge length metadata, and improved error reporting.

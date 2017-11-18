@@ -1,0 +1,48 @@
+---
+layout: post
+title: Using R to estimate probability distribution parameters using quantiles or HPD intervals
+tags: []
+---
+
+This post is written by Jordan Douglas.
+
+If you know some of the quantiles of a probability distribution (eg. <code>P(X < 5) = 0.05</code>, <code>P(X < 10) = 0.95</code>) and you know the name of the distribution but you do not know its parameters, then you can use R to estimate them.
+
+This can be done using the cumulative distribution functions (pnorm for normal, plnorm for lognormal, pexp for exponential etc.). Parameter values which yield a small difference between observed and calculated cumulative probabilities can be found using the optim function.
+
+For example, suppose that you want to find mu and sigma parameters of a lognormal distribution such that <code>P(X < 5) = 0.05</code> and <code>P(X < 10) = 0.95</code>. We start at <code>mu = 1</code> and <code>sigma = 1</code>.
+
+<blockquote>
+> mu = 1
+> sigma = 1
+> x1 = 5
+> x2 = 10
+> p1 = 0.05
+> p2 = 0.95
+> plnorm(x1, mu, sigma)
+[1] 0.7288829
+> plnorm(x2, mu, sigma)
+[1] 0.9036418
+</blockquote>
+
+These initial values are a poor fit.
+
+Next we generate an error function, in this case we minimize the sum of squared differences between calculated and observed cumulative probabilities.
+
+<blockquote>
+> errorFn = function(params) (plnorm(x1, params[1], params[2]) - p1)^2 + (plnorm(x2, params[1], params[2]) - p2)^2
+</blockquote>
+
+Finally, we call optim to find estimates for sigma and mu:
+
+<blockquote>
+> optim( c(mu, sigma), errorFn)
+$par
+[1] 1.9560118 0.2107083
+
+$value
+[1] 5.499438e-11
+...
+</blockquote>
+
+Thus, the estimates for mu and sigma are 1.956 and 0.211 respectively, which have a sum of squared residuals of 5.5e-11.
