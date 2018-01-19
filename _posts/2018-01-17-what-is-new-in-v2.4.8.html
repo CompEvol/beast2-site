@@ -1,0 +1,32 @@
+---
+layout: post
+title: What is new in v2.4.8
+tags: []
+---
+
+<p>BEAST v2.4.8 is a patch release of issue <a href="https://github.com/CompEvol/beast2/issues/736">#736</a>. When using RNA data, a bug caused the <tt>BeagleTreeLikelihood</tt> class to incorrectly interpret 'U' characters in the sequence as missing data instead of the 'T' character similar to DNA. Thus, the likelihood is calculated incorrectly when using the BEAGLE library -- this is not a bug in BEAGLE, but in the <tt>BeagleTreeLikelihood</tt> class in BEAST that interfaces with BEAGLE, so it does not affect other software that uses BEAGLE, such as BEAST 1 and MrBayes.
+
+<p>If you used BEAST with RNA data, have BEAGLE installed and used BEAGLE in the analysis, this affects your analysis.
+
+<p>This does not affect DNA or amino acid data with or without use of BEAGLE.
+
+<p>Also, this does not affect analyses with RNA data when using the <tt>-java</tt> option for BEAST, or when you don't have BEAGLE installed (BEAST attempts to use BEAGLE if installed by default). 
+
+<p>To tell whether you are using the <tt>BeagleTreeLikelihood</tt> or the java <tt>TreeLikelihood</tt>, BEAST shows at the start which TreeLikelihood is used.  If you have BEAGLE installed and use it, it should show a message similar to this:
+
+<p>
+{% highlight xml %}
+  Using BEAGLE version: 2.1.2 resource 0: CPU
+    with instance flags:  PRECISION_DOUBLE COMPUTATION_SYNCH EIGEN_REAL SCALING_MANUAL SCALERS_RAW VECTOR_SSE THREADING_NONE PROCESSOR_CPU FRAMEWORK_CPU
+  Ignoring ambiguities in tree likelihood.
+  Ignoring character uncertainty in tree likelihood.
+  With 69 unique site patterns.
+  Using rescaling scheme : dynamic
+{% endhighlight %}
+
+<p>If you use the <tt>-java</tt> option, or do not have BEAGLE installed, it shows
+
+<p>
+{% highlight xml %}
+TreeLikelihood(treeLikelihood) uses BeerLikelihoodCore4
+{% endhighlight %}
