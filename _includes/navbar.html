@@ -1,59 +1,15 @@
-<script>
-function toggleSearch() {
-						var that = document.getElementById("search-toggleX");
-                       wrapper = document.getElementById("search-container");
-                       container = document.getElementById("search-toggleA");
-
-                        toggleClass(that, 'active' );
-                        toggleClass(wrapper, 'hide' );
-
-    
-                        document.getElementById("query").focus();
-
-                        if ( that.className.matches( '\bactive\b' ) ) {
-                                container.attr( 'aria-expanded', 'true' );
-                        } else {
-                                container.attr( 'aria-expanded', 'false' );
-                        }
-}
-
-function toggleClass(element, className){
-    if (!element || !className){
-        return;
-    }
-
-    var classString = element.className, nameIndex = classString.indexOf(className);
-    if (nameIndex == -1) {
-        classString += ' ' + className;
-    }
-    else {
-        classString = classString.substr(0, nameIndex) + classString.substr(nameIndex+className.length);
-    }
-    element.className = classString;
-}
-</script>
-
-<!--h1 style="color:red">THIS IS A TEST. FOR THE BEAST WESBSITE CLICK <a href="http://beast2.org">HERE</a></h1-->
-<div class="navbar navbar-default">
-  <div class="navbar container">
-    <div class="navbar-header0">
-		<a href='{{site.baseurl}}/'><img src="{{site.baseurl}}/images/cropped-beast2-logo.png"/></a>
-    </div>
-  </div>
-</div>
-
-<header id="masthead" class="site-header" role="banner">
+	<header id="masthead" class="site-header" role="banner">
 		<div class="header-main">
-			<!--h1 class="site-title"><a href="http://beast2.org/" rel="home">BEAST2</a></h1-->
+			<h1 class="site-title"><a href="https://www.beast2.org/" rel="home">BEAST2</a></h1>
 
-
-			<div class="search-toggle" id="search-toggleX" style="" onmouseup="toggleSearch()">
-				<a id="search-toggleA" class="screen-reader-text search-togglea" aria-expanded="false" aria-controls="search-container">Search</a>
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
 			</div>
-    		<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
 				<button class="menu-toggle">Primary Menu</button>
 				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
-				<div class="menu-beast-menu-container"><ul id="primary-menu" class="nav-menu">
+				<div class="menu-beast-menu-container"><ul id="menu-beast-menu" class="nav-menu">
 <li id="menu-item-590"  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-590 {% if page.url == '/' %} current_page_item {% endif %}"><a href="{{site.baseurl}}/">About</a></li>
 <li id="menu-item-12"   class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12 {% if page.url == '/book/' %} current_page_item {% endif %}"><a href="{{site.baseurl}}/book/">Book</a></li>
 <li id="menu-item-501"  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-501 {% if page.url == '/citation/' %} current_page_item {% endif %}"><a href="{{site.baseurl}}/citation/">Citation</a></li>
@@ -63,59 +19,42 @@ function toggleClass(element, className){
 <li id="menu-item-1323" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1323 {% if page.url == '/package-development-guide/' %} current_page_item {% endif %}"><a href="{{site.baseurl}}/package-development-guide/">Developers</a><ul class="sub-menu">
 <li id="menu-item-15"  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-15"><a href="https://github.com/CompEvol/beast2">Source Code</a></li>
 <li id="menu-item-676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-676"><a href="{{site.baseurl}}/writing-a-beast-2-package/">Writing a BEAST 2 Package</a></li>
-</ul></li>
-</ul></div>			
-</nav>
-	
+<ul class="sub-menu">
+	<li id="menu-item-1457" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1457"><a href="https://github.com/CompEvol/beast2">Source Code</a></li>
+	<li id="menu-item-1463" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1463"><a href="https://www.beast2.org/writing-a-beast-2-package/">Writing a BEAST 2 Package</a></li>
+</ul>
+</li>
+</ul></div>			</nav>
+		</div>
+
 		<div id="search-container" class="search-box-wrapper hide">
 			<div class="search-box">
-				<form role="search" method="get" class="search-form" action="http://beast2.org/">
+				<div role="search" method="get" class="search-form">
+				
+			<!--
+				<form role="search" method="get" class="search-form" action="https://www.beast2.org/">
+				-->
 				<label>
 					<span class="screen-reader-text">Search for:</span>
-					<input id="query" type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+					<input class="search-field" placeholder="Search …" name="s" type="search" id="query4">
 				</label>
-			</form>			
+				<input class="search-submit" value="Search" type="submit" id="query3">
+			</div>			</div>
 		</div>
-	</div>
-  </div>
-</header>
-<!-- search entry script -->
-
-<script>
-var input = document.getElementById("query");
+	</header>
+	
+<script type="text/javascript">
+var input = document.getElementById("query4");
 input.addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.keyCode == 13) {
-    	// both duckduckgo and startpage work fine
-	    window.location = "https://www.startpage.com/do/search?query=site:beast2.org+" + input.value;
-	    //window.location = "https://www.duckduckgo.com/?q=site:beast2.org+" + input.value;
-	    // google requires the user to hit enter again when redirected to google.com
-	    //window.location = "https://www.google.com/?q=site:beast2.org+" + input.value;
+        // both duckduckgo and startpage work fine
+            window.location = "https://www.startpage.com/do/search?query=site:beast2.org+" + input.value;
+            //window.location = "https://www.duckduckgo.com/?q=site:beast2.org+" + input.value;
+            // google requires the user to hit enter again when redirected to google.com
+            //window.location = "https://www.google.com/?q=site:beast2.org+" + input.value;
     }
 });
-
-
-var p = document.getElementById("primary-navigation");
-var rect = p.getBoundingClientRect();
-var h = rect.top;//p.offsetTop;
-
-$(window).scroll(function(){
-	var doc = document.documentElement;
-	
-    var classString = doc.className;
-    var nameIndex = classString.indexOf('masthead-fixed');
-    if (document.documentElement.scrollTop > h) { //p.offsetTop) { 
-    	if (nameIndex == -1) {
-        	classString += ' masthead-fixed';
-    	}
-	} else {
-    	if (nameIndex != -1) {
-        	classString = classString.substr(0, nameIndex) + classString.substr(nameIndex + 14);
-		}
-	}
-    doc.className = classString;
-
-//  $('#primary-navigation').toggleClass('scrolling', $(window).scrollTop() > $('#primary-navigation').offset().top);
-});
+</script>
 
 </script>

@@ -1,7 +1,226 @@
-  <head>
-    
-    <title>{{ site.title }}</title>
+		<div id="site-header">
+		<a href="https://www.beast2.org/" rel="home">
+			<img src="{{site-baseurl}}/images/cropped-Beast2-logo.jpg" alt="BEAST2" width="1260" height="148">
+		</a>
+	</div>
 
-    {% include style.html %}
-    {% include scripts.html %}
-  </head>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>{{ site.title }}</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://www.beast2.org/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="https://www.beast2.org/wp-content/themes/twentyfourteen/js/html5.js"></script>
+	<![endif]-->
+	<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="BEAST2 » Feed" href="https://www.beast2.org/feed/">
+<link rel="alternate" type="application/rss+xml" title="BEAST2 » Comments Feed" href="https://www.beast2.org/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="BEAST2 » About Comments Feed" href="https://www.beast2.org/download/feed/">
+		<script type="text/javascript" async="" src="{{site.baseurl}}/js/ga.js"></script><script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/beast2.blogs.auckland.ac.nz\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.5"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="{{site.baseurl}}/js/wp-emoji-release.js" type="text/javascript" defer="defer"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="dashicons-css" href="{{site.baseurl}}/css/dashicons.css" type="text/css" media="all">
+<link rel="stylesheet" id="admin-bar-css" href="{{site.baseurl}}/css/admin-bar.css" type="text/css" media="all">
+<link rel="stylesheet" id="lean-captcha-css-css" href="{{site.baseurl}}/css/lean-captcha.css" type="text/css" media="all">
+<link rel="stylesheet" id="twentyfourteen-lato-css" href="{{site.baseurl}}/css/css.css" type="text/css" media="all">
+<link rel="stylesheet" id="genericons-css" href="{{site.baseurl}}/css/genericons.css" type="text/css" media="all">
+<link rel="stylesheet" id="twentyfourteen-style-css" href="{{site.baseurl}}/css/style.css" type="text/css" media="all">
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentyfourteen-ie-css'  href='https://www.beast2.org/wp-content/themes/twentyfourteen/css/ie.css?ver=20131205' type='text/css' media='all' />
+<![endif]-->
+<link rel="stylesheet" id="subscribe-by-email-widget-css-css" href="{{site.baseurl}}/css/widget.css" type="text/css" media="all">
+<link rel="stylesheet" id="toc-screen-css" href="{{site.baseurl}}/css/screen.css" type="text/css" media="all">
+<script type="text/javascript">
+/* <![CDATA[ */
+var ajaxurl = "https:\/\/www.beast2.org\/wp-admin\/admin-ajax.php";
+var msreader_featured_posts = {"saving":"Saving...","post_featured":"This post is featured","feature":"Feature","unfeature":"Unfeature"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="{{site.baseurl}}/js/jquery.js"></script>
+<script type="text/javascript" src="{{site.baseurl}}/js/jquery-migrate.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var tocplus = {"visibility_show":"show","visibility_hide":"hide","width":"Auto"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="{{site.baseurl}}/js/front.js"></script>
+<link rel="https://api.w.org/" href="https://www.beast2.org/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.beast2.org/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://beast2.blogs.auckland.ac.nz/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="University of Auckland Blogs Sites">
+
+<link rel="canonical" href="https://www.beast2.org/">
+<link rel="shortlink" href="https://www.beast2.org/">
+<link rel="alternate" type="application/json+oembed" href="https://www.beast2.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.beast2.org%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.beast2.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.beast2.org%2F&amp;format=xml">
+			<script type="text/javascript">
+				var _gaq = _gaq || [];
+
+				
+									_gaq.push(['b._setAccount', 'UA-47201501-1']);
+                    					_gaq.push(['b._trackPageview']);
+				
+				(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                				    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+				})();
+			</script>
+
+        <style id="simpler-css-style" type="text/css">
+.site-content .entry-header,
+.site-content .entry-content,
+.site-content .entry-summary,
+.site-content .entry-meta,
+.page-content {
+max-width:800px;
+}
+
+.site::before {
+background-color:#fff;
+}
+
+.site-header {
+background-color:#fff;
+}
+
+.site-title {
+font-size:48px;
+}
+
+.search-toggle:hover,.search-toggle.active {
+background-color:#000;
+}
+
+.search-toggle {
+background-color:#569dd5;
+}
+
+.search-box {
+background-color:#569dd5;
+}
+
+.site-navigation .current_page_item > a,.site-navigation .current_page_ancestor > a,.site-navigation .current-menu-item > a,.site-navigation .current-menu-ancestor > a {
+color:#569dd5;
+}
+
+.primary-navigation li:hover > a,.primary-navigation li.focus > a {
+background-color:#569dd5;
+color:#000;
+}
+
+.primary-navigation ul ul a:hover,.primary-navigation ul ul li.focus > a {
+background-color:#000;
+color:#fff;
+}
+
+.site-navigation a {
+color:#000;
+}
+
+.primary-navigation ul ul {
+background-color:#569dd5;
+}
+
+.secondary-navigation a {
+font-family:Helvetica,Arial,sans-serif;
+font-size:18px;
+font-weight:600;
+background-color:#ffffff;
+color:#000000;
+}
+
+#secondary,#main,#page {
+background-color:#ffffff;
+color:#000000;
+}
+
+.secondary-navigation li:hover > a,.secondary-navigation li.focus > a {
+background-color:#ffffff;
+color:#569dd5;
+}
+
+.entry-meta a {
+display:none;
+}
+
+.entry-content a,.entry-summary a,.page-content a,.comment-content a {
+text-decoration:none;
+color:#569dd5;
+}
+
+a {
+color:#569dd5;
+}
+
+.widget_recent_entries a {
+color:#000;
+}
+
+.widget_recent_entries a:hover {
+text-decoration:underline;
+color:#000;
+}
+
+.widget-title {
+color:#000;
+}
+
+.post-date {
+color:#aaa;
+}
+
+.site-info, .site-description {
+display:none;
+}
+
+button,.button,input[type=button],input[type=reset],input[type=submit] {
+background-color:#000;
+}
+
+body { 
+    background-color: inherit; 
+    }
+</style><!-- end of custom css -->
+<style type="text/css">
+        #wp-admin-bar-msreader-follow {width: 100px;}
+        #wp-admin-bar-msreader-follow .hover-text {display:none;}
+        #wp-admin-bar-msreader-follow:hover .hover-text {display:inline;}
+        #wp-admin-bar-msreader-follow:hover .current-text {display:none;}
+        #wp-admin-bar-msreader-follow .ab-item .ab-icon:before {content: "\f487"; top: 2px;}
+        #wp-admin-bar-msreader-follow.following .ab-item .ab-icon:before {color: #d54e21;}
+        #wp-admin-bar-msreader-follow.following:hover .ab-item .ab-icon:before {color: #999;}
+        #wp-admin-bar-msreader-follow.following:hover .ab-item {color: #999 !important;}</style><style type="text/css">
+/* <![CDATA[ */
+img.latex { vertical-align: middle; border: none; }
+/* ]]> */
+</style>
+<style type="text/css" media="print">#wpadminbar { display:none; }</style>
+<style type="text/css" media="screen">
+	html { margin-top: 32px !important; }
+	* html body { margin-top: 32px !important; }
+	@media screen and ( max-width: 782px ) {
+		html { margin-top: 46px !important; }
+		* html body { margin-top: 46px !important; }
+	}
+</style>
+<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/css/shCore.css"><link rel="stylesheet" type="text/css" href="{{site.baseurl}}/css/shThemeEclipse.css"><style type="text/css" id="syntaxhighlighteranchor"></style>
+</head>

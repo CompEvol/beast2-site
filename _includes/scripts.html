@@ -1,17 +1,2 @@
 {% include analytics.html %}
 <script src="{{site.baseurl}}/js/jquery-3.1.1.min.js"></script>
-
-<script>
-function resize() {
-	var width = $(document).width();
-	if (width < 1000) {
-		// move menu to the bottom
-		$("#recent-posts").appendTo("#bottomnavbar");
-		
-	} else {
-		// move menu to the top
-		$("#recent-posts").prependTo("#topnavbar");
-	}
-}
-
-</script>

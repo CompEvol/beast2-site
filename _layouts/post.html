@@ -1,47 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+{% include header.html %}
 
-    {% include header.html %}
+<body class="single single-post postid-1306 single-format-standard custom-background group-blog header-image full-width footer-widgets singular">
+ 	{% include navbar.html %}
 
-    <body onresize="resize()">
-        {% include navbar.html %}
-        <div id="topnavbar">
-	        {% include sidebar.html %}
-        </div>
+	<div id="main" class="site-main">
 
-        <article class="page type-page status-publish">
-            <div id="main" class="site-main">
-                <div id="main-content" class="main-content">
-                    <div id="primary" class="content-area">
-                        <header class="entry-header"><h1 class="entry-title">{{page.title}}</h1></header>
-                        <div id="content" class="site-content" role="main">
-                            {{ content }}	
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+			
+<article id="post-1306" class="post-1306 post type-post status-publish format-standard hentry category-blog">
+	
+	<header class="entry-header">
+				<div class="entry-meta">
+			<span class="cat-links"><a href="http://beast2.org/category/blog/" rel="category tag">Blog</a></span>
+		</div>
+		<h1 class="entry-title">{{page.title}}</h1>
+		<div class="entry-meta">
+			<span class="entry-date"><a href="http://beast2.org/2016/11/09/what-is-new-in-v2-4-4/" rel="bookmark"><time class="entry-date" datetime="2016-11-09T18:47:55+00:00">November 9, 2016</time></a></span> <span class="byline"><span class="author vcard"><a class="url fn n" href="http://beast2.org/author/rbou019/" rel="author">rbou019</a></span></span>		</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
 
-                            <footer class="entry-meta"><span class="tag-links">
-                                    {% for tag in page.tags %}
-                                    <a href="https://www.startpage.com/do/search?query=site:beast2.org+{{tag}}" rel="tag">{{tag}}</a>
-                                    {% endfor %}
-                                </span></footer>
+		<div class="entry-content">
+		
+		{{page.content}}
+	</div><!-- .entry-content -->
+	<footer class="entry-meta"><span class="tag-links">
+  {% for tag in page.tags %}
+	<a href="https://www.startpage.com/do/search?query=site:beast2.org+{{tag}}" rel="tag">{{tag}}</a>
+  {% endfor %}
+	</span></footer>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <div id="bottomnavbar"></div>
+	</article><!-- #post-## -->
+	
+	<nav class="navigation post-navigation" role="navigation">
+	<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+  {% if page.previous.url %}
+	<a href="{{site.baseurl}}{{page.previous.url}}" rel="prev"><span class="meta-nav">Previous Post</span>&laquo; {{page.previous.title}}</a>
+  {% endif %}
+  {% if page.next.url %}
+    <a class="next" href="{{site.baseurl}}{{page.next.url}}" rel="next"><span class="meta-nav">Next Post</span>{{page.next.title}} &raquo;</a>
+  {% endif %}
+  	<a href="{{site.baseurl}}/blogindex.html">Blog index<a>
+		</div>
+</nav>
+			</div><!-- #content -->
+	</div><!-- #primary -->
 
-        <nav class="navigation post-navigation" role="navigation">
-            <h1 class="screen-reader-text">Post navigation</h1>
-            <div class="nav-links">
-                {% if page.previous.url %}
-                <a href="{{site.baseurl}}{{page.previous.url}}" rel="prev"><span class="meta-nav">Previous Post</span>&laquo; {{page.previous.title}}</a>
-                {% endif %}
-                {% if page.next.url %}
-                <a class="next" href="{{site.baseurl}}{{page.next.url}}" rel="next"><span class="meta-nav">Next Post</span>{{page.next.title}} &raquo;</a>
-                {% endif %}
-                <a href="{{site.baseurl}}/blogindex.html">Blog index<a>
-            </div>
-        </nav>
+<div id="secondary">
+		<h2 class="site-description">Bayesian evolutionary analysis by sampling trees</h2>
+	
+		{% include sidebar.html %}	
 
-    </body>
+	</div><!-- #secondary -->
+
+		</div><!-- #main -->
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			
+<div id="supplementary">
+	<div id="footer-sidebar" class="footer-sidebar widget-area" role="complementary">
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+	<script type='text/javascript'>
+/* <![CDATA[ */
+var tocplus = {"visibility_show":"show","visibility_hide":"hide","visibility_hide_by_default":"1","width":"Auto"};
+/* ]]> */
+</script>
+<!--
+<script type='text/javascript' src='{{site-baseurl}}/js/front.min.js?ver=1509'></script>
+<script type='text/javascript' src='{{site-baseurl}}/js/masonry.min.js?ver=3.1.2'></script>
+<script type='text/javascript' src='{{site-baseurl}}/js/jquery/jquery.masonry.min.js?ver=3.1.2'></script>
+<script type='text/javascript' src='{{site-baseurl}}/js/functions.js?ver=20150315'></script>
+<script type='text/javascript' src='{{site-baseurl}}/js/wp-embed.min.js?ver=5fbbb3823dc346821e15876ccc1becb1'></script>
+-->
+<script type='text/javascript' src='{{site-baseurl}}/js/functions.js?ver=20150315'></script>
+    <!-- BEGIN: wpflow ga events array -->
+    <script>
+
+                jQuery(document).ready(function() {
+                    scroll_events.bind_events( {
+                        universal: 1,
+                        scroll_elements: [{'select':'#Tutorials','category':'Tutorials','action':'scroll','label':'scrolled to Tutorials','bounce':'false'},{'select':'#Getting_Started','category':'About','action':'scroll','label':'scrolled to Getting_Started','bounce':'false'},{'select':'#Introduction','category':'FAQ','action':'scroll','label':'scrolled to Introduction','bounce':'false'}],
+                        click_elements: [{'select':'#windowsDownload','category':'Windows Download','action':'Windows Download','label':'Windows Download','bounce':'false'},{'select':'#macDownload','category':'Mac Download','action':'Mac Download','label':'Mac Download','bounce':'false'},{'select':'#linuxDownload','category':'Linux Download','action':'Linux Download','label':'Linux Download','bounce':'false'}],
+                    });
+                });
+
+    </script>
+    <!-- END: wpflow ga events array --></body>
 </html>
