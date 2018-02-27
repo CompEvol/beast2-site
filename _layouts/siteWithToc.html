@@ -3,11 +3,13 @@
 
     {% include header.html %}
 
-    <body>
+    <body onresize="resize()" onload="resize()">
         {% include navbar.html %}
-        {% include sidebar.html %}
+        <div id="topnavbar">
+	        {% include sidebar.html %}
+        </div>
 
-        <article class="page type-page status-publish">
+        <article id="article"  class="page type-page status-publish">
 
             <div id="main" class="site-main">
                 <div id="main-content" class="main-content">
@@ -20,6 +22,7 @@
                 </div>
             </div>
         </article>
+        <div id="bottomnavbar"></div>
 
 
         <!-- generate toc -->

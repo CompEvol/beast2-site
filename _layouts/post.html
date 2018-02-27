@@ -3,9 +3,11 @@
 
     {% include header.html %}
 
-    <body>
+    <body onresize="resize()">
         {% include navbar.html %}
-        {% include sidebar.html %}
+        <div id="topnavbar">
+	        {% include sidebar.html %}
+        </div>
 
         <article class="page type-page status-publish">
             <div id="main" class="site-main">
@@ -26,6 +28,7 @@
                 </div>
             </div>
         </article>
+        <div id="bottomnavbar"></div>
 
         <nav class="navigation post-navigation" role="navigation">
             <h1 class="screen-reader-text">Post navigation</h1>
