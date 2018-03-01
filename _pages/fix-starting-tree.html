@@ -41,6 +41,33 @@ tags: []
 <ul>
 <li>if you added constraints to the RandomTree in &#8220;constraint&#8221;-elements, these should not be moved to TreeParser. TreeParser does not rely on constraints to initialise, so these constraints should be moved outside the RandomTree to the top level of the XML (just inside the &#8220;beast&#8221;-element).</li>
 </ul>
-<p>For more information about starting threes, including for *BEAST, see <a href="../2014/07/28/all-about-starting-trees.html">All about starting trees</a>.</p>
+<p>For more information about starting threes, including for *BEAST, see <a href="/2014/07/28/all-about-starting-trees/">All about starting trees</a>.</p>
 	
 
+
+<h2>Fix the tree throughout BEAST run</h2>
+
+If you want to keep the tree fixed during the MCMC chain, you need to remove operators that operate on the tree. To remove an operator you can
+<ul>
+<li>set the operator weight to 0, in the operator panel in BEAUti (make sure the operator panel is visible by selecting the View/Show Operators panel menu first), or</li>
+<li>set the operator weight to 0 in the XML, or</li>
+<li>comment out (wrap inside &lt;!-- and --&gt;) or delete the operator by editing the XML</li>
+</ul>
+For a standard analysis (one generated in BEAUti using the Standard template) you can keep the topology fixed by removing the following operators
+<ul>
+<li>Wide-exchange, which are elements with spec="Exchange" and isNarrow="false" </li>
+<li>Narrow-exchange, elements with spec="Exchange" and isNarrow not specified </li>
+<li>Wilson-Balding, elements with spec="WilsonBalding"</li>
+<li>Subtree-slide, elements with spec="SubtreeSlide"</li>
+</ul>
+
+If you also want to keep the height of the internal nodes fixed, on top of removing the above operators you need to remove 
+<ul>
+<li>Tree-scaler, which are elements with spec="ScaleOperator" and id containing "TreeScaler"</li>
+<li>Tree-root-scaler, elements with spec="ScaleOperator" and id containing "TreeRootScaler"</li>
+<li>Uniform, elements with spec="Uniform"</li>
+<li>Up-down-operators, elements with spec="UpDownOperator" containing the tree as "up" or "down" input.</li>
+</ul>
+
+
+For a *BEAST analysis (one generated in BEAUti using the StarBeast template) the same applies to gene trees, but the species tree uses a NodeReheight operator that changes both topology and internal node heights.
