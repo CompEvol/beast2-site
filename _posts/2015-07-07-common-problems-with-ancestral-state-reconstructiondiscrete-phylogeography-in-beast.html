@@ -8,7 +8,7 @@ tags: []
 
 		
 		<p style="color:gray">7 July 2015 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
-<p>These are a few issues that can pop up when doing ancestral reconstruction aka discrete phylogegraphy as outlined in the <a href="index.html">Ancestral reconstruction tutorial</a> following the model of <a href='http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000520'>Lemey et al, 2009</a>.</p>
+<p>These are a few issues that can pop up when doing ancestral reconstruction aka discrete phylogegraphy as outlined in the <a href="https://github.com/BEAST2-Dev/beast-classic/releases/download/v1.3.0/ARv2.4.1.pdf">Ancestral reconstruction tutorial</a> following the model of <a href='http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000520'>Lemey et al, 2009</a>.</p>
 <h2>Too many states</h2>
 <p>When doing a phylogeographical analysis, it is tempting to split up the samples in as fine a geographic classification as the available data allows &#8212; for instance by splitting the samples by country of origin. This can lead to a large number of states/countries. The more states are defined, the more rates need to be estimated. For an analysis with <tt>N</tt> states, at least <tt>N-1</tt> rates need to be specified in order to be able to get from any one state to any other (possibly through a set of other states), and this is a requirement for the likelihood to be larger than zero. </p>
 <p>So, it depends on the number of samples what a reasonable number of states can be; more samples allow for more states. I have seen a number of cases where it was attempted to use a number of states more than half the number of states. In such cases, it makes sense to merge states (combine different countries into larger regions)</p>
@@ -47,7 +47,7 @@ P(posterior) = -Infinity (was NaN)
 So, what you can do if you have <tt>N</tt> states is set up a set of values such that only the <tt>N-1</tt> rates along the diagonal are true.
 </ul>
 <h2>Analysis does not converge</h2>
-<p>There are many reasons an analysis does not converge (there are several sections on it in the <a href="index.html">book</a> and <a href="http://beast2.org/how-do-i-increase-the-ess-of-a-parameter/">tips on how to increase ESS</a>). Probably, the first you want to do is make sure <a href="http://beast2.org/2015/06/23/help-beast-acts-weird-or-how-to-set-up-rates/">rates are set up correctly</a>. </p>
+<p>There are many reasons an analysis does not converge (there are several sections on it in the <a href="/book/">book</a> and <a href="http://beast2.org/how-do-i-increase-the-ess-of-a-parameter/">tips on how to increase ESS</a>). Probably, the first you want to do is make sure <a href="http://beast2.org/2015/06/23/help-beast-acts-weird-or-how-to-set-up-rates/">rates are set up correctly</a>. </p>
 <p>A specific reasons for the ancestral state reconstruction to fail include that there are too many states, hence there is not enough data for the rates to be estimated.</p>
 <h2>Numeric instability with asymmetric analysis</h2>
 <p>By default, the ancestral reconstruction uses a symmetric rate matrix, like her on the left.</p>
