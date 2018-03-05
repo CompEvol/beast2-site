@@ -13,14 +13,14 @@ tags: [snapp]
 <li>In the XML file, look for the tag determining the likelihood distribution within the tag determining the posterior distribution:</li>
 </ol>
 {% highlight xml %}  
-    
-       
-          
-                    ...
-          
-        
-    
-  
+<distribution id="treeLikelihood.aflp_25" spec="snap.likelihood.SnAPTreeLikelihood" dominant="true" data="@snap.aflp_25" pattern="coalescenceRate" tree="@Tree.aflp_25">
+   <siteModel id="MutationSiteModel.aflp_25" spec="SiteModel">
+        <parameter id="mutationRate" estimate="false" name="mutationRate">1.0</parameter>
+        <parameter id="shape" estimate="false" name="shape">2.0</parameter>
+        <parameter id="proportionInvariant" estimate="false" name="proportionInvariant">0.0</parameter>
+        <substModel id="MutationModel" spec="snap.likelihood.SnapSubstitutionModel" coalescenceRate="@coalescenceRate" mutationRateU="@u" mutationRateV="@v"/>
+    </siteModel>
+</distribution>
 {% endhighlight %}
 <p>Insert the option `dominant = "true"' as above.</p>
 <h3><span id="How_can_I_do_species_delimitation_with_SNP.2FAFLP_data.3F" class="mw-headline">How can I do species delimitation with SNP/AFLP data?</span></h3>
