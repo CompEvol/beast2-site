@@ -6,7 +6,7 @@ tags: [ess]
 
 	
 		
-<p>The <a title="Glossary" href="../glossary/index.html#ESS">Effective Sample Size (ESS)</a> of a parameter sampled from an <a title="Glossary" href="{{site.baseurl}}/Glossary/index#MCMC">MCMC</a> (such as <a title="BEAST" href="{{site.baseurl}}/">BEAST</a>) is the number of effectively independent draws from the posterior distribution that the Markov chain is equivalent to.</p>
+<p>The <a title="Glossary" href="../glossary/index.html#ESS">Effective Sample Size (ESS)</a> of a parameter sampled from an <a title="Glossary" href="{{site.baseurl}}/glossary/index#MCMC">MCMC</a> (such as <a title="BEAST" href="{{site.baseurl}}/">BEAST</a>) is the number of effectively independent draws from the posterior distribution that the Markov chain is equivalent to.</p>
 <h4>How do I calculate an ESS?</h4>
 <dl>
 <dd>The simplest way is to load your <a title="BEAST" href="{{site.baseurl}}/">BEAST</a> log files into <a title="Tracer" href="{{site.baseurl}}/tracer-2">Tracer</a>.</dd>
@@ -21,11 +21,11 @@ tags: [ess]
 </dl>
 <h4>Do I need adequate ESSs for all my parameters?</h4>
 <dl>
-<dd>Possibly not. Really low ESSs may be indicative of poor <a title="Glossary" href="{{site.baseurl}}/Glossary/index.html#Mixing">mixing</a> but if a couple of parameters that you are not interested in are a little low it probably doesn&#8217;t matter. The likelihoods (both of the tree and coalescent model) should have decent ESSs.</dd>
+<dd>Possibly not. Really low ESSs may be indicative of poor <a title="Glossary" href="{{site.baseurl}}/glossary/index.html#Mixing">mixing</a> but if a couple of parameters that you are not interested in are a little low it probably doesn&#8217;t matter. The likelihoods (both of the tree and coalescent model) should have decent ESSs.</dd>
 </dl>
 <h4>Is the ESS important if I am interested in the sample of trees?</h4>
 <dl>
-<dd>Definitely. At the moment we don&#8217;t have anyway of directly examining the ESS of the tree or the clade frequencies. Therefore, it is important that the continuous parameters and likelihoods have adequate ESS to demonstrate good <a title="Glossary" href="{{site.baseurl}}/Glossary/index.html#Mixing">mixing</a> of the MCMC.</dd>
+<dd>Definitely. At the moment we don&#8217;t have anyway of directly examining the ESS of the tree or the clade frequencies. Therefore, it is important that the continuous parameters and likelihoods have adequate ESS to demonstrate good <a title="Glossary" href="{{site.baseurl}}/glossary/index.html#Mixing">mixing</a> of the MCMC.</dd>
 </dl>
 	
 
