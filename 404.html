@@ -9,15 +9,15 @@ permalink: /404.html
 <p>It looks like nothing was found at this location. Maybe try a search?</p>
 
 <p>
-<input id="query2" type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+<input id="queryS" type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
 </p>
 <script>
-var input = document.getElementById("query2");
-input.addEventListener("keyup", function(event) {
+var inputS = document.getElementById("queryS");
+inputS.addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.keyCode == 13) {
     	// both duckduckgo and startpage work fine
-	    window.location = "https://www.startpage.com/do/search?query=site:beast2.org+" + input.value;
+	    window.location = "https://www.startpage.com/do/search?query=site:beast2.org+" + inputS.value;
 	    //window.location = "https://www.duckduckgo.com/?q=site:beast2.org+" + input.value;
 	    // google requires the user to hit enter again when redirected to google.com
 	    //window.location = "https://www.google.com/?q=site:beast2.org+" + input.value;
