@@ -1,0 +1,67 @@
+---
+layout: post
+title: 10+ ways to generate BEAST XML
+tags: []
+---
+By <a href="mailto:remco@cs.auckland.ac.nz">Remco Bouckaert</a>
+
+<p>Every self respecting BEAST developer has encountered the problem of wanting to create a lot of XML files, for example for a simulation study, and using BEAUti just takes too long. It seems there are as many ways to generate XML as there are developers. Here is a non-exhaustive list in no particular order of things people have done in the past to generate XML.
+
+<h2>Roll your own Java</h2>
+
+There are a few classes in BEAST that can be useful for generating XML, in particular <a href="https://github.com/CompEvol/beast2/blob/master/src/beast/app/seqgen/SequenceSimulator.java"><code>beast.app.seqgen.SequenceSimulator</code></a> to simulate sequences on a tree, <a href="https://github.com/CompEvol/beast2/blob/master/src/beast/app/seqgen/MergeDataWith.java"><code>beast.app.seqgen.MergeDataWith</code></a> to merge the generated alignment with an XML file, and  <a href="href="https://github.com/CompEvol/beast2/blob/master/src/beast/util/XMLProducer.java"><code>beast.util.XMLProducer</code></a>.
+
+<h2>Use BEAST XML</h2>
+
+<p>You can use XML to generate new XML in BEAST, as explained here: <a href="/2014/04/28/simulation-studies-with-beast-2.html">simulation studies with BEAST 2</a>. BEAST v2.5 (available soon) will have a command line interface to replace variables in the XML, allowing say 
+<p><code>&lt;run chainLength="$(chainLength)" ...</code> 
+<p>to be replaced by a number from the command line when running 
+<p><code>beast -D "chainLength=1000000" file.xml </code>
+<p>so it will be interpreted as  
+<p><code>&lt;run chainLength="1000000" ...</code>.
+
+<h2>BEASTGen</h2>
+
+<a href="http://beast.community/beastgen">BEASTGen</a> by Andre Rambaut is part of BEAST 1, but is a generic XML producer from templates, so it can produce BEAST 2 XML as well. It has functionality to recognise alignment files, so you can refer to NEXUS and FASTA files to include in the XML.
+
+<h2>BEASTmasteR</h2>
+
+<a href="http://phylo.wikidot.com/beastmaster">BEASTmasteR</a> by Nick Matzke is based on R. The purpose of BEASTmasteR is to convert NEXUS data file(s) (DNA, amino acids, discrete morphological characters, and/or continuous traits), plus an Excel settings file, into Beast2 XML format.
+
+<h2>MiXeL</h2>
+
+MiXeL by Joseph Heled is based on python and uses XML template files that can be mixed and matched.
+
+<h2>BEASTLing</h2>
+
+<a href="https://beastling.readthedocs.io/en/latest/">BEASTLing</a> by Luke Mauritz et al aim specifically at generating BEAST XML for linguistic analyses.
+
+<h2>babette</h2>
+
+<a href="https://github.com/richelbilderbeek/babette">babette</a> by Richelle Bilderbeek and Rampal Etienne stands for "BEAUti 2, BEAST2 and Tracer for R" aims to aid in the workflow or performing an analysis through scripting in R.
+
+
+<h2>BEAST2XML</h2>
+
+<a href="https://github.com/acorg/beast2-xml">BEAST2XML</a> by Terry Jones is a simple command line python script to generate BEAST 2 XML files.
+
+<h2>BEASTShell</h2>
+
+<a href="https://github.com/CompEvol/beastshell">BEAST2XML</a> is based on Bean Shell and integrated with BEAST. This <a href="/2014/06/02/simulation-studies-with-beastshell.html">post</a> explains how to use it to generate XML.
+
+
+<h2>Beasy</h2>
+
+<a href="https://github.com/rbouckaert/compactanalysis">Beasy</a> is a Java based attempt by myself to use the power of BEAUti templates. Unlike most of the above approaches, when new packages get added no custom scripts are required to be able to use the new packages when there is a BEAUti template. It is still in development...
+
+<p>&nbsp;
+<p>If you know any other ways to generate XML, please let me know.
+
+<h3>References</h3>
+
+<p>Matzke, Nicholas J. (2015). "BEASTmasteR: R tools for automated conversion of NEXUS data to BEAST2 XML format, for fossil tip-dating and other uses." 
+
+<p>Richel J.C. Bilderbeek, Rampal S. Etienne. babette: BEAUti 2, BEAST2 and Tracer for R
+doi: https://doi.org/10.1101/271866 
+
+<p>Maurits, Luke, Robert Forkel, Gereon A. Kaiping, and Quentin D. Atkinson. "BEASTling: A software tool for linguistic phylogenetics using BEAST 2." PloS one 12, no. 8 (2017): e0180908.
