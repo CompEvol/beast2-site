@@ -1,0 +1,111 @@
+---
+layout: post
+title: Break-away Phylogeography
+tags: []
+---
+<p>By <a href="mailto:remco@cs.auckland.ac.nz">Remco Bouckaert</a>
+
+<p>This post is in celebration of our <a href="http://dx.doi.org/10.1038/s41559-018-0489-3">paper</a> on the origin and expansion of Pama-Nyungang languages, the largest language family of Australia that appeared today. In this paper, we introduced a new method of phylogeography: the founder-dispersal model aka the break-away model. A site that aims to make the material more accessible is <a href="http://BreakAway.compevol.auckland.ac.nz/">here</a>. 
+
+<center><img src="/images/pamanyungan.gif" width="80%"/></center>
+
+<p>The idea behind the model is that at every split in the tree, one of the populations stays in the same place, and the other migrates. This is unlike other diffusion based methods, that assume that there is migration along both branches of the tree. It seems more intuitive that if a location contains a population, there must be a reason the population is there, e.g. a lot of resources being available. So, there should not be a reason for both populations to migrate, one of them could stay.
+
+<center><img src="/images/breakaway.svg" width="60%"/></center>
+
+The image above shows an example with 5 tip locations. Starting at the root, the bottom branch remains in E and the top branch migrates to A. Branches are colour coded so you can track where the node locations come from. One of the consequences is that internal nodes, including the root, can only be found in locations where a tip was sampled, which admittedly sounds a bit counterintuitive at first.
+
+<!--*********************************************-->
+<h2>Known limitations</h2>
+
+<p>At the time of writing, there are a few limitations to this model.
+
+<p>Due to the lack of a good initialiser, this only works without tree initialisers, so you need to remove them from the XML. The tree does not need to be close to the posterior, it can be sampled from the prior, but the tree must not have a tree-initialiser.
+
+<p>Priors on the location of taxa or a clade (including root) are not implemented yet. This should not be hard once a good initialiser is developed.
+
+<h2>Setting up an analysis</h2>
+
+<p>To set up an analysis, you need to <a href="/managing-packages/">install</a> the break-away package. See <a href="https://github.com/rbouckaert/break-away/wiki">here</a> on how to install.
+
+<p>At the time of writing, there is no BEAUti support, so you have to edit the XML in order to do this. First, you can set up an analysis in BEAUti that contains all models and data that you want, except for the geography part. For branches that allow migration, we assume spherical diffusion, though the <a href="http://dx.doi.org/10.1038/s41559-018-0489-3">paper</a> describes a few models that allow different rates depending on the underlying landscape -- but that will be for another post. 
+
+<h3>Step 1: remove tree initialisers</h3>
+
+The stateNode containing the tree that will be used is typically initialised by a <code>RandomTree</code> inside an <code>init</code> element. Remove that element and if you have monophyletic or age constraints on the tree, use <code>TreeParser</code> in the tree stateNode. More about starting trees <a href="/2014/07/28/all-about-starting-trees.html">here</a>.
+
+<h3>Step 2: add location parameter</h3>
+
+We need a location parameter, the precision for the diffusion model, and potentially a number of parameters for the clock model. Here, we add a strict clock, but a relaxed clock tends to fit well in general. For a strict clock, either the clock rate or the precision needs to be specified. Here, we specify the precision. Add the following two lines to the state:
+
+{% highlight xml %}
+<stateNode id="location.BreakAway" spec='parameter.IntegerParameter' minordimension="1" dimension="8" value='0' estimate="true" />
+<stateNode id="precision.s:BreakAway" spec="parameter.RealParameter" minordimension="1" estimate="true" value="0.001" lower="0.0"/>
+{% endhighlight %}
+
+<h3>Step 3: add priors on parameters</h3>
+
+We assume a uniform prior on the precision, with small lower bound and large upper bound to prevent numerical issues -- check that this is appropriate for your data by ensuring the distribution does not hug the upper or lower bound in Tracer. If so, these bounds may need changing.
+{% highlight xml %}
+<prior id="precisionPrior.BreakAway" x="@precision.s:BreakAway" name="distribution">
+	<distr spec="Uniform" lower="0.001" upper="150000.0"/>
+</prior>
+{% endhighlight %}
+
+<h3>Step 4: add likelihood</h3>
+<p>We will assume that the tree partition is called <code>tree</code>. If your analysis uses a different name -- say <code>DNA</code> -- for the tree-partition, you need to change <code>Tree.t:tree</code> to <code>Tree.t:DNA</code> in the XML below. Furthermore, we assume there is a taxonset with <code>id="TaxonSet.all"</code> containing all taxa in the tree. You may need to change the reference to <code>TaxonSet.all</code> below if that taxonset has a different ID.
+
+<p>Locations are encoded as latitude-longitude pairs, and separated by a comma. Each of the taxa in the tree should have a location associated with it. Make sure to use correct spelling of taxon names.
+
+{% highlight xml %}
+ <distribution id="geolikelihood" spec="beast.geo.SampledTraitLikelihood" tree="@Tree.t:tree">
+     <model id='model' spec='beast.geo.DistanceBasedDiffusionModel' precision="@precision.s:BreakAway" init='@location.BreakAway' tree='@Tree.t:tree' taxonset='@TaxonSet.all'>
+       <location spec="beast.geo.IslandHopLocationParameter" tree="@Tree.t:tree" location="@location.BreakAway"/>
+Badimaya	= -28.3 117.3,
+ChampionBay	= -28.8	114.5,
+CentralAnmatyerr = -21.9	133.4,
+<!-- more locations here, one for each taxon -->
+    </model>
+    <branchRateModel id="StrictClock.c:geo" spec="StrictClockModel" clock.rate="1.0"/>
+</distribution>
+ {% endhighlight %}
+If you want to use a relaxed clock model, you need to replace the branchRateModel entry in the XML above, and add appropriate parameters to the state, priors, and operators.
+
+<h3>Step 5: add operators</h3>
+We add a scale operator for the precision, an <code>IslandHopOperator</code> that changes which branch stays and which one goes. Further, for every operator that changes the tree topology (like the Wilson Balding, wide and narrow exchange and subtree-slide operators) we add a <code>IslandHopeMetaOperator</code>, which changes the assignment of locations for only those nodes for which parents or children changed.
+{% highlight xml %}
+<operator id="precisionScaler.s:BreakAway" spec="ScaleOperator" parameter="@precision.s:BreakAway" weight="3" scaleFactor="0.7"/>
+    <operator id="islandHopper.s:BreakAway" spec="beast.geo.IslandHopOperator" tree="@Tree.t:tree" location="@location.BreakAway" weight="25"/>
+
+ <operator id="islandHopper.s:BreakAway" spec="beast.geo.IslandHopOperator" tree="@Tree.t:tree" location="@location.BreakAway" weight="25"/>
+
+<!-- for every operator that change the tree topology 
+	wrap it inside a IslandHopeMetaOperator
+-->
+<operator id="iHopSubtreeSlide" spec="beast.geo.IslandHopeMetaOperator" tree='@Tree.t:tree' location="@location.BreakAway" weight="15.0">
+	<operator id="SubtreeSlide.t:tree" spec="SubtreeSlide" tree="@Tree.t:tree" weight="15.0"/>
+</operator>
+{% endhighlight %}
+
+<h3>Step 6: add tree logger</h3>
+
+Replace the tree logger with the tree logger shown below:
+{% highlight xml %}
+<logger fileName="break-away.trees" id="treelog.t:BreakAway" logEvery="100000" mode="tree">
+	<log id="TreeWithMetaDataLogger.t:BreakAway" spec="beast.evolution.tree.TreeWithMetaDataLogger" tree="@Tree.t:tree" >
+		<metadata spec='beast.geo.LocationToLatLong2' id="location" model="@model" likelihood="@geolikelihood" value="0.0"/>
+	</log>
+</logger>
+{% endhighlight %}
+
+<!--*********************************************-->
+<h2>Analysing results</h2>
+
+<p> Since locations will be logged in the tree, just like for phylogeography based on diffusion on a plane or on a sphere, analysing the results is the same as for these other kind of phylogeography analyses. For example, the <a href="https://github.com/BEAST2-Dev/beast-geo/releases/download/v0.0.6/phylogeography_s.v0.1.1.pdf">tutorial</a> for diffusion on a sphere has more details.
+
+
+<!--*********************************************-->
+<h3>Reference</h3>
+
+Bouckaert, R., Bowern, C. &amp; Atkinson, Q. D. (2018) The origin and expansion of Pama-Nyungan languages across Australia, <i>Nature Ecology &amp; Evolution</i>.
+<a href="http://dx.doi.org/10.1038/s41559-018-0489-3">doi: 10.1038/s41559-018-0489-3</a>.
