@@ -85,7 +85,22 @@ var tocplus = {"visibility_show":"show","visibility_hide":"hide","width":"Auto"}
                 				    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
                 				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 				})();
+				
 			</script>
+<script type="text/javascript">
+/**
+* Function that tracks a click on an outbound link in Analytics.
+* This function takes a valid URL string as an argument, and uses that URL string
+* as the event label. Setting the transport method to 'beacon' lets the hit be sent
+* using 'navigator.sendBeacon' in browser that support it.
+*/
+var trackOutboundLink = function(url) {
+   ga('send', 'event', 'outbound', 'click', url, {
+     'transport': 'beacon',
+     'hitCallback': function(){document.location = url;}
+   });
+}
+</script>
 
         <style id="simpler-css-style" type="text/css">
 .site-content .entry-header,
