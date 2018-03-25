@@ -1,0 +1,66 @@
+---
+layout: post
+title: What will change in v2.5.0 for developers 
+tags: []
+---
+<p style="color:gray">March 2018 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+
+	
+<p>There are a few notable name changes, and there package loading is now no longer being done dynamically, but by pre-constructed classpath. This leads to much faster starting, but may require changes in debugging.</p>
+
+
+<h3>Name changes</h3>
+<p><p><tt>AddOnManager</tt> is now <tt>PackageManager</tt>.
+
+<p><code>BEAST_ADDON_PATH</code> is deprecated and you need to use <code>BEAST_PACKAGE_PATH</code> instead (though for a time both are recognised) in either environment variables or java properties.
+
+<p>In <code>version.xml</code> files for packages, the element <code>addonapp</code> should be replaced by <code>packageapp</code>, though the former will be recognised as long as there is no element of the latter (for now).
+
+<ul>
+<li>Packages require a <code>projectURL</code> field. Without the field, the package will not be displayed in the package manager.
+<li><code>appstore</code> is renamed to <code>applauncher</code>.
+<li><code>addonmanager</code> is renamed to <code>packagemanager</code>.
+</ul>
+
+<!--h3>Exceptions</h3-->
+<h3>Signature changes</h3>
+<p>The signature of <tt>Logger.log(int, OutputStream)</tt> and <tt>Loggable.log(long, OutputStream)</tt> changes: it used to take an <code>int</code>, but now takes a <code>long</code>.
+For <tt>Loggable.log</tt> an extra method was added to deal with both <code>int</code> and <code>long</code> for backward compatibility, but you are encouraged to change your <code>Loggable</code>s to use the long </p>
+
+<h3>Access changes</h3>
+<p><code>Frequencies.update()</code> and <code>Frequencies.needsUpdate</code> are now <code>protected</code> instead of <code>package private</code>.
+<p><code>Alignment.usingTipLikelihoods</code> is now <code>protected</code> instead of <code>private</code>.
+<p><code>ClusterTree.Type</code> is now <code>protected</code> instead of <code>package private</code>.
+
+
+
+<h2>Debugging</h2>
+
+<p>All BEAST utilities used to load packages on the fly. This does not longer happen, and instead <code>BeastLauncher</code> and derived classes will create a class path pointing to all relevant jars and store the path in a properties file. At next launch, the path is loaded from the properties file, resulting in much faster launch, especially when launched via the <code>AppLauncher</code>.
+<p>For developers that are used to launch BEAST through <code>beast.app.beastapp.BeastMain</code>, this means installed packages will no longer be loaded. Setting the <code>beast.load.jars</code> property makes BEAST revert to its old behaviour on Java 8, <b>but not on Java 9</b>, which uses a different way to manage jar files.
+When you start from the commmand line:
+<p><code>
+java -Dbeast.load.jars=true -jar beast.jar test.xml
+</code>
+<p>Or in an IDE, add <code>-Dbeast.load.jars=true</code> to the JVM arguments.
+
+
+<p><code>RPNCalculator</code> now uses multi dimensional log labels start at 1 instead of 0, which makes it consistent with <code>Parameter</code> logging. This may have consequences for post-processing apps.
+
+<h2>Library changes</h2>
+<p>The antlr library was upgraded to <code>antlr-runtime-4.7.jar</code> from <code>antlr-runtime-4.5.jar</code>.
+
+<h3>Deprecated</h3>
+	
+The <code>DataType</code> class has its nomenclature cleaned up; The <b>character</b> "R" corresponds to the <b>code</b> 5 and the <b>state list</b> <code>{0, 2}</code>,
+which contains the <b>states</b> 0 and 2 and can be expressed as a boolean array <code>{true, false, true, false}</code>. Consequently, some methods have been renamed, and existing ones deprecated, including
+<ul>
+<li><code>DataType.state2string</code> now <code>encodingToString</code>
+<li><code>DataType.isAmbiguousState</code> now <code>isAmbiguousCode</code>
+<li><code>DataType.getChar</code> now <code>getCharacter</code>
+<li><code>DataType.getCode</code> now <code>encodingToString</code>
+<li><code>DataType.char2state</code> now <code>stringToEncoding</code>
+</ul>
+
+<code>Node.getAllChildNodes</code> now <code>Node.getAllChildNodesAndSelf</code>.
+
