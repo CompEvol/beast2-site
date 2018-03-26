@@ -45,6 +45,17 @@ java -Dbeast.load.jars=true -jar beast.jar test.xml
 <p>Or in an IDE, add <code>-Dbeast.load.jars=true</code> to the JVM arguments.
 
 
+<h2>Installing packages by hand</h2>
+<p>You can install a package by hand by creating a directory in the BEAST package directory (<code>c:\Users\yourname\BEAST\2.5\</code> on Windows, <code>~/Library/Application Support/BEAST/2.5/</code> on OS X, or <code>~/.beast/2.5/</code> for Linux), and unzipping a package file inside the folder.
+
+<p><b>You need to reset the class path for v2.5.0</b>.
+
+<p>The class path stored in the <code>beauti.properties</code> file inside the BEAST package directory.
+Easiest to do this is by starting BEAUti and click the menu <code>File/Clear class path</code>.
+Alternatively, delete the <code>package.path</code> entry from the <code>beauti.properties</code> file.
+
+
+<h2>Behavious changes</h2>
 <p><code>RPNCalculator</code> now uses multi dimensional log labels start at 1 instead of 0, which makes it consistent with <code>Parameter</code> logging. This may have consequences for post-processing apps.
 
 <h2>Library changes</h2>
