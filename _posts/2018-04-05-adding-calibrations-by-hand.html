@@ -1,0 +1,103 @@
+---
+layout: post
+title: Adding calibrations by hand
+tags: []
+---
+<p style="color:gray">5 April 2018 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+
+<p>Adding a time calibration is easiest done in BEAUti, but some templates (like for SNAPP), do not allow this. It is still possible to add a calibration by hand by editing the XML in a text editor, by adding a prior on the most recent common ancestor of a set of taxa, that is an <code>MRCAPrior</code> element.
+
+<h2>1. Define an MRCAPrior</h2>
+
+Simply add the following XML fragment just after the distribution element with <code>id="prior"</code>
+{% highlight xml %}
+<distribution id="root.prior" spec='beast.math.distributions.MRCAPrior' tree='@Tree.snps' >
+</distribution>
+{% endhighlight%}
+
+Replace the id of the tree, here <code>Tree.snps</code> with the id of the tree that the calibration applies to. You can find the tree in the <code>state</code> element. Leave the @-sign in there, it is short-cut for the more verbose <code>&lt;tree idref="Tree.snps"/></code>.
+
+<h2>2. Specify taxon set</h2>
+
+The easiest calibration is one on the root, which can be done by adding a taxonset element to the MRCAPrior
+
+{% highlight xml %}
+<distribution id="root.prior" spec='beast.math.distributions.MRCAPrior' tree='@Tree.snps' >
+	<taxonset id="root.taxa" spec="beast.evolution.alignment.TaxonSet" alignment="@snap.snps"/>
+</distribution>
+{% endhighlight%}
+<p>You need to change the name of the alignment, here <code>snap.snps</code>. Replace it with the id of your alignment, which you can probably find at the top of the XML file if you used BEAUti to set up the XML. Again, leave the @-sign in place.
+
+
+<p>Instead of specify the set of all taxa, which have the root as MRCA you can specify a calibration on the MRCA of a set of taxa. For this, you need to specify the taxon set with individual taxa names. For example for a set of 4 taxa, (TaxonA, TaxonB, TaxonC and TaxonD) we can use something like
+
+{% highlight xml %}
+<distribution id="ABCD.prior" spec='beast.math.distributions.MRCAPrior' tree='@Tree.snps'>
+    <taxonset id="Clade-ABCD" spec="beast.evolution.alignment.TaxonSet">
+    	<!-- TaxonA and TaxonB not defined anywhere else -->
+        <taxon id="TaxonA" spec="beast.evolution.alignment.Taxon"/>
+        <taxon id="TaxonB" spec="beast.evolution.alignment.Taxon"/>
+        <!-- TaxonC and TaxonCD already defined elsewhere -->
+        <taxon idref="TaxonC"/> 
+        <taxon idref="TaxonD"/>
+    </taxonset>
+</distribution>
+{% endhighlight %}
+Note the difference between TaxonA and TaxonC: TaxonA is not specified anywhere else in the XML, while here we assume TaxonC is specified at some other point in the XML, for example, in the taxon set of another MRCAPrior
+
+
+<h2>3. Add a distribution to the MRCAPrior</h2>
+<p>To specify an age distribution, you need to add a <code>distr</code> element to the MRCAPrior. For instance, adding normal with mean 4 and standard deviation 0.5 would look something like this:
+
+{% highlight xml %}
+<distribution id="root.prior" spec='beast.math.distributions.MRCAPrior' tree='@Tree.snps' >
+	<taxonset id="root.taxa" spec="beast.evolution.alignment.TaxonSet" alignment="@snap.snps"/>
+	<distr spec="beast.math.distributions.Normal" mean="4.0" sigma="0.5"/>
+</distribution>
+{% endhighlight%}
+
+<p>A few other distributions you can choose from are
+{% highlight xml %}
+<distr spec="beast.math.distributions.Uniform" lower="2.0" upper="0.5"/>
+<distr spec="beast.math.distributions.LogNormal" meanInRealSpace="true" M="2.0" S="0.5"/>
+<distr spec="beast.math.distributions.Uniform" lower="2.0" upper="0.5"/>
+<distr spec="beast.math.distributions.OneOnX"/>
+<distr spec="beast.math.distributions.Exponential" mean="2.0"/>
+<distr spec="beast.math.distributions.Gamma" alpha="0.001" beta="1000"/>
+<distr spec="beast.math.distributions.InverseGamma" alpha="0.001" beta="1000"/>
+{% endhighlight%}
+All distributions have an <code>offset</code> attribute as well, which shifts the distribution with the offset value, for example
+{% highlight xml %}
+<distr spec="beast.math.distributions.Normal" offset="2.0" mean="4.0" sigma="0.5"/>
+{% endhighlight%}
+shifts the distribution by 2, so gives a normal distribution with mean of 6 and standard deviation of 0.5.
+
+<h2>4. Set MRCAPrior attributes (optional)</h2>
+
+<p>The MRCAPrior has a few flags that can be set, namely
+<ul>
+<li><code>monophyletic</code>: whether the taxon set is monophyletic (forms a clade without other taxa) or nor. Default is false.
+<li><code>tipsonly</code>: flag to indicate tip dates are to be used instead of the MRCA node. If set to true, the prior is applied to the height of all tips in the taxonset and the monophyletic flag is ignored. Default is false.
+<li><code>useOriginate</code>: Use parent of clade instead of clade. Cannot be used with tipsonly, or on the root.
+</ul>
+
+Since the root is already monophyletic, it does not matter for a root prior, but for the ABCD.prior above, we can enforce it to be monophyletic using:
+
+{% highlight xml %}
+<distribution id="ABCD.prior" monophyletic="true" spec='beast.math.distributions.MRCAPrior' tree='@Tree.snps'>
+    <taxonset id="Clade-ABCD" spec="beast.evolution.alignment.TaxonSet">
+    	<!-- TaxonA and TaxonB not defined anywhere else -->
+        <taxon id="TaxonA" spec="beast.evolution.alignment.Taxon"/>
+        <taxon id="TaxonB" spec="beast.evolution.alignment.Taxon"/>
+        <!-- TaxonC and TaxonCD already defined elsewhere -->
+        <taxon idref="TaxonC"/> 
+        <taxon idref="TaxonD"/>
+    </taxonset>
+</distribution>
+{% endhighlight %}
+
+<h2>5. Adding operators (optional)</h2>
+<p>When adding a time calibration, be aware that you need to have the clock rate estimated. If the clock rate is not estimated, BEAST estimates branch lengths in units of expected number of substitutions per site. Adding a time calibration means the units must have a time component, e.g. expected number of substitutions per site per million year.
+<p>If you do not already have a clock rate estimated, you need an additional scale operator for the mean clock rate as well as a prior on that clock rate.
+
+
