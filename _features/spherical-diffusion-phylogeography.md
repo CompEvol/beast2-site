@@ -1,5 +1,4 @@
 ---
-layout: feature
 title: Spherical diffusion phylogeography
 url_beast2_imp: https://github.com/BEAST2-Dev/beast-geo
 label_beast2_imp: Bouckaert2015

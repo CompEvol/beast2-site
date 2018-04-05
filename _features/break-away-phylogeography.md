@@ -1,5 +1,4 @@
 ---
-layout: feature
 title: Break-away model for phylogeography
 url_beast2_imp: https://github.com/rbouckaert/break-away
 label_beast2_imp: "Bouckaert2017"
