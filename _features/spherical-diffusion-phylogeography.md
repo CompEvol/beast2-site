@@ -1,6 +1,6 @@
 ---
 title: Spherical diffusion phylogeography
-url_beast2_https://peerj.com/articles/2406/?utm_source=TrendMD&utm_campaign=PeerJ_TrendMD_1&utm_medium=TrendMD
+url_beast2_imp: https://peerj.com/articles/2406/?utm_source=TrendMD&utm_campaign=PeerJ_TrendMD_1&utm_medium=TrendMD
 label_beast2_imp: Bouckaert2015
 pr_beast2_imp: true
 url_beast1_imp: 
