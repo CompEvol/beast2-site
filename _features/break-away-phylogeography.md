@@ -1,6 +1,6 @@
 ---
 title: Break-away model for phylogeography
-url_beast2_imp: https://github.com/rbouckaert/break-away
+url_beast2_imp: http://dx.doi.org/10.1038/s41559-018-0489-3
 label_beast2_imp: "Bouckaert2017"
 pr_beast2_imp: true
 url_beast1_imp: 

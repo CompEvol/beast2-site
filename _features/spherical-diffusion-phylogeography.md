@@ -1,6 +1,6 @@
 ---
 title: Spherical diffusion phylogeography
-url_beast2_imp: https://github.com/BEAST2-Dev/beast-geo
+url_beast2_https://peerj.com/articles/2406/?utm_source=TrendMD&utm_campaign=PeerJ_TrendMD_1&utm_medium=TrendMD
 label_beast2_imp: Bouckaert2015
 pr_beast2_imp: true
 url_beast1_imp: 
@@ -14,4 +14,3 @@ url_example_xml: https://github.com/BEAST2-Dev/beast-geo/releases/download/v1.1.
 url_source: https://github.com/BEAST2-Dev/beast-geo
 category: Phylogeography
 ---
-The random local molecular clock model is a model of rate heterogeneity across branches that assumes that each branch either inherits it's parent branch rate, or with probability p, assumes a new rate drawn from a shared rate distribution.
