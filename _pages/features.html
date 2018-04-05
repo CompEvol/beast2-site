@@ -1,0 +1,100 @@
+---
+layout: site
+title: BEAST Features 
+tags: []
+---
+<p>The tables below list the main evolutionary models supported by BEAST 2. For ease of comparison BEAST 1.8 is also included, but you should consult the <a class="external text" href="http://beast.community/" rel="nofollow">BEAST1</a> website for definitive information about that version of the platform, as keeping this table up-to-date is rather challenging. Green means the model has been published and extensively tested. Yellow means the method has either not yet been published in a peer-reviewed journal, or that it has been implemented (and perhaps published) but not extensively tested for general use. The "Model reference" is the citation for the original description of the model (not necessarily in a Bayesian context). The links to papers in the "BEAST 2.x" column are to the paper that describes the implementation of the model in the BEAST framework.</p>
+<h3><span id="Framework" class="mw-headline">Framework</span></h3>
+<table class="wikitable" style="text-align: center; width: 100%;" border="1">
+<tbody>
+<tr>
+<th style="text-align: center; width: 25%;" width="24%"></th>
+<th style="text-align: center; width: 35%;">BEAST 2.x</th>
+<th style="text-align: center; width: 40%;">BEAST 1.8</th>
+</tr>
+<tr>
+<td style="text-align: left;">Manuscript</td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003537" rel="nofollow">beast2</a></td>
+<td style="background: LightGreen;"><a class="external text" href="http://www.biomedcentral.com/1471-2148/7/214" rel="nofollow">beast14</a>, <a class="external text" href="http://mbe.oxfordjournals.org/content/29/8/1969.long" rel="nofollow">beast17</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Website</td>
+<td><a class="external text" href="http://beast2.org" rel="nofollow">beast2.org</a></td>
+<td><a class="external text" href="http://beast.community/" rel="nofollow">beast.community/</a></td>
+</tr>
+</tbody>
+</table>
+
+{% assign oldcategory = "" %}
+{% assign features_by_category = site.features | sort: 'category' %}
+{% for feature in features_by_category %}
+
+{% if oldcategory != feature.category %}
+
+{% if oldcategory != "" %}
+</tbody>
+</table>
+{% endif %}
+
+<h3><span id="{{ feature.category }}" class="mw-headline">{{ feature.category }}</span></h3>
+<table class="wikitable" style="text-align: center; width: 100%;" border="1">
+<tbody>
+<tr>
+<th style="text-align: center; width: 24%;"></th>
+<th style="text-align: center; width: 16%;">BEAST 2.x</th>
+<th style="text-align: center; width: 16%;">BEAST 1.8</th>
+<th style="text-align: center; width: 16%;">Model reference</th>
+<th style="text-align: center; width: 16%;">TUTORIAL or XML (2.x)</th>
+<th style="text-align: center; width: 12%;">Package (2.x)</th>
+</tr>
+<tr>
+{% endif %}
+
+<tr>
+<td style="text-align: left;">{{ feature.title }} </td>
+<td 
+
+{% if feature.pr_beast2_imp == true %}
+style="background: LightGreen;"
+{% endif %}
+>
+<a class="external text" href="{{ feature.url_beast2_imp }}" rel="nofollow">{{ feature.label_beast2_imp }}</a></td>
+<td 
+{% if feature.pr_beast1_imp == true %}
+style="background: LightGreen;"
+{% endif %}
+><a class="external text" href="{{ feature.url_beast1_imp }}" rel="nofollow">{{ feature.label_beast1_imp }}</a></td>
+<td><a class="external text" href="{{ feature.url_theory }}" rel="nofollow">{{ feature.label_theory }}</a></td>
+
+{% if feature.url_example_xml %}
+<td><a class="external text" href="{{ feature.url_example_xml }}" rel="nofollow">{{ feature.url_example_xml | split:'/' | last }}</a></td>
+{% else %}
+<td>x</td>
+{% endif %}
+
+{% if feature.url_source %}
+  <td><a class="external text" href="{{ feature.url_source }}" rel="nofollow">
+    {% if feature.label_source %}
+      {{ feature.label_source }}
+    {% else %}
+      x
+    {% endif %}
+  </a>
+  </td>
+{% else %}
+  <td>
+  {% if feature.label_source %}
+    {{ feature.label_source }}
+  {% else %}
+    x
+  {% endif %}
+  </td>
+{% endif %}
+</tr>
+
+{% assign oldcategory = feature.category %}
+
+{% endfor %}
+
+</tbody>
+</table>

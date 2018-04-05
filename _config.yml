@@ -36,6 +36,8 @@ collections:
         permalink: /:path/
     orphans:
         output: true
+    features:
+        output: true
 
 
 #site map
