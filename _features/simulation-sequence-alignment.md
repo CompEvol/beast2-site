@@ -6,7 +6,7 @@ label_beast2_imp: seqgen
 pr_beast2_imp: true
 url_beast1_imp: https://github.com/beast-dev/beast-mcmc/tree/master/src/dr/app/seqgen
 label_beast1_imp: seqgen
-pr_beast1_imp: true
+pr_beast1_imp: false
 url_theory: 
 label_theory: 
 url_source: http://github.com/CompEvol/beast2
