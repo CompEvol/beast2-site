@@ -1,15 +1,15 @@
 ---
-title: Break-away model for phylogeography
-url_beast2_imp: http://dx.doi.org/10.1038/s41559-018-0489-3
-label_beast2_imp: "Bouckaert2017"
+title: Discrete-state "mugration" model
+url_beast2_imp: http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.1000520
+label_beast2_imp: lemey2009
 pr_beast2_imp: true
-url_beast1_imp: 
-label_beast1_imp: 
-pr_beast1_imp: false
-url_theory: http://dx.doi.org/10.1038/s41559-018-0489-3
-label_theory: Bouckaert2017
-label_source: break_away
-url_example_xml: http:/2018/03/12/break-away-phylogeography.html
-url_source: https://github.com/rbouckaert/break-away
+url_beast1_imp: http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.1000520
+label_beast1_imp: lemey2009
+pr_beast1_imp: true
+url_theory: http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.1000520
+label_theory: lemey2009
+url_source: https://github.com/BEAST2-Dev/beast-classic
+label_source: beast-classic
+url_example_xml: https://github.com/BEAST2-Dev/beast-classic/tree/master/src/beast/examples/H5N1_HA_discrete2.xml
 category: Phylogeography
 ---

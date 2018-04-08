@@ -5,7 +5,7 @@ url_beast2_imp: http://mbe.oxfordjournals.org/content/early/2012/04/18/molbev.ms
 label_beast2_imp: bryant2012
 pr_beast2_imp: true
 url_beast1_imp: 
-label_beast1_imp: 
+label_beast1_imp: x
 pr_beast1_imp: 
 url_theory: http://mbe.oxfordjournals.org/content/early/2012/04/18/molbev.mss086.full
 label_theory: bryant2012

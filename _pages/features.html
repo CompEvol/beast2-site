@@ -67,37 +67,37 @@ style="background: LightYellow;"
 {% endif %}
 >
 {% if feature.label_beast2_imp %}
-  {% if feature.label_beast2_imp.first %}
-     <a class="external text" href="{{ feature.url_beast2_imp[0] }}" rel="nofollow">{{ feature.label_beast2_imp[0] }}</a>, 
-     <a class="external text" href="{{ feature.url_beast2_imp[1] }}" rel="nofollow">{{ feature.label_beast2_imp[1] }}</a>       
-  {% else %}
-    <a class="external text" href="{{ feature.url_beast2_imp }}" rel="nofollow">{{ feature.label_beast2_imp }}</a>
-  {% endif %}
-{% elsif feature.pr_beast2_imp == '' %}
-
-{% else %}
-x
+    {% if feature.url_beast2_imp %}
+        {% if feature.label_beast2_imp.first %}
+          <a class="external text" href="{{ feature.url_beast2_imp[0] }}" rel="nofollow">{{ feature.label_beast2_imp[0] }}</a>, 
+          <a class="external text" href="{{ feature.url_beast2_imp[1] }}" rel="nofollow">{{ feature.label_beast2_imp[1] }}</a>       
+        {% else %}
+          <a class="external text" href="{{ feature.url_beast2_imp }}" rel="nofollow">{{ feature.label_beast2_imp }}</a>
+        {% endif %}
+    {% else %}
+      {{ feature.label_beast2_imp }}
+    {% endif %}    
 {% endif %}
 </td>
 
 <td 
 {% if feature.pr_beast1_imp == true %}
 style="background: LightGreen;"
-{% elsif feature.pr_beast2_imp == false %}
+{% elsif feature.pr_beast1_imp == false %}
 style="background: LightYellow;"
 {% endif %}
 >
 {% if feature.label_beast1_imp %}
-  {% if feature.label_beast1_imp.first %}
-     <a class="external text" href="{{ feature.url_beast1_imp[0] }}" rel="nofollow">{{ feature.label_beast1_imp[0] }}</a>, 
-     <a class="external text" href="{{ feature.url_beast1_imp[1] }}" rel="nofollow">{{ feature.label_beast1_imp[1] }}</a>       
-  {% else %}
-    <a class="external text" href="{{ feature.url_beast1_imp }}" rel="nofollow">{{ feature.label_beast1_imp }}</a>
-  {% endif %}
-{% elsif feature.pr_beast1_imp == '' %}
-
-{% else %}
-x
+    {% if feature.url_beast1_imp %}
+      {% if feature.label_beast1_imp.first %}
+        <a class="external text" href="{{ feature.url_beast1_imp[0] }}" rel="nofollow">{{ feature.label_beast1_imp[0] }}</a>, 
+        <a class="external text" href="{{ feature.url_beast1_imp[1] }}" rel="nofollow">{{ feature.label_beast1_imp[1] }}</a>       
+      {% else %}
+        <a class="external text" href="{{ feature.url_beast1_imp }}" rel="nofollow">{{ feature.label_beast1_imp }}</a>
+      {% endif %}
+    {% else %}
+      {{ feature.label_beast1_imp }}
+    {% endif %}
 {% endif %}
 </td>
 
