@@ -3,21 +3,21 @@ layout: site
 title: BEAST Features 
 tags: []
 ---
-<p>The tables below list the main evolutionary models supported by BEAST 2. For ease of comparison BEAST 1.x is also included, 
+<p>The tables below list the main evolutionary models supported by BEAST 2. For ease of comparison BEAST 1 is also included, 
 but you should consult the <a class="external text" href="http://beast.community/" rel="nofollow">BEAST1</a> website 
 for definitive information about that version of the platform, as keeping this table up-to-date is rather challenging. 
 Green means the model has been published and extensively tested. 
 Yellow means the method has either not yet been published in a peer-reviewed journal, 
 or that it has been implemented (and perhaps published) but not extensively tested for general use. 
 The "Model reference" is the citation for the original description of the model (not necessarily in a Bayesian context). 
-The links to papers in the "BEAST 2.x" column are to the paper that describes the implementation of the model in the BEAST framework.</p>
+The links to papers in the "BEAST 2" column are to the paper that describes the implementation of the model in the BEAST framework.</p>
 <h3><span id="Framework" class="mw-headline">Framework</span></h3>
 <table class="wikitable" style="text-align: center; width: 100%;" border="1">
 <tbody>
 <tr>
 <th style="text-align: center; width: 25%;" width="24%"></th>
-<th style="text-align: center; width: 35%;">BEAST 2.x</th>
-<th style="text-align: center; width: 40%;">BEAST 1.x</th>
+<th style="text-align: center; width: 35%;">BEAST 2</th>
+<th style="text-align: center; width: 40%;">BEAST 1</th>
 </tr>
 <tr>
 <td style="text-align: left;">Manuscript</td>
@@ -48,11 +48,11 @@ The links to papers in the "BEAST 2.x" column are to the paper that describes th
 <tbody>
 <tr>
 <th style="text-align: center; width: 24%;"></th>
-<th style="text-align: center; width: 16%;">BEAST 2.x</th>
-<th style="text-align: center; width: 16%;">BEAST 1.x</th>
+<th style="text-align: center; width: 16%;">BEAST 2</th>
+<th style="text-align: center; width: 16%;">BEAST 1</th>
 <th style="text-align: center; width: 16%;">Model reference</th>
-<th style="text-align: center; width: 16%;">TUTORIAL or XML (2.x)</th>
-<th style="text-align: center; width: 12%;">Package (2.x)</th>
+<th style="text-align: center; width: 16%;">TUTORIAL or XML</th>
+<th style="text-align: center; width: 12%;">Package</th>
 </tr>
 <tr>
 {% endif %}
@@ -61,9 +61,11 @@ The links to papers in the "BEAST 2.x" column are to the paper that describes th
 <td style="text-align: left;"><a class="external text" href="{{ feature.url }}">{{ feature.title }}</a> </td>
 <td 
 {% if feature.pr_beast2_imp == true %}
-style="background: LightGreen;"
+style="background: LightGreen; text-align: center;"
 {% elsif feature.pr_beast2_imp == false %}
-style="background: LightYellow;"
+style="background: LightYellow; text-align: center;"
+{% else %}
+style="text-align: center;"
 {% endif %}
 >
 {% if feature.label_beast2_imp %}
@@ -88,9 +90,11 @@ style="background: LightYellow;"
 
 <td 
 {% if feature.pr_beast1_imp == true %}
-style="background: LightGreen;"
+style="background: LightGreen; text-align: center;"
 {% elsif feature.pr_beast1_imp == false %}
-style="background: LightYellow;"
+style="background: LightYellow; text-align: center;"
+{% else %}
+style="text-align: center;"
 {% endif %}
 >
 {% if feature.label_beast1_imp %}
@@ -113,7 +117,7 @@ style="background: LightYellow;"
 {% endif %}
 </td>
 
-<td>
+<td style="text-align: center;">
 {% if feature.url_theory %}
 	{% comment %} Loop through multiple links if given in MD, limit to 5+5 items in this table cell {% endcomment %}
 	{% if feature.label_theory.first %}
@@ -132,7 +136,7 @@ style="background: LightYellow;"
 {% endif %}
 </td>
 
-<td>
+<td style="text-align: center;">
 {% if feature.url_example_xml %}
    <a class="external text" href="{{ feature.url_example_xml }}" rel="nofollow">{{ feature.url_example_xml | split:'/' | last }}</a>
 {% else %}
@@ -140,24 +144,23 @@ style="background: LightYellow;"
 {% endif %}
 </td>
 
+<td style="text-align: center;">
 {% if feature.url_source %}
-  <td><a class="external text" href="{{ feature.url_source }}" rel="nofollow">
+  <a class="external text" href="{{ feature.url_source }}" rel="nofollow">
     {% if feature.label_source %}
       {{ feature.label_source }}
     {% else %}
       -
     {% endif %}
   </a>
-  </td>
 {% else %}
-  <td>
   {% if feature.label_source %}
     {{ feature.label_source }}
   {% else %}
     -
   {% endif %}
-  </td>
 {% endif %}
+</td>
 </tr>
 
 {% assign oldcategory = feature.category %}
