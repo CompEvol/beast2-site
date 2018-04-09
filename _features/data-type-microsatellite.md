@@ -7,7 +7,7 @@ pr_beast2_imp: true
 url_beast1_imp: http://www.genetics.org/content/188/1/151.full
 label_beast1_imp: wu2011
 pr_beast1_imp: true
-url_theory: [http://www.genetics.org/content/168/1/383.full, http://www.genetics.org/content/188/1/151.full]
+url_theory: ['http://www.genetics.org/content/168/1/383.full', 'http://www.genetics.org/content/188/1/151.full']
 label_theory: [sainudiin2004, wu2011]
 url_source: https://github.com/arjun-1/BEASTvntr
 label_source: BEASTvntr

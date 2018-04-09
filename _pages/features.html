@@ -27,7 +27,7 @@ The links to papers in the "BEAST 2.x" column are to the paper that describes th
 <tr>
 <td style="text-align: left;">Website</td>
 <td><a class="external text" href="http://beast2.org" rel="nofollow">beast2.org</a></td>
-<td><a class="external text" href="http://beast.community/" rel="nofollow">beast.community/</a></td>
+<td><a class="external text" href="http://beast.community/" rel="nofollow">beast.community</a></td>
 </tr>
 </tbody>
 </table>
@@ -68,9 +68,15 @@ style="background: LightYellow;"
 >
 {% if feature.label_beast2_imp %}
     {% if feature.url_beast2_imp %}
+        {% comment %} Loop through multiple links if given in MD, limit to 5 items in this table cell {% endcomment %}
         {% if feature.label_beast2_imp.first %}
-          <a class="external text" href="{{ feature.url_beast2_imp[0] }}" rel="nofollow">{{ feature.label_beast2_imp[0] }}</a>, 
-          <a class="external text" href="{{ feature.url_beast2_imp[1] }}" rel="nofollow">{{ feature.label_beast2_imp[1] }}</a>       
+            {% for label in feature.label_beast2_imp limit:5 %}
+                {% assign loopindex = forloop.index0 %}
+                {% if loopindex > 0 %}
+                ,&nbsp;
+                {% endif %} 
+                <a class="external text" href="{{ feature.url_beast2_imp[loopindex] }}" rel="nofollow">{{ label }}</a>
+            {% endfor %}     
         {% else %}
           <a class="external text" href="{{ feature.url_beast2_imp }}" rel="nofollow">{{ feature.label_beast2_imp }}</a>
         {% endif %}
@@ -89,12 +95,18 @@ style="background: LightYellow;"
 >
 {% if feature.label_beast1_imp %}
     {% if feature.url_beast1_imp %}
-      {% if feature.label_beast1_imp.first %}
-        <a class="external text" href="{{ feature.url_beast1_imp[0] }}" rel="nofollow">{{ feature.label_beast1_imp[0] }}</a>, 
-        <a class="external text" href="{{ feature.url_beast1_imp[1] }}" rel="nofollow">{{ feature.label_beast1_imp[1] }}</a>       
-      {% else %}
-        <a class="external text" href="{{ feature.url_beast1_imp }}" rel="nofollow">{{ feature.label_beast1_imp }}</a>
-      {% endif %}
+        {% comment %} Loop through multiple links if given in MD, limit to 5 items in this table cell {% endcomment %}
+        {% if feature.label_beast1_imp.first %}
+            {% for label in feature.label_beast1_imp limit:5 %}
+                {% assign loopindex = forloop.index0 %}
+                {% if loopindex > 0 %}
+                ,&nbsp;
+                {% endif %} 
+                <a class="external text" href="{{ feature.url_beast1_imp[loopindex] }}" rel="nofollow">{{ label }}</a>
+            {% endfor %}          
+        {% else %}
+            <a class="external text" href="{{ feature.url_beast1_imp }}" rel="nofollow">{{ feature.label_beast1_imp }}</a>
+        {% endif %}
     {% else %}
       {{ feature.label_beast1_imp }}
     {% endif %}
@@ -103,7 +115,18 @@ style="background: LightYellow;"
 
 <td>
 {% if feature.url_theory %}
-   <a class="external text" href="{{ feature.url_theory }}" rel="nofollow">{{ feature.label_theory }}</a>
+	{% comment %} Loop through multiple links if given in MD, limit to 5+5 items in this table cell {% endcomment %}
+	{% if feature.label_theory.first %}
+		{% for label in feature.label_theory limit:5 %}
+			{% assign loopindex = forloop.index0 %}
+			{% if loopindex > 0 %}
+			,&nbsp;
+			{% endif %} 
+			<a class="external text" href="{{ feature.label_theory[loopindex] }}" rel="nofollow">{{ label }}</a>
+		{% endfor %}          
+	{% else %}
+		   <a class="external text" href="{{ feature.url_theory }}" rel="nofollow">{{ feature.label_theory }}</a>
+	{% endif %}
 {% else %}
    {{ feature.label_theory }}
 {% endif %}
