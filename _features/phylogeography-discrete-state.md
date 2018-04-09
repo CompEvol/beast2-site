@@ -1,4 +1,5 @@
 ---
+layout: feature
 title: Discrete-state "mugration" model
 url_beast2_imp: http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.1000520
 label_beast2_imp: lemey2009

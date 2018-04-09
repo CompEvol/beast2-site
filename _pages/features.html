@@ -101,14 +101,21 @@ style="background: LightYellow;"
 {% endif %}
 </td>
 
-
-<td><a class="external text" href="{{ feature.url_theory }}" rel="nofollow">{{ feature.label_theory }}</a></td>
-
-{% if feature.url_example_xml %}
-<td><a class="external text" href="{{ feature.url_example_xml }}" rel="nofollow">{{ feature.url_example_xml | split:'/' | last }}</a></td>
+<td>
+{% if feature.url_theory %}
+   <a class="external text" href="{{ feature.url_theory }}" rel="nofollow">{{ feature.label_theory }}</a>
 {% else %}
-<td>x</td>
+   {{ feature.label_theory }}
 {% endif %}
+</td>
+
+<td>
+{% if feature.url_example_xml %}
+   <a class="external text" href="{{ feature.url_example_xml }}" rel="nofollow">{{ feature.url_example_xml | split:'/' | last }}</a>
+{% else %}
+   x
+{% endif %}
+</td>
 
 {% if feature.url_source %}
   <td><a class="external text" href="{{ feature.url_source }}" rel="nofollow">

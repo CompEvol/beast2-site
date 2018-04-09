@@ -1,4 +1,5 @@
 ---
+layout: feature
 title: "Landscape-aware" model
 url_beast2_imp: http://www.ncbi.nlm.nih.gov/pubmed/22923579
 label_beast2_imp: bouckaert2012

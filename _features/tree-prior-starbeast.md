@@ -1,6 +1,6 @@
 ---
 layout: feature
-title: *BEAST, multi-{species, gene, individual}
+title: StarBEAST, multi-{species, gene, individual}
 url_beast2_imp: http://mbe.oxfordjournals.org/content/27/3/570.full
 label_beast2_imp: heled2010
 pr_beast2_imp: true

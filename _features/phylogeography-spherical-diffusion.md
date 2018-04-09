@@ -1,4 +1,5 @@
 ---
+layout: feature
 title: Spherical diffusion phylogeography
 url_beast2_imp: https://peerj.com/articles/2406/?utm_source=TrendMD&utm_campaign=PeerJ_TrendMD_1&utm_medium=TrendMD
 label_beast2_imp: Bouckaert2015

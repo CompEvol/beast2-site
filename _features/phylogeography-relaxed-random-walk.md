@@ -1,5 +1,6 @@
 ---
-title: "Relaxed random-walk" model
+layout: feature
+title: Relaxed random-walk model
 url_beast2_imp: http://mbe.oxfordjournals.org/content/27/8/1877.full
 label_beast2_imp: lemey2010
 pr_beast2_imp: true
