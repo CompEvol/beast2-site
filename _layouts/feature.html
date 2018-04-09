@@ -1,0 +1,109 @@
+---
+layout: post
+---
+<div class="feature">
+  <div>
+    {{ content }}
+  </div>
+
+<table class="wikitable" style="text-align: center; width: 100%;" border="1">
+<tbody>
+
+{% if page.label_beast2_imp %}
+  <tr><td>BEAST 2 implementation</td>
+  <td>
+    {% if page.url_beast2_imp %}
+        {% comment %} Loop through multiple links if given in MD, limit to 5 items in this table cell {% endcomment %}
+        {% if page.label_beast2_imp.first %}
+            {% for label in page.label_beast2_imp limit:5 %}
+                {% assign loopindex = forloop.index0 %}
+                {% if loopindex > 0 %}
+                ,&nbsp;
+                {% endif %} 
+                <a class="external text" href="{{ page.url_beast2_imp[loopindex] }}" rel="nofollow">{{ label }}</a>
+            {% endfor %}     
+        {% else %}
+          <a class="external text" href="{{ page.url_beast2_imp }}" rel="nofollow">{{ page.label_beast2_imp }}</a>
+        {% endif %}
+    {% else %}
+      {{ page.label_beast2_imp }}
+    {% endif %}   
+  </td></tr>
+{% endif %}
+
+{% if page.label_beast1_imp %}
+  <tr><td>BEAST 1 implementation</td>
+  <td>
+    {% if page.url_beast1_imp %}
+        {% comment %} Loop through multiple links if given in MD, limit to 5 items in this table cell {% endcomment %}
+        {% if page.label_beast1_imp.first %}
+            {% for label in page.label_beast1_imp limit:5 %}
+                {% assign loopindex = forloop.index0 %}
+                {% if loopindex > 0 %}
+                ,&nbsp;
+                {% endif %} 
+                <a class="external text" href="{{ page.url_beast1_imp[loopindex] }}" rel="nofollow">{{ label }}</a>
+            {% endfor %}          
+        {% else %}
+            <a class="external text" href="{{ page.url_beast1_imp }}" rel="nofollow">{{ page.label_beast1_imp }}</a>
+        {% endif %}
+    {% else %}
+      {{ page.label_beast1_imp }}
+    {% endif %}
+    </td></tr>
+{% endif %}
+
+<tr><td>Theory</td><td>
+{% if page.url_theory %}
+	{% comment %} Loop through multiple links if given in MD, limit to 5+5 items in this table cell {% endcomment %}
+	{% if page.label_theory.first %}
+		{% for label in page.label_theory limit:5 %}
+			{% assign loopindex = forloop.index0 %}
+			{% if loopindex > 0 %}
+			,&nbsp;
+			{% endif %} 
+			<a class="external text" href="{{ page.url_theory[loopindex] }}" rel="nofollow">{{ label }}</a>
+		{% endfor %}          
+	{% else %}
+		   <a class="external text" href="{{ page.url_theory }}" rel="nofollow">{{ page.label_theory }}</a>
+	{% endif %}
+{% else %}
+   {{ page.label_theory }}
+{% endif %}
+</td></tr>
+
+<tr>
+<td>Example XML</td>
+<td>
+{% if page.url_example_xml %}
+   <a class="external text" href="{{ page.url_example_xml }}" rel="nofollow">{{ page.url_example_xml | split:'/' | last }}</a>
+{% else %}
+   -
+{% endif %}
+</td>
+</tr>
+
+<tr>
+<td>BEAST2 source code</td>
+ <td>
+{% if page.url_source %}
+ <a class="external text" href="{{ page.url_source }}" rel="nofollow">
+    {% if page.label_source %}
+      {{ page.label_source }}
+    {% else %}
+      -
+    {% endif %}
+  </a>
+{% else %}
+  {% if page.label_source %}
+    {{ page.label_source }}
+  {% else %}
+    -
+  {% endif %}
+{% endif %}
+  </td>
+</tr>
+
+</tbody>
+</table>
+</div>

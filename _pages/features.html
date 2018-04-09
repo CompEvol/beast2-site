@@ -3,7 +3,7 @@ layout: site
 title: BEAST Features 
 tags: []
 ---
-<p>The tables below list the main evolutionary models supported by BEAST 2. For ease of comparison BEAST 1.8 is also included, 
+<p>The tables below list the main evolutionary models supported by BEAST 2. For ease of comparison BEAST 1.x is also included, 
 but you should consult the <a class="external text" href="http://beast.community/" rel="nofollow">BEAST1</a> website 
 for definitive information about that version of the platform, as keeping this table up-to-date is rather challenging. 
 Green means the model has been published and extensively tested. 
@@ -17,7 +17,7 @@ The links to papers in the "BEAST 2.x" column are to the paper that describes th
 <tr>
 <th style="text-align: center; width: 25%;" width="24%"></th>
 <th style="text-align: center; width: 35%;">BEAST 2.x</th>
-<th style="text-align: center; width: 40%;">BEAST 1.8</th>
+<th style="text-align: center; width: 40%;">BEAST 1.x</th>
 </tr>
 <tr>
 <td style="text-align: left;">Manuscript</td>
@@ -49,7 +49,7 @@ The links to papers in the "BEAST 2.x" column are to the paper that describes th
 <tr>
 <th style="text-align: center; width: 24%;"></th>
 <th style="text-align: center; width: 16%;">BEAST 2.x</th>
-<th style="text-align: center; width: 16%;">BEAST 1.8</th>
+<th style="text-align: center; width: 16%;">BEAST 1.x</th>
 <th style="text-align: center; width: 16%;">Model reference</th>
 <th style="text-align: center; width: 16%;">TUTORIAL or XML (2.x)</th>
 <th style="text-align: center; width: 12%;">Package (2.x)</th>
@@ -58,7 +58,7 @@ The links to papers in the "BEAST 2.x" column are to the paper that describes th
 {% endif %}
 
 <tr>
-<td style="text-align: left;">{{ feature.title }} </td>
+<td style="text-align: left;"><a class="external text" href="{{ feature.url }}">{{ feature.title }}</a> </td>
 <td 
 {% if feature.pr_beast2_imp == true %}
 style="background: LightGreen;"
@@ -136,7 +136,7 @@ style="background: LightYellow;"
 {% if feature.url_example_xml %}
    <a class="external text" href="{{ feature.url_example_xml }}" rel="nofollow">{{ feature.url_example_xml | split:'/' | last }}</a>
 {% else %}
-   x
+   -
 {% endif %}
 </td>
 
@@ -145,7 +145,7 @@ style="background: LightYellow;"
     {% if feature.label_source %}
       {{ feature.label_source }}
     {% else %}
-      x
+      -
     {% endif %}
   </a>
   </td>
@@ -154,7 +154,7 @@ style="background: LightYellow;"
   {% if feature.label_source %}
     {{ feature.label_source }}
   {% else %}
-    x
+    -
   {% endif %}
   </td>
 {% endif %}
