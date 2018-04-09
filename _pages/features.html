@@ -122,7 +122,7 @@ style="background: LightYellow;"
 			{% if loopindex > 0 %}
 			,&nbsp;
 			{% endif %} 
-			<a class="external text" href="{{ feature.label_theory[loopindex] }}" rel="nofollow">{{ label }}</a>
+			<a class="external text" href="{{ feature.url_theory[loopindex] }}" rel="nofollow">{{ label }}</a>
 		{% endfor %}          
 	{% else %}
 		   <a class="external text" href="{{ feature.url_theory }}" rel="nofollow">{{ feature.label_theory }}</a>
