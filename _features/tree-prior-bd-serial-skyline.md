@@ -11,6 +11,6 @@ url_theory: http://www.pnas.org/content/110/1/228.full
 label_theory: stadler2013
 url_source: https://github.com/BEAST2-Dev/bdsky
 label_source: bdsky
-url_example_xml: https://github.com/BEAST2-Dev/bdsky/tree/master/examples/BDSKY_contemp.xml
+url_example_xml: https://github.com/BEAST2-Dev/bdsky/blob/master/examples/BDSKY_sequential.xml
 category: Birth-death tree priors
 ---
