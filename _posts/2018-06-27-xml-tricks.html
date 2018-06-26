@@ -1,0 +1,101 @@
+---
+layout: post
+title: XML tricks
+tags: []
+---
+<p style="color:gray">27 June 2018 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+ 
+<p>In this post, we will look at a few BEAST <a href="https://www.w3schools.com/xml/">XML</a> editing tricks, including use of plates, XML entities, and parameterising XML.
+
+
+
+
+<h2>Plates</h2>
+
+<p>Plates are small macros that are expanded before the XML is interpreted and are useful for things that are repeated with only a single value changed. For example, a set of taxa can be defined as:
+
+{% highlight xml %}
+<taxonset id="taxa" spec="TaxonSet">
+	<taxon id="human" spec="Taxon"/>
+	<taxon id="chimp" spec="Taxon"/>
+	<taxon id="bonob" spec="Taxon"/>
+	<taxon id="gorilla" spec="Taxon"/>
+	<taxon id="orangutan" spec="Taxon"/>
+	<taxon id="siamang" spec="Taxon"/>
+</taxonset>
+{% endhighlight %}
+
+<p>Using a plate, this can be defined as follows:
+
+{% highlight xml %}
+<taxonset id="taxa" spec="TaxonSet">
+	<plate var="n" range="human,chimp,bonob,gorilla,orangutan,siamang">
+		<taxon id="$(n)" spec="Taxon"/>
+	</plate>
+</taxonset>
+{% endhighlight %}
+
+<p>The plate format is <code>&lt;plate var="$var" range="$range"></code> where <code>$var</code> is the variable to be replaced in the XML fragment inside the <tt>plate</tt> element and <code>$range</code> is a comma separated string of values that are used to replace the variable.
+<p>If <code>var="n"</code>, any place in the XML inside the plate that contains <code>$(n)</code> is replaced by a value from <code>$range</code>. So, the XML above with the plate in it expands to the taxon set that we started with. Plates can also be useful for sets of operators, parameters, priors, etc. especially when there are many partitions in the analysis.
+
+<p>Plates can be nested, but be careful to use different <tt>var</tt> attributes.
+
+
+
+
+
+<h2>Parameterising XML</h2>
+
+<p>Sometimes, it can be useful to get values from outside BEAST as values for the XML. 
+There is now a <tt>-D</tt> option for BEAST that takes as argument a comma separated string with name-value pairs, e.g. 
+
+{% highlight sh %}
+/path/to/beast -D "chain_length=10000000,log_every=1000" myxml.xml
+{% endhighlight %}
+
+
+<p>Every occurrence of <tt>$(name)</tt> will be replaced by value in the XML in a pre-processing step, so for instance <tt>$(chain_length)</tt> will be replaced by <tt>10000000</tt> and <tt>$(log_every)</tt> with <tt>1000</tt> in the example above.
+
+
+
+
+
+
+<h2>XML Entities</h2>
+
+<p>When there are many partitions, and you want to be able to include and exclude partitions quickly, it may be useful to define XML entities in combination with plates.
+For example, let there be three partitions: COI, ND2, CYTB. We could have a HKY model for each of them, with associated operators requiring the following fragments:
+
+{% highlight xml %}
+<plate var="n" range="COI,ND2,CYTB">
+	<stateNode id="kappy.s:$(n)" spec="RealParameter" value="1.0"/>
+</plate>
+
+<plate var="n" range="COI,ND2,CYTB">
+	<operator id="kappyScaler.s:$(n)" spec="ScaleOperator" parameter="kappa.s:$(n)" weight="1.0"/>
+</plate>
+{% endhighlight %}
+
+<p>If we want to exclude say COI, we just delete it from the range. But there may be quite a few places, if we also have a prior on kappa, a clock rate for the partition, a treelikelihood, loggers for each of these, etc. So, a more elegant solution is to be able to specify the range. If we replace the partitions "COI,ND2,CYTB" with "$(range)", like so:
+
+{% highlight xml %}
+<plate var="n" range="$(range)">
+	<stateNode id="kappy.s:$(n)" spec="RealParameter" value="1.0"/>
+</plate>
+
+<plate var="n" range="$(range)">
+	<operator id="kappyScaler.s:$(n)" spec="ScaleOperator" parameter="kappa.s:$(n)" weight="1.0"/>
+</plate>
+{% endhighlight %}
+
+At the top of the XML file, we define an XML entity, just after the XML declaration but before the beast-element, like so:
+
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE note [
+<!ENTITY range "COI,ND2,CYTB">
+]>
+<beast...
+{% endhighlight %}
+
+By changing the value of the entity, the whole model changes with one simple edit. For example, removing COI from the analysis can be done by just removing COI from the entity definition.
