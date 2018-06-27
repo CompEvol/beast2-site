@@ -76,14 +76,14 @@ For example, let there be three partitions: COI, ND2, CYTB. We could have a HKY 
 </plate>
 {% endhighlight %}
 
-<p>If we want to exclude say COI, we just delete it from the range. But there may be quite a few places, if we also have a prior on kappa, a clock rate for the partition, a treelikelihood, loggers for each of these, etc. So, a more elegant solution is to be able to specify the range. If we replace the partitions "COI,ND2,CYTB" with "$(range)", like so:
+<p>If we want to exclude say COI, we just delete it from the range. But there may be quite a few places, if we also have a prior on kappa, a clock rate for the partition, a treelikelihood, loggers for each of these, etc. So, a more elegant solution is to be able to specify the range. If we replace the partitions "COI,ND2,CYTB" with "&amp;range;", like so:
 
 {% highlight xml %}
-<plate var="n" range="$(range)">
+<plate var="n" range="&range;">
 	<stateNode id="kappy.s:$(n)" spec="RealParameter" value="1.0"/>
 </plate>
 
-<plate var="n" range="$(range)">
+<plate var="n" range="&range;">
 	<operator id="kappyScaler.s:$(n)" spec="ScaleOperator" parameter="kappa.s:$(n)" weight="1.0"/>
 </plate>
 {% endhighlight %}
