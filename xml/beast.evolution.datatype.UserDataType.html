@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>BEAST v2.5.0 Prerelease Documentation: beast.evolution.datatype.UserDataType</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.5.0 Prerelease Documentation: beast.evolution.datatype.UserDataType</h1>
+<p>User defined datatype. Allows custom symbols to map onto statesets.</p>
+<h2>Inputs:</h2>
+<p><a href='#states'>states</a>, <a href='#codelength'>codelength</a>, <a href='#codeMap'>codeMap</a>, <a href='#characterName'>characterName</a>, <a href='#value'>value</a </p>
+<p>&nbsp</p><table id='states' border='1px' width='90%'>
+<caption>states</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>total number of states</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='codelength' border='1px' width='90%'>
+<caption>codelength</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>length of code, if negative a variable length code is assumed, default 1</td></tr>
+<tr><td>
+Optional input. Default: 1</td></tr>
+</table>
+<p>&nbsp</p><table id='codeMap' border='1px' width='90%'>
+<caption>codeMap</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>mapping of codes to states. A comma separated string of codes with a subset of states. A state set is a space separates list of zero based integers, up to the number of states, e.g. A=0, C=1, R=0 2, ? = 0 1 2 3</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='characterName' border='1px' width='90%'>
+<caption>characterName</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>the name of the character</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='value' border='1px' width='90%'>
+<caption>value</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>the list of the state names ordered according to codes given, that is the first in the list is coded by 0, second, by 1 and so forth.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

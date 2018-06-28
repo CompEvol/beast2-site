@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>BEAST v2.5.0 Prerelease Documentation: beast.evolution.speciation.CalibratedBirthDeathModel</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.5.0 Prerelease Documentation: beast.evolution.speciation.CalibratedBirthDeathModel</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>Probabilistic representation that can produce a log probability for instance for running an MCMC chain.<br/>Distribution on a tree, typically a prior such as Coalescent or Yule<br/>A likelihood function for speciation processes.<br/>Birth-Death prior with calibrated monophyletic clades. With this prior, the marginal distribution of the calibrated nodes (the root age of the clade) is identical to the specified calibration, and the density ratio between trees with equal calibration values is equal to the ratio under the Birth-Death prior.</p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#birthRate'>birthRate</a>, <a href='#relativeDeathRate'>relativeDeathRate</a>, <a href='#sampleProbability'>sampleProbability</a>, <a href='#calibrations'>calibrations</a>, <a href='#type'>type</a>, <a href='#logMarginal'>logMarginal</a>, <a href='#tree'>tree</a>, <a href='#treeIntervals'>treeIntervals</a </p>
+<p>&nbsp</p><table id='birthRate' border='1px' width='90%'>
+<caption>birthRate</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.core.parameter.RealParameter.html'>beast.core.parameter.RealParameter</a></td></tr></thead>
+<tr><td>birth rate - the rate at which new lineages are created as a result of an existing lineage splitting into two.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='relativeDeathRate' border='1px' width='90%'>
+<caption>relativeDeathRate</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.core.parameter.RealParameter.html'>beast.core.parameter.RealParameter</a></td></tr></thead>
+<tr><td>relative death rate parameter, mu/lambda in birth death model</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='sampleProbability' border='1px' width='90%'>
+<caption>sampleProbability</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.core.parameter.RealParameter.html'>beast.core.parameter.RealParameter</a></td></tr></thead>
+<tr><td>sample probability, rho in birth/death model</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='calibrations' border='1px' width='90%'>
+<caption>calibrations</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.evolution.speciation.CalibrationPoint.html'>beast.evolution.speciation.CalibrationPoint***</a></td></tr></thead>
+<tr><td>Set of calibrated nodes</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='type' border='1px' width='90%'>
+<caption>type</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.evolution.speciation.CalibratedBirthDeathModel$Type</td></tr></thead>
+<tr><td>Type of correction: none for no correction (same as BEAST1), full for Yule-like over calibrated times, and restricted for Yule-like over calibrated times and ranked topology (default 'full'). However, 'full' is generally slow except for a few special cases, such as a single clade or two nested clades.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='logMarginal' border='1px' width='90%'>
+<caption>logMarginal</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.math.statistic.RPNcalculator.html'>beast.math.statistic.RPNcalculator</a></td></tr></thead>
+<tr><td>Use provided formula to compute the (log of) the marginal for special cases.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.evolution.tree.TreeInterface</td></tr></thead>
+<tr><td>tree over which to calculate a prior or likelihood</td></tr>
+<tr><td>
+Either this, or treeIntervals needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='treeIntervals' border='1px' width='90%'>
+<caption>treeIntervals</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.evolution.tree.coalescent.TreeIntervals.html'>beast.evolution.tree.coalescent.TreeIntervals</a></td></tr></thead>
+<tr><td>Intervals for a phylogenetic beast tree</td></tr>
+<tr><td>
+Either this, or tree needs to be specified</td></tr>
+</table>
+</body>
+</html>

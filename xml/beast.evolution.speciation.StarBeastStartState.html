@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>BEAST v2.5.0 Prerelease Documentation: beast.evolution.speciation.StarBeastStartState</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.5.0 Prerelease Documentation: beast.evolution.speciation.StarBeastStartState</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>A node that can be part of the state.<br/>Tree (the T in BEAST) representing gene beast.tree, species beast.tree, language history, or other time-beast.tree relationships among sequence data.<br/>Set a starting point for a *BEAST analysis from gene alignment data.</p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#method'>method</a>, <a href='#speciesTree'>speciesTree</a>, <a href='#gene'>gene</a>, <a href='#calibratedYule'>calibratedYule</a>, <a href='#popMean'>popMean</a>, <a href='#birthRate'>birthRate</a>, <a href='#speciesTreePrior'>speciesTreePrior</a>, <a href='#baseRate'>baseRate</a>, <a href='#initial'>initial</a>, <a href='#trait'>trait</a>, <a href='#taxonset'>taxonset</a>, <a href='#nodetype'>nodetype</a>, <a href='#estimate'>estimate</a </p>
+<p>&nbsp</p><table id='method' border='1px' width='90%'>
+<caption>method</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.evolution.speciation.StarBeastStartState$Method</td></tr></thead>
+<tr><td>Initialise either with a totally random state or a point estimate based on alignments data (default point-estimate)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='speciesTree' border='1px' width='90%'>
+<caption>speciesTree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.evolution.tree.Tree.html'>beast.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>The species tree to initialize</td></tr>
+<tr><td>
+Either this, or calibratedYule needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='gene' border='1px' width='90%'>
+<caption>gene</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.evolution.tree.Tree.html'>beast.evolution.tree.Tree***</a></td></tr></thead>
+<tr><td>Gene trees to initialize</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='calibratedYule' border='1px' width='90%'>
+<caption>calibratedYule</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.evolution.speciation.CalibratedYuleModel.html'>beast.evolution.speciation.CalibratedYuleModel</a></td></tr></thead>
+<tr><td>The species tree (with calibrations) to initialize</td></tr>
+<tr><td>
+Either this, or speciesTree needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='popMean' border='1px' width='90%'>
+<caption>popMean</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.core.parameter.RealParameter.html'>beast.core.parameter.RealParameter</a></td></tr></thead>
+<tr><td>Population mean hyper prior to initialse</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='birthRate' border='1px' width='90%'>
+<caption>birthRate</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.core.parameter.RealParameter.html'>beast.core.parameter.RealParameter</a></td></tr></thead>
+<tr><td>Tree prior birth rate to initialize</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='speciesTreePrior' border='1px' width='90%'>
+<caption>speciesTreePrior</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.evolution.speciation.SpeciesTreePrior.html'>beast.evolution.speciation.SpeciesTreePrior</a></td></tr></thead>
+<tr><td>Population size parameters to initialise</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='baseRate' border='1px' width='90%'>
+<caption>baseRate</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.core.Function</td></tr></thead>
+<tr><td>Main clock rate used to scale trees (default 1).</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='initial' border='1px' width='90%'>
+<caption>initial</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.evolution.tree.Tree.html'>beast.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>tree to start with</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='trait' border='1px' width='90%'>
+<caption>trait</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.evolution.tree.TraitSet.html'>beast.evolution.tree.TraitSet***</a></td></tr></thead>
+<tr><td>trait information for initializing traits (like node dates) in the tree</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='taxonset' border='1px' width='90%'>
+<caption>taxonset</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.evolution.alignment.TaxonSet.html'>beast.evolution.alignment.TaxonSet</a></td></tr></thead>
+<tr><td>set of taxa that correspond to the leafs in the tree</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='nodetype' border='1px' width='90%'>
+<caption>nodetype</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>type of the nodes in the beast.tree</td></tr>
+<tr><td>
+Optional input. Default: beast.evolution.tree.Node</td></tr>
+</table>
+<p>&nbsp</p><table id='estimate' border='1px' width='90%'>
+<caption>estimate</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>whether to estimate this item or keep constant to its initial value</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+</body>
+</html>

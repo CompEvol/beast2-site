@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>BEAST v2.5.0 Prerelease Documentation: beast.evolution.tree.coalescent.CompoundPopulationFunction</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.5.0 Prerelease Documentation: beast.evolution.tree.coalescent.CompoundPopulationFunction</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>An implementation of a population size function beastObject.Also note that if you are dealing with a diploid population N0 will be the number of alleles, not the number of individuals.<br/>An effective population size function based on coalecent times from a set of trees.</p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#populationSizes'>populationSizes</a>, <a href='#populationIndicators'>populationIndicators</a>, <a href='#itree'>itree</a>, <a href='#type'>type</a>, <a href='#useIntervalsMiddle'>useIntervalsMiddle</a </p>
+<p>&nbsp</p><table id='populationSizes' border='1px' width='90%'>
+<caption>populationSizes</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.core.parameter.RealParameter.html'>beast.core.parameter.RealParameter</a></td></tr></thead>
+<tr><td>population value at each point.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='populationIndicators' border='1px' width='90%'>
+<caption>populationIndicators</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.core.parameter.BooleanParameter.html'>beast.core.parameter.BooleanParameter</a></td></tr></thead>
+<tr><td>Include/exclude population value from the population function.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='itree' border='1px' width='90%'>
+<caption>itree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.evolution.tree.coalescent.TreeIntervals.html'>beast.evolution.tree.coalescent.TreeIntervals***</a></td></tr></thead>
+<tr><td>Coalecent intervals of this tree are used in the compound population function.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='type' border='1px' width='90%'>
+<caption>type</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>Flavour of demographic: either linear or stepwise for  piecewise-linear or piecewise-constant.</td></tr>
+<tr><td>
+Optional input. Default: linear</td></tr>
+</table>
+<p>&nbsp</p><table id='useIntervalsMiddle' border='1px' width='90%'>
+<caption>useIntervalsMiddle</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>When true, the demographic X axis points are in the middle of the coalescent intervals. By default they are at the beginning.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+</body>
+</html>

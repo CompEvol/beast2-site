@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>BEAST v2.5.0 Prerelease Documentation: beast.evolution.tree.coalescent.BayesianSkyline</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.5.0 Prerelease Documentation: beast.evolution.tree.coalescent.BayesianSkyline</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>Probabilistic representation that can produce a log probability for instance for running an MCMC chain.<br/>Distribution on a tree, typically a prior such as Coalescent or Yule<br/>Bayesian skyline: A likelihood function for the generalized skyline plot coalescent.</p>
+<h2>Reference:</h2><p>Drummond, A. J., Rambaut, A., Shapiro, B. E. T. H., & Pybus, O. G. (2005).
+Bayesian coalescent inference of past population dynamics from molecular sequences.
+Molecular biology and evolution, 22(5), 1185-1192.</p>
+<p><a href="http://dx.doi.org/10.1093/molbev/msi103">doi:10.1093/molbev/msi103</a></p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#popSizes'>popSizes</a>, <a href='#groupSizes'>groupSizes</a>, <a href='#tree'>tree</a>, <a href='#treeIntervals'>treeIntervals</a </p>
+<p>&nbsp</p><table id='popSizes' border='1px' width='90%'>
+<caption>popSizes</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.core.Function</td></tr></thead>
+<tr><td>present-day population size. If time units are set to Units.EXPECTED_SUBSTITUTIONS thenthe N0 parameter will be interpreted as N0 * mu. Also note that if you are dealing with a diploid population N0 will be out by a factor of 2.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='groupSizes' border='1px' width='90%'>
+<caption>groupSizes</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.core.parameter.IntegerParameter.html'>beast.core.parameter.IntegerParameter</a></td></tr></thead>
+<tr><td>the group sizes parameter</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.evolution.tree.TreeInterface</td></tr></thead>
+<tr><td>tree over which to calculate a prior or likelihood</td></tr>
+<tr><td>
+Either this, or treeIntervals needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='treeIntervals' border='1px' width='90%'>
+<caption>treeIntervals</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.evolution.tree.coalescent.TreeIntervals.html'>beast.evolution.tree.coalescent.TreeIntervals</a></td></tr></thead>
+<tr><td>Intervals for a phylogenetic beast tree</td></tr>
+<tr><td>
+Either this, or tree needs to be specified</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>BEAST v2.5.0 Prerelease Documentation: beast.evolution.operators.BitFlipOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.5.0 Prerelease Documentation: beast.evolution.operators.BitFlipOperator</h1>
+<p>Proposes a move in state space.<br/>Flip one bit in an array of boolean bits. The hastings ratio is designed so that all subsets of vectors with the same number of 'on' bits are equiprobable.</p>
+<h2>Inputs:</h2>
+<p><a href='#uniform'>uniform</a>, <a href='#parameter'>parameter</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='uniform' border='1px' width='90%'>
+<caption>uniform</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>when on, total probability of combinations with k 'on' bits is equal. Otherwise uniform on all combinations (default true)</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='parameter' border='1px' width='90%'>
+<caption>parameter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.core.parameter.BooleanParameter.html'>beast.core.parameter.BooleanParameter</a></td></tr></thead>
+<tr><td>the parameter to operate a flip on.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

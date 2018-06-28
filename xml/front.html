@@ -1,0 +1,45 @@
+<html>
+<head><title>BEAST v2.5.0 Prerelease Documentation Front Page</title>
+<link rel='StyleSheet' href='doc.css' type='text/css'>
+</head>
+
+<body>
+
+<h1>BEAST v2.5.0 Prerelease XML Reference</h1>
+<p>This documentation is used to help the user who wants to edit BEAST2 <a href='http://www.w3schools.com/xml/'>XML</a> manually.</p>
+
+<h2>How to read:</h2>
+<ul>
+<li>Each page is documenting a <b>BEAST object</b>, which is used for a value of the <i>spec</i> attribute in the XML. It may contain one or more inputs.</li>
+<li>An <b>input</b> connects this BEAST object with the output from another BEAST object that is also the type of this input. Each input is documented in a table of the HTML page. 
+<ul>
+<li>The table title is the input name.</li>
+<li>The first row is its type defined by either a Java primitive wrapper class or Java implementation of a BEAST object.</li>
+<li>The second row describes what the input do. </li>
+The last row shows its validation rule, and the default value.</li>
+</ul>
+<li>There are three options for the <b>validation rule</b> of an input: "Required", "Optional", "Either this, or".</li>
+<ul>
+<li><b>Required</b> means this input is compulsory in the XML.</li>
+<li><b>Optional</b> means this input can be absent in the XML, in this case, the default value is used.</li>
+<li><b>Either this or</b> represents the situation that you have to choose this input or the alternative input in the XML, and it will be invalid if both are missing.</li>
+</ul>
+<li>If there is <b>***</b> behind a type, it indicates this input type is actually a list (java.util.List) of this Java class.</li>
+</ul>
+<h2>Example of beast.core.MCMC:</h2>
+<p>A common example for beast.core.MCMC is :</p>
+<xmp><run chainLength="100000000" id="mcmc" spec="MCMC"></xmp>
+<p>But through its XML reference, we know there is a "Optional" input <i>preBurnin</i> available to define the burn-in, and it has to be an integer.</p>
+<p> So we can modify the XML to :</p>
+<xmp><run chainLength="1000000" id="mcmc" spec="MCMC" preBurnin="1000"></xmp>
+<h2>Example of beast.evolution.operators.ScaleOperator:</h2>
+<p>ScaleOperator has a "Either this or" rule for inputs <i>tree</i> and <i>parameter</i>, so that it has to either scale a tree :</p>
+<xmp><operator id='treeScaler' spec='ScaleOperator' scaleFactor="0.5" weight="1" tree="@tree"/></xmp>
+<p>or a RealParameter, such as kappa of HKY :</p>
+<xmp><parameter id="hky.kappa" value="1.0" lower="0.0"/>
+<operator id='kappaScaler' spec='ScaleOperator' scaleFactor="0.5" weight="1" parameter="@hky.kappa"/></xmp>
+
+</body>
+
+</html>
+

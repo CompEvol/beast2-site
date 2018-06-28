@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>BEAST v2.5.0 Prerelease Documentation: beast.evolution.operators.UniformOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.5.0 Prerelease Documentation: beast.evolution.operators.UniformOperator</h1>
+<p>Proposes a move in state space.<br/>Assign one or more parameter values to a uniformly selected value in its range.</p>
+<h2>Inputs:</h2>
+<p><a href='#parameter'>parameter</a>, <a href='#howMany'>howMany</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='parameter' border='1px' width='90%'>
+<caption>parameter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.core.parameter.Parameter</td></tr></thead>
+<tr><td>a real or integer parameter to sample individual values for</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='howMany' border='1px' width='90%'>
+<caption>howMany</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>number of items to sample, default 1, must be less than the dimension of the parameter</td></tr>
+<tr><td>
+Optional input. Default: 1</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

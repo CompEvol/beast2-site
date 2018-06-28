@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>BEAST v2.5.0 Prerelease Documentation: beast.evolution.likelihood.ThreadedTreeLikelihood</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.5.0 Prerelease Documentation: beast.evolution.likelihood.ThreadedTreeLikelihood</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>Probabilistic representation that can produce a log probability for instance for running an MCMC chain.<br/>Generic tree likelihood for an alignment given a generic SiteModel, a beast tree and a branch rate model<br/>Calculates the likelihood of sequence data on a beast.tree given a site and substitution model using a variant of the 'peeling algorithm'. For details, seeFelsenstein, Joseph (1981). Evolutionary trees from DNA sequences: a maximum likelihood approach. J Mol Evol 17 (6): 368-376.</p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#useAmbiguities'>useAmbiguities</a>, <a href='#threads'>threads</a>, <a href='#proportions'>proportions</a>, <a href='#scaling'>scaling</a>, <a href='#data'>data</a>, <a href='#tree'>tree</a>, <a href='#siteModel'>siteModel</a>, <a href='#branchRateModel'>branchRateModel</a>, <a href='#*'>*</a </p>
+<p>&nbsp</p><table id='useAmbiguities' border='1px' width='90%'>
+<caption>useAmbiguities</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>flag to indicate leafs that sites containing ambiguous states should be handled instead of ignored (the default)</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='threads' border='1px' width='90%'>
+<caption>threads</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>maximum number of threads to use, if less than 1 the number of threads in BeastMCMC is used (default -1)</td></tr>
+<tr><td>
+Optional input. Default: -1</td></tr>
+</table>
+<p>&nbsp</p><table id='proportions' border='1px' width='90%'>
+<caption>proportions</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>specifies proportions of patterns used per thread as space delimited string. This is useful when using a mixture of BEAGLE devices that run at different speeds, e.g GPU and CPU. The string is duplicated if there are more threads than proportions specified. For example, '1 2' as well as '33 66' with 2 threads specifies that the first thread gets a third of the patterns and the second two thirds. With 3 threads, it is interpreted as '1 2 1' = 25%, 50%, 25% and with 7 threads it is '1 2 1 2 1 2 1' = 10% 20% 10% 20% 10% 20% 10%. If not specified, all threads get the same proportion of patterns.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='scaling' border='1px' width='90%'>
+<caption>scaling</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.evolution.likelihood.ThreadedTreeLikelihood$Scaling</td></tr></thead>
+<tr><td>type of scaling to use, one of [none, always, _default]. If not specified, the -beagle_scaling flag is used.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='data' border='1px' width='90%'>
+<caption>data</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.evolution.alignment.Alignment.html'>beast.evolution.alignment.Alignment</a></td></tr></thead>
+<tr><td>sequence data for the beast.tree</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.evolution.tree.TreeInterface</td></tr></thead>
+<tr><td>phylogenetic beast.tree with sequence data in the leafs</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='siteModel' border='1px' width='90%'>
+<caption>siteModel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.evolution.sitemodel.SiteModelInterface</td></tr></thead>
+<tr><td>site model for leafs in the beast.tree</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='branchRateModel' border='1px' width='90%'>
+<caption>branchRateModel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.evolution.branchratemodel.BranchRateModel$Base</td></tr></thead>
+<tr><td>A model describing the rates on the branches of the beast.tree.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='*' border='1px' width='90%'>
+<caption>*</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: ?</td></tr></thead>
+<tr><td></td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>
