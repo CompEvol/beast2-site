@@ -1,0 +1,83 @@
+---
+layout: post
+title: Fatal exception --  Could not find a proper state to initialise
+tags: []
+---
+<p style="color:gray">4 July 2018 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+ 
+
+This post is about solving the problem when the message "<b>Fatal exception: Could not find a proper state to initialise. Perhaps try another seed</b>" appears just after starting BEAST. Sometimes, just restarting with another seed solves the problem (as suggested by the error message), but if this does not help, there are some hints below on how to fix the issue.
+
+<p>When this error is displayed, also a decomposition of the posterior into all of its components is shown, for example
+
+{% highlight xml %}
+Start likelihood: -Infinity after 10 initialisation attempts 
+P(posterior) = -Infinity (was -Infinity) 
+	P(prior) = -Infinity (was -Infinity) 
+		P(CoalescentConstant.t:core_SNP) = -1265.787601361665 (was -1265.787601361665) 
+		P(YuleModel.t:core_SNP) = -5714.118349823219 (was -5714.118349823219) 
+		P(YuleBirthRatePrior.t:core_SNP) = 0.0 (was 0.0) 
+		P(ClockPrior.c:core_SNP) = 0.0 (was 0.0) 
+		P(GammaShapePrior.s:core_SNP) = -1.0 (was -1.0) 
+		P(KappaPrior.s:core_SNP) = -1.8653600339742873 (was -1.8653600339742873) 
+		P(nonZeroRatePrior.s:location) = -Infinity (was -Infinity) 
+		P(PopSizePrior.t:core_SNP) = 1.2039728043259361 (was 1.2039728043259361) 
+		P(relativeGeoRatesPrior.s:location) = -594.9999999999999 (was
+-594.9999999999999) 
+		P(geoclockPrior.c:location) = -6.915086640662835 (was -6.915086640662835) 	
+	P(likelihood) = NaN (was NaN) ** 
+		P(treeLikelihood.core_SNP) = NaN (was NaN) ** 
+		P(traitedtreeLikelihood.location) = NaN (was NaN) ** 
+Fatal exception: Could not find a proper state to initialise. Perhaps try
+another seed. 
+{% endhighlight %}
+
+<p>The message shows for each component of the posterior its value (actually the log of its value) and its previous value -- these should be the same if everything works fine, but since you see this message, this is probably not so.
+
+<p>The first thing to look for when the posterior (shown in the first line) is -Infinity, which of the components is -Infinity. If it is a prior, we have to find out what the prior represents to fix it, and if it is a likelihood. 
+
+<h2>Common issues with priors</h2>
+
+<p id="nonZeroRatePrior"><b>Ancestral ancestor analysis with too many states</b> In the error message listed above, the <tt>nonZeroRatePrior.s:location-prior</tt> is zero (so the log of it is -Infinity). This usually happens when there are many states for the discrete trait model. The prior on the number of rates that is non-zero is rather tight, and initially all rates are non-zero, so there are <tt>n(n-1)/2</tt> non-zero rates (for <tt>n</tt> discrete states), which can result in the probability of that many rates become zero due to numeric issues. To fix this, increase the mean of the prior so the analysis starts. If you really want to keep the prior as is, you can start with a more relaxed, run the chain for a little while till many rates become zero (which usually happens quite quickly), then stop the chain,  change the prior back and resume.
+
+<p id="parameterPrior"><b>Priors on parameter with starting value out of range</b> If a prior on a parameter is causing problems it is probably because the starting value has zero probability. If the starting value has non-zero support, check the bounds of the parameter -- possibly, the starting value is outside of these bounds. In BEAUti, the parameter starting value with lower and upper bound are displayed next to the prior.
+
+<p id="MRCAPrior"><b>Incompatible MRCA priors</b> When an MRCA-prior is listed as -Infinity, the starting tree is not compatible with the MRCA prior, so you should change the <a href="http://www.beast2.org/2014/07/28/all-about-starting-trees.html">starting tree</a>. However, it is also possible that MRCA priors are not compatible, so no starting tree exists. This happens when one MRCA requires a clade -- say A,B,C -- to be monophyletic, while another MRCA -- say B,C,D -- has a non-overlapping set of taxa that also needs to be monophyletic. Obviously, not both (A,B,C) and (B,C,D) can be monophyletic at the same time. This usually happens when by mistake a taxon is left out in one of the two clades (for example, taxon A could be added to the second clade, and (A,B,C) and (A,B,C,D) can be monophyletic at the same time.
+
+
+<p id="treeprior"><b>Tree prior has numerical issues</b> In this case, the posterior will be NaN instead of -Infinity, as in this example:
+
+{% highlight xml %}
+Start likelihood: NaN 
+P(posterior) = NaN (was NaN)  **
+	P(prior) = NaN (was NaN)  **
+		P(FBD.t:tree) = NaN (was NaN)  **
+		P(diversificationRatePriorFBD.t:tree) = -1.6094379124341003 (was -1.6094379124341003)
+		P(GammaShapePrior.s:data2) = -2.3025850929940455 (was -2.3025850929940455)
+		P(originPriorFBD.t:tree) = 0.0 (was 0.0)
+		P(samplingProportionPriorFBD.t:tree) = 0.0 (was 0.0)
+		P(turnoverPriorFBD.t:tree) = 0.0 (was 0.0)
+		P(MeanRatePrior.c:data) = -5.393335713764618 (was -5.393335713764618)
+		P(ucldStdevPrior.c:data) = 0.819364145120802 (was 0.819364145120802)
+		P(InGroup.prior) = NaN (was NaN)  **
+	P(likelihood) = NaN (was NaN)  **
+		P(morphTreeLikelihood.data2) = NaN (was NaN)  **
+		P(morphTreeLikelihood.data3) = NaN (was NaN)  **
+		P(morphTreeLikelihood.data4) = NaN (was NaN)  **
+		P(morphTreeLikelihood.data5) = NaN (was NaN)  **
+Fatal exception: Could not find a proper state to initialise. Perhaps try another seed.
+{% endhighlight %}
+
+<p>Some tree priors do not behave well when ages are in units that requires large numbers (larger than about 500). This can easily be solved by changing the units; if you use years, use millennia instead -- if you use millennia, use millions of years instead -- if you use millions of years, use billions of years instead. Note that by changing all time information, priors, in particular MRCA priors, need to be adjusted as well. Be aware that for normal distributions both mean and standard deviation must be scaled, but for log normal only the mean (in real space) needs to be scaled.
+
+<h2>Common issues with likelihoods</h2>
+
+<p id="substmodel"><b>Substitution model (in)compatible with BEAGLE</b> Some substitution models (e.g. the pseudo Dollo model) only work with BEAGLE, while others (e.g. the pseudo Dollo covarion model) only works without BEAGLE. The first case is solved by forcing BEAST to use BEAGLE (this is default behaviour if BEAGLE is installed), the second by forcing BEAST to not use BEAGLE, but use the java tree likelihood instead (using the <tt>-java</tt> option when you start BEAST from the command line).
+
+<p id="clockrate"><b>Starting clock rate too high</b> If the starting tree is relatively young compared to the initial clock rate, this may result in zero tree likelihoods. This is easily fixed by starting with a higher clock rate.
+
+<p id="scaling"><b>No scaling enforced</b> Using the <tt>-beagle_scaling</tt> scaling flag, you can force the tree likelihood not to use scaling, which can speed up the likelihood calculation, but can also cause the starting likelihood to be zero if the starting tree is randomly chosen. The trick is to start with a better (higher posterior) starting tree. This can be achieved crudely by using a better <a href="http://www.beast2.org/2014/07/28/all-about-starting-trees.html">starting tree</a>. Alternatively, you can run BEAST for a little while without preventing scaling, then stop and resume without scaling. This ensures the starting point of the MCMC is random (assuming a random starting tree is used), so allows you to check the MCMC will converge from different starting locations as it should.
+
+
+
+<p>Let me know if I missed anything and I'll add it to the list.
