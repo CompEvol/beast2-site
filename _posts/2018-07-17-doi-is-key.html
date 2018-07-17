@@ -1,0 +1,37 @@
+---
+layout: post
+title: For package developer -- DOI is the key to your citation
+tags: [citation]
+---
+<p style="color:gray">17 July 2018 by <a href="https://github.com/walterxie">Walter Xie</a></p>
+ 
+<p>When I am developing a tool to extract citations from @Citation in BEAST 2 packages recently, 
+I find nearly two thirds of them without DOI (Digital Object Identifier). 
+Besides the <a href="https://en.wikipedia.org/wiki/Digital_object_identifier#Features_and_benefits">importance of using DOI</a>,
+from the software engineering perspective, I strongly recommend package developers to provide them in every @Citation.</p>
+
+<p>The <a href="https://github.com/CompEvol/beast2/blob/master/src/beast/core/Citation.java">@Citation</a> in BEAST 2 
+stores the information of a citation for the model implemented in that Java class, 
+which includes 4 elements (value, DOI, year, and firstAuthorSurname) at the moment.
+A Java class could have more than one @Citation, if there are multiple citations.</p>  
+
+<p>The element <i>value</i> is supposed to be the whole citation. Personally, I suggest to use 
+<a href="https://en.wikipedia.org/wiki/APA_style">APA style</a> which is the second choice from Google Scholar, 
+because the authors can be easily pulled out by brackets (year) using text processing. 
+You can add the newline character to make it look pretty when it is printed in the BEAST 2 output console.</p>
+
+<p>The element <i>DOI</i> is the key to locate the unique citations, and it can also be used to extract 
+the publication metadata from third party online tools. Without DOI, the citation will be treated as 
+an invalid format for a further citation summary or analysis.</p> 
+
+<p>A good example can be seen in <a href="https://github.com/CompEvol/beast2/blob/master/src/beast/evolution/tree/coalescent/BayesianSkyline.java">
+beast.evolution.tree.coalescent.BayesianSkyline</a>. Some of contents below are omitted to fit in the box:</p> 
+
+{% highlight java %}
+@Citation(value="Drummond, A. J., Rambaut, ..., & Pybus, O. G. (2005).\n" +
+        "Bayesian coalescent inference of ... from molecular sequences.\n" +
+        "Molecular biology and evolution, 22(5), 1185-1192.",
+        year = 2005, firstAuthorSurname = "Drummond", DOI="10.1093/molbev/msi103")
+{% endhighlight %}
+
+<p>Please provide DOI in the @Citation in your package.</p> 
