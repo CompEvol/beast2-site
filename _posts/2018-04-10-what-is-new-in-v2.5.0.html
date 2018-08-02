@@ -13,6 +13,16 @@ tags: []
 <p>        Maximum MCMC length was 2147483647 is now 9223372036854775807. The chain length was limited by the maximum value fitting a 32 bit <tt>int</tt>, which is now replaced by a <tt>long</tt>, which has 64 bits.
 <p>        Fix for resume of coalescent, which sometimes failed due to numerical issues when reconstructing the tree, node heights that are supposed to be the same (i.e. a height difference of 0) could have small deviations (height differences of order 1e-13). This causes problems in the coalescent, which compared height differences to 0 instead of a small value.
 <p>        <tt>RPNCalculator</tt> logs multi-dimensional values starting from 1 instead of 0, to make it consistent with multi dimensional parameters, which already started their log-entries at 1.
+<p>As a consequence of package jar files being stored in the file <tt>beauti.properties</tt> instead of being discovered on the fly, when you start BEAST with 
+
+<p><tt>java -jar beast.jar</tt>
+
+<p>the class path is not set, so packages will not be loaded, so if you need extra packages BEAST will fail. To get the v2.4.x behaviour back, you can start with 
+
+<p><tt>java -Dbeast.load.jars=true -jar beast.jar</tt>
+
+<p>and packages will be discovered dynamically. Note this only works with Java 8. With Java 9, jar loading has been changed considerably, so that is why v2.5.0 (which should work with Java 9) behaves differently than before.
+
 
 <h2>BEAUti</h2>
 <p>To ensure you are running with the latest bug-fixes, BEAUti now automatically updates packages when BEAUti is started: initially, you will be asked whether you want to install a package, which allows you to switch off updating or always update without asking.
