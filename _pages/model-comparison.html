@@ -11,7 +11,7 @@ tags: []
 
 <p>To estimate the marginal likelihood you can
 <ul>
-<li>Use the harmonic mean estimator in Tracer -- <i>never do this!</i> The estimator has infinite variance and has trouble reliably distinguishing between models (Beale et al. 2012).
+<li>Use the harmonic mean estimator in Tracer -- <i>never do this!</i> The estimator has infinite variance and has trouble reliably distinguishing between models (Baele et al. 2012).
 <li>Use stepping stone/path sampling analysis using the <a href="https://github.com/BEAST2-Dev/model-selection">model-selection package</a>. This is described in the <a href="https://github.com/BEAST2-Dev/beast-docs/releases/download/v1.0/BFD-tutorial-2017.zip">tutorial</a> for distinguishing models with different taxon assignments allowing you to do species delimitation using the BFD* method(Leaché et al, 2014).
 <li>Use nested sampling (Maturana et al, 2018) using the <a href="https://github.com/BEAST2-Dev/nested-sampling">NS package</a>. Nested sampling not only gives you an estimate of the marginal likelihood, but also an estimate of the variance of that estimate, which allows you to judge how much confidence you can have in the corresponding BFs.
 </ul>
