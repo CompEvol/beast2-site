@@ -1,0 +1,44 @@
+---
+layout: post
+title: Nested sampling for model selection
+tags: []
+---
+<p style="color:gray">19 September 2018 by <a href='mailto:p.russel@auckland.ac.nz'>Patricio Maturana-Russell</a></p>
+
+<p>In this post we discuss a new Bayesian technique implemented in BEAST2 to perform model selection.  The method, called Nested Sampling (NS), has been introduced into phylogenetics recently and allows you to estimate the marginal likelihood, a key quantity in Bayesian model selection analysis.  We give a brief review about the marginal likelihood estimation methods used in phylogenetics, and the use and properties of NS. 
+
+<h2>Model Selection</h2>
+
+<p>Bayesian statistics have allowed the use of complex phylogenetic models to analyse molecular data.  Now the question is which one should be preferred from a pool of models.  The analogous to likelihood ratio test in the frequentist approach is the Bayes factor.  This factor is defined as the ratio of the marginal likelihoods of the models to be compared.  However, these quantities are complex multidimensional integrals, which are especially complex in phylogenetics, and require numerical methods to approximate them.  The harmonic mean was for a while the most popular method, but completely discredited now.  In 2006 (<a href="#Lart">Lartillot &amp; Philippe, 2006</a>), path sampling (PS) or thermodynamic integration made its appearance, contributing an unprecedented accuracy.  In 2011 (<a href="#Xie">Xie et al, 2011</a>), stepping-stone sampling (SS) method was proposed, which yields more accurate estimates than PS with slightly less computational effort.  This method was extended in the same year (<a href="#Fan">Fan et al, 2011</a>) under the name of generalised stepping-stone sampling (GSS), which is much more accurate than its original version if a reasonable approximation of the posterior distribution is available.     
+
+<p>These methods are quite powerful in terms of accuracy if and only if at least the minimum requirements are specified.  In addition, if a reasonable approximation of the posterior distribution is available for the case of GSS, otherwise this method can fail dramatically (see <a href="https://academic.oup.com/sysbio/advance-article/doi/10.1093/sysbio/syy050/5046926">Maturana et al. 2018</a>).  The specifications vary from problem to problem, therefore the user has to try with different numbers.  In practice, a BEAST2 user usually tries with an increasing sequence of number of steps until the marginal likelihood estimate does not vary much from its previous estimation.  This can be computationally expensive or impractical in many situations, for instance, in the case of big datasets.
+
+<p>Once the specifications are found to yield reliable estimates, the procedure has to be replicated multiple times in order to get an estimate of the uncertainty associated to the marginal likelihood estimate.  This can also be computationally expensive and impractical in many situations.  
+
+<p>Recently, the nested sampling algorithm (NS; <a href="#Skil">Skilling, 2006</a>) has been introduced to phylogenetics (<a href="https://academic.oup.com/sysbio/advance-article/doi/10.1093/sysbio/syy050/5046926">Maturana et al., 2018</a>).  This algorithm is based on a different way of exploring the parameter space.  Power posterior methods, such as PS, SS and GSS, rely on samples from power posterior densities.  These densities define a path between the prior and the posterior, in the case of PS and SS, or a reference distribution and the posterior, in the case of GSS.  On the other hand, NS relies on prior with a dynamic likelihood restriction.  The method stars the exploration from the prior which becomes constrained toward those areas of high likelihood values over time.  This allows the method work in cases in which power posterior methods fail (<a href="#Skil">Skilling, 2006</a>; <a href="#Matu">Maturana et al. 2018</a>), which makes it more general.  The method not only allows marginal likelihood estimation, but also yields an estimate of its standard deviation (SD) and samples from the posterior.
+
+<h2>Use of Nested Sampling</h2>
+
+<p>In practical terms, NS requires the specification of 2 tuning parameters: a number of active points and sub-chain length.  The active points define the number of particles kept in the parameter space exploration at each iteration.  The larger this number is, the higher the precision is.  However, in addition, the larger the number of iterations that the method requires to reach convergence.  The good news is that NS estimate is around the true value even when using a single active point.  The number of active points only affects the precision of the estimate, not the bias. 
+
+<p>The other tuning parameter is the sub-chain length.  This plays the most important role in the reliability of the method.  It defines the number of MCMC steps to generate a new point from the prior with the likelihood restriction at each iteration.  NS works in theory if and only if the points generated at each iteration are independent.  Therefore, this number should be large enough to meet this condition.  Otherwise, the method produces underestimates.  The implementation of NS in BEAST2 has the option to auto-calibrate this tuning parameter.
+
+<p>To perform model selection, we estimate the marginal likelihood via NS for the models that we want to compare.  If the two models with the highest marginal likelihoods are reasonably far away in terms of their standard deviations, we choose the one with the highest value.  Here one can be conservative and prefer a model if and only if the winning model is very far away in terms of SDs.  On the other other hand, if the two highest marginal likelihoods are close to each other in terms of their standard deviations, the estimate procedure can be performed again, but with a larger number of active points to increase the precision of the estimates and then decide.   
+
+<h2>Conclusion</h2>
+
+<p>The most reliable methods to carry out model selection via Bayes factor in phylogenetics have been PS and SS.  These 2 methods now have competition: NS.  This is a new method in the phylogenetic field and looks very promising.  It allows marginal likelihood estimation together with an estimate of its uncertainty, and parameter inference.  The method is implemented in BEAST2 and is waiting to be tested in the most diverse phylogenetic problems.
+
+<p>More information on how to <a href="https://github.com/BEAST2-dev/nested-sampling/wiki">install the NS package</a> and  <a href="https://github.com/BEAST2-dev/nested-sampling/wiki/How-to-use-NS">use nested sampling</a> can be found in the <a href="https://github.com/BEAST2-Dev/nested-sampling">NS package</a>.
+
+<h3>References</h3>
+
+<p id="Fan">Fan, Y., Wu, R., Chen, M.-H., Kuo, L., Lewis, P. O., 2011. Choosing among partition models in Bayesian phylogenetics. Mol. Biol. Evol. 28 (1), 523–532.
+
+<p id="Lart">Lartillot, N., Philippe, H., 2006. Computing Bayes factors using thermodynamic integration. Syst. Biol. 55 (2), 195–207.
+
+<p id="Matu">Maturana Russel, P., Brewer B.J., Klaere S., Bouckaert R. 2018. Model selection and parameter inference in phylogenetics using Nested Sampling. Syst. Biol. In press.
+
+<p id="Skil">Skilling, J., 2006. Nested sampling for general Bayesian computation. Bayesian Analysis 1 (4), 833–860.
+
+<p id="Xie">Xie, W., Lewis, P. O., Fan, Y., Kuo, L., Chen, M.-H., 2011. Improving marginal likelihood estimation for Bayesian phylogenetic model selection. Syst. Biol. 60 (2), 150–160.
