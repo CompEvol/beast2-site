@@ -1,0 +1,21 @@
+---
+layout: post
+title: What is new in v2.5.1
+tags: []
+---
+
+<p>Due to the way BEAST v2.5.x applications are launched by creating a new Java process, these processes that do the actual work (BEAST, BEAUti, etc) were given only a default amount of memory, with no way to change this. For large analyses, this meant programs ran out of memory. Now, a <tt>-X</tt> flag is added to all applications, so more memory can be allocated using for example <tt>-Xmx12g</tt> to allocate 12 GB of heap space, and/or <tt>-Xms128m</tt> to allocate 128 MB of stack space.
+
+<p>BEAST can use custom XML values through the <tt>-D name=value</tt> argument. For example, if you want to specify a file name, you can use <tt>fileName="$(fn).log"</tt> and start BEAST with <tt>beast -D fn=myFile myXML.xml</tt> and the XML will replace all instances of <tt>$(fn)</tt> with <tt>myFile</tt>. Multiple variables needed to be separated by commas, e.g. <tt>-D fn=myFile,chainLength=10000000</tt>. Unfortunately, if the value were not allowed to contain commas, and only a single <tt>-D</tt> was allowed. In v2.5.1, these restrictions are lifted, and you can use multiple -D arguments with commas in user defined variables (useful when specifying plate range values).
+
+<p>BEAUti on OS X with Java 9 and higher displayed a Java window when clicking the "About" menu, which should be fixed now and display the usual BEAUti "about" dialog.
+
+<p>BEAST checks whether CUDA is installed on OS X, since it causes havoc if it is installed when there is no CUDA device in the computer. This stopped working with v2.5.0 but has been reinstated.
+
+<p>Launch scripts now use quoted JAVA_HOME variables, allowing installation in directories containing spaces.
+
+<p>The package manager updates packages when new versions are available, and it now also checks whether the package dependencies need to be updated.
+
+<p>TreeAnnotator used to get confused if the taxa names were whole numbers, but handles these taxa names now.
+
+<p>Better error reporting, since error messages cannot be clear enough.
