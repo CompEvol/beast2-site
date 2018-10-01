@@ -27,10 +27,6 @@ In our <a href="https://doi.org/10.1093/sysbio/syy050">paper</a>, we showed that
 
 <p>A posterior from the trees is also produced, which can be inspected with DensiTree, or summarised using TreeAnnotator and visualised in FigTree. Again, the <tt>myfile.trees</tt> file are just the saved points, and <tt>myfile.posterior.trees</tt> contains the posterior sample.
 
-{% highlight java %}
-particleCount <= ESS <= number of entries in myfile.posterior.log
-{% endhighlight %}
-
 
 <h2>Multi threaded NS</h2>
 <p>However, the run time of NS is linear in the number of active points, so doubling the number of points means doubling the run time. One way around this is to use multi-threaded NS, which runs a number of NS analysis in parallel, but pools the batch of active points to choose from when replacing an active point. So, the chains run mostly independently except when saving points and sampling points for replacement. This results in very good CPU utilisation, typically close to 100% (though top occasionally reports numbers even greater than that).
