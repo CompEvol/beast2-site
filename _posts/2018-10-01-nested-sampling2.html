@@ -1,0 +1,52 @@
+---
+layout: post
+title: Nested sampling for posterior inference
+tags: []
+---
+<p style="color:gray">1 October 2018 by <a href='mailto:remcol@auckland.ac.nz'>Remco Bouckaert</a></p>
+
+<p>As we saw in a <a href="/2018/09/19/nested-sampling.html">previous post</a>, nested sampling is a method that can be used for model selection using the marginal likelihood estimate produced by nested sampling. Unlike many other implementations, it also estimates the uncertainty in the marginal likelihood estimate by a standard deviation estimate. This makes it possible compare marginal likelihoods and have a sense how reliable the Bayes factor is.
+
+<h2>Nested sampling as alternative for standard MCMC</h2>
+
+<p>But nested sampling does more than just estimating the marginal likelihood and its standard deviation: it also produces a sample from the posterior. 
+In our <a href="https://doi.org/10.1093/sysbio/syy050">paper</a>, we showed that there are phylogenetic analyses where MCMC fails to produce the same distribution in multiple runs due to the multi-modality of the distribution. Because nested sampling uses multiple points in the state space, it can navigate these modes more consistently than MCMC can, and this allows sampling from the posterior in cases where standard MCMC fails. Parallel tempering, another MCMC method, is an alternative in these cases, but it is computationally expensive.
+
+<p>When you <a href="https://github.com/BEAST2-dev/nested-sampling/wiki/How-to-use-NS">set up</a> a nested sampling analysis for BEAST using the <a href="https://github.com/BEAST2-Dev/nested-sampling">NS package</a> and run it, for every log file there will be a posterior log file, and likewise for any trees file. You can inspect these log and trees file as usual with <a href="http://tree.bio.ed.ac.uk/software/tracer/">Tracer</a> and treeannotator (which comes packaged with BEAST).
+
+<table>
+<tr><td><b>Nested sampling file</b></td><td><b>posterior sample file</b></td></tr>
+<tr><td>myfile.log</td><td>myfile.posterior.log</td></tr>
+<tr><td>myfile.trees</td><td>myfile.posterior.trees</td></tr>
+</table>
+
+<h2>Effective sample size (ESS)</h2>
+<p>Though you can use Tracer to inspect the <tt>myfile.log</tt> file, care must be taken in interpreting the results. First of all, the samples are ordered in the same sequence as the nested sampling run, which means the likelihood will be a continuous increasing function. The ESS estimates in Tracer rely on the samples being ordered according to an MCMC run, so these ESS numbers cannot be interpreted the same
+
+<p>By default, the number of samples in the <tt>myfile.posterior.log</tt> file is determined by the theoretical maximum number of independent samples. But since not all parameters are equally often sampled due to the nature and weights of operator not being equally spread, this is in general an over estimate of the ESS. The ESS increases with increasing number of particles (= active points) used in the NS analysis, so running with many active points will provide a more robust sample. 
+
+<p>A posterior from the trees is also produced, which can be inspected with DensiTree, or summarised using TreeAnnotator and visualised in FigTree. Again, the <tt>myfile.trees</tt> file are just the saved points, and <tt>myfile.posterior.trees</tt> contains the posterior sample.
+
+{% highlight java %}
+particleCount <= ESS <= number of entries in myfile.posterior.log
+{% endhighlight %}
+
+
+<h2>Multi threaded NS</h2>
+<p>However, the run time of NS is linear in the number of active points, so doubling the number of points means doubling the run time. One way around this is to use multi-threaded NS, which runs a number of NS analysis in parallel, but pools the batch of active points to choose from when replacing an active point. So, the chains run mostly independently except when saving points and sampling points for replacement. This results in very good CPU utilisation, typically close to 100% (though top occasionally reports numbers even greater than that).
+
+<p>To set up a multi threaded analysis, the easiest way to go is by first setting up an MCMC analysis in BEAUti with the model and data you want to analysis. Then, edit the XML in a text editor and replace the line with the run element, which should look something like this:
+
+{% highlight xml %}
+<run id="mcmc" spec="MCMC" chainLength="100000000">
+{% endhighlight %}
+
+with
+
+{% highlight xml %}
+<run id="mcmc" spec="beast.gss.MultiThreadedNS" threads="8" chainLength="100000000" particleCount="10" subChainLength="5000" epsilon="1e-12">
+{% endhighlight %}
+
+
+<p>If you run a multi-threaded analysis with 10 particles and 8 threads, it runs in the same time as a standard nested sampling run with 10 particles and 1 thread. The effective sample size will be 8 times larger though.
+
