@@ -11,7 +11,9 @@ url_theory: ['http://doi.org/10.1016/j.jtbi.2010.09.010', 'http://mbe.oxfordjour
 label_theory: [stadler2010, stadler2012]
 url_source: https://github.com/BEAST2-Dev/bdsky
 label_source: bdsky
-url_example_xml: 
+url_example_xml: https://github.com/BEAST2-Dev/bdsky/blob/master/examples/BDSKY_sequential.xml
 category: Birth-death tree priors
 ---
-This model was implemented, tested and validated in [stadler2013](http://www.pnas.org/content/110/1/228.full). The paper describes the more general birth-death serial skyline model, which this is a special case of when there is a single time interval and no changes in parameters through time.
+This model was implemented, tested and validated in [stadler2013](http://www.pnas.org/content/110/1/228.full). 
+The paper describes the more general birth-death serial skyline model, 
+which this is a special case of when there is a single time interval and no changes in parameters through time.
