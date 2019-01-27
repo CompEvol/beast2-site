@@ -1,0 +1,78 @@
+---
+layout: post
+title: Assessing temporal structure in data sets of rapidly-evolving microbes and ancient DNA
+tags: []
+---
+<p style="color:gray">28 January 2019 by <a href='maito:sebastian.duchene@unimelb.edu.au'>Sebastian Duchêne</a> </p>
+
+<p>In this post we discuss different approaches to assessing whether molecular sequence sampling times are sufficiently informative to calibrate the molecular clock, which is often done in studies of viruses, bacteria, and ancient DNA. Although there exist several methods for this purpose, they are difficult to interpret from a statistical standpoint and sometimes they require extensive computational resources. To address these limitations, we present a fully Bayesian alternative that should be easy to set up in BEAST2 and to interpret in empirical studies. As a proof of concept we use a small number of analyses, and in an upcoming study we investigate this approach in more detail.
+
+<h2>Measurably evolving populations</h2>
+
+<p>Early molecular sequence studies of RNA viruses demonstrated that their genomes accumulate genetic change much more rapidly than other organisms. This has been attributed to the lack of repair mechanisms, short generation times, and selective constraints. A result of such rapid rates of evolution is that we can observe evolution in calendar time, such that samples collected a few months apart will exhibit a measurable amount of sequence divergence.
+
+<p>The molecular clock posits that evolutionary change occurs at an approximately constant rate over time (<a href="#Zuckerkandl">Zuckerkandl and Pauling 1965</a>). Under this scenario molecular sequences of RNA viruses collected at different points in time will have a predictable amount of sequence divergence. In the context of phylogenetics, this means that we can use viral sequence sampling times to calibrate the molecular clock, instead of resorting to external sources of information, such as the fossil record. In a pioneering study, <a href="#Korber">Korber et al.</a> used HIV samples collected over a few years to calibrate the molecular clock and estimate the time of origin of some of the main human lineages (<a href="#Korber">Korber et al. 2000</a>). This approach has been extended to more sophisticated molecular clock models in many organisms (<a href="#Rieux">Rieux and Balloux 2016</a>). 
+
+<p>In 2003, <a href="#Drummond">Drummond et al.</a> coined the term ‘measurably evolving populations’ for those organisms where the collection dates of the sequences span a sufficiently long time to produce an appreciable amount of genetic change (<a href="#Drummond">Drummond et al. 2003</a>). In addition to RNA viruses, measurably evolving populations include DNA viruses and some bacteria. Moreover, the advent of ancient DNA from thousands or hundreds of thousands of years ago has meant that many molecular data sets of animals and plants can also be treated as measurably evolving. 
+
+<h2>Tests of temporal structure</h2>
+
+<p>In order to determine that a data set consists a measurably evolving population it is important to assess the temporal structure of the data. That is, whether the resulting inferences of evolutionary rates and times are informed by the sampling times. For example, if the collection times of the samples span a very short time, the timespan will not include a sufficient number of substitutions to estimate the evolutionary rate and timescale. In some viruses, such as influenza, obtaining samples over a few weeks might be sufficient, but in a mammalian data set it is typically necessary to use ancient DNA.
+
+<p>The most popular tests of temporal structure include the root-to-tip regression and the date-randomisation test. The root-to-tip regression consists in estimating a phylogenetic tree without a molecular clock (i.e., a phylogram) and conducting a regression of the distance from the root to each of the tips as a function of their collection times. The expectation is that samples that have been collected more recently should be more distant from the root of the tree. The slope of the regression corresponds to the evolutionary rate, the x-intercept is the time to the most recent common ancestor, and the R2 measures the degree of clock-like behaviour. The root-to-tip regression provides a very valuable visual inspection of temporal structure, but it is not a formal statistical test (<a href="#Rambaut">Rambaut et al. 2016</a>).
+
+<p>The date-randomisation test consists in estimating the evolutionary rate using any phylogenetic method and repeating the analysis several times after randomising the sequence sampling times (<a href="#Ramsden">Ramsden et al. 2008</a>). The randomisation breaks the association of evolutionary distance and time, such that the resulting rate estimates represent the expectation of values if there were no temporal structure. The data are considered to have temporal structure if the rate estimate with the correct sampling times falls outside the range of values from the randomisations (<a href="#Duchene">Duchêne et al. 2015</a>). Each randomisation is a complete separate analysis, such that the test requires substantial computation. One limitation of the date-randomisation test is that in some circumstances the test can fail to reject data sets with no temporal structure (<a href="#Duchene">Duchêne et al. 2015</a>; <a href="#Murray">Murray et al. 2015</a>). The interpretation of the test has some similarities with frequentist hypothesis testing, which can lead to a mixture of Bayesian and frequentist approaches (when using Bayesian phylogenetic methods). 
+
+<h2>Bayesian assessment of temporal structure</h2>
+
+<p>In all Bayesian analyses, it is important to consider the prior carefully. Bayesian phylogenetic models sometimes involve a very large number of parameters, and it is a good idea to sample from the prior to verify that it is reasonable. This is easy to do in BEAUti by ticking the <tt>‘Sample From Prior’</tt> box at the bottom of the MCMC tab and it is equivalent to running the analysis without data (in practice, when selecting this option in BEAUti, BEAST2 will simply ignore the likelihood component of the xml file). Inspecting the prior is also useful to assess how informative the data are for inferences of interest. For example, if the prior on a given parameter is overly informative, then the posterior and prior may be identical, which means that the data are not providing any information beyond what was specified in the prior. Some parameters are non-identifiable, notably rates and times, such that the prior and posterior on calibrated internal nodes are usually expected to be identical (<a href="#Warnock">Warnock et al. 2012</a>).
+
+<p>The intuition behind temporal structure is that there exists a strong association between the sequence data and their collection times. Consequently, for data with strong temporal structure the combination these two sources of information should result in a posterior distribution that is more informative than in the absence of temporal structure. Here we explore the prior and posterior distribution of the age of the root-node (tree height). We determine the informativeness of a distribution by calculating the 95% quantile width divided by the mean value, akin to measure of precision. Because we are interested in comparing the prior and posterior we obtain this measure for both, CV<sub>prior</sub> and CV<sub>posterior</sub>, respectively, and compute the ratio CV<sub>ratio</sub>= CV<sub>prior</sub> / CV<sub>posterior</sub>. A CV<sub>ratio</sub> that is higher than 1 means that the posterior is more informative than the prior.
+
+<p>We simulated sequence data using parameters inferred for H1N1 influenza, which typically has clock-like behaviour and strong temporal structure. The true evolutionary rate is 3.66×10-3 subs/site/year, the tree follows a coalescent process with exponential growth, the age of the root-node is 0.63 years, and the sampling times span half a year. We analyse the data using a matching model. The true phylogenetic tree is show in <a href="#fig1">Fig 1</a>. The prior and posterior for the age of the root-node are shown in <a href="#fig2">Fig 2</a>. 
+
+<center id="fig1"><img src="/images/assessing-temporal-structure-fig1.png"/></center>
+<p>Fig 1. Phylogenetic tree of data set with temporal structure (generated in icytree.org).
+
+<center id="fig2"><img src="/images/assessing-temporal-structure-fig2.png"/></center>
+<p>Fig 2. Prior and posterior densities (in green and blue, respectively) of the age of the root-node for a simulated data set with temporal structure. 
+
+<p>The posterior 95% credible interval contains the value used to generate the data for the evolutionary rate (mean of 4.08×10-3 subs/site/year with credible interval of 2.5×10-3 to 5.9×10-3) and the age of the root-node (mean of 0.66 years with credible interval of 0.57 to 0.75). Importantly, the prior and posterior distributions largely overlap and the mean values are similar (at 0.66 for the posterior and 0.89 for the prior), but the prior is much more informative than the posterior, with a CV<sub>ratio</sub> of 7.56.
+
+<p>We also simulate sequence data with no temporal structure (<a href="#fig3">Fig 3</a>). We use the same settings above, but the sampling times are all the same (i.e., the tree is ultrametric), such that there is no temporal structure. For the analysis, however, we set sampling times from a typical influenza data set and which span half a year. The prior and posterior distributions of the age of the root-node are shown in <a href="#fig4">Fig 4</a>. As expected, the posterior estimates of the evolutionary rate (mean of 6.83×10-4 subs/site year with credible interval of 2.30×10-4 to 1.25×10-3) and the age of the root-node do not include the values used to generate the data (mean of 2.09 with credible interval of 0.88 to 3.62). The CV<sub>ratio</sub> is 1.6 and much lower than in the simulation with temporal structure. 
+
+<center id="fig3"><img src="/images/assessing-temporal-structure-fig3.png"/></center>
+<p>Fig 3. Phylogenetic tree of data set with no temporal structure (generated in icytree.org). Note that the tree is ultrametric, but the tip labels have sampling times which were used for the analyses in BEAST2.
+
+
+<center id="fig4"><img src="/images/assessing-temporal-structure-fig4.png"/></center>
+<p>Fig 4. Prior and posterior densities (in green and blue, respectively) of the age of the root-node for a simulated data set with no temporal structure.
+
+<p>In the simulations with and without temporal structure the CV<sub>ratio</sub> is higher than 1. Thus, to devise guidelines for the expected CV<sub>ratio</sub> of the age of the root-node when there is temporal structure we generated 100 data sets with and without temporal structure and investigated the range of values of the CV<sub>ratio</sub> in both scenarios. As shown in <a href="#fig5">Fig 5</a>, data sets with temporal structure have a CV<sub>ratio</sub> of 5 or higher, whereas those with no temporal structure have values of at most 2.5. For empirical data analysed with similar settings as used here a CV<sub>ratio</sub> of at least 5 is necessary to consider that there is temporal structure and that the estimates are reliable.
+
+<center id="fig5"><img src="/images/assessing-temporal-structure-fig5.png"/></center>
+<p>Fig 5. Histograms of the CV<sub>ratio</sub> of the age of the root-node for 100 simulations with and without temporal structure (in green and red, respectively).
+
+<h2>Conclusion</h2>
+
+<p>Comparing the prior and posterior distributions is a key aspect in Bayesian analyses. In principle, such comparisons are useful to verify that the marginal prior is sensible and that the data are informative. Here we illustrate an application specifically for assessing temporal structure which can be useful for analyses of rapidly evolving organisms or those that involve ancient DNA. The CV<sub>ratio</sub> of the age of the root-node appears to be a useful measure for this purpose under a simple phylogenetic model, but it is important to note that tree priors generate different expectations of the ages of internal nodes. For instance, birth-death models that explicitly describe the sampling process have different prior expectations on the ages of internal nodes than coalescent models. For this reason, it is important to assess the prior carefully before interpreting any estimates. 
+
+<p>Other parameters that may be useful for assessing temporal structure include the evolutionary rate. However, the prior on this parameter is often very vague (e.g., it has a uniform distribution between 0 and infinity as the default in BEAUti). In such circumstances, obtaining sufficient samples from the prior may very difficult or impossible. Even if sampling from the prior is possible, if it is very vague then even data with no temporal structure can produce a posterior that is much more informative than the prior. In an upcoming study we will investigate this and other theoretical aspects of Bayesian tests of temporal structure.
+
+<p>Finally, conducting these analyses in BEAST2 is simple. After setting up the complete model in BEAUti, create the xml file and give the file names the <tt>‘_posterior’</tt> extension (e.g., <tt>myanalysis_posterior.xml</tt>, <tt>myanalysis_posterior.log</tt>, <tt>myanalysis_posterior.trees</tt>). Then in the MCMC tab tick the box <tt>‘Sample From Prior’</tt> and save the files with the extension <tt>‘_prior’</tt> (e.g., <tt>myanalysis_prior.xml</tt>, <tt>myanalysis_prior.log</tt>, <tt>myanalysis_prior.trees</tt>). To compare the prior and posterior load the <tt>_posterior.log</tt> and <tt>_prior.log</tt> files in Tracer. The CV<sub>ratio</sub> can be calculated by taking the 95% HPD and mean values of the <tt>‘TreeHeight’</tt> trace.
+
+<h2>References</h2>
+
+<ul>
+<li id="Drummond">Drummond A.J., Pybus O.G., Rambaut A., Forsberg R., Rodrigo A.G. 2003. Measurably evolving populations. Trends Ecol. Evol. 18:481–488.
+<li id="Duchene">Duchêne S., Duchêne D., Holmes E.C., Ho S.Y.W. 2015. The performance of the date-randomisation test in phylogenetic analyses of time-structured virus data. Mol. Biol. Evol. 32:1895-1906.
+<li id="Korber">Korber B., Muldoon M., Theiler J., Gao F., Gupta R., Lapedes A., Hahn B.H., Wolinsky S., Bhattacharya T. 2000. Timing the ancestor of the HIV-1 pandemic strains. Science. 288:1789–1796.
+<li id="Murray">Murray G.G.R., Wang F., Harrison E.M., Paterson G.K., Mather A.E., Harris S.R., Holmes M.A., Rambaut A., Welch J.J. 2015. The effect of genetic structure on molecular dating and tests for temporal signal. Methods Ecol. Evol. 7:80–89.
+<li id="Rambaut">Rambaut A., Lam T.T., Carvalho L.M., Pybus O.G. 2016. Exploring the temporal structure of heterochronous sequences using TempEst (formerly Path-O-Gen). Virus Evol. 2:vew007.
+<li id="Ramsden">Ramsden C., Melo F.L.L., Figueiredo L.M.M., Holmes E.C.C., Zanotto P.M.A.M.A. 2008. High rates of molecular evolution in hantaviruses. Mol. Biol. Evol. 25:1488–1492.
+<li id="Rieux">Rieux A., Balloux F. 2016. Inferences from tip-calibrated phylogenies: a review and a practical guide. Mol. Ecol. 25:1911–1924.
+<li id="Warnock">Warnock R.C.M., Yang Z., Donoghue P.C.J. 2012. Exploring uncertainty in the calibration of the molecular clock. Biol. Lett. 8:156–159.
+<li id="Zuckerkandl">Zuckerkandl E., Pauling L. 1965. Evolutionary divergence and convergence in proteins. In: Bryson V., Vogel H., editors. Evolving Genes and Proteins. New York: Academic press. p. 97–166.
+</ul>
+
+
