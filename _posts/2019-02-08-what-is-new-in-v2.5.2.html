@@ -1,0 +1,27 @@
+---
+layout: post
+title: What is new in v2.5.2
+tags: []
+---
+
+<p>Some Windows installations did not allow the launchers to start up the application processes. This is fixed in the Windows release that includes the JRE by using the v2.4 style package loading mechanism, which only works with Java 8 (and the included JRE is v1.8, so the loading mechanism works). The Windows version without JRE, which requires the user to have a JRE version 8 or better installed, still uses the launcher mechanism. The OS X version with JRE was removed, since it does not work with the latest OS X version. The OS X release requires installation of a JDK. It was observed that OS X Mojave with JDK 11 still does not recognises java, but installing <a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">JDK 8</a> works, and reinstalling JDK 11 after that keeps working.
+
+<p>The AppLauncher for OS X was not picking up the class path, so it could not run any app from packages. This is fixed in this release.
+
+<p>Start scripts for OS X and Linux used when starting BEAST, BEAUti, etc. from a terminal would have trouble if the package was installed in a directory containing a space for the version with JRE included. Requiring no spaces in the path is no longer an issue.
+
+<p>A new version of the uncorrelated relaxed clock model is included in this release, which uses a parameter for the actual rates on branches, instead of using categories or quantiles.
+
+<p>Some error messages were improved.
+
+<p>The API was relaxed, giving more access to package developers. This mostly affects private package members becoming protected members, and some access methods were added to gain access to internals of classes that should not be directly accessible.
+
+<p>The <tt>Node.getMetaData()</tt> now returns null on key not found, instead of the double 0.0, which in many cases can be valid meta data value. This causes problems when the meta data's default value (i.e., when no attribute value was specified) should be something non-zero.
+
+<p>Launchers when called from the terminal now pass <tt>-Xss</tt> arguments through to the application processes, which allows the user to set stack size.
+
+<p>DOIs in class descriptions now point to preferred resolver, instead of the original one.
+
+<p>Fix multi-threading issue with parameteric distributions.
+
+<p>Remove posterior ESS from screen log in standard and starbeast templates, since this was confusing when resuming a run; the ESS reported on screen only covered the part of the chain that was resumed, not the chain from the start of the run.
