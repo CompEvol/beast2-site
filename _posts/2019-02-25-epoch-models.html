@@ -1,0 +1,112 @@
+---
+layout: post
+title: Epoch substitution models
+tags: []
+---
+<p style="color:gray">25 February 2019 by <a href='mailto:r.bouckaert@auckland.ac.nz'>Remco Bouckaert</a></p>
+
+
+<p>Epoch models are models that split time into time slices and use different models in each slice. Here, we have a look at epoch substitution models (<a href="#Bielejec2014">Bielejec et a, 2014</a>). Epoch substitution models are part of the <a href="https://github.com/BEAST2-Dev/BEASTLabs/">BEASTLabs</a> package, so you need to <a href="/managing-packages/">install this package</a> to run the model.
+
+<p>There is no BEAUti support for epoch substitution models yet, so we have to edit the XML directly in order to set up the analysis. However, the easiest is to set up a single epoch substitution model analysis in BEAUti first, then proceed editing the XML. Say, we want to have a separate HKY model in each of our epochs. We set up the analysis in BEAUti with a single HKY model, save the XML to file and open the file in an XML editor. Search for "substModel", and we get to this fragment:
+
+{% highlight xml %}
+<substModel id="hky.s:dna" spec="HKY" kappa="@kappa.s:dna">
+     <frequencies id="estimatedFreqs.s:dna" spec="Frequencies" frequencies="@freqParameter.s:dna"/>
+</substModel>
+{% endhighlight %}
+
+<p>Now, rename the <tt>substModel</tt> element to <tt>model</tt> and wrap it inside a new <tt>substModel</tt> element with <tt>spec="EpochSubstitutionModel"</tt>. The EpochSubstitutionModel also needs a frequencies entry, which is otherwise ignored, but for technical reasons is still there. We can refer to the frequencies from the HKY model for example. The fragment now looks like this:
+
+{% highlight xml %}
+ <substModel spec="EpochSubstitutionModel">
+	<model id="hky.s:dna" spec="HKY" kappa="@kappa.s:dna">
+	    <frequencies id="estimatedFreqs.s:dna" spec="Frequencies" frequencies="@freqParameter.s:dna"/>
+	</model>
+	<frequencies idref="estimatedFreqs.s:dna"/> <!-- this frequencies entry is required, but ignored by the model -->
+ </substModel>
+{% endhighlight %}
+
+<p>Next, we define the epochs. Add an <tt>epochdates</tt> element to the substModel, and specify the ages of the epoch-boundaries. In principle this can be dynamically estimated, but here we fix it to one boundary at 6.0 and another at 12.0. Finally, we need three substitution models, so copy the model element and we will use the same base frequencies, so we replace the frequencies with a reference to the frequencies of the first model. We have to make sure <tt>id</tt> attributes are unique, so add a 2 to each id in the second model, and a 3 to that of the third model. The XML now looks like so:
+
+{% highlight xml %}
+ <substModel spec="EpochSubstitutionModel">
+    <epochDates spec="parameter.RealParameter">6.0 12.0</epochDates>
+	<model id="hky.s:dna" spec="HKY" kappa="@kappa.s:dna">
+	    <frequencies id="estimatedFreqs.s:dna" spec="Frequencies" frequencies="@freqParameter.s:dna"/>
+	</model>
+	<model id="hky.s:dna2" spec="HKY" kappa="@kappa2.s:dna">
+	    <frequencies idref="estimatedFreqs.s:dna"/>
+	</model>
+	<model id="hky.s:dna3" spec="HKY" kappa="@kappa3.s:dna">
+	    <frequencies idref="estimatedFreqs.s:dna"/>
+	</model>
+	<frequencies idref="estimatedFreqs.s:dna"/> <!-- this frequencies entry is required, but ignored by the model -->
+ </substModel>
+{% endhighlight %}
+
+<p>Note that the first model is for times above 12, the second model is for times between 6 and 12 and the third model is for times lower than 6. If there is a branch that crosses an epoch boundary, say from 5 to 8, it uses the third model for the part from 5 to 6, and the second model for the part from 6 to 8.
+
+<p>What is left is setting up the substitution model parameters, here the kappa parameter, which need to be
+<ul>
+<li>part of the state
+<li>get a prior
+<li>have operators
+<li>part of the trace log
+</ul>
+It is probably easiest to search for kappa from the start of the file, copy the relevant part for kappa and frequencies and rename the id to match that in the ids in the model elements.
+
+<p>The state should contain something like this:
+{% highlight xml %}
+<parameter id="kappa.s:dna" lower="0.0" name="stateNode">2.0</parameter>
+<parameter id="kappa2.s:dna" lower="0.0" name="stateNode">2.0</parameter>
+<parameter id="kappa3.s:dna" lower="0.0" name="stateNode">2.0</parameter>
+{% endhighlight %}
+
+<p>The prior should contain something like this:
+{% highlight xml %}
+<prior id="KappaPrior.s:dna" name="distribution" x="@kappa.s:dna">
+    <LogNormal id="LogNormalDistributionModel.0" name="distr">
+        <parameter id="RealParameter.1" estimate="false" name="M">1.0</parameter>
+        <parameter id="RealParameter.2" estimate="false" name="S">1.25</parameter>
+    </LogNormal>
+</prior>
+<prior id="KappaPrior2.s:dna" name="distribution" x="@kappa2.s:dna" distr="@LogNormalDistributionModel.0"/>
+<prior id="KappaPrior3.s:dna" name="distribution" x="@kappa3.s:dna" distr="@LogNormalDistributionModel.0"/>
+{% endhighlight %}
+
+<p>The operators should contain entries like this:
+{% highlight xml %}
+<operator id="KappaScaler.s:dna" spec="ScaleOperator" parameter="@kappa.s:dna" scaleFactor="0.5" weight="0.1"/>
+<operator id="KappaScaler2.s:dna" spec="ScaleOperator" parameter="@kappa2.s:dna" scaleFactor="0.5" weight="0.1"/>
+<operator id="KappaScaler3.s:dna" spec="ScaleOperator" parameter="@kappa3.s:dna" scaleFactor="0.5" weight="0.1"/>
+{% endhighlight %}
+
+<p>The trace logger should contain entries like this:
+{% highlight xml %}
+<log idref="kappa.s:dna"/>
+<log idref="kappa2.s:dna"/>
+<log idref="kappa3.s:dna"/>
+{% endhighlight %}
+
+
+<p>After running the XML in BEAST, you can tell see how different epochs have different substitution model processes by inspecting the trace log in Tracer.
+
+<h2>Trouble shooting</h2>
+
+At the start, BEAST may report a null-pointer exception like so:
+
+{% highlight xml %}
+java.lang.NullPointerException
+	at beast.evolution.likelihood.BeagleTreeLikelihood.setUpSubstModel(Unknown Source)
+	at beast.evolution.likelihood.BeagleTreeLikelihood.initialize(Unknown Source)
+    ...
+{% endhighlight %}
+
+Epoch substitution models do not work with <a href="#Ayres2011">BEAGLE</a> (yet), so you need to run without BEAGLE. However, if you do run with BEAGLE, the above error will appear, after which BEAST falls back to the java implementation of Felsenstein's pruning algorithm.
+
+
+<h2>Reference</h2>
+
+<p id="Ayres2011">Ayres, Daniel L., et al. "BEAGLE: an application programming interface and high-performance computing library for statistical phylogenetics." Systematic biology 61.1 (2011): 170-173.
+<p id="Bielejec2014">F. Bielejec, P. Lemey, G. Baele, A. Rambaut, and M. A. Suchard. Inferring heterogeneous evolutionary processes through time: from sequence substitution to phylogeography. Systematic Biology 63(4):493–504, 2014.
