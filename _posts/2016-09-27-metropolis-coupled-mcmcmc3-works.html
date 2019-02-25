@@ -7,7 +7,7 @@ tags: []
 	
 
 		
-		<p style="color:gray">19 May 2015 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+		<p style="color:gray">19 May 2015 by <a href='mailto:r.bouckaert@auckland.ac.nz'>Remco Bouckaert</a></p>
 <p>Metropolis coupled MCMC (MCMCMC or MC3) allows running an MCMC analysis together with a number of &#8216;heated&#8217; chains. These heated chains run over a distribution that is adjusted so that it is less peaked than the posterior we want to sample from, which means it is easier for these heated chains to move away from a local optimum. At regular intervals there is the option to switch states between chains (depending on a stochastic critereon), including the chain that samples from the posterior. This is supposed to help explore the sample space more efficient.</p>
 <p>To set up an MCMCMC analysis in BEAST, you need to <a href="{{site.baseurl}}/managing-packages">install</a> the BEASTLabs package. The easiest way to set up the XML is by setting it up in BEAUti for a simple MCMC analysis, save the file and edit the XML by </p>
 <ul>

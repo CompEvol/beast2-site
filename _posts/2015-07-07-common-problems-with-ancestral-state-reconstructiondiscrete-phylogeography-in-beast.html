@@ -7,7 +7,7 @@ tags: []
 	
 
 		
-		<p style="color:gray">7 July 2015 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+		<p style="color:gray">7 July 2015 by <a href='mailto:r.bouckaert@auckland.ac.nz'>Remco Bouckaert</a></p>
 <p>These are a few issues that can pop up when doing ancestral reconstruction aka discrete phylogegraphy as outlined in the <a href="https://github.com/BEAST2-Dev/beast-classic/releases/download/v1.3.0/ARv2.4.1.pdf">Ancestral reconstruction tutorial</a> following the model of <a href='http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000520'>Lemey et al, 2009</a>.</p>
 <h2>Too many states</h2>
 <p>When doing a phylogeographical analysis, it is tempting to split up the samples in as fine a geographic classification as the available data allows &#8212; for instance by splitting the samples by country of origin. This can lead to a large number of states/countries. The more states are defined, the more rates need to be estimated. For an analysis with <tt>N</tt> states, at least <tt>N-1</tt> rates need to be specified in order to be able to get from any one state to any other (possibly through a set of other states), and this is a requirement for the likelihood to be larger than zero. </p>

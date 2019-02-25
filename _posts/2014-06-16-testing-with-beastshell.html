@@ -7,7 +7,7 @@ tags: [beast-2,bestshell,testing,v2-1-3]
 	
 
 		
-		<p style="color:gray">16 June 2014 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+		<p style="color:gray">16 June 2014 by <a href='mailto:r.bouckaert@auckland.ac.nz'>Remco Bouckaert</a></p>
 <p>One motivation for BEASTShell is to ease the burden of writing tests for BEASTObjects. Writing tests is never much fun, but a necessary requirement to gaurantee quality of software. Writing BEASTObject tests is more cumbersome than usual because there is a division of instantiating inputs and initialising the object, which is usually done in a constructor, but in BEASTObjects requires a call to <tt>initAndValidate</tt>. Now we have the BEASTShell and can construct BEASTObjects a lot easier, it should be able to write tests with a lot less code and effort.</p>
 <h2>Constructing BEASTObjects</h2>
 <p>One way to use BEASTShell is by having a BEASTShell interpreter and just use it to construct BEASTObjects with fragments of script. For example, a unit test for the Uniform distribution may look something like this</p>

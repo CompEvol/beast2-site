@@ -8,7 +8,7 @@ tags: []
 		
 <p>[see also blog post on <a href="/2014/07/14/path-sampling-with-a-gui">Path sampling with a GUI</a>.]</p>
 <h2>Set up </h2>
-<p>To set up a path sampling analysis, you need the model-selection package (pre BEAST version 2.1.2, it was in the beastii add-on) and edit the XML for the analysis.</p>
+<p>To set up a path sampling analysis, you need the model-selection package (pre BEAST version 2.1.2, it was in the beastii package) and edit the XML for the analysis.</p>
 <p>Essentially, you need to wrap the run-element of the original analysis into a run element for the path sampler and rename the run element to mcmc like so</p>
 <ul>
 <li>rename the run element from the XML analysis into mcmc (do not forget to rename the closing element &lt;/run&gt; into &lt;/mcmc&gt;)</li>
@@ -78,8 +78,8 @@ Note <code>applauncher</code> was called <code>appstore</code> before v2.5.0.
 <p>where nrofsteps, alpha, rootdir, burninpercentage should match the ones specified in the XML file.</p>
 <p>You can use <a title="Tracer" href="{{site.baseurl}}/tracer-2">Tracer</a> to inspect the log files for the various steps to make sure that th e burn-in used is sufficiently large.</p>
 <h2>Example file </h2>
-<p>In the $(BEAST-add-on)/model-selection/examples directory, there is a file testPathSampler.xml that should run, where $(BEAST-add-on) is the add-on directory on your operating system.</p>
-<p>See <a class="mw-redirect" title="Manage Add-ons" href="{{site.baseurl}}/managing-packages/index.html#Installation_directories">Manage_Add-ons#Installation_directories</a> for finding out what $(BEAST-add-on) is on your machine.</p>
+<p>In the $(BEAST-package)/model-selection/examples directory, there is a file testPathSampler.xml that should run, where $(BEAST-package) is the package directory on your operating system.</p>
+<p>See <a class="mw-redirect" title="Manage Packages" href="{{site.baseurl}}/managing-packages/index.html#Installation_directories">Manage_package#Installation_directories</a> for finding out what $(BEAST-package) is on your machine.</p>
 <h2>Setting up an analysis for a cluster </h2>
 <p>The path sampler will write shell scripts (for Mac, Linux) and batch files (for Windows) in the rootdir, one for every thread. These shell scripts can be executed separately. Once all scripts have been executed you need to run the PathSampleAnalyser to get the marginal likelihood estimate.</p>
 <p>The number of batch files is determined by the number of threads used for running the XML. These batch files can be submitted to a cluster.</p>

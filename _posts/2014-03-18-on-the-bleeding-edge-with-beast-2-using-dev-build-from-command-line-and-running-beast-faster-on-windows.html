@@ -7,7 +7,7 @@ tags: [beast2,v2-1-1]
 	
 
 		
-		<p style="color:gray">18 March 2014 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+		<p style="color:gray">18 March 2014 by <a href='mailto:r.bouckaert@auckland.ac.nz'>Remco Bouckaert</a></p>
 <p>When a bug is discovered that holds you up, and it is relatively easy to fix, the fix may already be in the code but not released yet. The release process takes quite a bit of time, so it is not something we like to do very often. However, you can still use the fixed code (and possibly some new experimental code as well) by using the development build. Every time code is checked in, a new <tt><a href="http://hudson.cs.auckland.ac.nz/job/BEAST2/lastSuccessfulBuild/artifact/build/dist/beast.jar">beast.jar</a></tt> file is build and made available for download from <a href="http://hudson.cs.auckland.ac.nz/job/BEAST2/lastSuccessfulBuild/artifact/build/dist/beast.jar">here</a>. This file contains all runnable code for running BEAST and BEAUti, but not the BEAUti templates (XML files for setting up analyses in BEAUti). Only if all regression tests pass, the jar becomes available, so that should give some confidence that new code did not break any previous functionality.</p>
 <p>I am assuming you already have BEAST installed before, so the Standard and StarBEAST BEAUti templates are on your computer. Note that it is important to store the <tt>beast.jar</tt> file in the <tt>lib</tt> folder (details below), so it picks up the BEAUti templates from the correct lcoation. For running BEAST, it does not matter<br />
 where you store the jar file.</p>

@@ -7,7 +7,7 @@ tags: [bdsky,beast-2,beauti,tree-prior]
 	
 
 		
-		<p style="color:gray">23 June 2014 by <a href='mailto:remco@cs.auckland.ac.nz'>Remco Bouckaert</a></p>
+		<p style="color:gray">23 June 2014 by <a href='mailto:r.bouckaert@auckland.ac.nz'>Remco Bouckaert</a></p>
 <p>The birth-death skyline model \cite{Stadler} is a tree prior that can deal with serially sampled tip dates. It can be implemented as a lean <tt>CalculationNode</tt>, which takes a set of five parameters that can be estimated as input, plus an input for the number of intervals in the skyline model. The birth and death rate, and the sampling rate have gamma priors on them, and there are a few functions of the parameters we want to log. The complete model is illustrated in below. The parameters, tree, operators, priors and loggers are already available in BEAST. The loggers use the <tt>RPNcalculator</tt> class to calculate a simple arithmetic function of the parameters. This only leaves code to be developed for the details of the birth-death skyline model itself.</p>
 <p><img src="{{ site.baseurl }}/images/bdsky.png" alt="bdsky" /></p>
 <p>The Birth-Death Skyline model consists of a tree prior, six parameters, a number of operators on these parameters, some priors on these parameters, two specialised loggers, and a set of rules to connect model, e.g., the tree to the prior, the loggers to the trace-log, etc. For clarity, the links between parameters and state are omitted as well as the links between parameters and trace-log.</p>
