@@ -14,7 +14,7 @@ BEAST runs MCMC efficiently by caching some to the calculations from the previou
 Pro tip: In fact, if the `-Dbeast.debug=true` directive is passed to java, BEAST will do this check every 3rd sample for the first 6.000 samples. This is useful for developers that want to diagnose this problem quickly. With this flag, BEAST will stop after the first time this test fails.
 
 
-## What if there is a large positive posterior
+## What if there is a large positive posterior?
 
 If the error message shows that the posterior is a large positive number the problem may be due to numerical instability. (Note that positive posteriors are fine in theory, since the reported posterior is actually the log of the posterior for which priors are not normalised, but when this error occurs the posterior is probably outside the range where it can be calculated in a stable manner.) What may have happened is that some of the parameters (maybe clock rates or birth rates) became very small or large resulting, which then due to numerical instability gives a large positive posteriors. You can check the trace log in `Tracer` to see which parameter escaped to an unrealistic value, and adjust the prior or the upper and lower bounds for these parameters to make sure they remain close to a value that is reasonable.
 
