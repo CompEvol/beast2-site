@@ -174,6 +174,11 @@ For an alignment with `id="pny2016"` we can select the cognates for the word `an
 {% endhighlight %}
 
 
+## Note:
+```
+The first site in filters is 1, but the ascertainment correction uses 0 for first site. We are aware this is confusing, but also hard to change while keeping backward compatibility of XML files, so it is what it is.
+```
+
 It would be possible, but confusing to specify the ascertainment correction attributes directly on this filtered alignment. Less error prone is to just assume the first column is ascertained on and wrap the filtered alignment in another like so:
 
 {% highlight xml %}
