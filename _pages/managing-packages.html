@@ -89,8 +89,19 @@ for Linux /home/<YourName>/.beast/2.X/VSS{% endhighlight %}
 Easiest to do this is by starting BEAUti and click the menu <code>File/Clear class path</code>.
 Alternatively, delete the <code>package.path</code> entry from the <code>beauti.properties</code> file.
 The file is stored in the BEAST package directory (<code>~/.beast/2.5/</code> for Linux, <code>~/Library/Application Support/BEAST/2.5/</code> on OS X, or <code>c:\Users\yourname\BEAST\2.5\</code> on Windows).
+	
+<h2>Adding package repositories by hand</h2>
+By default, packages will be sourced from <tt><a href="https://github.com/CompEvol/CBAN/blob/master/packages2.6.xml">https://github.com/CompEvol/CBAN/blob/master/packages2.6.xml</a></tt> for BEAST v2.6.x. You can specify other package sources in BEAUti in the package manager by clicking the <tt>package repositories</tt> button, and a dialog pops up where you can add entries.
+
+<p>These entries are stored in <tt>beauti.properties</tt> file in the package directory has an entry for packages.url. Instead of managing these repositories through BEAUti, you can edit the file with a text editor. For example, if you set this entry to
+
+{% highlight xml %}
+packages.url=https\://raw.githubusercontent.com/CompEvol/CBAN/master/packages-extra.xml
+{% endhighlight %}
+
+<p>(note the \ before :) the package manager will pick up packages from https://raw.githubusercontent.com/CompEvol/CBAN/master/packages-extra.xml.
+
+
 <h2>Trouble shooting </h2>
 <p>To install packages you need internet access.</p>
 <p>Some software prevents access to the internet by programs like BEAUti. In that case, either tell the software to grant access to BEAUti, or install packages by hand.</p>
-	
-
