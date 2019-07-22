@@ -1,10 +1,12 @@
 ---
-title: Better Apps for the BEAST AppStore
+title: Better Apps for the BEAST App Launcher
 layout: post
-tags: [BEAST2,App launcher,AppStore]
+tags: [BEAST2,App launcher]
 ---
+<p style="color:gray">23 July 2019 by <a href="mailto:r.bouckaert@auckland.ac.nz">Remco Bouckaert</a></p>
 
-Creating post-processing tools for packages becomes much easier when exporting data to HTML, and with the help of a little bit of JavaScript and style sheets, can be made to look good with little effort. There is also some support in BEASTLabs (v1.5.3) to make life easier. We will go through a few examples, and demonstrate how to
+
+Creating post-processing tools for packages becomes much easier when exporting data to HTML, and with the help of a little bit of JavaScript and style sheets, can be made to look good with little effort. There is also some support in BEASTLabs to make life easier. We will go through a few examples, and demonstrate how to
 <ul>
 <li>draw a simple trace log</li>
 <li>make a presentable table</li>
@@ -119,8 +121,8 @@ The complete code is <a href="https://github.com/rbouckaert/BeastApp/blob/master
 To be able to launch the App, we need to add an entry in the <tt>version.xml</tt> file in the package, which looks something like this:
 {% highlight java %}
 <addon name='BeastApp' version='0.0.1'>
-        <depends on='beast2' atleast='2.4.1'/>
-        <depends on='BEASTLabs' atleast='1.5.2'/>
+        <depends on='beast2' atleast='2.6.0'/>
+        <depends on='BEASTLabs' atleast='1.9.0'/>
 
         <addonapp description="MiniTracerPlotly"
               class="examples.MiniTracerPlotly"
