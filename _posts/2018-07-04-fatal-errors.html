@@ -44,6 +44,8 @@ another seed.
 
 <p id="MRCAPrior"><b>Incompatible MRCA priors</b> When an MRCA-prior is listed as -Infinity, the starting tree is not compatible with the MRCA prior, so you should change the <a href="http://www.beast2.org/2014/07/28/all-about-starting-trees.html">starting tree</a>. However, it is also possible that MRCA priors are not compatible, so no starting tree exists. This happens when one MRCA requires a clade -- say A,B,C -- to be monophyletic, while another MRCA -- say B,C,D -- has a non-overlapping set of taxa that also needs to be monophyletic. Obviously, not both (A,B,C) and (B,C,D) can be monophyletic at the same time. This usually happens when by mistake a taxon is left out in one of the two clades (for example, taxon A could be added to the second clade, and (A,B,C) and (A,B,C,D) can be monophyletic at the same time.
 
+<p id="MRCAPriorOnLeaf"><b>Single taxon MRCA prior</b> In this case, any calibration distribution is defined on the most common recent ancestor of the set of taxa, which with a single taxon is the taxon itself. But that means the distribution is defined on the leaf taxon, which leads to BEAST finding it impossible to find a starting state. Setting the ‘useOriginate’ flag to true, or including more taxa to the MRCA prior may fix this.
+
 
 <p id="treeprior"><b>Tree prior has numerical issues</b> In this case, the posterior will be NaN instead of -Infinity, as in this example:
 
