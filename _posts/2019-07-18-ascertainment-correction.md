@@ -4,7 +4,7 @@ title: Ascertainment correction/Sampling bias
 tags: []
 ---
 
-<p style="color:gray">29 April 2019 by <a href="mailto:r.bouckaert@auckland.ac.nz">Remco Bouckaert</a></p>
+<p style="color:gray">18 July 2019 by <a href="mailto:r.bouckaert@auckland.ac.nz">Remco Bouckaert</a></p>
 
 Sampling bias can happen when data for the alignment is collected in such a way that some of the sites have lower probability than other sites. For example SNP data is typically selected from among the sites that have some variation among the taxa that you want to analyses, but there will be a very large set of constant sites, which never end up in your sample. Though this probably does not affect the topology of the tree very much, it can have substantial effect on the timing, so you may want to correct for sampling bias through ascertainment correction.
 

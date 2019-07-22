@@ -131,15 +131,15 @@ To be able to launch the App, we need to add an entry in the <tt>version.xml</tt
 </addon>
 {% endhighlight %}
 
-The version.xml file must be in the package directory to be picked up by the BEAST AppStore.
+The version.xml file must be in the package directory to be picked up by the BEAST AppLauncher.
 
-After the package is installed, you can start the app from the command line via the <tt>appstore</tt> tool:
+After the package is installed, you can start the app from the command line via the <tt>applauncher</tt> tool:
 
 {% highlight java %}
-/path/to/appstore MiniTracerPlotly -file trace.log -burnin 20 -trace prior
+/path/to/applauncher MiniTracerPlotly -file trace.log -burnin 20 -trace prior
 {% endhighlight %}
 
-or via Beauti's File/Launch Apps, which open the AppStore dialog where you can pick the App from a list. 
+or via Beauti's File/Launch Apps, which open the AppLauncher dialog where you can pick the App from a list. 
 After selecting a file, adjusting any details and pressing OK, a console pops up showing progress in loading the trace log. 
 
 <img width="100%" src="https://raw.githubusercontent.com/rbouckaert/BeastApp/master/doc/images/progress.png"/>

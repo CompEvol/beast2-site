@@ -22,16 +22,10 @@ tags: []
 <p>Here are some ways of increasing the ESS of a parameter:</p>
 <ol>
 <li>Optimize the performance of the <a title="Glossary" href="{{site.baseurl}}/glossary/index.html#Operator">operators</a>. <a title="BEAST" href="http://beast2.org/">BEAST</a> implements a system of auto-optimization for <a title="Glossary" href="{{site.baseurl}}/glossary/#Operator">operator</a> tuning. By default, this is on, but can be turned of for many (but not all) operators by adding the following attribute to the <code>operator</code> element in the XML input file:<br />
-
-
-		
-		
 			
-			
-			
-			{% highlight xml %}<operator optimize="false" ... >{% endhighlight %}			
-			
-		
+{% highlight xml %}
+<operator optimize="false" ... >
+{% endhighlight %}			
 
 <br />
 Also, at the end of a BEAST run, a report is printed showing some performance suggestions for operators that do not perform very well. You could change the start values of some operator parameters (e.g. the scale-factor for scale operators), which should help those operators explore the state space more efficiently.</li>
