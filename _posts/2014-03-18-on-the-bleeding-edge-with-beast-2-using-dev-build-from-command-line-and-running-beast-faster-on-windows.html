@@ -33,7 +33,13 @@ java -cp lib\beast.jar beast.app.beauti.Beauti{% endhighlight %}
 			{% highlight xml %}cd c:\BEAST
 java -Dbeast.load.jars=true -cp lib\beast.jar beast.app.beauti.Beauti{% endhighlight %}			
 
-<p>and the familiar BEAUti screen should be shown.</p>
+<b>Update</b>: for BEAST v2.6 you need launcher.jar -- this is already included in the OS X and Linux releases, but for Windows you can get launcher.jar from <a href="https://github.com/CompEvol/beast2/releases/download/v2.6.0/launcher.jar">here</a> and put it in the lib directory of where BEAST was unzipped. Then use
+
+{% highlight xml %}
+jre\bin\java -Xmx8g -cp lib\launcher.jar beast.app.beastapp.BeastLauncher
+{% endhighlight %}			
+
+<p>and the familiar BEAST screen should be shown.</p>
 <h3>3. Running BEAST</h3>
 <p>To run BEAST on <tt>MyBEASTFile.xml</tt>, open a CMD prompt and key in the following:</p>
 
@@ -66,8 +72,16 @@ java -cp lib/beast.jar beast.app.beauti.Beauti{% endhighlight %}
 			{% highlight xml %}
 java -Dbeast.load.jars=true -cp lib/beast.jar beast.app.beauti.Beauti{% endhighlight %}			
 		
+<b>Update</b>: for BEAST v2.6 you need launcher.jar -- this is already included in the OS X and Linux releases, but for Windows you can get launcher.jar from <a href="https://github.com/CompEvol/beast2/releases/download/v2.6.0/launcher.jar">here</a>
+and put it in the lib directory of where BEAST was unzipped. Then use
+
+{% highlight xml %}
+jre\bin\java -Xmx8g -cp lib\launcher.jar beast.app.beauti.BeautiLauncher
+{% endhighlight %}			
+
 
 <p>and the familiar BEAUti screen should be shown.</p>
+
 <h3>3. Running BEAST</h3>
 <p>To run BEAST on <tt>MyBEASTFile.xml</tt>, open a CMD prompt and key in the following:</p>
 			
