@@ -33,9 +33,12 @@ The way this is implemented in BEAST is by adding sites for constant characters 
 </data>
 {% endhighlight %}
 
+If you do *not* know how many constant sites you have, follow the steps below. If you *do* know how many sites you have, go to the section below these steps.
+
+
 ## Step 1: add constant sites
 
-There is currently no BEAUti support for changing ascertainment correction, so it requires some XML editing. The basics are quite simple: alignments have 
+There is currently no BEAUti support for changing ascertainment correction, so it requires some XML editing. The basics are quite simple: add constant sites to the alignments, and set up a few attributes to identify these sites.
 
 It is most convenient to add constant sites at the start of the alignment. Since there are four possible nucleotide characters, we add four columns, and obtain this alignment
 {% highlight xml %}
@@ -86,6 +89,29 @@ For the treelikelihood to use the correction, the `ascertained` flag has to be s
 </data>
 {% endhighlight %}
 
+
+
+## If you know the number of constants sites
+
+In case you know how many constant sites were ignored, you can add a filtered alignment to specify how many constants sites with As, Cs, Gs and Ts respectively you have.
+
+* rename the original alignment to say `original-alignment` by editing the `id` attribute
+* below the alignment, add a a filtered alignment with the id of the old alignment, and set the number of constant sites.
+
+With 500 As, 200 Cs, 300 Gs and 100 Ts you can achieve this as follows:
+
+{% highlight xml %}
+<data id="original-alignment" dataType="nucleotide">
+    <sequence taxon="human">    AGAAATATGTCT</sequence>
+    <sequence taxon="chimp">    TAGAAATATGTC</sequence>
+    <sequence taxon="bonobo">   CTAGAAATATGT</sequence>
+    <sequence taxon="gorilla">  GTCTAGAAATAT</sequence>
+    <sequence taxon="orangutan">AGAAATATGTCT</sequence>
+    <sequence taxon="siamang">  AGAAATATGTCT</sequence>
+</data>
+
+<data id="alignment" spec="FilteredAlignment" filter="-" data="@original-alignment" constantSiteWeights="500 200 300 100"/> 
+{% endhighlight %}
 
 # Ascertainment tips and tricks
 
