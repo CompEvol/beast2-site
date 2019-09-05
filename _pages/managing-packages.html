@@ -7,7 +7,7 @@ tags: []
 	
 		
 <p>Packages (previously known as add-ons or plugins) can be installed through BEAUti or from the command line.</p>
-<h2>Desktop machines </h2>
+<h2 id="Desktop_machines">Desktop machines </h2>
 <p>The easiest way to Manage packages and install/un-install them is to start up BEAUti and select the menu File/Manage Packages. A window pops up where you can select the packages in the list to (un)install.</p>
 <p><img class="alignnone wp-image-365 size-full" src="{{site.baseurl}}/files/2015/05/Package_manager.png" alt="Package_manager" width="690" height="457" sizes="(max-width: 690px) 100vw, 690px" /></p>
 <p>BEAST 2.1.2</p>
@@ -24,7 +24,7 @@ tags: []
 <p>Linux:</p>
 <p>&nbsp;</p>
 <p><img class="alignnone size-full wp-image-368" src="{{site.baseurl}}/files/2015/05/AddOnManagerDialogLinux.png" alt="AddOnManagerDialogLinux" width="341" height="277" sizes="(max-width: 341px) 100vw, 341px" /></p>
-<h2>Server machines </h2>
+<h2 id="Server_machines">Server machines </h2>
 <p>For computers without GUI, like high performance clusters, packages can be managed through the command line. An application called &#8216;packagemanager&#8217; is part of the Linux distribution of BEAST, and has the following options:</p>
 
 		
@@ -38,9 +38,9 @@ tags: []
    -del Uninstall the <NAME> package 
    -useAppDir Use application (system wide) installation directory. Note this requires writing rights to the application directory. If not specified, the user's BEAST directory will be used.
    -dir Install/uninstall package in direcotry <DIR>. This overrides the useAppDir option
+   -update Check for updates, and ask to install if available
+   -updatenow Check for updates and install without asking
    -help Show help{% endhighlight %}			
-			
-		
 
 <p></p>
 
@@ -69,7 +69,7 @@ tags: []
 		
 
 <p></p>
-<h2>Install by hand </h2>
+<h2 id="Install_by_hand">Install by hand </h2>
 <p>If for some reason you cannot install a package through BEAUti or the package manager, you can always install the package by hand. First, get the zip file you want to install. For example, to install the VSS package, download  <a class="external free" href="https://github.com/CompEvol/CBAN/releases/download/v2.1.2/VSS.addon.v1.0.0.zip" rel="nofollow">https://github.com/CompEvol/CBAN/releases/download/v2.1.2/VSS.addon.v1.0.0.zip</a>. Then, create a VSS subdirectory</p>
 
 		
@@ -90,7 +90,7 @@ Easiest to do this is by starting BEAUti and click the menu <code>File/Clear cla
 Alternatively, delete the <code>package.path</code> entry from the <code>beauti.properties</code> file.
 The file is stored in the BEAST package directory (<code>~/.beast/2.5/</code> for Linux, <code>~/Library/Application Support/BEAST/2.5/</code> on OS X, or <code>c:\Users\yourname\BEAST\2.5\</code> on Windows).
 	
-<h2>Adding package repositories by hand</h2>
+<h2 id="Adding_package_repositories_by_hand">Adding package repositories by hand</h2>
 By default, packages will be sourced from <tt><a href="https://github.com/CompEvol/CBAN/blob/master/packages2.6.xml">https://github.com/CompEvol/CBAN/blob/master/packages2.6.xml</a></tt> for BEAST v2.6.x. You can specify other package sources in BEAUti in the package manager by clicking the <tt>package repositories</tt> button, and a dialog pops up where you can add entries.
 
 <p>These entries are stored in <tt>beauti.properties</tt> file in the package directory has an entry for packages.url. Instead of managing these repositories through BEAUti, you can edit the file with a text editor. For example, if you set this entry to
@@ -102,6 +102,6 @@ packages.url=https\://raw.githubusercontent.com/CompEvol/CBAN/master/packages-ex
 <p>(note the \ before :) the package manager will pick up packages from https://raw.githubusercontent.com/CompEvol/CBAN/master/packages-extra.xml.
 
 
-<h2>Trouble shooting </h2>
+<h2 id="Trouble_shooting">Trouble shooting </h2>
 <p>To install packages you need internet access.</p>
 <p>Some software prevents access to the internet by programs like BEAUti. In that case, either tell the software to grant access to BEAUti, or install packages by hand.</p>
