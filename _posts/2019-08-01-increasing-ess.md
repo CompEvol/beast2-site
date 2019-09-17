@@ -6,7 +6,7 @@ tags: []
 
 <p style="color:gray">1 August 2019 by <a href="mailto:r.bouckaert@auckland.ac.nz">Remco Bouckaert</a></p>
 
-The effective sample size (ESS) is an important diagnostic for MCMC analyses to determine whether the run converged. There is already information <a href="/2019/07/23/increasing-ess.html">on this page<a>, but here we discuss a few more things you can consider to increase the ESS.
+The effective sample size (ESS) is an important diagnostic for MCMC analyses to determine whether the run converged. There is already information <a href="/increasing-esss/">on this page</a>, but here we discuss a few more things you can consider to increase the ESS.
 
 ## Increase BEAST performance
 
