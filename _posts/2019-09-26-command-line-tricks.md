@@ -144,14 +144,23 @@ Setting up a class path to include relevant classes, and calling `BeastMain` dir
 
 The most robust way is to build your package (by running `ant addon`, or just `ant` for most `build.xml` files), and [install your packages by hand](http://www.beast2.org/managing-packages/#Install_by_hand). In summary,
 
-* create folder ~/.beast/2.6/MyPackage for a package called MyPackage (change as appropriate)
-* cd ~/.beast/2.6/MyPackage
+* create folder `~/.beast/2.6/MyPackage` for a package called MyPackage (change as appropriate)
+* cd `~/.beast/2.6/MyPackage`
 * unzip `/Users/username/workspace/starbeast3/build/dist/MyPackage.addon.v0.0.1.zip`
-   (replace `username` with your user name).
+   (replace `username` with your user name) inside the folder `~/.beast/2.6/MyPackage`.
 * <span style="color:red">Before running BEAST, make sure you cleared the class path in `~/.beast/2.6/beauti.properties`</span> for instance, by deleting `~/.beast/2.6/beauti.properties`
 
 Once the package is installed, you can run BEAST from a terminal (as outlined above for your operating system). Once you installed the package and cleared the class path, BEAST will restore it and every time you rebuild and install your package again, you do not need to clear the class path again (though it does not hurt if you do).
 
 
+### On a Linux server
 
+In six easy steps:
+
+1. Download BEAST v2.6.0 from https://github.com/CompEvol/beast2/releases
+2. unzip in your home directory, which creates `~/beast`
+3. run package manager to update BEAST to v2.6.1: `~/beast/bin/packagemanager -update`
+4. run package manager to install released packages, say `~/beast/bin/packagemanager -add BEASTLabs` to add the BEASTLabs package.
+5. install MyPackage as you would locally (outlined in above)
+6. run `~/beast/bin/beast` to start jobs on the server.
 
