@@ -70,3 +70,9 @@ For the up-down operator, you should group all parameters with positive correlat
 Another operator that operares on multiple parameters is the Adaptable Variance Multivariate Normal (AVMN) operator, about which there will be more later.
 -->
 
+## Use Coupled MCMC instead of MCMC
+
+Another thing you might consider is using Coupled MCMC (also known as MCMCMC, MC3 and parallel tempering) instead of MCMC. It is a method that tends to help with badly mixing analyses and to some extend parallelyses the calculation. This allows for increasing the ESS (in real time) at the cost of extra computation and may be helpful if you can run it on a computer with many cores. 
+
+There is a tutorial for the Bayesian Skyline with Coupled MCMC: [https://taming-the-beast.org/tutorials/CoupledMCMC-Tutorial/](https://taming-the-beast.org/tutorials/CoupledMCMC-Tutorial/)
+
