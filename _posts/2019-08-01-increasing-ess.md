@@ -39,6 +39,35 @@ Alternatively, you can directly edit the XML, go to the section with operators a
 
 {% highlight xml %}<operator weight="1.0" ... >{% endhighlight %}			
 
+
+## Tune operator parameters
+
+At the end of a BEAST run, an operator report is printed to screen with some suggestions on how to change tuning parameters for each of the operators. It looks something like this: 
+```
+Operator                                   Tuning    #accept    #reject      Pr(m)  Pr(acc|m)
+ScaleOperator(kappaScaler)                0.43252        244        250    0.01020    0.49393 Try setting scaleFactor to about 0.187
+ScaleOperator(shapeScaler)                0.24783        387        184    0.01020    0.67776 Try setting scaleFactor to about 0.061
+ScaleOperator(clockRateScaler)            0.63817        488        975    0.03061    0.33356 
+UpDownOperator(upDown)                    0.70130        128       1383    0.03061    0.08471 Try setting scaleFactor to about 0.837
+ScaleOperator(popSizesScaler)             0.24438       3974       3532    0.15306    0.52944 Try setting scaleFactor to about 0.06
+DeltaExchangeOperator(groupSizesDelta)    6.16541        362       2177    0.06122    0.16628 Try setting delta to about 15.0
+ScaleOperator(treeRootScaler)             0.69202        376       1167    0.03061    0.24368 
+Uniform(unknown)                                -       6678       8673    0.30612    0.43502 
+SubtreeSlide(unknown)                     7.02560       2075       5624    0.15306    0.26952 
+Exchange(narrow)                                -       2323       5323    0.15306    0.30382 
+Exchange(wide)                                  -         34       1545    0.03061    0.02153 
+WilsonBalding(unknown)                          -         24       1475    0.03061    0.01601 
+
+     Tuning: The value of the operator's tuning parameter, or '-' if the operator can't be optimized.
+    #accept: The total number of times a proposal by this operator has been accepted.
+    #reject: The total number of times a proposal by this operator has been rejected.
+      Pr(m): The probability this operator is chosen in a step of the MCMC (i.e. the normalized weight).
+  Pr(acc|m): The acceptance probability (#accept as a fraction of the total proposals for this operator).
+``` 
+
+In this case, it suggests setting scaleFactors for various scale operators, and setting the delta for a delta exchange operator.
+Setting tuning parameters of operators helps operators to balance the boldness of the MCMC proposal and acceptance of such proposals.
+  
 ## Use operators that move multiple parameters
 
 In Tracer, you can use the `joint marginal` panel to show correlation between the different parameters in your analysis. Here, we see how clock rate, tree heigh and population size are correlated:
