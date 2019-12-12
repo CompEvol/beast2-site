@@ -17,6 +17,9 @@ in Kaliningrad next to the Baltic Sea.
 
 ![/images/kmlsamplesRussian.png](/images/kmlsamplesRussian.png)
 
+Priors will be uniform for a given area as in Bouckaert et al, 2012, Nylinder et al, 2014, 
+and do not allow heterogeneity within a region as in Dellicour et al, 2019.
+
 ### Priors on tip locations 
 
 At this point in time, there is no BEAUti support to allow sampling of
@@ -165,3 +168,13 @@ To specify the prior, add the following to the element with
         <taxonset idref='myclade'/>
     <geoprior>
 ```
+
+
+References:
+
+Bouckaert, R., Lemey, P., Dunn, M., Greenhill, S.J., Alekseyenko, A.V., Drummond, A.J., Gray, R.D., Suchard, M.A. and Atkinson, Q.D., 2012. Mapping the origins and expansion of the Indo-European language family. Science, 337(6097), pp.957-960.
+
+Dellicour, S., Lemey, P., Artois, J., Lam, T.T., Fusaro, A., Monne, I., Cattoli, G., Kuznetsov, D., Xenarios, I., Dauphin, G. and Kalpravidh, W., 2019. Incorporating heterogeneous sampling probabilities in continuous phylogeographic inference–application to H5N1 spread in the Mekong region. Bioinformatics.
+
+Nylinder S, Lemey P, De Bruyn M, Suchard MA, Pfeil BE, Walsh N, Anderberg AA., 2014. On the biogeography of Centipeda: a species-tree diffusion approach. Systematic Biology 63: 178-191.
+
