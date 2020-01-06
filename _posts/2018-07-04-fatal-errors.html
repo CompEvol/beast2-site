@@ -42,7 +42,15 @@ another seed.
 
 <p id="parameterPrior"><b>Priors on parameter with starting value out of range</b> If a prior on a parameter is causing problems it is probably because the starting value has zero probability. If the starting value has non-zero support, check the bounds of the parameter -- possibly, the starting value is outside of these bounds. In BEAUti, the parameter starting value with lower and upper bound are displayed next to the prior.
 
-<p id="MRCAPrior"><b>Incompatible MRCA priors</b> When an MRCA-prior is listed as -Infinity, the starting tree is not compatible with the MRCA prior, so you should change the <a href="http://www.beast2.org/2014/07/28/all-about-starting-trees.html">starting tree</a>. However, it is also possible that MRCA priors are not compatible, so no starting tree exists. This happens when one MRCA requires a clade -- say A,B,C -- to be monophyletic, while another MRCA -- say B,C,D -- has a non-overlapping set of taxa that also needs to be monophyletic. Obviously, not both (A,B,C) and (B,C,D) can be monophyletic at the same time. This usually happens when by mistake a taxon is left out in one of the two clades (for example, taxon A could be added to the second clade, and (A,B,C) and (A,B,C,D) can be monophyletic at the same time.
+<p id="MRCAPrior"><b>Incompatible MRCA priors</b> When an MRCA-prior is listed as -Infinity, the starting tree is not compatible with the MRCA prior, so you should change the <a href="http://www.beast2.org/2014/07/28/all-about-starting-trees.html">starting tree</a>. 
+
+If a Newick starting tree is used but no branch lengths are specified in the starting tree, there is no way of telling what the age of an MRCA is, so Newick starting trees should always have branch lengths specified. When a Newick starting tree is used, there are two ways the prior can be incompatible with the starting tree:
+
+1. the clade specified in the calibration is supposed to be monophyletic, but the starting tree has extra taxa for the clade. To fix this, the topology of the starting tree needs to be adjusted.
+
+2. the age of the clade is not compatible with the calibration, for example, when the calibration requires the age to be at least X years old, but the starting tree has a younger age. To fix this, ensure the Newick tree has an MRCA time that is inside the range of the calibration.
+
+It is also possible that two MRCA priors are not compatible, so no starting tree exists. This happens when one MRCA requires a clade -- say A,B,C -- to be monophyletic, while another MRCA -- say B,C,D -- has a non-overlapping set of taxa that also needs to be monophyletic. Obviously, not both (A,B,C) and (B,C,D) can be monophyletic at the same time. This usually happens when by mistake a taxon is left out in one of the two clades (for example, taxon A could be added to the second clade, and (A,B,C) and (A,B,C,D) can be monophyletic at the same time.
 
 <p id="MRCAPriorOnLeaf"><b>Single taxon MRCA prior</b> In this case, any calibration distribution is defined on the most common recent ancestor of the set of taxa, which with a single taxon is the taxon itself. But that means the distribution is defined on the leaf taxon, which leads to BEAST finding it impossible to find a starting state. Setting the ‘useOriginate’ flag to true, or including more taxa to the MRCA prior may fix this.
 
