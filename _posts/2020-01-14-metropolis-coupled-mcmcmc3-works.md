@@ -84,4 +84,4 @@ Kone, A. and Kofke, D. A. (2005). Selection of temperature intervals for paralle
 
 Maturana Russel, P., Brewer, B. J., Klaere, S., and Bouckaert, R. R. (2018). Model selection and parameter inference in phylogenetics using nested sampling. Systematic biology, 68(2), 219–233.
 
-Meuller, N. and Bouckaert, R. (2020). Adaptive parallel tempering for BEAST 2. BioRxiv. doi: [https://doi.org/10.1101/603514](https://doi.org/10.1101/603514)
+Mueller, N. and Bouckaert, R. (2020). Adaptive parallel tempering for BEAST 2. BioRxiv. doi: [https://doi.org/10.1101/603514](https://doi.org/10.1101/603514)
