@@ -16,14 +16,14 @@ tags: []
 </substModel>
 {% endhighlight %}
 
-<p>Now, rename the <tt>substModel</tt> element to <tt>model</tt> and wrap it inside a new <tt>substModel</tt> element with <tt>spec="EpochSubstitutionModel"</tt>. The EpochSubstitutionModel also needs a frequencies entry, which is otherwise ignored, but for technical reasons is still there. We can refer to the frequencies from the HKY model for example. The fragment now looks like this:
+<p>Now, rename the <tt>substModel</tt> element to <tt>model</tt> and wrap it inside a new <tt>substModel</tt> element with <tt>spec="EpochSubstitutionModel"</tt>. The EpochSubstitutionModel also needs a frequencies entry used in Felsenstein's peeling algorithm at the root of the tree. We can refer to the frequencies from the HKY model for example. The fragment now looks like this:
 
 {% highlight xml %}
  <substModel spec="EpochSubstitutionModel">
 	<model id="hky.s:dna" spec="HKY" kappa="@kappa.s:dna">
 	    <frequencies id="estimatedFreqs.s:dna" spec="Frequencies" frequencies="@freqParameter.s:dna"/>
 	</model>
-	<frequencies idref="estimatedFreqs.s:dna"/> <!-- this frequencies entry is required, but ignored by the model -->
+	<frequencies idref="estimatedFreqs.s:dna"/> <!-- this frequencies is used as stationary frequencies at root of the tree -->
  </substModel>
 {% endhighlight %}
 
@@ -41,7 +41,7 @@ tags: []
 	<model id="hky.s:dna3" spec="HKY" kappa="@kappa3.s:dna">
 	    <frequencies idref="estimatedFreqs.s:dna"/>
 	</model>
-	<frequencies idref="estimatedFreqs.s:dna"/> <!-- this frequencies entry is required, but ignored by the model -->
+	<frequencies idref="estimatedFreqs.s:dna"/> < <!-- this frequencies is used as stationary frequencies at root of the tree -->
  </substModel>
 {% endhighlight %}
 
