@@ -9,10 +9,17 @@ tags: []
 
 ## What does "Likelihood incorrectly calculated" mean?
 
-BEAST runs MCMC efficiently by caching some to the calculations from the previous state. For example, if the birth-rate of the Yule prior is proposed to be changed, only the Yule prior and prior on the birth rate will change. A change of birth-rate does not affect any of the calculations of the tree likelihoods, so these do not need to be recalculated. Though this makes the MCMC much more efficient, in practice caching is a source of errors. To keep developers honest, BEAST checks every 10.000 samples whether the posterior calculation obtained while caching equals the posterior. If these two posteriors do not agree (up to a small error due to machine precision) the "Likelihood incorrectly calculated" message is produced. When errors are very small (that is, if most of the significant digits agree) this may still not be problematic. But after 100 such messages BEAST stops, since this is an indication there is somethings substantially wrong.
+BEAST runs MCMC efficiently by caching some to the calculations from the previous state. For example, if the birth-rate of the Yule prior is proposed to be changed, only the Yule prior and prior on the birth rate will change. A change of birth-rate does not affect any of the calculations of the tree likelihoods, so these do not need to be recalculated. Though this makes the MCMC much more efficient, in practice caching is a source of errors. To keep developers honest, BEAST checks every 10.000 samples whether the posterior calculation obtained while caching equals the posterior. If these two posteriors do not agree (up to a small error due to machine precision) the "Likelihood incorrectly calculated" message is produced. When errors are very small (that is, if most of the significant digits agree) this may still not be problematic, since they can be the result of adding many small errors. But after 100 such messages BEAST stops, since this is an indication it is very likely there is somethings substantially wrong.
 
-Pro tip: In fact, if the `-Dbeast.debug=true` directive is passed to java, BEAST will do this check every 3rd sample for the first 6.000 samples. This is useful for developers that want to diagnose this problem quickly. With this flag, BEAST will stop after the first time this test fails.
+Developer tip: In fact, if the `-Dbeast.debug=true` directive is passed to java, BEAST will do this check every 3rd sample for the first 6.000 samples. This is useful for developers that want to diagnose this problem quickly. With this flag, BEAST will stop after the first time this test fails.
 
+Developer tip 2: If you run in an IDE, the beast.core.MCMC class has a flag `printDebugInfo` which you can set to true and which then prints out the operators and accept/reject history of the MCMC chain, which usually helps diagnose the problem. Also, you can change the posterior checking frequency in this line:
+
+```
+            if (debugFlag && sampleNr % 3 == 0 || sampleNr % 10000 == 0) {
+```
+
+Changing the 3 to 2 makes it check every second sample, and setting it to 1 makes it check every sample. I usually first find a seed that reliably triggers the problem with the checking frequency as low as possible, then set a breakpoint to start stepping through the code where the difference occurs to find the issue. It usually has to do with the `store()`, `restore()` and `requiresRecalculation()` methods not setting the right flags indicating things can be cached or not.
 
 ## What if there is a large positive posterior?
 
