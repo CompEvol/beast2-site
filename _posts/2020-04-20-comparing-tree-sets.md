@@ -4,7 +4,7 @@ title: Are these tree sets the same?
 tags: []
 ---
 
-<p style="color:gray">20 April 20120 by <a href="mailto:r.bouckaert@auckland.ac.nz">Remco Bouckaert</a></p>
+<p style="color:gray">20 April 2020 by <a href="mailto:r.bouckaert@auckland.ac.nz">Remco Bouckaert</a></p>
 
 
 It is recommended to run multiple MCMC chains as a way to get confidence the MCMC algorithm converges on the same distribution.
