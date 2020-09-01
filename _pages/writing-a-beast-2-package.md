@@ -26,7 +26,7 @@ Now, open Terminal app (in the MacOS Utilities folder) and navigate to the Eclip
 cd $HOME/Documents/workspace
 ```
 
-Assuming Subversion is installed, you should be able to download the BEAST 2 source code using this command:
+Assuming git is installed, you should be able to download the BEAST 2 source code using this command:
 
 ```xml
 git clone https://github.com/CompEvol/beast2.git
@@ -267,9 +267,9 @@ The _testF84.xml_ file still has several references to the HKY model. These need
 
 To create a new debug configuration, follow these steps.
 
-- First, open the “beast2” project in the **Project Explorer** pane, then expand “src”, then expand “beast.app” and, finally, select “BeastMCMC.java”. 
+- First, open the “beast2” project in the **Project Explorer** pane, then expand “src”, then expand “beast.app.beastapp” and, finally, select “BeastMain.java”. 
 
-- This should bring up a **BEAST** dialog box, but by the time this dialog box appears, a new debug configuration has been created, so you can immediately press the **Quit** button to dismiss the dialog box. If you receive an error message "Editor does not contain a main type", then press **Project > Properties...**, select the **Java Compiler** tab, check **Enable project specific settings**, set the **Compiler Compliance Level** to version 1.8, and then press **Apply and Close**.
+- Select the **Run > Debug As&#8230; > Java Application** menu. This should bring up a **BEAST** dialog box, but by the time this dialog box appears, a new debug configuration has been created, so you can immediately press the **Quit** button to dismiss the dialog box. If you receive an error message "Editor does not contain a main type", then press **Project > Properties...**, select the **Java Compiler** tab, check **Enable project specific settings**, set the **Compiler Compliance Level** to version 1.8, and then press **Apply and Close**.
 
 - Now that a debug configuration exists, you must modify it to debug your new package rather than BEAST 2.
 

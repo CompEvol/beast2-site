@@ -9,40 +9,13 @@ tags: []
 <p>The goal of this tutorial is to illustrate how to create an package for BEAST 2. You will create an package that adds a new nucleotide substitution (F84) model to BEAST 2. The tutorial assumes that the reader is using MacOS 10.8.5, but the tutorial should be reasonably portable. This tutorial was created by the &#8220;Add-On Tutorial and SDK&#8221; breakout group at the third NESCent BEAST meeting, Dec. 5-8, 2011, and revised at the fourth NESCent BEAST meeting, Dec. 3-6, 2013. Please contact <a class="external text" href="mailto:paul.lewis@uconn.edu" rel="nofollow">Paul Lewis</a>, <a class="external text" href="mailto:beerli@fsu.edu" rel="nofollow">Peter Beerli</a>, or <a class="external text" href="mailto:r.bouckaert@auckland.ac.nz" rel="nofollow">Remco Bouckaert</a> with comments/suggestions.</p>
 <h2>Installing Eclipse</h2>
 <p>We will use the Eclipse IDE to manage the new package project, so the first step is to install Eclipse if you do not already have it on your system. Go to <a class="external free" href="http://www.eclipse.org/downloads/" rel="nofollow">http://www.eclipse.org/downloads/</a>and download &#8220;Eclipse IDE for Java Developers&#8221; for your system. For our MacOS 10.8.5 system, we unzipped the downloaded <i>eclipse-jee-kepler-SR1-macosx-cocoa-x86_64.tar.gz</i> file by double-clicking it, then moved the unpacked folder (named <i>eclipse</i>) to our Applications folder. You may wish to drag <i>Eclipse.app</i> to your dock to make it easy to open. On opening Eclipse for the first time, you will be asked to select a workspace. For the purpose of this tutorial, we will assume you chose this directory:</p>
-
-		
-		
-			
-			
-			
-			{% highlight xml %}$HOME/Documents/workspace{% endhighlight %}			
-			
-		
-
+			{% highlight xml %}$HOME/Documents/workspace{% endhighlight %}
 <p></p>
 <h2>Downloading the BEAST 2 source</h2>
 <p>Now, open Terminal app (in the MacOS Utilities folder) and navigate to the Eclipse workspace directory by typing this command:</p>
-
-		
-		
-			
-			
-			
 			{% highlight xml %}cd $HOME/Documents/workspace{% endhighlight %}			
-			
-		
-
-<p>Assuming Subversion is installed, you should be able to download the BEAST 2 source code using this command:</p>
-
-		
-		
-			
-			
-			
-			{% highlight xml %}svn checkout http://beast2.googlecode.com/svn/trunk/ beast2{% endhighlight %}			
-			
-		
-
+<p>Assuming git is installed, you should be able to download the BEAST 2 source code using this command:</p>
+			{% highlight xml %}git clone https://github.com/CompEvol/beast2.git{% endhighlight %}
 <p></p>
 <h2>Creating a BEAST 2 project</h2>
 <p>Back in Eclipse, use <b>File > New > Project&#8230; > Java project</b> to create a new Java project named &#8220;beast2&#8221;. You should be able to leave everything in the <b>New Java Project</b> dialog box at its default value. Once you press the <b>Finish</b> button, Eclipse will proceed to compile &#8220;beast2&#8221;.</p>
@@ -301,7 +274,7 @@ import beast.core.Description;{% endhighlight %}
 <p>The <i>testF84.xml</i> file still has several references to the HKY model. These need to be changed to be references to the new F84 class. To edit the file in Eclipse, double-click its name in the <b>Project Explorer</b> pane. This will likely drop you into <b>Design</b> view; to switch to the more useful <b>Source</b> view, click on the <b>Source</b> tab at the bottom left corner of the editor pane. Use the <b>Edit > Find/Replace&#8230;</b> menu command to bring up the <b>Find/Replace</b> dialog and (case-sensitively) replace all instances of &#8220;HKY with &#8220;F84&#8221; and all instances of &#8220;kappa&#8221; with &#8220;kF84&#8221;, then <b>File > Save</b> the file.</p>
 <h3>Create a debug configuration in Eclipse</h3>
 <p>To create a new debug configuration, follow these steps.</p>
-<p>o First, open the &#8220;beast2&#8221; project in the <b>Project Explorer</b> pane, then expand &#8220;src&#8221;, then expand &#8220;beast.app&#8221; and, finally, select &#8220;BeastMCMC.java&#8221;</p>
+<p>o First, open the &#8220;beast2&#8221; project in the <b>Project Explorer</b> pane, then expand &#8220;src&#8221;, then expand &#8220;beast.app.beastapp&#8221; and, finally, select &#8220;BeastMain.java&#8221;</p>
 <p>o Use <b>Run > Debug As&#8230; > Java Application</b>. This will bring up a <b>BEAST</b> dialog box, but by the time this dialog box appears, a new debug configuration has been created, so you can immediately press the <b>Quit</b> button to dismiss the dialog box.</p>
 <p>o Now that a debug configuration exists, you must modify it to debug your new package rather than BEAST 2.</p>
 <p>o Use <b>Run > Debug Configurations&#8230;</b> to bring up the <b>Debug Configurations</b> dialog</p>
