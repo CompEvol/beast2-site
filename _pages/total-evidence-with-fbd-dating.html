@@ -5,7 +5,7 @@ tags: []
 ---
 
 	
-		<p>Total-evidence with FBD analysis utilises molecular sequence data of extant species, morphological data of fossil and extant species and fossilisation dates of fossils to infer the phylogeny including divergence times and macroevolutionary parameters.</p>
+		<p>Total-evidence with FBD analysis utilises molecular sequence data of extant species and/or morphological data of fossil and extant species (or fossil species along in the case of a fully extinct clade) and fossilisation dates of fossils to infer the dated phylogeny and macroevolutionary parameters.</p>
 <p>To run such an analysis in BEAST2 you need to install SA (sampled-ancestor) version 1.1.3 and morph-models version 1.0.2 packages.</p>
 <p>The molecular and morphological data should be in two separate NEXUS files. The set of taxa and label should be identical in both files. Thus molecular data file should have &#8220;empty&#8221; sequences for fossil taxa, e.i., sequences filled with gaps or question marks, for example. There are examples of <a href="https://github.com/CompEvol/morph-models/blob/master/examples/nexus/penguins_dna.nex">molecular data NEXUS file</a> and <a href="https://github.com/CompEvol/morph-models/blob/master/examples/nexus/penguins_morph.nex">morphological data NEXUS file</a>.</p>
 <h2>Creating XML in BEAUti</h2>
@@ -31,6 +31,7 @@ tags: []
 		
 
 <p></p>
-<p>to site models for remaining morphological partitions and remove existing shape parameters from these models (see comments in <a href="https://github.com/CompEvol/morph-models/blob/master/examples/penguins.xml">the example XML file</a>). </p>
-	
+<p>to site models for remaining morphological partitions and remove existing shape parameters from these models (see comments in <a href="https://github.com/CompEvol/morph-models/blob/master/examples/penguins.xml">the example XML file</a>).</p>
+<h2>Analysing fully extinct clades</h2>	
+<p>See section 5 of <a href="https://taming-the-beast.org/tutorials/FBD-tutorial/">this tutorial</a>.</p>	
 
