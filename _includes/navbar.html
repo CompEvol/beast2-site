@@ -46,8 +46,8 @@ input.addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.keyCode == 13) {
         // both duckduckgo and startpage work fine
-            window.location = "https://www.startpage.com/do/search?query=site:beast2.org+" + input.value;
-            //window.location = "https://www.duckduckgo.com/?q=site:beast2.org+" + input.value;
+            //window.location = "https://www.startpage.com/do/search?query=site:beast2.org+" + input.value;
+            window.location = "https://www.duckduckgo.com/?q=site:beast2.org+" + input.value;
             // google requires the user to hit enter again when redirected to google.com
             //window.location = "https://www.google.com/?q=site:beast2.org+" + input.value;
     }
