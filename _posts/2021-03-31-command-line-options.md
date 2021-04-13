@@ -181,25 +181,25 @@ Using the `-instances` option allows you to specify how many splits the tree lik
 
 At [CIPRES](http://www.phylo.org/) they did a large study resulting in the following settings:
 
-|Data          |Data       |Slurm     |        |          |     | Other beagle|
-|partitions    |patterns   |partition |-threads|-instances| GPUs|  parameters|
-|--------------|-----------|----------|--------|----------|-----|------------| 
+|Data          |Data       |        |          |     | Other beagle|
+|partitions    |patterns   |-threads|-instances| GPUs|  parameters|
+|--------------|-----------|--------|----------|-----|------------| 
 |Nucleotide data| | | | | | | 
-|	1_to_3	|	<750	|	shared	|	1	|	1	|	|-beagle_SSE	|
-|	1_to_3	|	750-2,999	|	shared	|	3	|	3	|	|-beagle_SSE	|
-|	1_to_3	|	3,000-9,999	|	shared	|	6	|	6	|	|-beagle_SSE	|
-|	1_to_3	|	10,000-39,999	|	gpu-shared	|	1	|	1	|	1	|	-beagle_GPU	|
-|	1_to_3	|	>=40,000	|	gpu	|	4	|	4	|	4	|	-beagle_GPU	-beagle_order	1,2,3,4	|
-|	4_to_19	|	<1,200	|	shared	|	1	|	1	|	|-beagle_SSE	|
-|	4_to_19	|	1,200-4,999	|	shared	|	3	|	3	|	|-beagle_SSE	|
-|	4_to_19	|	5,000-19,999	|	shared	|	6	|	6	|	|-beagle_SSE	|
-|	4_to_19	|	>=20,000	|	gpu-shared	|	1	|	1	|	1	|	-beagle_GPU	|
-|	>=20	|	any	|	shared	|	4	|	1	|	|-beagle_SSE	|
-| Amino acid data	|| | | | | | 
-|	1	|	<5,000	|	gpu-shared	|	1	|	1	|	1	|	-beagle_GPU	|
-|	1	|	>=5,000	|	gpu	|	4	|	4	|	4	|	-beagle_GPU	-beagle_order	1,2,3,4	|
-|	2_to_39	|	any	|	gpu-shared	|	1	|	1	|	1	|	-beagle_GPU	|
-|	>=40	|	any	|	compute	|	24	|	1	|	| -beagle_SSE	|
+|	1_to_3	|	<750	|		1	|	1	|	|-beagle_SSE	|
+|	1_to_3	|	750-2,999	|		3	|	3	|	|-beagle_SSE	|
+|	1_to_3	|	3,000-9,999	|		6	|	6	|	|-beagle_SSE	|
+|	1_to_3	|	10,000-39,999	|		1	|	1	|	1	|	-beagle_GPU	|
+|	1_to_3	|	>=40,000	|		4	|	4	|	4	|	-beagle_GPU	-beagle_order	1,2,3,4	|
+|	4_to_19	|	<1,200	|		1	|	1	|	|-beagle_SSE	|
+|	4_to_19	|	1,200-4,999	|		3	|	3	|	|-beagle_SSE	|
+|	4_to_19	|	5,000-19,999	|		6	|	6	|	|-beagle_SSE	|
+|	4_to_19	|	>=20,000	|		1	|	1	|	1	|	-beagle_GPU	|
+|	>=20	|	any	|		4	|	1	|	|-beagle_SSE	|
+| Amino acid data	|| | | | | 
+|	1	|	<5,000	|		1	|	1	|	1	|	-beagle_GPU	|
+|	1	|	>=5,000	|		4	|	4	|	4	|	-beagle_GPU	-beagle_order	1,2,3,4	|
+|	2_to_39	|	any	|		1	|	1	|	1	|	-beagle_GPU	|
+|	>=40	|	any	|		24	|	1	|	| -beagle_SSE	|
 
 (Source: Mark Miller's [post](https://groups.google.com/g/beast-users/c/yx0hBUUGqmY/m/_DJgUJNOCwAJ) on the [user list](https://groups.google.com/g/beast-users/c/yx0hBUUGqmY/m/_DJgUJNOCwAJ).)
 
