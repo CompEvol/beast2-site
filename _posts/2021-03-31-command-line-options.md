@@ -189,8 +189,7 @@ At [CIPRES](http://www.phylo.org/) they did a large study resulting in the follo
 |	1_to_3	|	750-2,999	|	shared	|	3	|	3	|	|-beagle_SSE	|
 |	1_to_3	|	3,000-9,999	|	shared	|	6	|	6	|	|-beagle_SSE	|
 |	1_to_3	|	10,000-39,999	|	gpu-shared	|	1	|	1	|	1	|	-beagle_GPU	|
-|	1_to_3	|	>=40,000	|	gpu	|	4	|	4	|	4	|	-beagle_GPU	|
-|	-beagle_order	|	1,2,3,4	|
+|	1_to_3	|	>=40,000	|	gpu	|	4	|	4	|	4	|	-beagle_GPU	-beagle_order	1,2,3,4	|
 |	4_to_19	|	<1,200	|	shared	|	1	|	1	|	|-beagle_SSE	|
 |	4_to_19	|	1,200-4,999	|	shared	|	3	|	3	|	|-beagle_SSE	|
 |	4_to_19	|	5,000-19,999	|	shared	|	6	|	6	|	|-beagle_SSE	|
