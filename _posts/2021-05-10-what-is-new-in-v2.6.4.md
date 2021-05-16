@@ -50,4 +50,4 @@ The dreaded incorrectly calculated likelihood bug encountered by developers may 
 
 ## New packages
 
-Check out newly added packages like [PIQMEE](http://www.beast2.org/2020/10/06/PIQMEE.html) for efficiently dealing with alignments that have many duplicates, the [optimised relaxed clock (ORC)](http://www.beast2.org/2020/12/15/ORC.html) and [OBAMA](http://www.beast2.org/2020/11/25/OBAMA.html) for model averaging withi amino acid data.
+Check out newly added packages like [PIQMEE](http://www.beast2.org/2020/10/06/PIQMEE.html) for efficiently dealing with alignments that have many duplicates, the [optimised relaxed clock (ORC)](http://www.beast2.org/2020/12/15/ORC.html) and [OBAMA](http://www.beast2.org/2020/11/25/OBAMA.html) for model averaging with amino acid data.
