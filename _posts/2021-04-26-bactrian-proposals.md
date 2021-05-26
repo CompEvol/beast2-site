@@ -10,6 +10,11 @@ Most operators that apply to continuous parameters in BEAST draw from a continuo
 We found that Bactrian operators in BEAST are about 15% more efficient in terms of [ESS](https://www.beast2.org/what-is-ess/) per number of states for relaxed clock models ([Douglas et al, 2021](https://doi.org/10.1371/journal.pcbi.1008322)). Bactrian operators take the same amount of time as standard operators, but tend to result in better mixing.
 
 
+
+![Bactrian ESS vs Standard ESS](/images/BactrianESS.png)
+
+This graph shows the ESS over 100 runs for 50 taxa sampled through time with standard operators and Bactrian versions of them with the same weights.
+
 ## Bactrian versions of random walk operators
 
 The image below shows the difference between a normal distribution in red, which puts much of the probability mass near zero and thus has a tendency to propose small steps. In contrast, the Bactrian distribution in green is the sum of two normal distributions, one shifted up, the other shifted down. It puts most of the probability mass off-centre, so has a tendency to propose larger steps.
