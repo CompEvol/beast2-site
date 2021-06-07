@@ -114,13 +114,13 @@ packages.url=https\://raw.githubusercontent.com/CompEvol/CBAN/master/packages-ex
 
 
 <ul>
-<li>Build the package using <code>ant addon</addon> or just <code>ant</code> from the package directory.
+<li>Build the package using <code>ant addon</code> or just <code>ant</code> from the package directory.
 <li>Test that the package works by <a href="#Adding_package_repositories_by_hand">installing it by hand</a>.
 <li>Upload the file <code>yourpackage.addon.v1.2.3.zip</code> to a place on the internet where it can be downloaded by the package manager. <b>Note</b> BEAST v2.6.3 and earlier cannot access the github release area -- this was the preferred way to make packages available, but due to a change in github this no longer works.
 <p>A good place to store the package is as part of a github repository (like the <a href="https://github.com/CompEvol/packages">packages</a> repository).
 <li>Make an entry in a package repository file.
 If your package is peer reviewed and published, and you want it to be available by default to all users, the best place to add it is in <a href="https://github.com/CompEvol/CBAN/blob/master/packages2.6.xml">packages2.6.xml</a>. If you do not have access already, just make a pull request with an updated package file.
 <p>Alternatively, you can host your own package repository file, and add some instructions for users on how to add a package repository and install a file (see <a href="https://github.com/laduplessis/besp">here</a> for an example). 
-<li>
+<li>Make sure the package turns up in the package manager and installs properly. Note that there may be a small delay due to the package repository file being cached.
 </ul>
 
