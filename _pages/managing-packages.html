@@ -120,6 +120,14 @@ packages.url=https\://raw.githubusercontent.com/CompEvol/CBAN/master/packages-ex
 <p>A good place to store the package is as part of a github repository (like the <a href="https://github.com/CompEvol/packages">packages</a> repository).
 <li>Make an entry in a package repository file.
 If your package is peer reviewed and published, and you want it to be available by default to all users, the best place to add it is in <a href="https://github.com/CompEvol/CBAN/blob/master/packages2.6.xml">packages2.6.xml</a>. If you do not have access already, just make a pull request with an updated package file.
+<p>Note the comment at the start of the package file:
+<code>
+ NOTE: if you edit this file, DO NOT DELETE any entries. Older package versions 
+ will be available for running BEAST files so that analyses can be replicated   
+ with the package versions used in the original analysis.                       
+</code>
+<p><b>Make sure the package file parses!</b> It is very easy to make a mistake (missing end tag, or typo in XML elements), so before committing any changes you can sanity check the file for instance by loading the XML in a browser. An even better test is to add the local file on your computer to your list of package repositories and start the package manager (or BEAUti). Note that local file URL should be of the form
+<code>file:///tmp/packagefile.xml</code> when the file <code>packagefile.xml</code> is in the <code>/tmp/</code> folder on OS X or Linux and <code>file:///c:/temp/pacakgefile.xml</code> for the C-drive \temp\ directory on Windows.
 <p>Alternatively, you can host your own package repository file, and add some instructions for users on how to add a package repository and install a file (see <a href="https://github.com/laduplessis/besp">here</a> for an example). 
 <li>Make sure the package turns up in the package manager and installs properly. Note that there may be a small delay due to the package repository file being cached.
 </ul>
