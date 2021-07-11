@@ -78,7 +78,7 @@ clockmodel = new beast.evolution.branchratemodel.StrictClockModel("1.0");{% endh
 			{% highlight java %}	sitemodel = new SiteModel(gammaCategoryCount=4, substModel=hky, shape=""+shape0);
 
 {% endhighlight %}
-Then, we specify which XML analysis, (we prepared in the previous <a href='http://blog.beast2.org/2014/04/28/simulation-studies-with-beast-2/'>blog</a>) we want to use to analyse the generated alignment, using
+Then, we specify which XML analysis, (we prepared in the previous <a href='http://www.beast2.org/2014/04/28/simulation-studies-with-beast-2/'>blog</a>) we want to use to analyse the generated alignment, using
 			{% highlight java %}
 	mergewith = new beast.app.seqgen.MergeDataWith(template="analysis.xml", output="analysis-out.xml");
 {% endhighlight %}
