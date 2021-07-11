@@ -96,7 +96,7 @@ For the treelikelihood to use the correction, the `ascertained` flag has to be s
 In case you know how many constant sites were ignored, you can add a filtered alignment to specify how many constants sites with As, Cs, Gs and Ts respectively you have.
 
 * rename the original alignment to say `original-alignment` by editing the `id` attribute
-* below the alignment, add a a filtered alignment with the id of the old alignment, and set the number of constant sites.
+* below the alignment, add a filtered alignment with the id of the old alignment, and set the number of constant sites.
 
 With 500 As, 200 Cs, 300 Gs and 100 Ts you can achieve this as follows:
 
@@ -191,7 +191,7 @@ were `D excluded` is specified by the `exclude*` attributes and `D included` by 
 
 ## Sub sets of alignments
 
-It is possible to split up alignments into sub-alignments, especially when there are blocks of missing data as is common with language data. This can be done with the `FilteredAlignment`. Any `FilteredAlignment` takes an `Alignment` as `data` attribute and a filter specification that  specifies which of the sites in the input alignment should be selected First site is 1. Filter specs are comma separated, either a singleton, a range [from]-[to] or iteration [from]:[to]:[step]; 1-100 defines a range, 1-100 or 1:100:3 defines every third in range 1-100, 1::3,2::3 removes every third site. Default for range [1]-[last site], default for iterator [1]:[last site]:[1].
+It is possible to split up alignments into sub-alignments, especially when there are blocks of missing data as is common with language data. This can be done with the `FilteredAlignment`. Any `FilteredAlignment` takes an `Alignment` as `data` attribute and a filter specification that  specifies which of the sites in the input alignment should be selected. First site is 1. Filter specs are comma separated, either a singleton, a range [from]-[to] or iteration [from]:[to]:[step]; 1-100 defines a range, 1-100 or 1:100:3 defines every third in range 1-100, 1::3,2::3 removes every third site. Default for range [1]-[last site], default for iterator [1]:[last site]:[1].
 
 For an alignment with `id="pny2016"` we can select the cognates for the word `and` as follows:
 

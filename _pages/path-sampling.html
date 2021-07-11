@@ -21,10 +21,11 @@ tags: []
 			
 			
 			
-			{% highlight xml %}   cd $(dir)
-   java -cp $(java.class.path) beast.app.beastapp.BeastMain $(resume/overwrite) -java -seed $(seed) beast.xml{% endhighlight %}			
-			
-		
+{% highlight xml %}   
+<run spec='beast.inference.PathSampler' chainLength="100000" alpha='0.3' rootdir='/tmp/step' burnInPercentage='80' preBurnin="50000" deleteOldLogs='true'>
+	cd $(dir)
+ 	java -cp $(java.class.path) beast.app.beastapp.BeastMain $(resume/overwrite) -java -seed $(seed) beast.xml
+{% endhighlight %}			
 
 <p></p>
 <ul>
@@ -37,7 +38,8 @@ tags: []
 			
 			
 			
-			{% highlight xml %}nrOfSteps        the number of steps to use, default 8
+<code>
+nrOfSteps        the number of steps to use, default 8
 alpha            alpha parameter of Beta(alpha,1) distribution used to space out steps, 
                  default 0.3If alpha &lt;= 0, uniform intervals are used.
 rootdir          root directory for storing particle states and log files (default /tmp)
@@ -58,9 +60,9 @@ hosts            comma separated list of hosts. If there are k hosts in the list
                  the list. Note that whitespace is removed
 deleteOldLogs    delete existing log files from root dir
 doNotRun         Set up all files but do not run analysis if true.
-                 This can be useful for setting up an analysis on a cluster{% endhighlight %}			
+                 This can be useful for setting up an analysis on a cluster
 			
-		
+</code>		
 
 <p>You can BEAST with multiple threads to make it run several chains in parallel (e.g. using the -threads option from the command line).</p>
 <p>At the end of the run, the marginal likelihood estimate is printed. Also, in the directory specified by &#8216;rootdir&#8217; for each step a subdirectory is created with the steps in it.</p>
@@ -71,17 +73,20 @@ doNotRun         Set up all files but do not run analysis if true.
 			
 			
 			
-{% highlight xml %} applauncher PathSampleAnalyser <nrofsteps> <alpha> <rootdir> <burninpercentage>{% endhighlight %}			
+{% highlight xml %} 
+applauncher PathSampleAnalyser <nrofsteps> <alpha> <rootdir> <burninpercentage>{% endhighlight %}			
+
 Note <code>applauncher</code> was called <code>appstore</code> before v2.5.0.
 		
 
 <p>where nrofsteps, alpha, rootdir, burninpercentage should match the ones specified in the XML file.</p>
 <p>You can use <a title="Tracer" href="{{site.baseurl}}/tracer-2">Tracer</a> to inspect the log files for the various steps to make sure that th e burn-in used is sufficiently large.</p>
 <h2>Example file </h2>
-<p>In the $(BEAST-package)/model-selection/examples directory, there is a file testPathSampler.xml that should run, where $(BEAST-package) is the package directory on your operating system.</p>
+<p>In the $(BEAST-package)/model-selection/examples directory, there is a file <a href="https://raw.githubusercontent.com/BEAST2-Dev/model-selection/master/examples/testPathSampler.xml">testPathSampler.xml</a> that should run, where $(BEAST-package) is the package directory on your operating system.</p>
 <p>See <a class="mw-redirect" title="Manage Packages" href="{{site.baseurl}}/managing-packages/index.html#Installation_directories">Manage_package#Installation_directories</a> for finding out what $(BEAST-package) is on your machine.</p>
 <h2>Setting up an analysis for a cluster </h2>
-<p>The path sampler will write shell scripts (for Mac, Linux) and batch files (for Windows) in the rootdir, one for every thread. These shell scripts can be executed separately. Once all scripts have been executed you need to run the PathSampleAnalyser to get the marginal likelihood estimate.</p>
+<p>The path sampler will write shell scripts (for Mac, Linux) and batch files (for Windows) in the rootdir, one for every thread. These shell scripts can be executed separately. Once all scripts have been executed you need to run the PathSampleAnalyser to get the marginal likelihood estimate. </p>
+<p>NB these are actually the <b>log</b> of the marginal likelihood estimates, but that is usually omitted.</p>
 <p>The number of batch files is determined by the number of threads used for running the XML. These batch files can be submitted to a cluster.</p>
 <h2>Calculating Bayes factors </h2>
 <p>At the end of a pathsampling run, the marginal likelihood estimate is reported, e.g.</p>
@@ -90,8 +95,8 @@ Note <code>applauncher</code> was called <code>appstore</code> before v2.5.0.
 		
 			
 			
-			
-			{% highlight xml %} Step        theta         likelihood   contribution ESS
+<code>			
+ Step        theta         likelihood   contribution ESS
  0            0            -19678.4774  -27.5334     15.1987      
  1            0.0015       -9950.7265   -113.8373    16.9272      
  2            0.0154       -6848.3262   -285.8846    39.1143      
@@ -101,7 +106,7 @@ Note <code>applauncher</code> was called <code>appstore</code> before v2.5.0.
  6            0.5982       -5990.5743   -2405.6227   14.0319      
  7            1            -5985.3503   0            8.9284       
  marginal L estimate =-6076.203746592951{% endhighlight %}			
-			
+</code>		
 		
 
 <p>You can use the value after &#8220;marginal L estimate&#8221; to compare models.</p>
@@ -126,12 +131,10 @@ Note <code>applauncher</code> was called <code>appstore</code> before v2.5.0.
 <h2>Trouble shooting </h2>
 <p>Make sure no newline missing in the XML. The line that says</p>
 
-		
-		
 			
-			
-			
-			{% highlight xml %}   cd $(dir) java -cp $(java.class.path) beast.app.beastapp.BeastMain $(resume/overwrite) -java -seed $(seed) beast.xml {% endhighlight %}			
+{% highlight xml %}   
+cd $(dir) java -cp $(java.class.path) beast.app.beastapp.BeastMain $(resume/overwrite) -java -seed $(seed) beast.xml 
+{% endhighlight %}			
 			
 		
 
@@ -142,8 +145,10 @@ Note <code>applauncher</code> was called <code>appstore</code> before v2.5.0.
 			
 			
 			
-			{% highlight xml %} cd $(dir) 
- java -cp $(java.class.path) beast.app.beastapp.BeastMain $(resume/overwrite) -java -seed $(seed) beast.xml {% endhighlight %}			
+{% highlight xml %} 
+cd $(dir) 
+java -cp $(java.class.path) beast.app.beastapp.BeastMain $(resume/overwrite) -java -seed $(seed) beast.xml 
+{% endhighlight %}			
 			
 		
 
@@ -154,7 +159,9 @@ Note <code>applauncher</code> was called <code>appstore</code> before v2.5.0.
 			
 			
 			
-			{% highlight xml %}   /tmp/step/step0/run.bat{% endhighlight %}			
+{% highlight xml %}   
+/tmp/step/step0/run.bat
+{% endhighlight %}			
 			
 		
 
@@ -166,7 +173,9 @@ Note <code>applauncher</code> was called <code>appstore</code> before v2.5.0.
 			
 			
 			
-			{% highlight xml %}   rootdir="/temp/step/"{% endhighlight %}			
+{% highlight xml %}   
+rootdir="/temp/step/"
+{% endhighlight %}			
 			
 		
 
@@ -177,7 +186,9 @@ Note <code>applauncher</code> was called <code>appstore</code> before v2.5.0.
 			
 			
 			
-			{% highlight xml %}   rootdir="\temp\steps\"{% endhighlight %}			
+{% highlight xml %}   
+rootdir="\temp\steps\"
+{% endhighlight %}			
 			
 		
 
