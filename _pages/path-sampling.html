@@ -37,32 +37,45 @@ tags: []
 		
 			
 			
-			
-<code>
-nrOfSteps        the number of steps to use, default 8
-alpha            alpha parameter of Beta(alpha,1) distribution used to space out steps, 
-                 default 0.3If alpha &lt;= 0, uniform intervals are used.
-rootdir          root directory for storing particle states and log files (default /tmp)
-mcmc             MCMC analysis used to specify model and operations in each of the 
-                 particles
-chainLength      number of sample to run a chain for a single step Default: 100000
-burnInPercentage burn-In Percentage used for analysing log files Default: 50
-preBurnin        number of samples that are discarded for the first step, but not the 
-                 others Default: 100000
-value            script for launching a job. $(dir) is replaced by the directory associated 
+
+<small>			
+<table>
+<tr><td>
+nrOfSteps</td><td>        the number of steps to use, default 8</td></tr>
+<tr><td>
+alpha</td><td>            alpha parameter of Beta(alpha,1) distribution used to space out steps, 
+                 default 0.3If alpha &lt;= 0, uniform intervals are used.</td></tr>
+<tr><td>
+rootdir</td><td>          root directory for storing particle states and log files (default /tmp)
+<tr><td>
+mcmc</td><td>             MCMC analysis used to specify model and operations in each of the 
+                 particles</td></tr>
+<tr><td>
+chainLength</td><td>      number of sample to run a chain for a single step Default: 100000</td></tr>
+<tr><td>
+burnInPercentage</td><td> burn-In Percentage used for analysing log files Default: 50</td></tr>
+<tr><td>
+preBurnin</td><td>        number of samples that are discarded for the first step, but not the 
+                 others Default: 100000</td></tr>
+<tr><td>
+value</td><td>            script for launching a job. $(dir) is replaced by the directory associated 
                  with the particle $(java.class.path) is replaced by a java class path used 
                  to launch this application $(java.library.path) is replaced by a java library 
                  path used to launch this application $(seed) is replaced by a random number 
                  seed that differs with every launch $(host) is replaced by a host from the 
-                 list of hosts
-hosts            comma separated list of hosts. If there are k hosts in the list, for particle 
+                 list of hosts</td></tr>
+<tr><td>
+hosts</td><td>            comma separated list of hosts. If there are k hosts in the list, for particle 
                  i the term $(host) in the script will be replaced by the (i modulo k) host in 
-                 the list. Note that whitespace is removed
-deleteOldLogs    delete existing log files from root dir
-doNotRun         Set up all files but do not run analysis if true.
-                 This can be useful for setting up an analysis on a cluster
-			
-</code>		
+                 the list. Note that whitespace is removed</td></tr>
+<tr><td>
+deleteOldLogs</td><td>    delete existing log files from root dir</td></tr>
+<tr><td>
+doNotRun</td><td>         Set up all files but do not run analysis if true.
+                 This can be useful for setting up an analysis on a cluster</td></tr>
+</table>			
+</small>			
+
 
 <p>You can BEAST with multiple threads to make it run several chains in parallel (e.g. using the -threads option from the command line).</p>
 <p>At the end of the run, the marginal likelihood estimate is printed. Also, in the directory specified by &#8216;rootdir&#8217; for each step a subdirectory is created with the steps in it.</p>
@@ -94,8 +107,8 @@ Note <code>applauncher</code> was called <code>appstore</code> before v2.5.0.
 		
 		
 			
-			
-<code>			
+<small>						
+{% highlight xml %} 
  Step        theta         likelihood   contribution ESS
  0            0            -19678.4774  -27.5334     15.1987      
  1            0.0015       -9950.7265   -113.8373    16.9272      
@@ -106,8 +119,9 @@ Note <code>applauncher</code> was called <code>appstore</code> before v2.5.0.
  6            0.5982       -5990.5743   -2405.6227   14.0319      
  7            1            -5985.3503   0            8.9284       
  marginal L estimate =-6076.203746592951
-</code>		
-		
+{% endhighlight %}			
+</small>			
+
 
 <p>You can use the value after &#8220;marginal L estimate&#8221; to compare models.</p>
 <p>Say, the marginal likelihood estimate value for model 1 is X and the value for model 2 is Y, then the Bayes factor comparing model s1 and 2 is is X-Y. If this difference is positive, then the Bayes factor is in favour of model 1, if it is negative, it is in favour of model 2.</p>
