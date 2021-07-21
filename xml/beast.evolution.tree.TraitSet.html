@@ -1,17 +1,17 @@
 <html>
 <head>
-<title>BEAST v2.5.0 Documentation: beast.evolution.tree.TraitSet</title>
+<title>BEAST v2.6.5 Documentation: beast.evolution.tree.TraitSet</title>
 <link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
 </head>
 <body>
-<h1>BEAST v2.5.0 Documentation: beast.evolution.tree.TraitSet</h1>
+<h1>BEAST v2.6.5 Documentation: beast.evolution.tree.TraitSet</h1>
 <p>A trait set represent a collection of properties of taxons, for the use of initializing a tree. The traits are represented as text content in taxon=value form, for example, for a date trait, wecould have a content of chimp=1950,human=1991,neander=-10000. All white space is ignored, so they canbe put on multiple tabbed lines in the XML. The type of node in the tree determines what happes with this information. The default Node only recognizes 'date', 'date-forward' and 'date-backward' as a trait, but by creating custom Node classes other traits can be supported as well.</p>
 <h2>Inputs:</h2>
 <p><a href='#traitname'>traitname</a>, <a href='#units'>units</a>, <a href='#value'>value</a>, <a href='#taxa'>taxa</a>, <a href='#dateFormat'>dateFormat</a </p>
 <p>&nbsp</p><table id='traitname' border='1px' width='90%'>
 <caption>traitname</caption>
 <thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
-<tr><td>name of the trait, used as meta data name for the tree. Special traitnames that are recognized are 'date','date-forward' and 'date-backward'.</td></tr>
+<tr><td>name of the trait, used as meta data name for the tree. Special traitnames that are recognized are 'age','date','date-forward' and 'date-backward'.</td></tr>
 <tr><td>
 Required input</td></tr>
 </table>

@@ -1,15 +1,19 @@
 <html>
 <head>
-<title>BEAST v2.5.0 Documentation: beast.core.MCMC</title>
+<title>BEAST v2.6.5 Documentation: beast.core.MCMC</title>
 <link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
 </head>
 <body>
-<h1>BEAST v2.5.0 Documentation: beast.core.MCMC</h1>
+<h1>BEAST v2.6.5 Documentation: beast.core.MCMC</h1>
 <p>Entry point for running a Beast task, for instance an MCMC or other probabilistic analysis, a simulation, etc.<br/>MCMC chain. This is the main element that controls which posterior to calculate, how long to run the chain and all other properties, which operators to apply on the state space and where to log results.</p>
-<h2>Reference:</h2><p>Bouckaert RR, Heled J, Kuehnert D, Vaughan TG, Wu C-H, Xie D, Suchard MA,
-  Rambaut A, Drummond AJ (2014) BEAST 2: A software platform for Bayesian
-  evolutionary analysis. PLoS Computational Biology 10(4): e1003537</p>
-<p><a href="http://dx.doi.org/10.1371/journal.pcbi.1003537">doi:10.1371/journal.pcbi.1003537</a></p>
+<h2>Reference:</h2><p>Bouckaert, Remco, Timothy G. Vaughan, Joëlle Barido-Sottani, Sebastián Duchêne, Mathieu Fourment, 
+Alexandra Gavryushkina, Joseph Heled, Graham Jones, Denise Kühnert, Nicola De Maio, Michael Matschiner, 
+Fábio K. Mendes, Nicola F. Müller, Huw A. Ogilvie, Louis du Plessis, Alex Popinga, Andrew Rambaut, 
+David Rasmussen, Igor Siveroni, Marc A. Suchard, Chieh-Hsi Wu, Dong Xie, Chi Zhang, Tanja Stadler, 
+Alexei J. Drummond 
+  BEAST 2.5: An advanced software platform for Bayesian evolutionary analysis. 
+  PLoS computational biology 15, no. 4 (2019): e1006650.</p>
+<p><a href="https://doi.org/10.1371/journal.pcbi.1006650">doi:10.1371/journal.pcbi.1006650</a></p>
 <h2>Inputs:</h2>
 <p><a href='#chainLength'>chainLength</a>, <a href='#state'>state</a>, <a href='#init'>init</a>, <a href='#storeEvery'>storeEvery</a>, <a href='#preBurnin'>preBurnin</a>, <a href='#numInitializationAttempts'>numInitializationAttempts</a>, <a href='#distribution'>distribution</a>, <a href='#operator'>operator</a>, <a href='#logger'>logger</a>, <a href='#sampleFromPrior'>sampleFromPrior</a>, <a href='#operatorschedule'>operatorschedule</a </p>
 <p>&nbsp</p><table id='chainLength' border='1px' width='90%'>
@@ -87,7 +91,7 @@ Optional input. Default: false</td></tr>
 <thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.core.OperatorSchedule.html'>beast.core.OperatorSchedule</a></td></tr></thead>
 <tr><td>specify operator selection and optimisation schedule</td></tr>
 <tr><td>
-Optional input</td></tr>
+Required input</td></tr>
 </table>
 </body>
 </html>
