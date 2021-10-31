@@ -13,7 +13,9 @@ The [AlmostDistributions](https://github.com/rbouckaert/AlmostDistribution) pack
 
 The `AlmostUniform` distribution is a parametric distribution that can be used as alternative for the `Uniform` distribution in parameter priors or for node age calibrations. For values between the lower and upper bound, the `AlmostUniform` distribution behaves the same as the `Uniform` distribution, but for values outside the range where the `Uniform` distribution returns negative infinity for the log-density, the `AlmostUniform` distribution returns a small penalty value. The value is calculated to encourage the value to move towards the range between lower and upper bound when using MCMC, and is calculated as  
 
-```-penalty * (x-centre) * (x-centre)```
+```
+-penalty * (x-centre) * (x-centre)
+```
 
 where `penalty` a user defined penalty values (default 10000), `centre` is the middle of the interval defined by lower and upper bound, and `x` is the value for which the log-density is calculated. Initially, the value of `x` may be outside the range, but during the MCMC, the value of `x` will move towards the desired bounds and once `x` is between lower and upper bound it will be practically impossible to escape from the desired range (though in theory it can still happen).
 
