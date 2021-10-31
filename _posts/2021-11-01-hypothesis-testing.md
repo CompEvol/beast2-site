@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Hypothesis testing
+title: Hypothesis testing/model comparison
 tags: []
 ---
 <p style="color:gray">1 November 2021 by <a href="mailto:r.bouckaert@auckland.ac.nz">Remco Bouckaert</a></p>
@@ -87,7 +87,7 @@ BF = --------------------------
 
 The graph above shows the prior and posterior distributions of the root age for Indo-European languages. The prior is chosen to be more or less symmetrically distributed over the two hypotheses (perhaps slightly preferring hypothesis 1). Note that there are quite a few samples where the prior is in between 6 and 8kya, which is an area not covered by any of the two hypotheses. This is to show that it is not necessary for the MCMC to be only in states that are hypothesised.
 
-Root height has a prior mean of 6.8kya [4.9--8.8kya 95% HPD] while the posterior mean is 8.2kya [6.9 -- 9.6kya 95% HPD] with almost no coverage of the 4-5kya range. In a trace log with 10.000 samples, taking off 10% burn-in, we have #prior = 90.000 = #posterior. In the prior, 1704 times the root age was in the 4-5kya range and 1498 times in the 8-9kya range. In the posterior, thes numbers were 16 and 4103 times respectively. Filling in the numbers in the BF formula above, we get
+Root height has a prior mean of 6.8kya [4.9--8.8kya 95% HPD] while the posterior mean is 8.2kya [6.9 -- 9.6kya 95% HPD] with almost no coverage of the 4-5kya range. In a trace log with 10.000 samples, taking off 10% burn-in, we have #prior = 90.000 = #posterior. In the prior, 1704 times the root age was in the 4-5kya range and 1498 times in the 8-9kya range. In the posterior, thes numbers were 16 and 4103 times respectively. Filling in the numbers in the first BF formula above, we get
 
 
 ```
@@ -100,7 +100,8 @@ Since the BF << 1, this shows there is more support for hypothesis 2 than or 1, 
 BF = (4103/1498)/(16/1704) = 291.7
 ```
 
-which is much larger than 100, indicating decisive support for hypothesis 2. See below on how to interpret the Bayes factor.
+which is much larger than 100, indicating decisive support for hypothesis 2. Even when 
+using the Laplace correction, the BF = ((4103+1)/(1498+1))/((16+1)/(1704+1)) = 274.6 >> 100. See below on how to interpret the Bayes factor.
 
 
 ## More than 2 hypotheses
