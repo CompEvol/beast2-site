@@ -61,6 +61,12 @@ tags: []
 			
 {% highlight xml %}   java -cp beast.jar beast.util.PackageManager{% endhighlight %}			
 			
+
+<h2 id="Cluster_Installation">Installation on cluster</h2>
+
+<p> By default, packages will be installed in user's BEAST directories, but to make packages available to all users on a HPC cluster BEAST also picks up packages from a system directory (\Program Files\BEAST\2.6 on Windows, /Library/Application Support/BEAST/2.6 on OS X, and /usr/local/share/beast/ on Linux).
+
+<p>To install packages in such directory, use the `-useAppDir` option for the command line version of the package manager. Make sure you have write access rights to the system directory.
 		
 
 <h2 id="Custom_Installation_Dir">Customising installation directories </h2>
@@ -73,7 +79,7 @@ packagemanager -dir /Users/me/my_package_dir -add bModelTest
 
 <p>to install the bModelTest package in directory /Users/me/my_package_dir. When starting BEAST, BEAUti etc, these programs need to be told about this custom directory. To do so, start them with java using the “beast.user.package.dir” directive. For example, like so:
 
-{% highlight xml %} 
+{% highlight xml %}
 java -Dbeast.user.package.dir=/Users/me/my_package_dir beast.app.beastapp.BeastLauncher beast.xml
 {% endhighlight %}
 
