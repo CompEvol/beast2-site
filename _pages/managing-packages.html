@@ -58,15 +58,27 @@ tags: []
 		
 
 <p>Alternatively the package manager can be launched as</p>
+			
+{% highlight xml %}   java -cp beast.jar beast.util.PackageManager{% endhighlight %}			
+			
+		
 
-		
-		
-			
-			
-			
-			{% highlight xml %}   java -cp beast.jar beast.util.PackageManager{% endhighlight %}			
-			
-		
+<h2 id="Custom_Installation_Dir">Customising installation directories </h2>
+
+<p>To install packages in custom directories using the packagemanager command line version, use the -dir option (see above), e.g.
+
+{% highlight xml %}
+packagemanager -dir /Users/me/my_package_dir -add bModelTest
+{% endhighlight %}			
+
+<p>to install the bModelTest package in directory /Users/me/my_package_dir. When starting BEAST, BEAUti etc, these programs need to be told about this custom directory. To do so, start them with java using the “beast.user.package.dir” directive. For example, like so:
+
+{% highlight xml %} 
+java -Dbeast.user.package.dir=/Users/me/my_package_dir beast.app.beastapp.BeastLauncher beast.xml
+{% endhighlight %}
+
+<p>It is probably be easiest to just edit the scripts in the directory where BEAST is installed (BEAST/bat for Windows, /Application/BEAST 2.6.6/bin on OS X, beast/bin on Linux), and add -Dbeast.user.package.dir=/Users/me/my_package_dir just after ever place where java is called (typically at the end of the script).
+
 
 <p></p>
 <h2 id="Install_by_hand">Install by hand </h2>
