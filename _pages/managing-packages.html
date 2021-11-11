@@ -86,6 +86,9 @@ java -Dbeast.user.package.dir=/Users/me/my_package_dir beast.app.beastapp.BeastL
 <p>It is probably be easiest to just edit the scripts in the directory where BEAST is installed (BEAST/bat for Windows, /Application/BEAST 2.6.6/bin on OS X, beast/bin on Linux), and add -Dbeast.user.package.dir=/Users/me/my_package_dir just after ever place where java is called (typically at the end of the script).
 
 
+<p>Similarly, there is the "beast.system.package.dir" variable to point to a system directory in a non-standard location. Packages need to be installed by hand in such custom system directory -- there is no packagemanager support to do so (unless the -Dbeast.system.package.dir directive is used when starting the packagemanager).</p>
+
+
 <p></p>
 <h2 id="Install_by_hand">Install by hand </h2>
 <p>If for some reason you cannot install a package through BEAUti or the package manager, you can always install the package by hand. First, get the zip file you want to install. For example, to install the VSS package, download  <a class="external free" href="https://github.com/CompEvol/CBAN/releases/download/v2.1.2/VSS.addon.v1.0.0.zip" rel="nofollow">https://github.com/CompEvol/CBAN/releases/download/v2.1.2/VSS.addon.v1.0.0.zip</a>. Then, create a VSS subdirectory</p>
