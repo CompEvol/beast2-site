@@ -153,3 +153,64 @@ If your package is peer reviewed and published, and you want it to be available 
 <li>Make sure the package turns up in the package manager and installs properly. Note that there may be a small delay due to the package repository file being cached.
 </ul>
 
+<h2 id="Directory_Structure">Package directory structure</h2>
+
+<p>The directory structure of the package directory is of this form:
+
+{% highlight xml %}
+{package_directory}
+	2.6/
+		BEAST/
+			lib/
+			examples/
+			templates/
+			version.xml
+			...
+		BEASTLabs/
+			lib/
+			examples/
+			templates/
+			version.xml
+			...
+		bModelTest/	
+			lib/
+			examples/
+			templates/
+			version.xml
+			...			
+{% endhighlight %}
+
+where ... means more files. By default, the packagemanager will install the latest version of a package. Possibly, you want to install a package of a previous version of a package, for example because you want to be able to run an XML with exactly the version of the package used in a published analysis (use BEAST with the `-strictversions` option to make it use exactly the versions of packages specified in the XML).
+
+<p>To install a specific version of a package, use the `-version` option to specify it for the command line version of the packagemanager. Alternatively, in the GUI version, uncheck the `Latest` checkbox in the bottom left corner of the package manager dialog. When clicking the `Install/Upgrade` button you will be asked to select a version from a drop down box. Specific versions will not be installed in the package directory as above, but in an `archive` directory, and the directory structure will look something like this:
+
+
+{% highlight xml %}
+{package_directory}
+	2.6/
+		BEASTLabs/
+			lib/
+			examples/
+			templates/
+			version.xml
+			...
+		archive/
+			BEASTLabs/
+				1.9.5
+					lib/
+					examples/
+					templates/
+					version.xml
+					...
+				1.9.6
+					lib/
+					examples/
+					templates/
+					version.xml
+					...
+{% endhighlight %}
+
+<p>The BEASTLabs version directly under the `2.6` directory will contain the latest version. Inside the archive directory version 1.9.5 and 1.9.6 of the package are installed. When running BEAST only one of these package will be loaded, and the other versions of the same package will be ignored.
+
+
+
