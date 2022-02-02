@@ -25,6 +25,8 @@ Error detected about here:
 
 ```
 
+### Solution
+
 The error message should give a clue to what should be fixed in the template.
 
 ## Template does not show up
@@ -40,21 +42,31 @@ Processing /Users/remco/Library/Application Support/BEAST/2.6/OBAMA/templates/OB
 
 If your template is not there, it is possibly in the wrong place: BEAUti templates are expected to be located in the package subdirectory called `templates` in an XML file.
 
+### Solution
+
 If the template is in the right place, you might need to reset the class path by using the `File/Clear Class Path` menu in BEAUti, and restarting BEAUti.
+
 
 ### Reason: subtemplate is not merged at right place
 
-Possibly, there is a typo in the mergepoint, or the main template being loaded does not have an appropriate merge point defined. An error message is shown indicating the template is ignored. When adding X to the mergpoint in the OBAMA template, it looks like this:
+Possibly, there is a typo in the mergepoint, or the main template being loaded does not have an appropriate merge point defined. An error message is shown indicating the template is ignored. When adding X to the mergepoint in the OBAMA template, it looks like this:
 
 ```
 Cannot find merge point named aux-sitemodel-panelsX from OBAMA.xml in template. MergeWith ignored.
 ```
+
+### Solution
+
+Fix typo in the mergewith attribute.
 
 
 ### Reason: substitution model subtemplate has not implemented `SubsitutionModel.canHandleDataType` method
 
 Substitution models are only shown when it is compatible with the datatype of the alignment. This is determined by BEAUti by inferring the datatype of the partition, and calling the `canHandleDataType` method with the datatype that was found. If the `canHandleDataType` is not (correctly) implemented, BEAUti assumes that the substitution model is not compatible and therefore should not be shown in the drop down box.
 
+### Solution
+
+Implement the `SubsitutionModel.canHandleDataType` method.
 
 ## The template shows up but cannot be selected
 
@@ -77,13 +89,15 @@ Error detected about here:
               <modelIndicator>
 ```
 
+### Solution
+
 The message should give some clue to what needs to be fixed in the XML.
 
 ## Operators or other objects do not appear
 
 ### Reason: typo in ID of connector rules
 
-Connector rules rely on exactly matching IDs, and are ignored when they cannot find matching objects. However, by default, no warnings are shown. By starting BEAUti with the `-Dbeast.debug=true` directive to java, it shows a lot more messages about which connectors are connecting objects and which cause disconnections. To start BEAUti from the terminal with these extra messages, edit the beauti script (`/Applications/BEAST\ 2.6.6/bin/beauti` on OS X, `~/beast/bin/beauti` on Linux) and on the last line add `-Dbeast.debug=true` like so:
+Connector rules rely on exactly matching IDs, and are ignored when they cannot find matching objects. However, by default, no warnings are shown. By starting BEAUti with the `-Dbeast.debug=true` directive to java, it shows a lot more messages about which connectors are connecting objects and which cause disconnections. To start BEAUti from the terminal with these extra messages, edit the `beauti` script (`/Applications/BEAST\ 2.6.6/bin/beauti` on OS X, `~/beast/bin/beauti` on Linux) and on the last line add `-Dbeast.debug=true` like so:
 
 ```
 "$JAVA" -Dbeast.debug=true -Dlauncher.wait.for.exit=true -Xms256m -Xmx8g -Djava.library.path="$BEAST_LIB" -Duser.language=en -cp "$BEAST_LIB/launcher.jar" beast.app.beauti.BeautiLauncher -capture $*
@@ -96,9 +110,25 @@ connect: @OBAMA_freqsPriorX.s:protein -> @prior/distribution
 Could not find beastObject with id OBAMA_freqsPriorX.s:protein. Typo in template perhaps?
 ```
 
+### Solution
+
+Fix the typo in the ID of the connect element.
+
 ### Reason: duplicate IDs
 
-IDs of objects should be globally unique. If they are not, there may be a connector rule for which the condition is not satisfied, so a rule from another template may disconnect some objects in the model graph.
+IDs of objects should be globally unique. If they are not, there may be a connector rule for which the condition is not satisfied, so a rule from another template may disconnect some objects in the model graph. If this happens, it shows up in the messages BEAUti produces as
+
+```
+connect: @MyOpertor.t:dna -> @mcmc/operator
+```
+
+followed further on in the messages as
+
+```
+DISconnect: @MyOpertor.t:dna -> @mcmc/operator
+```
+
+### Solution
 
 You can make sure your objects have unique IDs by prefixing them with the BEAST package name.
 
