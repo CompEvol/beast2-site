@@ -38,7 +38,7 @@ The random walk on a plane model is implemented in the [BEAST_CLASSIC](https://g
 
 ### Random walk on sphere
 
-This model is implemented in the [GEO_SPHERE](https://github.com/BEAST2-Dev/beast-geo) package ([tutorial](https://github.com/BEAST2-Dev/beast-geo/releases/download/v1.2.0/phylogeography_s.pdf)), and integrates out internal node locations. It takes the curvature of the earth in account, so compensates for distances between two longitudes at the equator compared to the distance between the same longitudes nearer the poles.
+This model is implemented in the [GEO_SPHERE](https://github.com/BEAST2-Dev/beast-geo) package ([tutorial](https://github.com/BEAST2-Dev/beast-geo/releases/download/v1.2.0/phylogeography_s.pdf)), and integrates out internal node locations. It takes the curvature of the earth in account, so compensates for distances between two longitudes at the equator compared to the distance between the same longitudes nearer the poles. Also, it is possible to add priors that restrict the location of clade MRCAs, like the root location of the tree, by defining a region in KML (see [tutorial](https://github.com/BEAST2-Dev/beast-geo/releases/download/v1.2.0/phylogeography_s.pdf)).
 
 
 ### Landscape aware model
