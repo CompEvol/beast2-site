@@ -56,7 +56,7 @@ A single MRCA prior will not be sufficient, but the `MRCAPriorWithRogues` will a
      </taxonset>
      <rogues id="clade_C" spec="TaxonSet">
          <taxon id="AC spec="Taxon"/>
-     </taxonset>
+     </rogues>
  </distribution>
 ```
 
