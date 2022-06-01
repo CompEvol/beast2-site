@@ -13,7 +13,7 @@ The [same paper](https://doi.org/10.1093/sysbio/syac015) that introduced the [BI
 
 A tutorial for using the BICEPS tree prior can be found [here](https://github.com/rbouckaert/biceps/#yule-skyline-tutorial). Essentially, you need to install the BICEPS package. Once you load an alignment into the Standard template in BEAUti, you can select the priors tab and under tree prior select Yule skyline. By default, the rate of the gamma distribution over the birth rate is estimated and has a log-normal hyper prior. Here, we will have a closer look at setting up the tree prior and the options provided.
 
-![Yule skyline options](yule-skyline-prior.png)
+![Yule skyline options](/images/yule-skyline-prior.png)
 
 
 ## Birth Rate Shape 
@@ -70,9 +70,9 @@ As mentioned above, the birth rate rate parameter is estimated by default, so th
 
 To test the sensitivity of the prior, we ran the [HCV analysis](https://github.com/rbouckaert/biceps/blob/master/examples/hcv_yule_skyline.xml) example in the BICEPS repository with 63 taxa, 10 epochs, fixed group sizes and linked means. Below, you see a the estimates of first birth rate and all other birth size with different priors: mean of 0.1, 1, 10, 100, so 4 orders of magnitude difference between the lowest and highest mean value. 
 
-![Birth rate 1](ysk-birthrate1.svg)
+![Birth rate 1](/images/ysk-birthrate1.svg)
 
-![All birth rates](ysk-all-birthrates.png)
+![All birth rates](/images/ysk-all-birthrates.png)
 
 
 The last figure shows there seems to be very little impact on the birth rate estimates from the varying the rate. Zooming in on the first birth rate, which is supposed to be most sensitive to changes in the birth rate rate confirms there is not much sensitivity. The distribution of root height as well as reconstruction of speciation through time were similarly indistinguishable.
