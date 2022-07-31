@@ -56,11 +56,11 @@ The threshold &epsilon; describes the maximum divergence that can be tolerated b
 I refer the reader to the guide in ref [1] for selecting a range of values for &epsilon;, which is summarised  below:
 
 1. Run a preliminary phylogenetic analysis without SPEEDEMON to get a feel for divergence times (i.e. node heights). &epsilon; will later be expressed in the same units as the tree times. By default, this is expected number of substitutions per site, but if calibration data are used, then it could be years, or millions of years etc.
-3. If there are any two taxa which you know are not the same species,  then use their divergence times to inform the upper bound of &epsilon;. This can also be informed by a related system (e.g. there is approximately 1% divergence between humans and chimps, so &epsilon; should be much less than 1e-2 substitutions per site in this system). 
-4. If there are two taxa which you know are the same species, then use their divergence times to inform the lower bound of &epsilon;.
-5. Run multiple MCMC replicates exploring a range of thresholds &epsilon; between the lower and upper bound.  
+2. If there are any two taxa which you know are not the same species,  then use their divergence times to inform the upper bound of &epsilon;. This can also be informed by a related system (e.g. there is approximately 1% divergence between humans and chimps, so &epsilon; should be much less than 1e-2 substitutions per site in this system). 
+3. If there are two taxa which you know are the same species, then use their divergence times to inform the lower bound of &epsilon;.
+4. Run multiple MCMC replicates exploring a range of thresholds &epsilon; between the lower and upper bound.  
  
-
+See also the review by Carstens et al. [6], who emphasise the importance of using multiple methods for species delimitation, and that species delimitation should be conservative (corresponding to larger values of &epsilon;).
 
 ## Useful links
 
@@ -80,6 +80,4 @@ I refer the reader to the guide in ref [1] for selecting a range of values for &
 
 [5] **StarBeast3:** Douglas, Jordan, Cinthy L. Jim&eacute;nez-Silva, and Remco Bouckaert. "StarBeast3: Adaptive Parallelized Bayesian Inference under the Multispecies Coalescent." _Systematic Biology_ (2022). [DOI](https://doi.org/10.1093/sysbio/syac010)
 
-
-
-
+[6] Carstens, Bryan C., Tara A. Pelletier, Noah M. Reid, and Jordan D. Satler. "How to fail at species delimitation." Molecular ecology 22, no. 17 (2013): 4369-4383. [DOI](https://doi.org/10.1111/mec.12413)
