@@ -9,7 +9,7 @@ tags: []
 
 All java packages have been reorganised to follow a more logical organisation (IMHO) and without circular dependencies.
 BEAST.base still lives in the [beast2](https://github.com/CompEvol/beast2/) repository.
-BEAST.app is in the [BeastFT](https://github.com/CompEvol/BeastFX) repository, and contains code for BEAST, BEAUti, TreeAnnotator, LogCombiner, etc.
+BEAST.app is in the [BeastFX](https://github.com/CompEvol/BeastFX) repository, and contains code for BEAST, BEAUti, TreeAnnotator, LogCombiner, etc.
 
 If you don't plan on adding BEAUti features, only the beast2 repository is needed.
 
@@ -52,11 +52,11 @@ The following services are recognised:
 * `beastfx.app.beauti.PriorProvider`: for adding additional priors to the prior panel in BEAUti.
 * `beastfx.app.beauti.ThemeProvider`: for providing GUI themes (see more below).
 
-## BEAST package claim a namespace
+## BEAST packages claim a namespace
 
 When making a class available as service, the package name is automatically claimed as namespace for the package.
 This means no two packages can have a java package with the same name.
-In particular, anything java package starting with `beast` should be renamed.
+In particular, any java package starting with `beast` should be renamed.
 
 ## Migrating packages from v2.6 to v2.7
 
@@ -66,7 +66,7 @@ The basic steps for migrating a BEAST package are
 * fix remaining import and other compilation issues. Then build the package and install by hand.
 * run the `PackageHealthChecker` application that comes with `BEAST.app` on the package, and update the `version.xml` files, example XML files and other issues indicated by the package health checker.
 
-There is a more [detailed description](https://github.com/rbouckaert/beast2/blob/master/scripts/migrate.md).
+There is a more [detailed description](https://github.com/rbouckaert/beast2/blob/master/scripts/migrate.md) on migrating packages.
 
 ## "Help me choose" feature for BEAUti
 
