@@ -10,26 +10,28 @@ tags: []
 <p>Once the file is downloaded, open the dmg file by double clicking it, and drag the BEAST folder into the Application folder in the window that pops up.
 
 <p>Start BEAST, BEAUti or the other programs by double clicking the icon in the <code>BEAST </code> directory in the Application folder.
-<p>You can also start them from a terminal using any of the scripts in <code>/Applications/BEAST v2.6.7/bin</code>.
+<p>You can also start them from a terminal using any of the scripts in <code>/Applications/BEAST v2.7.0/bin</code>.
 
 <h2>Trouble shooting</h2>
 
-<h3>BEAST on Big Sur</h3>
-<p>If there is an <a href="https://github.com/CompEvol/beast2/issues/1003">issue</a> with starting BEAST v2.6.7 on OS X Big Sur showing this message:
-<img src="https://user-images.githubusercontent.com/512538/134654992-9ff0380a-d27a-4acd-b210-90fc37c1887f.png"/>
-please download the version with the JRE included <a href="http://www.beast2.org/download-mac-with-jre/">here</a> and drag to the Applications folder.
-
-<h3>BEAST does not start</h3>
-<p>If BEAST or BEAUti does not launch, this is probably due to Java not being installed, or the default version of Java is not Java 8 or higher.
-<p>To fix this, install java, e.g. from Adopt, available <a href="https://adoptopenjdk.net/">here</a>.
-<p>On Mojave, installing later version could prevent BEAST from starting, but installing Java 8 before installing a later version seems to work</p>
-<p>&nbsp;
 <h3>Download issues</h3>
 <p>If the download failed, you can always get it from the <a href="https://github.com/CompEvol/beast2/releases">release page</a>.
+
+<h3>ARM version</h3>
+
+<p>A JRE is included in this release of BEAST based on x86 CPUs.
+	There is no ARM version of BEAST because the ARM version appeared to run considerably slower than the x86 version.
+
+<p>To create an ARM version, replace the jre directory with an ARM version of the JRE (e.g. from 
+	[Zulu azul](https://www.azul.com/downloads/?version=java-17-lts&os=macos&architecture=arm-64-bit&package=jre-fx) or 
+	[Bellsoft](https://bell-sw.com/pages/downloads/#/java-17-lts) -- make sure to select "Arm" and "Full JRE" before downloading the tar.gz version). 
+	Uncompress the tar.gz file, and move the folder to <code>/Applications/BEAST v2.7.0/jre</code>.
+	Check the file <code>/Applications/BEAST v2.7.0/jre/bin/java</code> exists.
+
 
 
 <script>
 window.onload = function () { 
-	window.location="https://github.com/CompEvol/beast2/releases/download/v2.6.7/BEAST.v2.6.7.Mac.dmg"
+	window.location="https://github.com/CompEvol/beast2/releases/download/v2.7.0/BEAST.v2.7.0.Mac.dmg"
 }
 </script>

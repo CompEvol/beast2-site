@@ -12,12 +12,21 @@ tags: []
 <h3>Download issues</h3>
 <p>If the download failed, you can always get it from the <a href="https://github.com/CompEvol/beast2/releases">release page</a>.
 
-<h3>BEAST does not start</h3>
-<p>BEAST requires Java version 8 or higher and won't start without it.
-You can get Java from Adopt, e.g <a href="https://adoptopenjdk.net/">here</a>.
+<h3>ARM version</h3>
+
+<p>A JRE is included in this release of BEAST based on x86 CPUs.
+	There is no ARM version of BEAST because the ARM version appeared to run considerably slower than the x86 version.
+
+<p>To create an ARM version, replace the jre directory with an ARM version of the JRE (e.g. from 
+	[Zulu azul](https://www.azul.com/downloads/?version=java-17-lts&os=windows&architecture=arm-64-bit&package=jre-fx) or 
+	[Bellsoft](https://bell-sw.com/pages/downloads/#/java-17-lts) -- make sure to select "Arm" and "Full JRE" before downloading the tar.gz version). 
+	Uncompress the tar.gz file, and move the folder to <code>\path\to\BEAST\jre</code>.
+	Check the file <code>\path\to\BEAST\jre\bin\java.exe</code> exists.
+
+
 
 <script>
 window.onload = function () { 
-	window.location="https://github.com/CompEvol/beast2/releases/download/v2.6.7/BEAST.v2.6.7.Windows.zip"
+	window.location="https://github.com/CompEvol/beast2/releases/download/v2.7.0/BEAST.v2.7.0.Windows.zip"
 }
 </script>
