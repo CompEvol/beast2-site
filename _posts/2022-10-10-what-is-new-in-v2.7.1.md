@@ -1,3 +1,4 @@
+--
 layout: post
 title: What is new in v2.7.1
 tags: []
@@ -23,6 +24,10 @@ A fix has been put in place that should make finding the icon more robust, thus 
 LogCombiner and EBSPanalyser were still using the swing library for its GUIs.
 These have now been converted to JavaFX, making the look and feel more similar to BEAUti and BEAST.
 Also, on high density screens, the scaling is now automatically adjusted, so they will be legible.
+
+## BEAST: GUI version outputs log files in same directory as XML file 
+
+BEAST, when started as GUI, put log and trees files in the wrong place: the place where BEAST was installed. Now, it uses the directory where the XML file is situated.
 
 ## BEAST: added option to specify version.xml files explicitly. 
 
