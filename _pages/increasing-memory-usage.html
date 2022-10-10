@@ -53,3 +53,12 @@ tags: []
 <p>or you can edit the batch files in the `BEAST\bat` directory.</p>
 	
 
+<h2>Increasing stack size available to BEAST and the utility programs</h2>
+
+<p>If an application fails to launch with the following error:</p>
+<dl>
+<dd><code>Caused by: java.lang.StackOverflowError</code></dd>
+</dl>
+
+<p>you want to increase the stack size by adding <code>-Xss=64m</code> next to <code>-Xms64m</code> at any of the places indicated above.
+
