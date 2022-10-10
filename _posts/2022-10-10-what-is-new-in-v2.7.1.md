@@ -1,4 +1,4 @@
---
+---
 layout: post
 title: What is new in v2.7.1
 tags: []
