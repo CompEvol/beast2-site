@@ -89,7 +89,7 @@ Both Yule skyline and BICEPS are flexible non-parametric tree priors. The Yule s
 
 Below, a [tree set comparison](https://www.beast2.org/2020/04/20/comparing-tree-sets.html) of the HVC data that compares BICPES trees with Yule skyline trees: they do not differ substantially.
 
-![BICEPS vs Yule skyline trees](biceps-vs-skyline.png)
+![BICEPS vs Yule skyline trees](/images/biceps-vs-skyline.png)
 
 Red dots represent clade support, blue crosses clade heights and their 95% HPD intervals. More detail about the clade set comparison [here](https://www.beast2.org/2020/04/20/comparing-tree-sets.html).
 

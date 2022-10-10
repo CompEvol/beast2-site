@@ -36,7 +36,7 @@ This involves 3 steps
 ## 1. Generate tree file with BEAST
 
 Set up an analysis that stores location/deme information in a tree file, e.g., 
-like a [DTA](../templates/covid-hky-bsp5-strict-dta4deme.xml) analysis, but Mascot and BDMM
+like a discrete trait (DTA) analysis, but Mascot and BDMM
 analyses or anything else that stores states as meta data should work as well. The tree file
 should have metadata on the nodes of the form `tag=value` pairs where `tag` can be `location` 
 and `value` one of the demes under consideration.

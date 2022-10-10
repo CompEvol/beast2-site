@@ -21,7 +21,7 @@ There is now a new implementation of MC3 in the CoupledMCMC package, which is mo
 
 ## How to set up your BEAST2 analysis to run with coupled MCMC/parallel tempering 
 
-Make sure the CoupledMCMC package is [installed](http:/managing-packages/).
+Make sure the CoupledMCMC package is [installed](/managing-packages/).
 
 ### By using BEAUti
 
