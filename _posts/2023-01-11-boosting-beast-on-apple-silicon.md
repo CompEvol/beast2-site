@@ -12,7 +12,7 @@ An alternative is to use a Linux virtual machine through [UTM](https://mac.getut
 
 ## Why is Docker faster?
 
-The Docker image uses java for ARM processors, while the OS X version uses the x86-64 version, which is translated by Rosetta 2 to ARM instructions. There are implementations of Java for ARM on OS X, but they perform worse than the x86-64 version for BEAST at the moment. It is not clear to me why the ARM versions are slower, but do not hesitate to let me know if you have any ideas, in particular what can be done to improve its performance.
+The Docker image uses java for ARM processors, while the OS X version uses the x86-64 version, which is translated by Rosetta 2 to ARM instructions. There are implementations of Java for ARM on OS X, but they perform worse than the x86-64 version for BEAST at the moment. For example, with the [Bellsoft](https://bell-sw.com/libericajdk/) full JRE for aarch64 calculation times are about 33% larger when not using BEAGLE for the testHKY1044.xml benchmark file (see more on benchmarking at the end of this post). It is not clear to me why the ARM versions are slower, but do not hesitate to let me know if you have any ideas, in particular what can be done to improve its performance.
 
 ## Installing Docker
 
@@ -185,10 +185,36 @@ if you want it from the latest container.
 
 ## Benchmarking
 
-Here are the run times in seconds of the 12 benchmark XML files from [here](https://github.com/CompEvol/beast2/tree/master/examples/benchmark/II). Both OS X and Docker use BEAGLE. These are single runs, but there does not tend to be a lot of variation in run times (unlike ESS per unit of time), and given the run time improvements on Docker are fairly consistent, it does not seem to be necessary to run multiple times.
+Here are the run times in seconds of the 12 benchmark XML files from [here](https://github.com/CompEvol/beast2/tree/master/examples/benchmark/II). Both OS X and Docker use BEAGLE. These are single runs, but there does not tend to be a lot of variation in run times (unlike [ESS per unit of time](http://www.beast2.org/2023/01/04/beast-2.6-vs-2.7-performance-benchmarking.html)), and given the run time improvements on Docker are fairly consistent, it does not seem to be necessary to run multiple times.
 
 ![runtimes](/images/dockerOnOsXPerformance.png)
 
 Each bar represents a dataset (in alphabetical order, so the first is for testHKY1044.xml and the last for testHKY767.xml) and lower bars are better. Below the bars is the improvement in run time (=100*(OS X runtime/Docker runtime)-1). On average, run time improvement is just over 20%, which means you can run 6 analyses on Docker in the same time as only 5 on OS X.
+
+
+## Changing JRE
+
+If you want to run BEAST with ARM based java, first move the current jre directory:
+
+```
+cd /Applications/BEAST\ 2.7.3/
+mv jre jre.zulu
+```
+
+Then, download an ARM based JRE for OS X, but make sure that 
+
+* javafx is included. For example, when using the [Bellsoft](https://bell-sw.com/libericajdk/) JRE select the "full" version, and
+* use at least version 17. Lower versions won't work.
+
+Finally, unzip the file with the JRE, and move its content to the directory `/Applications/BEAST\ 2.7.3/jre`. When doing `ls /Applications/BEAST\ 2.7.3/` you should see something like this:
+
+```
+DISCLAIMER	Welcome.html	conf		lib		release
+OPENJFX_LICENSE	bin		legal		readme.txt
+```
+
+That is, you should see a `bin` directory containing `java` executable.
+
+
 
 
