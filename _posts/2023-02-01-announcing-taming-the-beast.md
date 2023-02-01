@@ -5,7 +5,7 @@ tags: []
 ---
 Dates: 14-18 August, 2023.
 
-![logo](/images/Taming-the-BEAST-Squamish-Logo23.png)
+<center><img width="50%" src="/images/Taming-the-BEAST-Squamish-Logo23.png"/></center>
 
 We are happy to announce that registration is now open for the August 2023 edition of our summer school "Taming the BEAST".
 
