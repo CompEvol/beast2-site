@@ -39,22 +39,22 @@ Use menu `File => New => Java Project`. A dialog pops up where you type `beast2`
 
 Uncheck `create module-info.java file` box.
 
-<a href="./figures/EclipseBeast2Project.png"><img src="./figures/EclipseBeast2Project.png" ></a>
+<a href="/images/EclipseBeast2Project.png"><img src="/images/EclipseBeast2Project.png" ></a>
 
 Click the `Next` button. A dialog with tabs appear.
 
 Go to the `libraries` tab, and select `Densitree.jar` and `jsign-3.1.jar` to remove:
 
-<a href="./figures/EclipseBeast2Project2.png"><img src="./figures/EclipseBeast2Project2.png" ></a>
+<a href="/images/EclipseBeast2Project2.png"><img src="/images/EclipseBeast2Project2.png" ></a>
 
 We need to set up the Azul JDK.
 From the remaining items, select the `JRE System Library` from the list, and click the `Edit` button:
 
-<a href="./figures/EclipseBeast2Project3.png"><img src="./figures/EclipseBeast2Project3.png" ></a>
+<a href="/images/EclipseBeast2Project3.png"><img src="/images/EclipseBeast2Project3.png" ></a>
 
 An `Edit library` dialog pops up. Click the `Installed JREs` button.
 
-<a href="./figures/EclipseBeast2Project4.png"><img src="./figures/EclipseBeast2Project4.png" ></a>
+<a href="/images/EclipseBeast2Project4.png"><img src="/images/EclipseBeast2Project4.png" ></a>
 
 A `Preferences (filtered)` dialog pops up. Click the `Add` button.
 
@@ -63,11 +63,11 @@ A `Add JRE` dialog pops up. Click the `Next` button.
 The dialog changes, and click the `Directory...` button to navigate to the place where you have unzipped the Zulu JDK.
 Click `Open` and the dialog gets populated somewhat like so:
 
-<a href="./figures/EclipseBeast2Project5.png"><img src="./figures/EclipseBeast2Project5.png" ></a>
+<a href="/images/EclipseBeast2Project5.png"><img src="/images/EclipseBeast2Project5.png" ></a>
 
 Click the `Finish` button. Select `zulu17...` as default, then click `Apply and close` button.
 
-<a href="./figures/EclipseBeast2Project6.png"><img src="./figures/EclipseBeast2Project6.png" ></a>
+<a href="/images/EclipseBeast2Project6.png"><img src="/images/EclipseBeast2Project6.png" ></a>
 
 The workspace default should now have been changed to something like `zulu-17...`. Click the `Finish` button.
 
@@ -85,16 +85,16 @@ Select the `Next` button. Go to the `Projects` tab. Select `Classpath` then clic
 
 Select `beast2` from the list, and click `OK`.
 
-<a href="./figures/EclipseBeastFXProject.png"><img src="./figures/EclipseBeastFXProject.png" ></a>
+<a href="/images/EclipseBeastFXProject.png"><img src="/images/EclipseBeastFXProject.png" ></a>
 
 Select the `Classpath`, then click the `Add Jars...` button. 
 Under the `beast2/lib` folder, select `antlr-runtime`, `beagle`, `colt`, and `commons-math` and under `junit` select `junit-platform...`.
 
-<a href="./figures/EclipseBeastFXProject2.png"><img src="./figures/EclipseBeastFXProject2.png" ></a>
+<a href="/images/EclipseBeastFXProject2.png"><img src="/images/EclipseBeastFXProject2.png" ></a>
 
 Click the `OK` button, and the `New Java Project` dialog should appear like so:
 
-<a href="./figures/EclipseBeastFXProject3.png"><img src="./figures/EclipseBeastFXProject3.png" ></a>
+<a href="/images/EclipseBeastFXProject3.png"><img src="/images/EclipseBeastFXProject3.png" ></a>
 
 Click the `Finish` button, and Eclipse will compile the BeastFX project.
 
@@ -124,7 +124,7 @@ BEAST & BEAUti options that may be useful:
 * `-version_file=/path/to/version.xml` imports services from `version.xml` so that the XML-parser is aware of any class exported as service by your package.
 Multiple `-version_file` arguments are allowed, so packages that your package depends on can export their services as well.
 
-<a href="./figures/EclipseRunning.png"><img src="./figures/EclipseRunning.png" ></a>
+<a href="/images/EclipseRunning.png"><img src="/images/EclipseRunning.png" ></a>
 
 
 
