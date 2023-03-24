@@ -35,4 +35,4 @@ as shown in the example below:
 <operator id="tipDatesSampler.Agriarctos_spp" spec="sa.evolution.operators.SampledNodeDateRandomWalker" taxonset="@Agriarctos_spp" tree="@Tree.t:bearsTree" weight="1.0" windowSize="1.0"/>
 ```
 
-Finally, thank ChatGPT for improving this post. :-)
+Finally, thank you, ChatGPT, for your help in improving this post! :smile:
