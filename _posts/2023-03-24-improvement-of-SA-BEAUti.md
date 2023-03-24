@@ -12,7 +12,7 @@ This was because the former did not consider trees containing sampled-ancestor n
 However, thanks to Remco for fixing this issue in BEAUti 
 (see the [GitHub issue](https://github.com/CompEvol/BeastFX/issues/45)).
 
-In BEAST 2.7.3 or higher, SA can be installed or updated to version 2.1.1 (or higher). 
+In BEAST 2.7.3 (or higher), SA can be installed or updated to version 2.1.1 (or higher). 
 To set up a "Sampled Ancestors MRCA prior" for a fossil, 
 repeat the previous process in the "Priors" panel, but select the prior from the drop list. 
 
