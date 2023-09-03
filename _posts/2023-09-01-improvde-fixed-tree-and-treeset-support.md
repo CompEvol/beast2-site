@@ -27,7 +27,7 @@ Be aware that using a single tree means that not all of the uncertainty in the t
 By default, the tree remains fixed to the starting tree throughout the analysis.
 It is possible to keep the topology fixed but estimate the branch lengths by double clicking the tree partition in the partitions panel and check the `Allow node height changes` checkbox in the dialog that pops up.
 
-<img src='https://github.com/rbouckaert/FixedTreeAnalysis/blob/master/doc/fixed-tree-tutorial/figures/BEAUti-topology.png'/>
+<img src='https://raw.githubusercontent.com/rbouckaert/FixedTreeAnalysis/master/doc/fixed-tree-tutorial/figures/BEAUti-topology.png'/>
 
 ## Fixed tree tutorial
 
