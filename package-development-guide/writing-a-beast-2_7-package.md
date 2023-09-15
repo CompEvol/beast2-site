@@ -298,7 +298,7 @@ The <i>testF84.xml</i> file still has several references to the HKY model. These
 
 To create a new debug configuration, follow these steps.
 
-o First, open the &#8220;beast2&#8221; project in the <b>Project Explorer</b> pane, then expand &#8220;src&#8221;, then expand &#8220;beast.app.beastapp&#8221; and, finally, select &#8220;BeastMain.java&#8221;
+o First, open the &#8220;beast2&#8221; project in the <b>Project Explorer</b> pane, then expand &#8220;src&#8221;, then expand &#8220;beastfx.app.beast&#8221; and, finally, select &#8220;BeastMain.java&#8221;
 
 o Use <b>Run > Debug As&#8230; > Java Application</b>. This will bring up a <b>BEAST</b> dialog box, but by the time this dialog box appears, a new debug configuration has been created, so you can immediately press the <b>Quit</b> button to dismiss the dialog box.
 
@@ -345,7 +345,7 @@ First, create a new folder called <b>fxtemplates</b> under &#8220;MyPackage&#822
 Now create a text file within the new fxtemplates folder named <i>F84-beauti-template.xml</i>. The easiest way to do this is to right-click (or Control-click) the fxtemplates folder within the &#8220;MyPackage&#8221; project, then choose <b>New > File</b> from the resulting popup menu, giving the new file the name &#8220;F84-beauti-template.xml&#8221;. Copy the text below into the new <i>F84-beauti-template.xml</i> file and save it.
 
 {% highlight xml %}<beast version='2.0' 
-	namespace=''beast.app.beauti:beast.pkgmgmt:beast.base.core:beast.base.inference:beast.base.evolution.branchratemodel:beast.base.evolution.speciation:beast.base.evolution.tree.coalescent:beast.base.util:beast.base.math:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood:beast.evolution:beast.base.inference.distribution'>
+	namespace='beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.base.evolution.alignment:beast.pkgmgmt:beast.base.core:beast.base.inference:beast.base.evolution.tree.coalescent:beast.pkgmgmt:beast.base.core:beast.base.inference.util:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood'>
 
 	<mergewith point='substModelTemplates'>
 		
@@ -383,7 +383,7 @@ Now create a text file within the new fxtemplates folder named <i>F84-beauti-tem
 
 ### Run BEAUti
 
-To create a debug configuration that runs BEAUti, choose <b>Run > Debug Configurations&#8230;</b> from the main Eclipse menu. In the <b>Debug Configurations</b> dialog, select <b>Java Application</b> and click the <b>New launch configuration</b> button. In the <b>Name</b> field at the top of the dialog box, type &#8220;BEAUti&#8221;. In the <b>Project</b> field of the <b>Main</b> tab, type (or use the Browse&#8230; button to select) &#8220;MyPackage&#8221;. For the <b>Main class</b>, type &#8220;beast.app.beauti.Beauti&#8221;.
+To create a debug configuration that runs BEAUti, choose <b>Run > Debug Configurations&#8230;</b> from the main Eclipse menu. In the <b>Debug Configurations</b> dialog, select <b>Java Application</b> and click the <b>New launch configuration</b> button. In the <b>Name</b> field at the top of the dialog box, type &#8220;BEAUti&#8221;. In the <b>Project</b> field of the <b>Main</b> tab, type (or use the Browse&#8230; button to select) &#8220;MyPackage&#8221;. For the <b>Main class</b>, type &#8220;beastfx.app.beauti.Beauti&#8221;.
 
 Now you should be able to click the Debug button to run BEAUti. Try using the following steps to generate a BEAST 2 XML file:
 
@@ -477,7 +477,7 @@ The next step is to create a <i>build.xml</i> file within the <i>$HOME/Documents
  	<property name="beast2classpath" location="${beast2path}/build" />
  	<property name="Package_dir" value="${release_dir}/package" />
  <import file="${beast2path}/build.xml" />
- 	<property name="main_class_BEAST" value="beast.app.BeastMCMC" />
+ 	<property name="main_class_BEAST" value="beastfx.app.beast.BeastMain" />
  	<property name="report" value="${buildF84}/junitreport"/>
  	<path id="classpath">
  <pathelement path="${buildF84}"/>
