@@ -467,170 +467,300 @@ o get your package published on the BEAST 2 web site so that others can install 
 
 Navigate (in a Terminal window) to the <i>beast2</i> project directory. If you have been following this tutorial faithfully, the folder should be <i>$HOME/Documents/workspace/beast2</i>. Type <i>ant</i> at the command line. (If <i>ant</i> cannot be found, you may need to install it from the Apache Ant website.) This will build BEAST 2 using the <i>build.xml</i> file supplied with BEAST 2. It is necessary to build BEAST 2 again (even though we&#8217;ve already built it in Eclipse) because Eclipse places its object files and intermediate build products in a different directory than does ant.
 
+### Complete MyPackage files
+
+Add a README.md file in the <i>$HOME/Documents/workspace/MyPackage</i> directory containing a description of the package and (links to) instructions on how to use it.
+
+```
+This is my [BEAST 2](http://beast2.org) package containing the F84 substitution model.
+
+It can be accessed in BEAUti in the Site Model panel.
+```
+
+Add a license in the COPYING file in <i>$HOME/Documents/workspace/MyPackage</i>. If you want to use the LGPL, it can be copied from the beast2 directory.
+
+
 ### Compile MyPackage using ant
 
 The next step is to create a <i>build.xml</i> file within the <i>$HOME/Documents/workspace/MyPackage</i> folder that tells ant how to build MyPackage. Create a new text file (using Eclipse or any way you like) just inside the <i>MyPackage</i> directory. Name the new file <i>build.xml</i> and enter the text below into the new file and save it.
 
-{% highlight xml %} <!-- Build F84 model -->
- <project basedir="." default="build_jar_all_F84" name="BUILD_F84">
- 	<description>
- 	Build F84.
- 	JUnit test is available for this build.
- 	$Id: build_F84.xml $
- 	</description>
- 	<!-- set global properties for this build -->
- 	<property name="srcF84" location="src" />
- 	<property name="buildF84" location="build" />
- 	<property name="libF84" location="lib" />
- 	<property name="release_dir" value="release" />
- 	<property name="distF84" location="${buildF84}/dist" />
- 	<property name="beast2path" location="../beast2" />
- 	<property name="libBeast2" location="${beast2path}/lib" />
- 	<property name="srcBeast2" location="${beast2path}/src" />
- 	<property name="beast2classpath" location="${beast2path}/build" />
- 	<property name="Package_dir" value="${release_dir}/package" />
- <import file="${beast2path}/build.xml" />
- 	<property name="main_class_BEAST" value="beastfx.app.beast.BeastMain" />
- 	<property name="report" value="${buildF84}/junitreport"/>
- 	<path id="classpath">
- <pathelement path="${buildF84}"/>
- 		<fileset dir="${libBeast2}" includes="junit/junit-platform-console-standalone-1.8.2.jar"/>
- <pathelement path="${beast2classpath}"/>
- 	</path>
- 	<!-- start -->
- 	<target name="initF84">
- 		<echo message="${ant.project.name}: ${ant.file}" />
- 	</target>
- 	<target name="cleanF84">
- 	<delete dir="${buildF84}" />
- 	</target>
- 	
- 	<!-- clean previous build, and then compile Java source code, and Juint test -->
- 	<target name="build_all_F84" depends="cleanF84,compile-allF84,junitF84" description="Clean and Build all run-time stuff">
- 	</target>
- 	
- 	<!-- clean previous build, compile Java source code, and Junit test, and make the beast.jar and beauti.jar -->
- 	<target name="build_jar_all_F84" depends="cleanF84,compile-allF84,junitF84" description="Clean and Build all run-time stuff">
- 	</target>
- 	
- 	<!-- No JUnit Test, clean previous build, compile Java source code, and make the F84.jar and beauti.jar -->
- 	<target name="build_jar_all_F84_NoJUnitTest" depends="cleanF84,compile-allF84" description="Clean and Build all run-time stuff">
- 	</target>
- 
- 	<!-- compile Java source code -->
- 	<target name="compile-allF84" depends="initF84,compile-all">
- 	<!-- Capture the path as a delimited property using the refid attribute -->
- 	<property name="myclasspath" refid="classpath"/>
- 	<!-- Emit the property to the ant console -->
- 	<echo message="Classpath = ${myclasspath}"/>
- 		<mkdir dir="${buildF84}" />
- 		<!-- Compile the java code from ${srcF84} into ${buildF84} /bin -->
- 		<javac srcdir="${srcF84}" destdir="${buildF84}" classpathref="classpath" fork="true" memoryinitialsize="256m" memorymaximumsize="256m">
- 			<include name="mypackage/**/**" />
- 			<!-- compile JUnit test classes -->
- 			<include name="test/mypackage/**" />
- 		</javac>
- 		<echo message="Successfully compiled." />
+{% highlight xml %}
+<project default="build" basedir=".">
 
- 		<jar jarfile="${distF84}/F84.src.jar">
- 			<fileset dir="${srcF84}">
- 				<include name="mypackage/**/*.java" />
- 				<include name="mypackage/**/*.png" />
- 				<include name="mypackage/**/*.xsl" />
- 			</fileset>
- 		</jar>
- 		<jar jarfile="${distF84}/F84.package.jar">
- 			<manifest>
- 				<attribute name="Built-By" value="${user.name}" />
- 			</manifest>
- 			<fileset dir="${buildF84}">
- 				<include name="mypackage/**/*.class" />
- 				<include name="mypackage/**/*.png" />
- 				<include name="mypackage/**/*.properties" />
- 			</fileset>
- 		</jar>
- 	</target>
- 
- 	<!-- run beast.jar -->
- 	<target name="run_F84">
- 		<java jar="${distF84}/F84.jar" fork="true" />
- 	</target>
- 
- 	<!-- JUnit test -->
- 	<target name="junitF84">
- 		<mkdir dir="${report}" />
- 		<junit printsummary="yes"> <!--showoutput='yes'-->
- 			<classpath>
- 				<path refid="classpath" />
- 				<path location="${buildF84}" />
- 			</classpath>
- 			<formatter type="xml" />
- 			<batchtest fork="yes" todir="${report}">
- 				<fileset dir="${srcF84}">
- <include name="test/**/*Test.java"/>
- 				</fileset>
- 				<fileset dir="${srcBeast2}">
- <include name="test/beast/integration/**/*Test.java"/>
- <exclude name="test/beast/integration/**/ResumeTest.java"/>
- 				</fileset>
- 			</batchtest>
- 		</junit>
- 		<echo message="JUnit test finished." />
- 	</target>
- <target name="junitreport">
- 		<junitreport todir="${report}">
- 			<fileset dir="${report}" includes="*.xml"/>
- 			<report format="frames" todir="${report}"/>
- 		</junitreport>
- 		<echo message="JUnit test report finished." />
- 	</target>
- 	<target name="package"
- 	depends="build_jar_all_F84_NoJUnitTest"
- 	description="release BEAST 2 package version of F84">
- 		<delete dir="${Package_dir}" />
- 		<!-- Create the release directory -->
- 		<mkdir dir="${Package_dir}" />
- 		<mkdir dir="${Package_dir}/lib" />
- 		<mkdir dir="${Package_dir}/fxtemplates" />
- 		<mkdir dir="${Package_dir}/examples" />
- 		<copy todir="${Package_dir}">
- 			<fileset file="version.xml" />
- 		</copy>
- 		<copy todir="${Package_dir}/lib">
- 			<fileset dir="${distF84}" includes="F84.package.jar" />
- 		</copy>
- 		<copy todir="${Package_dir}">
- 			<fileset dir="${distF84}" includes="F84.src.jar" />
- 		</copy>
- 		<copy todir="${Package_dir}/examples">
- 			<fileset file="examples/testF84.xml" />
- 		</copy>
- 		<copy todir="${Package_dir}/fxtemplates">
- 			<fileset file="fxtemplates/F84.xml" />
- 		</copy>
- 		<jar jarfile="${distF84}/F84.package.zip">
- 			<fileset dir="${Package_dir}">
- 				<include name="**/*" />
- 			</fileset>
- </jar>
- 		<echo message="Package version release is finished." />
- 	</target>
- </project>
+    <!-- Source, JUnit test code and jar library locations. -->
+    <property name="src" location="src"/>
+    <property name="test" location="test"/>
+    <property name="lib" location="lib"/>
+
+    <!-- Location to check for local copy of beast2 repository -->
+    <property name="local-beast-source-root" location="../beast2"/>
+
+    <!-- BEAST 2 currently uses Java 1.8 -->
+    <property name="sourceVersion" value="1.8"/>
+    <property name="targetVersion" value="1.8"/>
+
+    <!-- Directories necessary for all BEAST 2 packages -->
+    <property name="doc" location="doc"/>
+    <property name="examples" location="examples"/>
+    <property name="scripts" location="scripts"/>
+    <property name="fxtemplates" location="fxtemplates"/>
+
+    <!-- BEAST branch and version to build against
+         (only different for version tags because of
+         a Github peculiarity) -->
+    <property name="beast-branch" value="master"/>
+    <property name="beast-version" value="master"/>
+
+    <!-- Names of temporary build/test directories -->
+    <property name="build" location="build"/>
+    <property name="build-beast" location="build-beast"/>
+    <property name="beast-source-root" location="beast-source"/>
+    <property name="build-test" location="build-test"/>
+    <property name="test-reports" location="test-reports"/>
+    <property name="dist" location="dist"/>
+    <property name="pack" location="${dist}/package"/>
+
+    <!-- Prepare for compilation -->
+    <target name="init">
+
+        <available file="version.xml" property="versionAvailable"/>
+        <fail unless="versionAvailable">
+            ** Required file version.xml does not exist. **
+            If this is a new project, run "ant skeleton" from
+            the command line to create the files required for
+            your BEAST 2 package.
+        </fail>
+
+        <!-- Read package name and version from xml file -->
+        <xmlproperty file="version.xml" prefix="fromVersionFile" />
+        <property name="projName" value="${fromVersionFile.package(name)}" />
+        <property name="projVersion" value="${fromVersionFile.package(version)}" />
+
+        <mkdir dir="${build}"/>
+        <mkdir dir="${build-beast}"/>
+        <mkdir dir="${beast-source-root}"/>
+        <mkdir dir="${dist}"/>
+    </target>
+
+    <!-- Get beast -->
+
+    <target name="find-beast" depends="init">
+        <available file="${local-beast-source-root}" property="localBeastAvailable"/>
+    </target>
+
+    <target name="get-remote-beast" depends="find-beast" unless="localBeastAvailable">
+        <echo>No local copy of the beast2 source found at ${local-beast-source-root}.</echo>
+        <echo>Compiling against version ${beast-version} from GitHub.</echo>
+
+        <mkdir dir="beast-archive"/>
+
+        <get src="https://github.com/CompEvol/beast2/archive/${beast-branch}.zip"
+             dest="beast-archive/beast.zip"/>
+        <unzip src="beast-archive/beast.zip" dest="beast-archive"/>
+
+        <copy todir="${beast-source-root}">
+              <fileset dir="beast-archive/beast2-${beast-version}" includes="**/*.*"/>
+        </copy>
+
+        <delete dir="beast-archive"/>
+    </target>
+
+    <target name="get-local-beast" depends="find-beast" if="localBeastAvailable">
+        <echo>Compiling against beast2 source found at ${local-beast-source-root}.</echo>
+
+        <copy todir="${beast-source-root}">
+          <fileset dir="${local-beast-source-root}" includes="**/*.*"/>
+        </copy>
+    </target>
+
+    <target name="build-beast" depends="get-local-beast,get-remote-beast">
+        <javac 
+            srcdir="${beast-source-root}/src"
+            destdir="${build-beast}"
+            source="${sourceVersion}"
+            target="${targetVersion}"
+            includeantruntime="false"
+            fork="yes">
+            <classpath>
+                <pathelement path="${classpath}"/>
+                <fileset dir="${beast-source-root}/lib" includes="**/*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- Compile -->
+    <target name="compile" depends="build-beast">
+      <javac target="${targetVersion}" source="${sourceVersion}"
+             srcdir="${src}" destdir="${build}"
+             includeantruntime="false" fork="yes">
+            <classpath>
+                <pathelement path="${classpath}"/>
+                <fileset dir="${lib}" includes="**/*.jar"/>
+                <fileset dir="${beast-source-root}/lib" includes="**/*.jar"/>
+                <pathelement path="${build-beast}"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="copy-resources" depends="compile">
+        <copy todir="${build}">
+            <fileset dir="${src}"
+                     includes="**/*.png" />
+        </copy>
+    </target>
+
+    <!-- Prepare for unit test compilation -->
+    <target name="init-test" depends="init">
+        <mkdir dir="${build-test}"/>
+        <mkdir dir="${test-reports}"/>
+    </target>
+
+    <!-- Compile unit tests -->
+    <target name="compile-test" depends="init-test,compile,copy-resources">
+      <javac target="${targetVersion}" source="${sourceVersion}"
+             srcdir="${test}" destdir="${build-test}"
+             includeantruntime="false" fork="yes">
+            <classpath>
+                <pathelement path="${classpath}"/>
+                <pathelement path="${build}" />
+                <fileset dir="${lib}" includes="**/*.jar"/>
+                <fileset dir="${beast-source-root}/lib" includes="**/*.jar"/>
+                <pathelement path="${build-beast}"/>
+            </classpath>
+        </javac>
+    </target>
+
+
+    <!-- Run unit tests -->
+    <target name="test" depends="compile-test">
+        <junit printsummary="yes" failureproperty="testFailed" showoutput="true">
+            <classpath>
+                <pathelement path="${classpath}"/>
+                <pathelement path="${build}" />
+                <pathelement path="${build-test}" />
+                <fileset dir="${beast-source-root}/lib" includes="**/*.jar"/>
+                <pathelement path="${build-beast}" />
+            </classpath>
+            <batchtest fork="yes" todir="${test-reports}">
+                <fileset dir="${test}">
+                    <include name="**/*.java"/>
+                </fileset>
+                <formatter type="plain"/>
+                <formatter type="plain" usefile="false"/> <!-- to screen -->
+            </batchtest>
+        </junit>
+
+        <fail if="testFailed" status="1" message="Unit test failed."/>
+    </target>
+
+
+    <!-- Create BEAST 2 package -->
+    <target name="build" depends="compile,copy-resources">
+        <property name="fullName" value="${projName}.v${projVersion}"/>
+
+        <mkdir dir="${pack}"/>
+        <mkdir dir="${pack}/examples"/>
+        <mkdir dir="${pack}/scripts"/>
+        <mkdir dir="${pack}/fxtemplates"/>
+        <mkdir dir="${pack}/lib"/>
+        <mkdir dir="${pack}/doc"/>
+
+        <jar jarfile="${pack}/${fullName}.src.jar" basedir="${src}" />
+
+        <mkdir dir="${lib}" />
+        <copy todir="${pack}/lib">
+            <fileset dir="${lib}" includes="*.jar" />
+        </copy>
+        <jar jarfile="${pack}/lib/${fullName}.jar" basedir="${build}" />
+
+        <copy file="README.md" tofile="${pack}/README" />
+        <copy file="COPYING" todir="${pack}" />
+        <copy todir="${pack}">
+            <fileset dir="${lib}" includes="LICENSE*" />
+        </copy>
+
+        <mkdir dir="${examples}" />
+        <copy todir="${pack}/examples">
+            <fileset dir="${examples}" includes="**/*.xml" />
+        </copy>
+
+        <mkdir dir="${scripts}" />
+        <copy todir="${pack}/scripts">
+            <fileset dir="${scripts}" includes="**/*" />
+        </copy>
+
+
+        <mkdir dir="${fxtemplates}" />
+        <copy todir="${pack}/fxtemplates">
+            <fileset dir="${fxtemplates}" includes="*.xml" />
+        </copy>
+
+        <mkdir dir="${doc}" />
+        <copy todir="${pack}/doc">
+            <fileset dir="${doc}" includes="*.tex,*.doc,*.lyx,*.txt"/>
+        </copy>
+
+        <copy file="version.xml" todir="${pack}" />
+
+        <zip destfile="${dist}/${fullName}.zip" basedir="${pack}" />
+
+        <delete dir="${pack}"/>
+
+        <echo/>
+        <echo/>
+        <echo>** Package ${dist}/${fullName}.zip created successfuly! **</echo>
+    </target>
+
+
+    <!-- Revert to pristine state. -->
+    <target name="clean">
+        <delete dir="${build}" />
+        <delete dir="${build-beast}" />
+        <delete dir="${beast-source-root}" />
+        <delete dir="${dist}" />
+        <delete dir="${build-test}" />
+        <delete dir="${test-reports}" />
+    </target>
+
+ 	<condition property="isWindows"><os family="windows" /></condition>
+	<condition property="isLinux"><and><os family="unix"/><not><os family="mac"/></not></and></condition>
+	<condition property="isMac" else="false"><os family="mac" /></condition>
+
+	<target name="installLinux" depends="build" if="isLinux">
+	        <mkdir dir="${user.home}/.beast/2.7/${projName}"/>
+			<unzip src="${dist}/${fullName}.zip" dest="${user.home}/.beast/2.7/${projName}"/>
+	</target>
+
+	<target name="installMac" depends="build" if="isMac">
+	        <mkdir dir="${user.home}/.beast/2.7/${projName}"/>
+			<unzip src="${dist}/${fullName}.zip" dest="${user.home}/Library/Application Support/BEAST/2.7/${projName}"/>
+	</target>
+
+	<target name="installWindows" depends="build" if="isWindows">
+	        <mkdir dir="${user.home}/BEAST/2.7/${projName}"/>
+			<unzip src="${dist}/${fullName}.zip" dest="${user.home}/BEAST/2.7/${projName}"/>
+	</target>
+
+	<target name="install" depends="installWindows,installMac,installLinux">
+	</target>
+	
+</project>
  {% endhighlight %}			
 			
 You can now compile your package by changing directory to the <i>MyPackage</i> folder and typing
 
-{% highlight xml %}ant package{% endhighlight %}			
+{% highlight xml %}ant{% endhighlight %}			
 
 ### Move the package to a place where BEAUti can find it
 
-Once ant has finished compiling the package, you should have a <i>beast2/build/dist/F84.package.zip</i> file inside your Eclipse workspace directory. For testing purposes, this file should be copied to <i>$HOME/.beast2/F84</i> and unzipped. If you have not yet run BEAUti outside of Eclipse, you may not yet have a <i>$HOME/.beast2</i> directory. Also, you will need to create the <i>F84</i> subdirectory inside the <i>$HOME/.beast2/</i> directory.
+Once ant has finished compiling the package, you should have a <i>MyPackage/dist/MyPackage.v0.0.1.zip</i> file inside your Eclipse workspace directory. For testing purposes, this file should be copied to <i>$HOME/.beast2/2.7/MyPackage</i> and unzipped. If you have not yet run BEAUti outside of Eclipse, you may not yet have a <i>$HOME/.beast2/2.7</i> directory. Also, you will need to create the <i>MyPackage</i> subdirectory inside the <i>$HOME/.beast2/2.7</i> directory.
 
 {% highlight xml %}mkdir -p ~/.beast2/2.7/MyPackage
-cp ~/workspace/beast2/build/dist/F84.package.zip ~/.beast2/2.7/MyPackage
+cp ~/workspace/beast2/dist/MyPackage.v0.0.1.zip ~/.beast2/2.7/MyPackage
 cd ~/.beast2/2.7/MyPackage
-unzip F84.package.zip
-rm F84.package.zip{% endhighlight %}			
+unzip MyPackage.v0.0.1.zip
+rm MyPackage.v0.0.1.zip
+{% endhighlight %}			
 
 This should create the following directory structure:
 
@@ -645,3 +775,8 @@ This should create the following directory structure:
                 fxtemplates
                 examples
 {% endhighlight %}			
+
+To install the package via ant instead of by hand:
+
+{% highlight xml %}ant install{% endhighlight %}			
+
