@@ -780,3 +780,6 @@ To install the package via ant instead of by hand:
 
 {% highlight xml %}ant install{% endhighlight %}			
 
+## Files included in this project
+
+The complete set of files, including java code, BEAUti template, ant script, etc. is available as <a href="https://www.beast2.org/package-development-guide/MyPackage.zip">MyPackage.zip</a>.
