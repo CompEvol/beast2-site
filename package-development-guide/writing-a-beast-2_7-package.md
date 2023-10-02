@@ -724,7 +724,7 @@ The next step is to create a <i>build.xml</i> file within the <i>$HOME/Documents
 
  	<condition property="isWindows"><os family="windows" /></condition>
 	<condition property="isLinux"><and><os family="unix"/><not><os family="mac"/></not></and></condition>
-	<condition property="isMac" else="false"><os family="mac" /></condition>
+	<condition property="isMac"><os family="mac" /></condition>
 
 	<target name="installLinux" depends="build" if="isLinux">
 	        <mkdir dir="${user.home}/.beast/2.7/${projName}"/>

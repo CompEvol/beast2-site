@@ -62,11 +62,11 @@ In particular, any java package starting with `beast` should be renamed.
 
 The basic steps for migrating a BEAST package are
 
-* run the [`migrate.pl`](https://github.com/rbouckaert/beast2/blob/master/scripts/migrate.pl) script (in `/path/to/beast2/scripts/migrate.pl`) on the directories `src`, `examples` and `templates`. This should resolve the majority of class name changes. Also, rename `templates` to `fxtemplates` if you have any BEAUti templates.
+* run the [`migrate.pl`](https://github.com/CompEvol/beast2/blob/master/scripts/migrate.pl) script (in `/path/to/beast2/scripts/migrate.pl`) on the directories `src`, `examples` and `templates`. This should resolve the majority of class name changes. Also, rename `templates` to `fxtemplates` if you have any BEAUti templates.
 * fix remaining import and other compilation issues. Then build the package and install by hand.
 * run the `PackageHealthChecker` application that comes with `BEAST.app` on the package, and update the `version.xml` files, example XML files and other issues indicated by the package health checker.
 
-There is a more [detailed description](https://github.com/rbouckaert/beast2/blob/master/scripts/migrate.md) on migrating packages.
+There is a more [detailed description](https://github.com/CompEvol/beast2/blob/master/scripts/migrate.md) on migrating packages.
 
 ## "Help me choose" feature for BEAUti
 
