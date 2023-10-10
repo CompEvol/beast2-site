@@ -53,3 +53,14 @@ For example like so:
 ```
 <log id="TreeWithMetaDataLogger.t:dna" dp="4" spec="beast.base.evolution.TreeWithMetaDataLogger" tree="@Tree.t:dna"/>
 ```
+
+## Use LogCombiner to thin existing log files
+
+LogCombiner has a `-resample` option that outputs only those entries at the given frequency. 
+For example, if you have a log that stored every 1000th sample, but you only need log entries every 10 thousand samples, you can call LogCombiner using
+
+```
+/path/to/logcombiner -resample 10000 -log input.log -o output.log
+```
+
+Alternatively, in the GUI there is a checkbox next to `Resample states at lower frequency` that you can set, and then specify 10000 in the entry next to it.
