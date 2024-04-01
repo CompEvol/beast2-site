@@ -1,6 +1,6 @@
 ---
 layout: post
-title: New tutorials
+title: New StarBeast3 and Speedemon tutorials
 tags: []
 ---
 <p style="color:gray">1 December 2023 by <a href='mailto:r.bouckaert@auckland.ac.nz'>Remco Bouckaert</a></p>
