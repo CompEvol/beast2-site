@@ -25,6 +25,12 @@ Changing the 3 to 2 makes it check every second sample, and setting it to 1 make
 
 If the error message shows that the posterior is a large positive number the problem may be due to numerical instability. (Note that positive posteriors are fine in theory, since the reported posterior is actually the log of the posterior for which priors are not normalised, but when this error occurs the posterior is probably outside the range where it can be calculated in a stable manner.) What may have happened is that some of the parameters (maybe clock rates or birth rates) became very small or large resulting, which then due to numerical instability gives a large positive posteriors. You can check the trace log in `Tracer` to see which parameter escaped to an unrealistic value, and adjust the prior or the upper and lower bounds for these parameters to make sure they remain close to a value that is reasonable.
 
+## Parameters escaping to extreme values
+
+Large positive posteriors are an indication of scale parameters escaping to extreme values (infinity or zero), but this does not always happen. 
+Parameter values can become close to the upper bound to what a `double` value can take (about 1.8e308) and still cause problems with numerics.
+It is therefore good practice to check the log files for parameters that become very large (over 1e300), and consider bounding their values.
+
 To change the bounds of a parameter, in BEAUti in the priors panel in the prior for the parameter, you can click the button with value and upper/lower bounds of the parameter. A dialog pops up where you can then change these bounds.
 
 ## Parameters are not escaping -- how can I solve this problem?
