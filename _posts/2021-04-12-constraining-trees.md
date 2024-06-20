@@ -49,7 +49,7 @@ A single MRCA prior will not be sufficient, but the `MRCAPriorWithRogues` will a
 * Add a taxon set that represents the rogues by adding a rogues element in the MRCAPrior, which could looks something like this:
 
 ```
-<distribution id="clade_AB.prior" spec="beast.math.distributions.MRCAPriorWithRogues" monophyletic="true" tree="@Tree.t:dna">
+<distribution id="clade_AB.prior" spec="beastlabs.math.distributions.MRCAPriorWithRogues" monophyletic="true" tree="@Tree.t:dna">
      <taxonset id="clade_AB" spec="TaxonSet">
          <taxon id="A" spec="Taxon"/>
          <taxon id="B" spec="Taxon"/>
@@ -60,7 +60,11 @@ A single MRCA prior will not be sufficient, but the `MRCAPriorWithRogues` will a
  </distribution>
 ```
 
-Note that if a taxon is already specified elsewhere (like in another MRCA prior), you should use a referral to is `<taxon idref="C"/>`. The XML parser used when starting BEAST will complain about duplicate IDs otherwise.
+Notes:
+
+*  if a taxon is already specified elsewhere (like in another MRCA prior), you should use a referral to is `<taxon idref="C"/>`. The XML parser used when starting BEAST will complain about duplicate IDs otherwise.
+* If you want to use a cluster method like UPGMA or neighbour joining, make sure to replace the `ClusterTree` with `beastlabs.evolution.tree.ConstrainedClusterTree`.
+* For BEAST v2.6 or before use `spec="beast.math.distributions.MRCAPriorWithRogues"`.
 
 
 ## Add many monophyletic constraints
