@@ -14,10 +14,10 @@ tags: []
 			
 			
 			{% highlight xml %}
-                    BEAST v2.7.6 2023
-                 Beast 2 development team 2011-2023
+                    BEAST v2.7.7 2024
+                 Beast 2 development team 2011-2024
 
-Last updated: November 2023
+Last updated: June 2024
 
 Contents:
 1) INTRODUCTION
@@ -58,16 +58,11 @@ adjustment and a number of runs to get a valid answer. Sorry.
 ___________________________________________________________________________
 2) INSTALLING BEAST
 
-BEAST requires a Java Virtual Machine to run. Many systems will already
-have this installed. It requires at least version 1.8 of Java to run. The
-latest versions of Java can be downloaded from:
-
-&lt;http://java.com/&gt;
-
-If in doubt type "java -version" to see what version of java is installed
-(or if it is installed at all).
-
-Mac OS X will already have a suitable version of Java installed.
+BEAST requires a Java Virtual Machine version 17 and JavaFX to run. The
+BEAST installation packages come with a suitable Java + JavaFX and it is
+recommended to use these versions of Java + JavaFX. It is possible to use
+different versions, but it will require considerable time configuring them,
+so that is not recommended.
 
 Within the BEAST package will be the following directories:
 Directory       Contents
@@ -76,7 +71,7 @@ examples/       Some NEXUS and XML files
 lib/            Java & native libraries used by BEAST 
 bin/            Scripts of the corresponding OS
 fxtemplates/    Templates to initiate BEAUti
-
+jre/            Suitable java runtime
 ___________________________________________________________________________
 3) CONVERTING SEQUENCES
 
@@ -88,10 +83,10 @@ To run BEAUti simply double-click the "BEAUti.exe" file in the BEAST
 folder. If this doesn't work then you may not have Java installed correctly. 
 Try opening an MS-DOS window and typing:
 
-     \path\to\BEAST\bat\beauti.bat
+	\path\to\BEAST\bat\beauti.bat
 
 Where "\path\to" the path to where BEAST is installed.
-     
+	
 __________________________________________________________________________
 4) RUNNING BEAST
 
@@ -99,8 +94,8 @@ To run BEAST simply double-click the "BEAST.exe" file in the BEAST
 folder. You will be asked to select a BEAST XML input file.
 
 Alternatively open a Command window and type:
-     
-     \path\to\BEAST\bat\beast.bat input.xml
+	
+	\path\to\BEAST\bat\beast.bat input.xml
 
 Where "\path\to" the path to where BEAST is installed and "input.xml" is the 
 name of a BEAST XML format file. This file can either be created from scratch 
@@ -147,7 +142,7 @@ BEAST arguments:
     -sampleFromPrior samples from prior for MCMC analysis (by adding sampleFromPrior="true" in the first run element)
     -version_file Provide a version file containing a list of services to explicitly allow. (Useful for package development.)
     -packagedir Set user package directory instead of using the default
-      
+    
 For example:
 
      \path\to\BEAST\bin\beast.bat -seed 123456 -overwrite input.xml
@@ -231,6 +226,7 @@ ___________________________________________________________________________
 
 Thanks for supplying code or assisting with the creation
 or testing of Beast 2 development team.
+
 
 			{% endhighlight %}
 
