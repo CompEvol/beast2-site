@@ -320,7 +320,7 @@ o While still on the <b>Arguments</b> tab, enter <code>-Djava.only=true</code> i
 
 ### Running in debug mode
 
-To run in debug mode, go the the main Eclipse <b>Run</b> menu, choose <b>Debug configurations&#8230;</b>, select &#8220;BeastMCMC&#8221; under <b>Java Application</b>, then press the <b>Debug</b> button to start. After running this configuration once, you can simply choose <b>Run > Debug History > BeastMCMC</b> to start debugging (and you will find a convenient button on the main toolbar that provides a shortcut to a &#8220;BeastMCMC&#8221; debug session as well).
+To run in debug mode, go the the main Eclipse <b>Run</b> menu, choose <b>Debug configurations&#8230;</b>, select &#8220;beastfx.app.beast.BeastMain&#8221; under <b>Java Application</b>, then press the <b>Debug</b> button to start. After running this configuration once, you can simply choose <b>Run > Debug History > BeastMain</b> to start debugging (and you will find a convenient button on the main toolbar that provides a shortcut to a &#8220;BeastMain&#8221; debug session as well).
 
 If the debug session starts successfully, you should see output similar to that below:
 
