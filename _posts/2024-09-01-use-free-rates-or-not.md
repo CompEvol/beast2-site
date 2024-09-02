@@ -5,6 +5,8 @@ tags: []
 ---
 <p style="color:gray">1 September 2024 by <a href='mailto:r.bouckaert@auckland.ac.nz'>Remco Bouckaert</a></p>
 
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
 ## Introduction
 
 In a recent paper (Ferretti et al, 2024) it was demonstrated that when sequence data on a phylogeny is generated with site rates independently drawn from a continuous gamma distribution, the commonly used discretised gamma rate heterogeneity model using 4 categories (Yang, 1996) over estimates branch lengths, while the free-rate model (Soubrier et al, 2012) does not suffer from the same problem.
