@@ -20,19 +20,19 @@ There are no computational penalties for switching, but where the gamma rate het
 ## Free rate model in BEAST2
 
 The free rate model is implemented in BEAST2 in the RBS package.
-In the free rate model with $k$ categories, let $w_i$ be the weight for $i=1,\ldots,k$ and let $r_i$ be the rate.
-All weights and rates are positive real numbers and weights are constrained to sum to 1 ($\sum_{i=1}^kw_i=1$) and mean weighted rates are 1 as well ($\sum_{i=1}^kw_ir_i=1$).
+In the free rate model with \(k\) categories, let \(w_i\) be the weight for \(i=1,\ldots,k\) and let \(r_i\) be the rate.
+All weights and rates are positive real numbers and weights are constrained to sum to 1 (\(\sum_{i=1}^kw_i=1\)) and mean weighted rates are 1 as well (\(\sum_{i=1}^kw_ir_i=1\)).
 For ease of inference, we use a Dirichlet prior on weights, thus guaranteeing they sum to 1. 
-Further, instead of sampling rates $r_i$ directly, we sample parameters $x_i$ independently from a Dirichlet distribution, so they sum to 1 ($\sum_{i=1}^kx_i=1$).
-Next, we set $y_i=\sum_{j<=i}x_i$, thus guaranteeing $y_i\le y_{i+1}$, which helps identifying rates.
-Finally, we set the rates $r_i$ proportional to $y_i$ with a scale factor to guarantee that $\sum_{i=1}^kw_ir_i=1$.
-The scale factor is simply $\frac{1}{\sum_{i=1}^kw_iy_i}$.
+Further, instead of sampling rates \(r_i\) directly, we sample parameters \(x_i\) independently from a Dirichlet distribution, so they sum to 1 (\(\sum_{i=1}^kx_i=1\)).
+Next, we set \(y_i=\sum_{j<=i}x_i\), thus guaranteeing \(y_i\le y_{i+1}\), which helps identifying rates.
+Finally, we set the rates \(r_i\) proportional to \(y_i\) with a scale factor to guarantee that \(\sum_{i=1}^kw_ir_i=1\).
+The scale factor is simply \(\frac{1}{\sum_{i=1}^kw_iy_i}\).
 
 This parameterisation probably differs slightly from that described in Soubrier et al. (2012), since the description in the paper was not sufficiently detailed to implement.
 MCMC proposals for weights as well as for rates are the default delta exchange operators in BEAST2.
 
-To verify that the model is correctly implemented, we performed a well calibrated simulation study over trees with 50 taxa drawn from a Yule prior with birth rate log-normally distribution with $M=0.5, S=0.1$. 
-For the substitution model, we used the HKY model with frequencies distributed according to a Dirichlet(4,4,4,4) distribution and kappa according to a log-normal distribution with $M=2, S=1.25$.
+To verify that the model is correctly implemented, we performed a well calibrated simulation study over trees with 50 taxa drawn from a Yule prior with birth rate log-normally distribution with \(M=0.5, S=0.1\). 
+For the substitution model, we used the HKY model with frequencies distributed according to a Dirichlet(4,4,4,4) distribution and kappa according to a log-normal distribution with \(M=2, S=1.25\).
 We used a strict clock with tight normal prior on rates with mean 0.1 and stand deviation 0.005. This together with birth rate prior provides the timing information for the trees.
 The range of tree heights was between 5 and 16.
 For the free rate model, 4 categories were used with where we used a Dirichlet(4,4,4,4) for weights and Dirichlet(1,1,1,1) for rates.
@@ -79,7 +79,7 @@ In other words, the free rate model reduces bias, but increases variance.
 
 ## Can uncertainty be reduced in the free rate model?
 
-One way to reduce the uncertainty is by fixing the weights to be equal $1/k$, so 0.25 for four categories.
+One way to reduce the uncertainty is by fixing the weights to be equal \(1/k\), so 0.25 for four categories.
 This allows less flexibility for the values of the rates, and thus reduces uncertainty in tree age and length estimates.
 Unfortunately, repeating the simulation study under this condition makes the coverage for tree height fall outside the expected range (just 87, 77, 76 for the 100, 250 and 500 site sequences respectively).
 This confirms that it is the static category weights that cause the bias, as implied by Ferretti et al.
