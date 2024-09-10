@@ -30,15 +30,15 @@ When means are linked (`Linked Mean` checkbox is set), this only affects the fir
 
 Group count represents the number of groups used, which determines the dimension of the groupSizes parameter. If less than zero (default) 10 groups will be used, unless group sizes are larger than 30 (then group count = number of taxa/30) or less than 6 (then group count = number of taxa/6.
 
-It can happen that because of the tendency to have fewer coalescent events near the root of the tree per unit of time that the last group stretches over a relatively large amount of time. If group sizes are not estimated (the default behaviour) and group sizes are large this can lead to an unrealistic long episode of constant birth rate near the root of the tree. A solution to this problem is to use many small group sizes and link means.
+It can happen that because of the tendency to have fewer speciation events near the root of the tree per unit of time that the last group stretches over a relatively large amount of time. If group sizes are not estimated (the default behaviour) and group sizes are large this can lead to an unrealistic long episode of constant birth rate near the root of the tree. A solution to this problem is to use many small group sizes and link means.
 
 ## Group Sizes 
 
-The group sizes parameter that determines the number of coalescent events per group. If not estimated (estimate=false on this parameter), fixed group sizes will be used, otherwise they will be estimated.
+The group sizes parameter that determines the number of speciation events per group. If not estimated (estimate=false on this parameter), fixed group sizes will be used, otherwise they will be estimated.
 
 ### Estimate group sizes?
 
-In general, estimating group sizes is less efficient, since more parameters need to be used. On the other hand, it can be argued that assuming constant birth rates for a constant number of coalescent events is not biologically plausible. However, by increasing the number of groups, the intervals at which birth rate is constant can be reduced so that the flexibility of estimated group sizes can be emulated while keeping group sizes constant but small (perhaps around 6).
+In general, estimating group sizes is less efficient, since more parameters need to be used. On the other hand, it can be argued that assuming constant birth rates for a constant number of speciation events is not biologically plausible. However, by increasing the number of groups, the intervals at which birth rate is constant can be reduced so that the flexibility of estimated group sizes can be emulated while keeping group sizes constant but small (perhaps around 6).
 
 When estimating group sizes it becomes necessary to interpret the trace file with some more care since ESSs displayed in Tracer may seem low while things are mixing fine. For example, consider the scenario where the data is produced by two groups of size G1 and G2 and constant (but substantially different) birth rates R1 and R2 between the groups. If we analyse this with 3 groups, we can capture this situation by using the first group size being G1 and the other two add up to G2. Alternatively, we can have the first two group sizes add up to G1, and G2 for the last group size. During the MCMC, it can happen on occasion that the state switches between these two states. This happens only occasionally, leading to low ESS values for group sizes as well as the birth rates, while there is no reason to be concerned about the analysis.
 
@@ -47,9 +47,9 @@ When estimating group sizes it becomes necessary to interpret the trace file wit
 The group sizes will be initialised automatically (as explained under the Group Count section above) when
 
 * the group sizes entry has a different dimension (number of groups) than what is necessary based on the `group count` value, or
-* the group size entries do not add up to the number of coalescent events in the tree.
+* the group size entries do not add up to the number of speciation events in the tree.
 
-However, you can specify the group sizes by hand, for example for a tree with 50 taxa, which has 49 coalescent events. If `groupCount` is set to 5, you can enter `15 10 10 10 4` in the group sizes entry and the group sizes will be fixed at these sizes. The group near the root will then only cover 4 coalescent events while the youngest group covers 15 coalescent events and all others 10.
+However, you can specify the group sizes by hand, for example for a tree with 50 taxa, which has 49 speciation events. If `groupCount` is set to 5, you can enter `15 10 10 10 4` in the group sizes entry and the group sizes will be fixed at these sizes. The group near the root will then only cover 4 speciation events while the youngest group covers 15 speciation events and all others 10.
 
 ## Equal epochs option
 
