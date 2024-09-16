@@ -52,8 +52,10 @@ You can set parameters by clicking the TreePSRF button for the Gelman-Rubin-like
 ## References
 
 Lars Berling, Remco Bouckaert, and Alex Gavryushkin.
-Automated convergence diagnostic for phylogenetic MCMC analyses
-BioRxiv 2023 [DOI:10.1101/2023.08.10.552869](https://doi.org/10.1101/2023.08.10.552869)
+An automated convergence diagnostic for phylogenetic MCMC analyses
+IEEE/ACM Transactions on Computational Biology and Bioinformatics. 2024 Sep 10. [DOI](https://doi.org/10.1109/TCBB.2024.3457875)
+([BioRxiv preprint](https://doi.org/10.1101/2023.08.10.552869))
+
 
 Gelman A, Rubin DB. Inference from iterative simulation using multiple sequences. Statistical science. 1992 Nov;7(4):457-72.
 
