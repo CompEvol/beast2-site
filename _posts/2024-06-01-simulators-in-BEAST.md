@@ -15,6 +15,10 @@ For a given tree, the `beast.app.seqgen.SimulatedAlignment` can then be used to 
 The `SimulatedAlignment` can be used as a replacement of `Alignment`.
 This can be useful in [well calibrated simulation studies](https://github.com/rbouckaert/DeveloperManual) (Mendes et al, 2024).
 
+The `SimulatedAlignment` takes in a standard site model and allows for discretised gamma rate heterogeneity.
+If you want to simulate under continuous gamma rate heterogeneity, the `rbbeast.evolution.util.ContinuousGammaSimulatedAlignment` in the RBS package can be used.
+([example XML](https://raw.githubusercontent.com/BEAST2-Dev/rb-beast/refs/heads/master/examples/testContinuousSimulatedAlignment.xml)).
+
 ## `DirectSimulator`
 
 The `beast.base.inference.DirectSimulator` provides a simulator that is more efficient than sampling from MCMC, and uses independent implementations for directly simulating parameter values from parametric distributions.
