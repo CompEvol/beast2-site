@@ -16,8 +16,12 @@ The `SimulatedAlignment` can be used as a replacement of `Alignment`.
 This can be useful in [well calibrated simulation studies](https://github.com/rbouckaert/DeveloperManual) (Mendes et al, 2024).
 
 The `SimulatedAlignment` takes in a standard site model and allows for discretised gamma rate heterogeneity.
+
+For simulating *codon* sequences, the [CodonSubstModel](https://github.com/BEAST2-Dev/codonsubstmodels) package has a [`SimulatedCodonAlignment`](https://github.com/BEAST2-Dev/codonsubstmodels/blob/master/src/codonmodels/evolution/alignment/SimulatedCodonAlignment) class that can replace a `CodonAlignment` and there is an [example XML](https://raw.githubusercontent.com/BEAST2-Dev/codonsubstmodels/refs/heads/master/examples/testSimulatedCodonAlignment.xml).
+
 If you want to simulate under continuous gamma rate heterogeneity, the `rbbeast.evolution.util.ContinuousGammaSimulatedAlignment` in the RBS package can be used.
 ([example XML](https://raw.githubusercontent.com/BEAST2-Dev/rb-beast/refs/heads/master/examples/testContinuousSimulatedAlignment.xml)).
+
 
 ## `DirectSimulator`
 
