@@ -33,6 +33,14 @@ When the data pushes very hard towards one model over the other, the indicator v
 In this case it is acceptable for the ESS to be ignored.
 Note that when the indicator variable is only very occasionally (perhaps even for a single sample) switched to the other value, the ESS will be very high, possibly close to the number of samples in the trace log.
 
+## Unused dimensions of parameters under reversible jump
+
+Under reversible jump, parameters can have variable dimension.
+Since Tracer requires each column to be completely populated, such parameters need to log dimensions, even if they are not used.
+This used to be the case for bModelTest, where all 6 dimensions of the substitution model's rate parameter were logged: when HKY dominates during the MCMC, most of the time the higher dimensions of the rate parameter are not sampled.
+This results in low ESS for those under-sampled parameters.
+Currently, bModelTest only logs the resulting rates for AC, AG, AT, CG, CT, and GT, which should have good ESSs.
+
 ## Posteriors from nested sampling
 
 Nested sampling implemented in the [NS](https://github.com/BEAST2-Dev/nested-sampling/) package provides an alternative to creating a sample from the prior.
@@ -46,4 +54,11 @@ NB Burn-in in Tracer should be set to zero for nested sampling posteriors.
 
 Sometimes ESSs can be slightly low for parameters that are not of interest, like the kappa parameter for the HKY model when the research question revolves around the age of the tree.
 Care must be taken to let these somewhat reduced ESSs slip though: make sure the distributions of individual MCMC runs match.
+
 It is much preferred though to fix the problem by increasing the weight of operators that do proposals for these nuisance parameters, run the MCMC a bit longer, or apply any of the other techniques [to increase ESS](http://www.beast2.org/2019/08/01/increasing-ess.html).
+
+## Low ESS on individual runs, but good on combined runs
+
+It is standard practice to run your analysis multiple times from different starting positions (i.e. using different seeds for the random number generator).
+It is possible for MCMC -- being a randomised algorithm -- to get stuck in local optima, and the way to detect this is by doing multiple runs.
+If individual runs show low ESS for some parameter values, but combining the trace logs results in good ESS values, this is confirmation these parameters were sampled from the same distribution.
