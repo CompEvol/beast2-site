@@ -29,6 +29,7 @@ tags: []
 		
 
 <p></p>
+<p><b>NB: for BEAST v2.6 and newer, use the [CoupledMCMC](https://github.com/nicfel/CoupledMCMC) package</b></p>
 <p>When running the analysis, you want to use at least as many chains as there are chains, so that each chain can run in its own thread. The current implementation is multi-threaded, but does not on multi-processors (yet).</p>
 <h2>Does MCMCMC work?</h2>
 <p>The question remains whether it is better to run say 4 individual MCMC analyses and combine results instead of running a single MCMCMC analysis. From what I have seen so far, the BEAST proposals are typically very well tuned to explore tree space, and can handle correlations between various parameters quite well. If a BEAST analysis gets stuck &#8212; which shows up by running different chains that seem to converge, but all end up at a different posterior &#8212; anecdotal evidence with *BEAST analyses suggest that throwing MCMCMC at it does not solve the problem.</p>
