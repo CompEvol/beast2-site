@@ -20,6 +20,38 @@ There are a few classes in BEAST that can be useful for generating XML, in parti
 <p>so it will be interpreted as  
 <p><code>&lt;run chainLength="1000000" ...</code>.
 
+<p>Furthermore, since BEAST v2.6.3, you can store these values in an external file in JSON format that defines name/value pairs, which is what a JSON dictionary provides quite naturally, and allows for multiple lines for values. For example, like so:
+
+
+```
+{
+"sequences":"
+<sequence taxon='D4Brazi82'>            ATGCGATGCG        </sequence>
+<sequence taxon='D4ElSal83'>            ATGCGATGCG        </sequence>
+...
+<sequence taxon='D4Thai84'>             GTGCGATGCG        </sequence>
+";
+"datetrait":"D4Brazi82  = 1982,
+                D4ElSal83  = 1983,
+...
+                D4Thai84   = 1984"
+}
+```
+
+<p>where `...` means many more of the same. This allows for using the same analysis with multiple data sets (or multiple analyses with the same data set), which can be handy for well calibrated simulation studies or situations where the data set rapidly evolves.
+
+<p>This is particularly useful when you want to run the same analysis on multiple alignments.
+
+<p>The resulting XML, where user defined parameters are replaced by the information from the JSON file, is by default written to a file with the same name as input XML file, but with `.out` added before `.xml` (so input `beast.xml` becomes output `beast.out.xml`). The output file can be specified using the `-DFout` option, e.g.
+
+```
+beast -DF definitions.json -DFout result.xml beast.xml
+```
+
+<p>If no output is desired, you can output to `/dev/null` using `-DFout /dev/null` on OS X and Linux, or `-DFout NUL` on Windows.
+
+
+
 <h2>BEASTGen</h2>
 
 <a href="http://beast.community/beastgen">BEASTGen</a> by Andre Rambaut is part of BEAST 1, but is a generic XML producer from templates, so it can produce BEAST 2 XML as well. It has functionality to recognise alignment files, so you can refer to NEXUS and FASTA files to include in the XML.
