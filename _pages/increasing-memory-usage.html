@@ -7,49 +7,49 @@ tags: []
 	
 		
 <h2>Increasing the Memory available to BEAST and the utility programs</h2>
+
 <p>If an application fails to launch with the following error:</p>
+
 <dl>
 <dd><code>"java.lang.OutofMemoryError: Java heap space"</code></dd>
 </dl>
+
 <p>The solution is to tell Java to use more memory when loading the program. How this is done depends on which version of the program you are using.</p>
+
+
 <h2>Mac OS X version</h2>
 <ol>
 <li>Right-click (or Control-click if you are using a 1-button mouse) on the BEAST application icon:</li>
 </ol>
+
 <p><img class="alignnone wp-image-359 size-full" src="..//files/2015/05/Rightclick.png" alt="Rightclick" width="327" height="306"  sizes="(max-width: 327px) 100vw, 327px" /></p>
+
 <p>Now go into the folder called &#8220;Contents&#8221; and find the file called &#8216;info.plist&#8217;. Double-clicking this file should open it in an application called &#8220;Property List Editor&#8221; (this can be found in your Developer/Applications/Utility folder if it doesn&#8217;t open automatically, but you will need to have installed the Developer Tools). In this program open the section called &#8220;Java&#8221; and edit the string labelled &#8220;VMOptions&#8221;:</p>
+
 <p><img class="alignnone wp-image-360 size-full" src="..//files/2015/05/Plist.png" alt="Plist" width="610" height="560"  sizes="(max-width: 610px) 100vw, 610px" /></p>
 <p>&nbsp;</p>
-<p>This will have the format: <code>-Xms64M -Xmx256M</code>, where the -Xmx and -Xms commands determine the maximum and starting amount of memory that java is provided (the M after each number specifies that it is in megabytes). You can now increase the -Xmx option to something larger. Then save the &#8220;info.plist&#8221; file, close the folders and try running the program again.</p>
+
+<p>This will have the format: <code>-Xss256M -Xmx8G</code>, where the -Xmx and -Xss commands determine the maximum and starting amount of memory that java is provided (the M after each number specifies that it is in megabytes, G for gigabytes). You can now increase the -Xmx option to something larger. Then save the &#8220;info.plist&#8221; file, close the folders and try running the program again.</p>
+
 <p><i>Note: if you don&#8217;t have the &#8216;Property List Editor&#8217; installed, you can load the &#8216;info.plist&#8217; into a text editor &#8211; find the string that looks like the one above and edit it.</i></p>
+
 <p>This technique can also be used to increase the memory for the other BEAST-related programs such as <a class="new" title="LogCombiner (page does not exist)" href="../programs/index.html">LogCombiner</a>, <a title="TreeAnnotator" href="http://beast2.org/treeannotator">TreeAnnotator</a> and <a title="Tracer" href="http://beast2.org/tracer-2">Tracer</a>.</p>
+
 <p>If you are using the command-line version of BEAST on Mac OS X, then see the next section.</p>
+
 <h2>UNIX and Linux versions</h2>
 <p>A solution to this problem is to run BEAST via the command line using the following command:</p>
 
-		
-		
+{% highlight xml %}java -Xss256M -Xmx8G -jar lib/launcher.jar{% endhighlight %}			
 			
-			
-			
-			{% highlight xml %}java -Xms64m -Xmx256m -jar lib/launcher.jar{% endhighlight %}			
-			
-		
-
-<p>The -Xmx and -Xms commands determine the maximum and starting amount of memory that java is provided (the M after each number specifies that it is in megabytes). Try increasing the -Xmx number to something larger.</p>
+<p>The -Xmx and -Xss commands determine the maximum and starting amount of memory that java is provided (the M after each number specifies that it is in megabytes, the G gigabytes). Try increasing the -Xmx number to something larger.</p>
 <p>In many cases, BEAST and the other programs will be run by calling the executable shell scripts in the <code>BEAST.v1.4/bin</code> directory. If you edit these, you will see a java command similar to the above and you can adjust the memory usage as required.</p>
+
 <h2>Windows version</h2>
 <p>This is more difficult because the Windows executables are not editable. However the launcher.jar files can be found in the <code>BEAST v1.4/lib</code> folder and you can use the command in the UNIX version, above, to run BEAST using the command line:</p>
 
-		
-		
+{% highlight xml %}java -Xss256M -Xmx8G -jar lib/launcher.jar{% endhighlight %}			
 			
-			
-			
-			{% highlight xml %}java -Xms64m -Xmx256m -jar lib/launcher.jar{% endhighlight %}			
-			
-		
-
 <p>or you can edit the batch files in the `BEAST\bat` directory.</p>
 	
 
@@ -60,5 +60,5 @@ tags: []
 <dd><code>Caused by: java.lang.StackOverflowError</code></dd>
 </dl>
 
-<p>you want to increase the stack size by adding <code>-Xss=64m</code> next to <code>-Xms64m</code> at any of the places indicated above.
+<p>you want to increase the stack size by update the -Xss value, e.g. from <code>-Xss=256m</code> to <code>-Xss1G</code> at any of the places indicated above.
 
