@@ -22,11 +22,11 @@ tags: []
 <li>Right-click (or Control-click if you are using a 1-button mouse) on the BEAST application icon:</li>
 </ol>
 
-<p><img class="alignnone wp-image-359 size-full" src="..//files/2015/05/Rightclick.png" alt="Rightclick" width="327" height="306"  sizes="(max-width: 327px) 100vw, 327px" /></p>
+<p><img class="alignnone wp-image-359 size-full" src="/images/Rightclick.png" alt="Rightclick" width="327" height="306"  sizes="(max-width: 327px) 100vw, 327px" /></p>
 
 <p>Now go into the folder called &#8220;Contents&#8221; and find the file called &#8216;info.plist&#8217;. Double-clicking this file should open it in an application called &#8220;Property List Editor&#8221; (this can be found in your Developer/Applications/Utility folder if it doesn&#8217;t open automatically, but you will need to have installed the Developer Tools). In this program open the section called &#8220;Java&#8221; and edit the string labelled &#8220;VMOptions&#8221;:</p>
 
-<p><img class="alignnone wp-image-360 size-full" src="..//files/2015/05/Plist.png" alt="Plist" width="610" height="560"  sizes="(max-width: 610px) 100vw, 610px" /></p>
+<p><img class="alignnone wp-image-360 size-full" src="/images/Plist.png" alt="Plist" width="610" height="560"  sizes="(max-width: 610px) 100vw, 610px" /></p>
 <p>&nbsp;</p>
 
 <p>This will have the format: <code>-Xss256M -Xmx8G</code>, where the -Xmx and -Xss commands determine the maximum and starting amount of memory that java is provided (the M after each number specifies that it is in megabytes, G for gigabytes). You can now increase the -Xmx option to something larger. Then save the &#8220;info.plist&#8221; file, close the folders and try running the program again.</p>

@@ -11,9 +11,9 @@ tags: []
 <p>Recently, a few users reported problems with BEAST 2 performance, concluding it was worse than BEAST 1. This puzzled us, because BEAST 1 and 2 share the same core algorithms, and both spend most of their time doing phylogenetic likelihood calculations, which is optimised using <a href="https://github.com/beagle-dev/beagle-lib">BEAGLE</a>, a library shared by both programs. In fact, recently we changed the way that BEAST 2 handles proportion invariant categories, saving some phylogenetic likelihood calculations, so in theory it should be faster when using a proportion of invariant sites in the model. So, we became curious whether there are real performance differences between BEAST 1 and 2 and decided to do a benchmark. We expected them to perform roughly the same on GTR and GRT+G analyses, and BEAST 2 to do better on GTR+I and GTR+G+I analyses.</p>
 <p>The picture below summarises the speed of BEAST 2 over BEAST 1 using 1, 2, 4 thread(s) in the 3 different operation systems. As you can see the performance is very similar for GTR and GTR+G, with BEAST2 being perhaps slight faster (although this could be due to debugging that BEAST1 performs at the start of the chain):<br />
 </p>
-<p><img src="../files/2016/04/1-thread-perf-all.png" alt="single thread" /></p>
-<p><img src="../files/2016/04/2-threads-perf-all.png" alt="double threads" /></p>
-<p><img src="../files/2016/04/4-threads-perf-all.png" alt="four threads" /></p>
+<p><img src="/images/1-thread-perf-all.png" alt="single thread" /></p>
+<p><img src="/images/2-threads-perf-all.png" alt="double threads" /></p>
+<p><img src="/images/4-threads-perf-all.png" alt="four threads" /></p>
 <h2>What we did</h2>
 <h3>Analyses</h3>
 <p>BEAST can do many kinds of analyses, but for the purpose of this benchmark, we want to see whether the TreeLikelihood calculations, which typically dominate the computational time of MCMC runs, are comparable. To see the impact of the way BEAST 2 handles proportion invariant, we want to have an analysis with and without a proportion invariant category. And since many analyses use gamma rate heterogeneity with and without proportion invariants, we end up with four variants:</p>
@@ -149,11 +149,11 @@ tags: []
 The images below show the run time for 1, 2, 4 thread(s) in Linux, where <em>1.8.3(t0)</em> presents no threading pool for single thread in BEAST 1.8.3.</p>
 <ul>
 <li>1 thread:<br />
-<img src="../files/2016/04/1-thread-linux.png" alt="1 thread Linux" /></li>
+<img src="/images/1-thread-linux.png" alt="1 thread Linux" /></li>
 <li>2 threads:<br />
-<img src="../files/2016/04/2-threads-linux.png" alt="2 threads Linux" /></li>
+<img src="/images/2-threads-linux.png" alt="2 threads Linux" /></li>
 <li>4 threads:<br />
-<img src="../files/2016/04/4-threads-linux.png" alt="4 threads Linux" /></li>
+<img src="/images/4-threads-linux.png" alt="4 threads Linux" /></li>
 </ul>
 <p>With increasing number of threads, the difference in run time in seconds decreases, but BEAST 2 is almost always slightly faster than BEAST 1 in these comparisons. However, it turned out that the data sets are too small for four threads to be of much use &#8212; the four threaded runs tended to be slower than for two threads, which is optimal for most of these datasets for both BEAST versions. This may also be a function of the hardware used.</p>
 <p>Cursory checks of ESSs for BEAST 1 and 2 in Tracer did not show any substantial difference, which is not surprising since the same mixture of operators was used. Also, parameter estimates tended to agree between some randomly selected analyses.</p>
