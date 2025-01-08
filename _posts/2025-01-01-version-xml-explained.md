@@ -1,6 +1,6 @@
 ---
 layout: post
-title: `version.xml` explained
+title: version.xml explained
 tags: []
 ---
 <p style="color:gray">1 January 2025 by <a href="mailto:r.bouckaert@auckland.ac.nz">Remco Bouckaert</a></p>
