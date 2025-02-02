@@ -85,7 +85,8 @@ This results in a reduction from 33 to 18 seconds for our data set, almost 2x sp
 
 In total, reduction in calculation time from 80 minutes to 18 seconds for a tree set with about 70 thousand clades makes that CCD0 now is not only a more accurate but als a very practical alternative to MCC for finding summary trees (Berling et al, 2024 for details).
 
-
+Update: after being confronted with tree sets of over 3.5 million clades, some more algorithmic optimisations were done, reducing calculation time to below 3 seconds for this dataset 70k clade dataset. 
+The new code is available in v1.0.2 of the [CCD](https://github.com/CompEvol/CCD) package.
 
 ## References
 
