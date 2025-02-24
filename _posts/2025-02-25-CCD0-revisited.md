@@ -72,7 +72,7 @@ The new version of CCD addresses this issue and significantly improves the runti
 | CCD1                 | -4686.60     | 22s     |
 | CCD0                 | **-2864.92** | 44s     |
 
-### Simulated EBOV (1610 taxa, 1000 trees)
+### Simulated EBOV (1610 taxa, 10000 trees, 562826 clades)
 
 | Method               | log(MCC)     | Runtime |
 | -------------------- | ------------ | ------- |
