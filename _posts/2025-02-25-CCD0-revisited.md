@@ -56,7 +56,7 @@ The authors used the first version of the CCD package without the performance im
 This led to CCD0-MAP not finishing in a reasonable time for some of the datasets. 
 The new version of CCD addresses this issue and significantly improves the runtime.
 
-### EBOV (516)
+### EBOV (516 taxa, 18002 trees, 856780 clades)
 
 | Method               | log(MCC)    | Runtime |
 | -------------------- | ----------- | ------- |
@@ -64,7 +64,7 @@ The new version of CCD addresses this issue and significantly improves the runti
 | CCD1                 | -1752.89    | 171s    |
 | CCD0                 | **-923.66** | 11 min  |
 
-### EBOV (1610)
+### EBOV (1610 taxa, 1000 trees, 287521 clades)
 
 | Method               | log(MCC)     | Runtime |
 | -------------------- | ------------ | ------- |
@@ -72,7 +72,7 @@ The new version of CCD addresses this issue and significantly improves the runti
 | CCD1                 | -4686.60     | 22s     |
 | CCD0                 | **-2864.92** | 44s     |
 
-### Simulated EBOV (1610)
+### Simulated EBOV (1610 taxa, 1000 trees)
 
 | Method               | log(MCC)     | Runtime |
 | -------------------- | ------------ | ------- |
@@ -80,7 +80,7 @@ The new version of CCD addresses this issue and significantly improves the runti
 | CCD1                 | -3543.36     | 194s    |
 | CCD0                 | **-1760.87** | 6min    |
 
-### SARS-CoV-2 (3959)
+### SARS-CoV-2 (3959 taxa, 1000 trees, 660494 clades)
 
 | Method               | log(MCC)     | Runtime |
 | -------------------- | ------------ | ------- |
@@ -88,7 +88,7 @@ The new version of CCD addresses this issue and significantly improves the runti
 | CCD1                 | -11540.45    | 65s     |
 | CCD0                 | **-8325.58** | 6min   |
 
-### SARS-CoV-2 (15616)
+### SARS-CoV-2 (15616 taxa, 500 trees, 3539556 clades)
 
 | Method               | log(MCC)      | Runtime |
 | -------------------- | ------------- | ------- |
