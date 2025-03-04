@@ -16,7 +16,7 @@ We will use the Eclipse IDE to manage the new package project, so the first step
 
 ## Downloading JDK
 
-BEAST is java based and uses the JavaFX libraries but no modules. It is easiest to use the JDK from Azul that includes the JavaFX. Download it from <a href="https://www.azul.com/downloads/?version=java-17-lts&package=jdk-fx">here</a> for your operating system and uncompress the file.
+BEAST is java based and uses the JavaFX libraries but no modules. It is easiest to use the JDK from Azul that includes the JavaFX. Download it from <a href="https://www.azul.com/downloads/?version=java-17-lts&package=jdk-fx">here</a> for your operating system and uncompress the file. NB for OS X users, make sure to select the `zip` file, not the `dmg` file.
 
 ## Setting up JDK in Eclipse
 
