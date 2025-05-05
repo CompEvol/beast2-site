@@ -6,7 +6,7 @@ tags: []
 <p style="color:gray">1 May 2025 by <a href="mailto:r.bouckaert@auckland.ac.nz">Remco Bouckaert</a></p>
 
 
-Te debate between [punctuated equilibrium](https://en.wikipedia.org/wiki/Punctuated_equilibrium) and [gradual evolution](https://en.wikipedia.org/wiki/Phyletic_gradualism) is a central topic in evolutionary biology.
+The debate between [punctuated equilibrium](https://en.wikipedia.org/wiki/Punctuated_equilibrium) and [gradual evolution](https://en.wikipedia.org/wiki/Phyletic_gradualism) is a central topic in evolutionary biology.
 The standard clock models in BEAST2 including the popular strict and relaxed clocks assume gradual evolution alone. 
 Even though the relaxed clock allows rate variation among branches, it does not allow estimation of spikes in evolution on the tree.
 
