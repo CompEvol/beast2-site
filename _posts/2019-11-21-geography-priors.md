@@ -121,17 +121,18 @@ and
 
 Finally, in order to initialise the locations and let the likelihood
 know which locations are sampled, and which are approximated directly,
-we have to do two things:\
+we have to do two things:
+
 1. let the `ApproxMultivariateTraitLikelihood` know where the location
-parameter is by adding the location-attribute, and\
+parameter is by adding the location-attribute, and
 2. add an entry for every `geoprior`.
 
 After this, the XML for the geography likelihood should look something
 like this:
 
 ```
-          <distribution id="geography" spec="sphericalGeo.ApproxMultivariateTraitLikelihood" tree="@Tree.t:AFRICA" 
-            location idref="location.s:geo">
+          <distribution id="geography" spec="sphericalGeo.ApproxMultivariateTraitLikelihood" tree="@Tree.t:AFRICA">
+            <location idref="location.s:geo">
             <geoprior idref="China"/>
             <geoprior idref="Eurasia"/>
             ...

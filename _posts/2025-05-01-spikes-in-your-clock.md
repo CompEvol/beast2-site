@@ -54,6 +54,6 @@ Also, there are XML examples files illustrating how to combine the gamma spike m
 Douglas, J., Bouckaert, R., Harris, S., Carter, C., & Wills, P. (2025). 
 Evolution is coupled with branching across many granularities of life.
 Royal Society Proceedings B. In press 2025 [preprint](https://www.biorxiv.org/content/10.1101/2024.09.08.611933.full.pdf)
-
+[DOI:10.1098/rspb.2025.0182](https://doi.org/10.1098/rspb.2025.0182)
 
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
