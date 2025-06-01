@@ -34,7 +34,7 @@ Start the package manger via the `File => Manage packages` menu in BEAUti.
 * A dialog pops up where you can select the version. Click `OK` and the package with that particular version will be installed.
 
 
-[installing packages](/images/usingOldPackages.png)
+![installing packages](/images/usingOldPackages.png)
 
 ### From the command line
 
