@@ -7,10 +7,10 @@ tags: []
 
 If you need the latest features that are already available in the source code, but are not released yet, you can still run an analysis in BEAST by building the package from the source code. Here is how:
 
-* 0. install required software
-* 1. get source code
-* 2. build the package
-* 3. install the package
+* 0) install required software
+* 1) get source code
+* 2) build the package
+* 3) install the package
 
 This post assumes you are familiar with command line interface of Windows or terminal on OS X or Linux.
 

@@ -7,6 +7,9 @@ tags: []
 
 Replicability of analyses is a major consideration in the design of BEAST2.
 Here, we will have a look at how to reproduce an analysis performed by someone else, assuming you have the BEAST2 XML available.
+This concerns BEAST v2.7.x -- older major version of BEAST (v2.6, v2.5, etc.) can be installed in parallel. 
+BEAST packages are specific to major versions.
+
 
 BEAUti registers which versions of packages were used when creating the XML.
 This information is stored in the `required` attribute at the top level `beast` element in the XML, and can look something like
