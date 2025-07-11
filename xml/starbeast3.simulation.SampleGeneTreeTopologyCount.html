@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: starbeast3.simulation.SampleGeneTreeTopologyCount</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: starbeast3.simulation.SampleGeneTreeTopologyCount</h1>
+<p>Entry point for running a Beast task, for instance an MCMC or other probabilistic analysis, a simulation, etc.<br/>Runnable for generating a fixed number of samples from a prior distributionusing direct simulation.<br/></p>
+<h2>Inputs:</h2>
+<p><a href='#nGeneRange'>nGeneRange</a>, <a href='#svg'>svg</a>, <a href='#geneTree'>geneTree</a>, <a href='#geneTreePrior'>geneTreePrior</a>, <a href='#numTopologies'>numTopologies</a>, <a href='#distribution'>distribution</a>, <a href='#init'>init</a>, <a href='#logger'>logger</a>, <a href='#nSamples'>nSamples</a </p>
+<p>&nbsp</p><table id='nGeneRange' border='1px' width='90%'>
+<caption>nGeneRange</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Range of number of gene tree samples.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='svg' border='1px' width='90%'>
+<caption>svg</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beastfx.app.util.OutFile</td></tr></thead>
+<tr><td>svg output file. if not specified, no SVG output is produced.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='geneTree' border='1px' width='90%'>
+<caption>geneTree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>the single gene tree.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='geneTreePrior' border='1px' width='90%'>
+<caption>geneTreePrior</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.evolution.speciation.GeneTreeForSpeciesTreeDistribution.html'>starbeast3.evolution.speciation.GeneTreeForSpeciesTreeDistribution</a></td></tr></thead>
+<tr><td>the prior distribution behind the gene tree).</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='numTopologies' border='1px' width='90%'>
+<caption>numTopologies</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.IntegerParameter.html'>beast.base.inference.parameter.IntegerParameter</a></td></tr></thead>
+<tr><td>A parameter which will be populated with the number of topologies after each sample.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='distribution' border='1px' width='90%'>
+<caption>distribution</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.Distribution</td></tr></thead>
+<tr><td>Distribution to sample from via direct simulation.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='init' border='1px' width='90%'>
+<caption>init</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.StateNodeInitialiser***</td></tr></thead>
+<tr><td>one or more state node initilisers used for determining the start state of the chain</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='logger' border='1px' width='90%'>
+<caption>logger</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.Logger.html'>beast.base.inference.Logger***</a></td></tr></thead>
+<tr><td>Log that simulated parameters and trees can be written to.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='nSamples' border='1px' width='90%'>
+<caption>nSamples</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Number of independent samples to generate.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

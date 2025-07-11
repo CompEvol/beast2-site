@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastclassic.evolution.operators.PrecisionMatrixGibbsOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastclassic.evolution.operators.PrecisionMatrixGibbsOperator</h1>
+<p>Proposes a move in state space.<br/>Precision Matrix Gibbs Operator</p>
+<h2>Inputs:</h2>
+<p><a href='#tree'>tree</a>, <a href='#parameter'>parameter</a>, <a href='#traitmap'>traitmap</a>, <a href='#likelihood'>likelihood</a>, <a href='#prior'>prior</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td></td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='parameter' border='1px' width='90%'>
+<caption>parameter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>parameter representing precision matrix</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='traitmap' border='1px' width='90%'>
+<caption>traitmap</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beastclassic.evolution.tree.TreeTraitMap.html'>beastclassic.evolution.tree.TreeTraitMap</a></td></tr></thead>
+<tr><td>maps node in tree to trait parameters</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='likelihood' border='1px' width='90%'>
+<caption>likelihood</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beastclassic.continuous.AbstractMultivariateTraitLikelihood</td></tr></thead>
+<tr><td></td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='prior' border='1px' width='90%'>
+<caption>prior</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beastclassic.math.distributions.WishartDistribution.html'>beastclassic.math.distributions.WishartDistribution</a></td></tr></thead>
+<tr><td>must be a Wishart Distribution</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

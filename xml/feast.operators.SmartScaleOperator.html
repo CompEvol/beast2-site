@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: feast.operators.SmartScaleOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: feast.operators.SmartScaleOperator</h1>
+<p>Proposes a move in state space.<br/><br/>Scale operator which scales identical values together.</p>
+<h2>Inputs:</h2>
+<p><a href='#scaleFactor'>scaleFactor</a>, <a href='#optimise'>optimise</a>, <a href='#scaleFactorUpperLimit'>scaleFactorUpperLimit</a>, <a href='#scaleFactorLowerLimit'>scaleFactorLowerLimit</a>, <a href='#parameter'>parameter</a>, <a href='#classesToExclude'>classesToExclude</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='scaleFactor' border='1px' width='90%'>
+<caption>scaleFactor</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>Scale factor will be chosen between scaleFactor and 1/scaleFactor.</td></tr>
+<tr><td>
+Optional input. Default: 0.75</td></tr>
+</table>
+<p>&nbsp</p><table id='optimise' border='1px' width='90%'>
+<caption>optimise</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>flag to indicate that the scale factor is automatically changed in order to achieve a good acceptance rate (default true)</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='scaleFactorUpperLimit' border='1px' width='90%'>
+<caption>scaleFactorUpperLimit</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>Upper Limit of scale factor</td></tr>
+<tr><td>
+Optional input. Default: 0.99999999</td></tr>
+</table>
+<p>&nbsp</p><table id='scaleFactorLowerLimit' border='1px' width='90%'>
+<caption>scaleFactorLowerLimit</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>Lower limit of scale factor</td></tr>
+<tr><td>
+Optional input. Default: 1.0E-8</td></tr>
+</table>
+<p>&nbsp</p><table id='parameter' border='1px' width='90%'>
+<caption>parameter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter***</a></td></tr></thead>
+<tr><td>One or more parameters to operate on</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='classesToExclude' border='1px' width='90%'>
+<caption>classesToExclude</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>Elements with these value will not be operated on.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

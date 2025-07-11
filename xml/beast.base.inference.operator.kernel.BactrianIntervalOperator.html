@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beast.base.inference.operator.kernel.BactrianIntervalOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beast.base.inference.operator.kernel.BactrianIntervalOperator</h1>
+<p>Proposes a move in state space.<br/>Operator with a flexible kernel distribution<br/>A scale operator that selects a random dimension of the real parameter and scales the value a random amount according to a Bactrian distribution such that the parameter remains in its range. Supposed to be more efficient than UniformOperator</p>
+<h2>Inputs:</h2>
+<p><a href='#parameter'>parameter</a>, <a href='#scaleFactor'>scaleFactor</a>, <a href='#optimise'>optimise</a>, <a href='#inclusive'>inclusive</a>, <a href='#kernelDistribution'>kernelDistribution</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='parameter' border='1px' width='90%'>
+<caption>parameter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>the parameter to operate a random walk on.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='scaleFactor' border='1px' width='90%'>
+<caption>scaleFactor</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>scaling factor: larger means more bold proposals</td></tr>
+<tr><td>
+Optional input. Default: 1.0</td></tr>
+</table>
+<p>&nbsp</p><table id='optimise' border='1px' width='90%'>
+<caption>optimise</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>flag to indicate that the scale factor is automatically changed in order to achieve a good acceptance rate (default true)</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='inclusive' border='1px' width='90%'>
+<caption>inclusive</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>are the upper and lower limits inclusive i.e. should limit values be accepted (default true)</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='kernelDistribution' border='1px' width='90%'>
+<caption>kernelDistribution</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.operator.kernel.KernelDistribution</td></tr></thead>
+<tr><td>provides sample distribution for proposals</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

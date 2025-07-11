@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: sa.app.tools.FullToExtantTreeConverter</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: sa.app.tools.FullToExtantTreeConverter</h1>
+<p>Entry point for running a Beast task, for instance an MCMC or other probabilistic analysis, a simulation, etc.<br/>utility for creating a tree set with extant nodes from a set of ancestral node trees</p>
+<h2>Inputs:</h2>
+<p><a href='#output'>output</a>, <a href='#trees'>trees</a>, <a href='#threshold'>threshold</a </p>
+<p>&nbsp</p><table id='output' border='1px' width='90%'>
+<caption>output</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beastfx.app.util.TreeFile</td></tr></thead>
+<tr><td>file to store converted tree set. If not specified, _extant is aded to input file name</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='trees' border='1px' width='90%'>
+<caption>trees</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beastfx.app.util.TreeFile</td></tr></thead>
+<tr><td>tree set file to be converted</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='threshold' border='1px' width='90%'>
+<caption>threshold</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>the threshold for identifying extant taxa. Ignored if negative.</td></tr>
+<tr><td>
+Optional input. Default: -1.0</td></tr>
+</table>
+</body>
+</html>

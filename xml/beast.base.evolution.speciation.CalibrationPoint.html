@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beast.base.evolution.speciation.CalibrationPoint</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beast.base.evolution.speciation.CalibrationPoint</h1>
+<p>Specification of a single calibration point of the calibrated Yule.</p>
+<h2>Inputs:</h2>
+<p><a href='#taxonset'>taxonset</a>, <a href='#distr'>distr</a>, <a href='#parentOf'>parentOf</a </p>
+<p>&nbsp</p><table id='taxonset' border='1px' width='90%'>
+<caption>taxonset</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.alignment.TaxonSet.html'>beast.base.evolution.alignment.TaxonSet</a></td></tr></thead>
+<tr><td>Set of taxa. The prior distribution is applied to their TMRCA.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='distr' border='1px' width='90%'>
+<caption>distr</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.distribution.ParametricDistribution</td></tr></thead>
+<tr><td>Prior distribution applied to time of clade MRCA</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='parentOf' border='1px' width='90%'>
+<caption>parentOf</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Use time of clade parent. Default is false.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+</body>
+</html>

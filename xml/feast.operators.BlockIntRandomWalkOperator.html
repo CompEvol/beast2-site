@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: feast.operators.BlockIntRandomWalkOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: feast.operators.BlockIntRandomWalkOperator</h1>
+<p>Proposes a move in state space.<br/>Operator which acts on subsets of elements of an IntegerParameter, similar to the operation of IntRandomWalkOperator.</p>
+<h2>Inputs:</h2>
+<p><a href='#windowSize'>windowSize</a>, <a href='#parameter'>parameter</a>, <a href='#indicator'>indicator</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='windowSize' border='1px' width='90%'>
+<caption>windowSize</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>The size of the window centred on the old value within which the new value can be chosen.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='parameter' border='1px' width='90%'>
+<caption>parameter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.IntegerParameter.html'>beast.base.inference.parameter.IntegerParameter</a></td></tr></thead>
+<tr><td>Parameter to operate on</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='indicator' border='1px' width='90%'>
+<caption>indicator</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.BooleanParameter.html'>beast.base.inference.parameter.BooleanParameter</a></td></tr></thead>
+<tr><td>Boolean vector indicating which elements to operate on. (If absent, all elements are operated on.)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

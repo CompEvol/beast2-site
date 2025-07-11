@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastlabs.inference.ParticleFilter</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastlabs.inference.ParticleFilter</h1>
+<p>Entry point for running a Beast task, for instance an MCMC or other probabilistic analysis, a simulation, etc.<br/>MCMC Inference by particle filter approach. This works only when run with many threads, one per particle is optimal.</p>
+<h2>Inputs:</h2>
+<p><a href='#nrofparticles'>nrofparticles</a>, <a href='#stepsize'>stepsize</a>, <a href='#rootdir'>rootdir</a>, <a href='#mcmc'>mcmc</a>, <a href='#launcher'>launcher</a>, <a href='#value'>value</a>, <a href='#hosts'>hosts</a </p>
+<p>&nbsp</p><table id='nrofparticles' border='1px' width='90%'>
+<caption>nrofparticles</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>the number of particles to use, default 100</td></tr>
+<tr><td>
+Optional input. Default: 100</td></tr>
+</table>
+<p>&nbsp</p><table id='stepsize' border='1px' width='90%'>
+<caption>stepsize</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>number of steps after which a new particle set is determined during burn in, default 100</td></tr>
+<tr><td>
+Optional input. Default: 100</td></tr>
+</table>
+<p>&nbsp</p><table id='rootdir' border='1px' width='90%'>
+<caption>rootdir</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>root directory for storing particle states and log files (default /tmp)</td></tr>
+<tr><td>
+Optional input. Default: /tmp</td></tr>
+</table>
+<p>&nbsp</p><table id='mcmc' border='1px' width='90%'>
+<caption>mcmc</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.MCMC.html'>beast.base.inference.MCMC</a></td></tr></thead>
+<tr><td>MCMC analysis used to specify model and operations in each of the particles</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='launcher' border='1px' width='90%'>
+<caption>launcher</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>class name for particle launcher, default beastlabs.inference.ParticleLauncher</td></tr>
+<tr><td>
+Optional input. Default: beastlabs.inference.ParticleLauncher</td></tr>
+</table>
+<p>&nbsp</p><table id='value' border='1px' width='90%'>
+<caption>value</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>script for launching a job. $(dir) is replaced by the directory associated with the particle $(seed) is replaced by a random number seed that differs with every launch $(host) is replaced by a host from the list of hosts</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='hosts' border='1px' width='90%'>
+<caption>hosts</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>comma separated list of hosts. If there are k hosts in the list, for particle i the term $(host) in the script will be replaced by the (i modulo k) host in the list. Note that whitespace is removed</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

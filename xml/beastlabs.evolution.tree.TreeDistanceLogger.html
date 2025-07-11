@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastlabs.evolution.tree.TreeDistanceLogger</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastlabs.evolution.tree.TreeDistanceLogger</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>Logger to report statistics of a tree</p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#tree'>tree</a>, <a href='#ref'>ref</a>, <a href='#treelogger'>treelogger</a>, <a href='#bootstraps'>bootstraps</a>, <a href='#psites'>psites</a>, <a href='#metric'>metric</a </p>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>Tree to report height for.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='ref' border='1px' width='90%'>
+<caption>ref</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>Reference tree to calculate distances from (default: the initial tree).</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='treelogger' border='1px' width='90%'>
+<caption>treelogger</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.Logger.html'>beast.base.inference.Logger</a></td></tr></thead>
+<tr><td>The tree logger. This is only required if the distance to the initial tree is being calculated, and the user is resuming</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='bootstraps' border='1px' width='90%'>
+<caption>bootstraps</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Number of reference trees to use where each is based on a different sample of the alignment. Set to 0 to use full alignment without bootstrapping.</td></tr>
+<tr><td>
+Optional input. Default: 0</td></tr>
+</table>
+<p>&nbsp</p><table id='psites' border='1px' width='90%'>
+<caption>psites</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>Proportion of sites to sample when bootstraping. Set to 0 for random number of sites per seq</td></tr>
+<tr><td>
+Optional input. Default: 1.0</td></tr>
+</table>
+<p>&nbsp</p><table id='metric' border='1px' width='90%'>
+<caption>metric</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beastlabs.evolution.tree.TreeDistanceLogger$metric</td></tr></thead>
+<tr><td>Tree distance metric (default RNNI)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

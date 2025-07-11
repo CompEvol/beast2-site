@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: feast.popmodels.ExpressionPopulationModel</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: feast.popmodels.ExpressionPopulationModel</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>An implementation of a population size function beastObject.Also note that if you are dealing with a diploid population N0 will be the number of alleles, not the number of individuals.<br/>A population model where the population size function is given by an expression evaluated at runtime.</p>
+<h2>Inputs:</h2>
+<p><a href='#value'>value</a>, <a href='#isLog'>isLog</a>, <a href='#arg'>arg</a>, <a href='#maxTimeToConsider'>maxTimeToConsider</a </p>
+<p>&nbsp</p><table id='value' border='1px' width='90%'>
+<caption>value</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>Expression needed for calculations.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='isLog' border='1px' width='90%'>
+<caption>isLog</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>True if expression represents log(P), false if it represents P. Default is false.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='arg' border='1px' width='90%'>
+<caption>arg</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function***</td></tr></thead>
+<tr><td>Parameters/functions needed for the calculation</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='maxTimeToConsider' border='1px' width='90%'>
+<caption>maxTimeToConsider</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Maximum time to consider when numerically inverting intensity integral.</td></tr>
+<tr><td>
+Optional input. Default: 1000</td></tr>
+</table>
+</body>
+</html>

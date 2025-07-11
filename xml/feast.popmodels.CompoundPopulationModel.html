@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: feast.popmodels.CompoundPopulationModel</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: feast.popmodels.CompoundPopulationModel</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>An implementation of a population size function beastObject.Also note that if you are dealing with a diploid population N0 will be the number of alleles, not the number of individuals.<br/>Population model constructed by piecewise assembly of other population functions.</p>
+<h2>Inputs:</h2>
+<p><a href='#populationModel'>populationModel</a>, <a href='#changeTimes'>changeTimes</a>, <a href='#makeContinuous'>makeContinuous</a </p>
+<p>&nbsp</p><table id='populationModel' border='1px' width='90%'>
+<caption>populationModel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.tree.coalescent.PopulationFunction***</td></tr></thead>
+<tr><td>Population model segment</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='changeTimes' border='1px' width='90%'>
+<caption>changeTimes</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>Times of transitions between individual model segments.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='makeContinuous' border='1px' width='90%'>
+<caption>makeContinuous</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Scale population functions to ensure resulting compound function is continuous. (Default false)</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+</body>
+</html>

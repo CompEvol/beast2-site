@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: orc.operators.SampleFromPriorOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: orc.operators.SampleFromPriorOperator</h1>
+<p>Proposes a move in state space.<br/></p>
+<h2>Inputs:</h2>
+<p><a href='#parameter'>parameter</a>, <a href='#prior'>prior</a>, <a href='#prior2'>prior2</a>, <a href='#tree'>tree</a>, <a href='#np'>np</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='parameter' border='1px' width='90%'>
+<caption>parameter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.parameter.Parameter</td></tr></thead>
+<tr><td>the parameter sample</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='prior' border='1px' width='90%'>
+<caption>prior</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.distribution.ParametricDistribution</td></tr></thead>
+<tr><td>the prior distribution of the parameter</td></tr>
+<tr><td>
+Either this, or prior2 needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='prior2' border='1px' width='90%'>
+<caption>prior2</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.distribution.Prior.html'>beast.base.inference.distribution.Prior</a></td></tr></thead>
+<tr><td>the prior distribution of the parameter</td></tr>
+<tr><td>
+Either this, or prior needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>the tree that the parameter belong to (if applicable)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='np' border='1px' width='90%'>
+<caption>np</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>tunable parameter describing the mean number of elements in the parameter vector to sample</td></tr>
+<tr><td>
+Optional input. Default: 1.0</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

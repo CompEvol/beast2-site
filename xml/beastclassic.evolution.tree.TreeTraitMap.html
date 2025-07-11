@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastclassic.evolution.tree.TreeTraitMap</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastclassic.evolution.tree.TreeTraitMap</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>Maps nodes in a tree to entries of a parameter</p>
+<h2>Inputs:</h2>
+<p><a href='#tree'>tree</a>, <a href='#parameter'>parameter</a>, <a href='#traitName'>traitName</a>, <a href='#intent'>intent</a>, <a href='#value'>value</a>, <a href='#initByMean'>initByMean</a>, <a href='#jitter'>jitter</a>, <a href='#randomizeupper'>randomizeupper</a>, <a href='#randomizelower'>randomizelower</a </p>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.tree.TreeInterface</td></tr></thead>
+<tr><td>tree for which to map the nodes</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='parameter' border='1px' width='90%'>
+<caption>parameter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>paramater for which to map entries for</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='traitName' border='1px' width='90%'>
+<caption>traitName</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>name of the trait</td></tr>
+<tr><td>
+Optional input. Default: unnamed</td></tr>
+</table>
+<p>&nbsp</p><table id='intent' border='1px' width='90%'>
+<caption>intent</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beastclassic.evolution.tree.TreeTrait$Intent</td></tr></thead>
+<tr><td>intent of the trait, one of [Lbeastclassic.evolution.tree.TreeTrait$Intent;@4b8d604b (Default whole tree)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='value' border='1px' width='90%'>
+<caption>value</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>initialisation values for traits in the form of a comma separated string of taxon-name, value pairs. For example, for a two-dimensional trait the value could be Taxon1=10 20,Taxon2=20 30,Taxon3=10 10</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='initByMean' border='1px' width='90%'>
+<caption>initByMean</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>initialise internal nodes by taking the mean of its children</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='jitter' border='1px' width='90%'>
+<caption>jitter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>amount of jitter used to ensure traits are not exactly the same when using initByMean</td></tr>
+<tr><td>
+Optional input. Default: 1.0E-4</td></tr>
+</table>
+<p>&nbsp</p><table id='randomizeupper' border='1px' width='90%'>
+<caption>randomizeupper</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>if specified, used as upper bound for randomly initialising unassigned nodes</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='randomizelower' border='1px' width='90%'>
+<caption>randomizelower</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>if specified, used as lower bound for randomly initialising unassigned nodes</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

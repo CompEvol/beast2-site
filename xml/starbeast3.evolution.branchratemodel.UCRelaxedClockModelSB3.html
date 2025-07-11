@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: starbeast3.evolution.branchratemodel.UCRelaxedClockModelSB3</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: starbeast3.evolution.branchratemodel.UCRelaxedClockModelSB3</h1>
+<p></p>
+<h2>Inputs:</h2>
+<p><a href='#tree'>tree</a>, <a href='#estimateRoot'>estimateRoot</a>, <a href='#noCache'>noCache</a>, <a href='#stdev'>stdev</a>, <a href='#discreteRates'>discreteRates</a>, <a href='#realRates'>realRates</a>, <a href='#rateQuantiles'>rateQuantiles</a>, <a href='#nBins'>nBins</a>, <a href='#distr'>distr</a>, <a href='#clock.rate'>clock.rate</a </p>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.tree.TreeInterface</td></tr></thead>
+<tr><td>(Species) tree to apply per-branch rates to.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='estimateRoot' border='1px' width='90%'>
+<caption>estimateRoot</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Estimate rate of the root branch.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='noCache' border='1px' width='90%'>
+<caption>noCache</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Always recalculate branch rates.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='stdev' border='1px' width='90%'>
+<caption>stdev</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>Standard deviation of the log-normal distribution for branch rates. If not supplied uses exponential.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='discreteRates' border='1px' width='90%'>
+<caption>discreteRates</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.IntegerParameter.html'>beast.base.inference.parameter.IntegerParameter</a></td></tr></thead>
+<tr><td>The rate categories associated with nodes in the species tree for sampling of individual rates among branches.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='realRates' border='1px' width='90%'>
+<caption>realRates</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>The real rates associated with nodes in the species tree for sampling of individual rates among branches.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='rateQuantiles' border='1px' width='90%'>
+<caption>rateQuantiles</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>The rate quantiles for sampling of individual rates among branches.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='nBins' border='1px' width='90%'>
+<caption>nBins</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Number of discrete branch rate bins (default is equal to the number of estimated branch rates). Only used when branch rates are catrgories.</td></tr>
+<tr><td>
+Optional input. Default: -1</td></tr>
+</table>
+<p>&nbsp</p><table id='distr' border='1px' width='90%'>
+<caption>distr</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.distribution.ParametricDistribution</td></tr></thead>
+<tr><td>the distribution governing the rates among branches, for quantiles only. Must have mean of 1. The clock.rate parameter can be used to change the mean rate.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='clock.rate' border='1px' width='90%'>
+<caption>clock.rate</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>mean clock rate (defaults to 1.0)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

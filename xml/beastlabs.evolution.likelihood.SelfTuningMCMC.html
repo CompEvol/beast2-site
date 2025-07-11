@@ -1,0 +1,153 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastlabs.evolution.likelihood.SelfTuningMCMC</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastlabs.evolution.likelihood.SelfTuningMCMC</h1>
+<p>Entry point for running a Beast task, for instance an MCMC or other probabilistic analysis, a simulation, etc.<br/>MCMC chain. This is the main element that controls which posterior to calculate, how long to run the chain and all other properties, which operators to apply on the state space and where to log results.<br/>MCMC that can tune the treelikelihood for efficiency</p>
+<h2>Reference:</h2><p>Bouckaert, Remco, Timothy G. Vaughan, Joëlle Barido-Sottani, Sebastián Duchêne, Mathieu Fourment, 
+Alexandra Gavryushkina, Joseph Heled, Graham Jones, Denise Kühnert, Nicola De Maio, Michael Matschiner, 
+Fábio K. Mendes, Nicola F. Müller, Huw A. Ogilvie, Louis du Plessis, Alex Popinga, Andrew Rambaut, 
+David Rasmussen, Igor Siveroni, Marc A. Suchard, Chieh-Hsi Wu, Dong Xie, Chi Zhang, Tanja Stadler, 
+Alexei J. Drummond 
+  BEAST 2.5: An advanced software platform for Bayesian evolutionary analysis. 
+  PLoS computational biology 15, no. 4 (2019): e1006650.</p>
+<p><a href="https://doi.org/10.1371/journal.pcbi.1006650">doi:10.1371/journal.pcbi.1006650</a></p>
+<h2>Inputs:</h2>
+<p><a href='#useThreads'>useThreads</a>, <a href='#minThreads'>minThreads</a>, <a href='#maxThreads'>maxThreads</a>, <a href='#switchCount'>switchCount</a>, <a href='#reconfigCount'>reconfigCount</a>, <a href='#stopAfterSamerResults'>stopAfterSamerResults</a>, <a href='#includeMPTL'>includeMPTL</a>, <a href='#includeSPTL'>includeSPTL</a>, <a href='#chainLength'>chainLength</a>, <a href='#state'>state</a>, <a href='#init'>init</a>, <a href='#storeEvery'>storeEvery</a>, <a href='#preBurnin'>preBurnin</a>, <a href='#numInitializationAttempts'>numInitializationAttempts</a>, <a href='#distribution'>distribution</a>, <a href='#operator'>operator</a>, <a href='#logger'>logger</a>, <a href='#sampleFromPrior'>sampleFromPrior</a>, <a href='#operatorschedule'>operatorschedule</a </p>
+<p>&nbsp</p><table id='useThreads' border='1px' width='90%'>
+<caption>useThreads</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>calculated the distributions in parallel using threads (default true)-- only used if no SelfTuningCompoundDistribution specified.</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='minThreads' border='1px' width='90%'>
+<caption>minThreads</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>minimum number of threads to use (default 1)-- only used if no SelfTuningCompoundDistribution specified.</td></tr>
+<tr><td>
+Optional input. Default: 1</td></tr>
+</table>
+<p>&nbsp</p><table id='maxThreads' border='1px' width='90%'>
+<caption>maxThreads</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>maximum number of threads to use, if less than 1 the number of threads in BeastMCMC is used (default -1)-- only used if no SelfTuningCompoundDistribution specified.</td></tr>
+<tr><td>
+Optional input. Default: -1</td></tr>
+</table>
+<p>&nbsp</p><table id='switchCount' border='1px' width='90%'>
+<caption>switchCount</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Long</td></tr></thead>
+<tr><td>number of milli seconds to calculate likelihood before switching configuration-- only used if no SelfTuningCompoundDistribution specified.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='reconfigCount' border='1px' width='90%'>
+<caption>reconfigCount</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Long</td></tr></thead>
+<tr><td>number of times to calculate likelihood before self tuning again-- only used if no SelfTuningCompoundDistribution specified.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='stopAfterSamerResults' border='1px' width='90%'>
+<caption>stopAfterSamerResults</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>number of times the same configuration is optimal in a row before stopping to tune-- only used if no SelfTuningCompoundDistribution specified.</td></tr>
+<tr><td>
+Optional input. Default: 3</td></tr>
+</table>
+<p>&nbsp</p><table id='includeMPTL' border='1px' width='90%'>
+<caption>includeMPTL</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>include multi-partition (BEAGLE 3) tree likelihood in configurations-- only used if no SelfTuningCompoundDistribution specified.</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='includeSPTL' border='1px' width='90%'>
+<caption>includeSPTL</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>include single-partition (BEAGLE 2) tree likelihood in configurations-- only used if no SelfTuningCompoundDistribution specified.</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='chainLength' border='1px' width='90%'>
+<caption>chainLength</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Long</td></tr></thead>
+<tr><td>Length of the MCMC chain i.e. number of samples taken in main loop</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='state' border='1px' width='90%'>
+<caption>state</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.State.html'>beast.base.inference.State</a></td></tr></thead>
+<tr><td>elements of the state space</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='init' border='1px' width='90%'>
+<caption>init</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.StateNodeInitialiser***</td></tr></thead>
+<tr><td>one or more state node initilisers used for determining the start state of the chain</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='storeEvery' border='1px' width='90%'>
+<caption>storeEvery</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>store the state to disk every X number of samples so that we can resume computation later on if the process failed half-way.</td></tr>
+<tr><td>
+Optional input. Default: -1</td></tr>
+</table>
+<p>&nbsp</p><table id='preBurnin' border='1px' width='90%'>
+<caption>preBurnin</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Number of burn in samples taken before entering the main loop</td></tr>
+<tr><td>
+Optional input. Default: 0</td></tr>
+</table>
+<p>&nbsp</p><table id='numInitializationAttempts' border='1px' width='90%'>
+<caption>numInitializationAttempts</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Number of initialization attempts before failing (default=10)</td></tr>
+<tr><td>
+Optional input. Default: 10</td></tr>
+</table>
+<p>&nbsp</p><table id='distribution' border='1px' width='90%'>
+<caption>distribution</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.Distribution</td></tr></thead>
+<tr><td>probability distribution to sample over (e.g. a posterior)</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='operator' border='1px' width='90%'>
+<caption>operator</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.Operator***</td></tr></thead>
+<tr><td>operator for generating proposals in MCMC state space</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='logger' border='1px' width='90%'>
+<caption>logger</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.Logger.html'>beast.base.inference.Logger***</a></td></tr></thead>
+<tr><td>loggers for reporting progress of MCMC chain</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='sampleFromPrior' border='1px' width='90%'>
+<caption>sampleFromPrior</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>whether to ignore the likelihood when sampling (default false). The distribution with id 'likelihood' in the posterior input will be ignored when this flag is set.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='operatorschedule' border='1px' width='90%'>
+<caption>operatorschedule</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.OperatorSchedule.html'>beast.base.inference.OperatorSchedule</a></td></tr></thead>
+<tr><td>specify operator selection and optimisation schedule</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastfx.app.inputeditor.BeautiSubTemplate</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastfx.app.inputeditor.BeautiSubTemplate</h1>
+<p>Template that specifies which sub-net needs to be created when a beastObject of a paricular class is created.</p>
+<h2>Inputs:</h2>
+<p><a href='#class'>class</a>, <a href='#mainid'>mainid</a>, <a href='#value'>value</a>, <a href='#connect'>connect</a>, <a href='#suppressInputs'>suppressInputs</a>, <a href='#inlineInputs'>inlineInputs</a>, <a href='#collapsedInputs'>collapsedInputs</a>, <a href='#hmc'>hmc</a </p>
+<p>&nbsp</p><table id='class' border='1px' width='90%'>
+<caption>class</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>name of the class (with full class path) to be created</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='mainid' border='1px' width='90%'>
+<caption>mainid</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>specifies id of the main beastObject to be created by the template</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='value' border='1px' width='90%'>
+<caption>value</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>collection of objects to be created in Beast2 xml format</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='connect' border='1px' width='90%'>
+<caption>connect</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beastfx.app.inputeditor.BeautiConnector.html'>beastfx.app.inputeditor.BeautiConnector***</a></td></tr></thead>
+<tr><td>Specifies which part of the template get connected to the main network</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='suppressInputs' border='1px' width='90%'>
+<caption>suppressInputs</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>comma separated list of inputs that should not be shown</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='inlineInputs' border='1px' width='90%'>
+<caption>inlineInputs</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>comma separated list of inputs that should go inline, e.g. beast.evolution.sitemodel.SiteModel.substModel</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='collapsedInputs' border='1px' width='90%'>
+<caption>collapsedInputs</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>comma separated list of inputs that should go inline, but are initially collapsed, e.g. beast.core.MCMC.logger</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='hmc' border='1px' width='90%'>
+<caption>hmc</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>comma delimited list of `help me choose` pages available from the https://beast2-dev.github.io/hmc/ site.Pages can be redirected by adding an alias, e.g. CalibratedYuleModelNarrow/isNarrow/=Narrow/isNarrow/.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

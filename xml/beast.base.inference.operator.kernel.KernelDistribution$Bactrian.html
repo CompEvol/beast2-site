@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beast.base.inference.operator.kernel.KernelDistribution$Bactrian</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beast.base.inference.operator.kernel.KernelDistribution$Bactrian</h1>
+<p>Kernel distribution with two modes, so called Bactrian distribution</p>
+<h2>Inputs:</h2>
+<p><a href='#mode'>mode</a>, <a href='#m'>m</a>, <a href='#a'>a</a>, <a href='#defaultInitial'>defaultInitial</a>, <a href='#defaultBurnin'>defaultBurnin</a </p>
+<p>&nbsp</p><table id='mode' border='1px' width='90%'>
+<caption>mode</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.operator.kernel.KernelDistribution$Bactrian$mode</td></tr></thead>
+<tr><td>selects the shape of the distribution</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='m' border='1px' width='90%'>
+<caption>m</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>standard deviation for Bactrian distribution. Larger values give more peaked distributions. The default 0.95 is claimed to be a good choice (Yang 2014, book p.224).</td></tr>
+<tr><td>
+Optional input. Default: 0.95</td></tr>
+</table>
+<p>&nbsp</p><table id='a' border='1px' width='90%'>
+<caption>a</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>parameter for box, airplane and strawhat kernels, ignored otherwise</td></tr>
+<tr><td>
+Optional input. Default: 0.0</td></tr>
+</table>
+<p>&nbsp</p><table id='defaultInitial' border='1px' width='90%'>
+<caption>defaultInitial</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Number of proposals skipped before learning about the val</td></tr>
+<tr><td>
+Optional input. Default: 500</td></tr>
+</table>
+<p>&nbsp</p><table id='defaultBurnin' border='1px' width='90%'>
+<caption>defaultBurnin</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Number of proposals skipped before any learned information is applied</td></tr>
+<tr><td>
+Optional input. Default: 500</td></tr>
+</table>
+</body>
+</html>

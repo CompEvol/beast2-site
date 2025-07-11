@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beast.base.evolution.substitutionmodel.GTR</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beast.base.evolution.substitutionmodel.GTR</h1>
+<p>Specifies transition probability matrix with no restrictions on the rates other than that one of the is equal to one and the others are specified relative to this unit rate. Works for any number of states.<br/>General Time Reversible model of nucleotide evolution. Rates that are not specified are assumed to be 1. </p>
+<h2>Inputs:</h2>
+<p><a href='#rateAC'>rateAC</a>, <a href='#rateAG'>rateAG</a>, <a href='#rateAT'>rateAT</a>, <a href='#rateCG'>rateCG</a>, <a href='#rateCT'>rateCT</a>, <a href='#rateGT'>rateGT</a>, <a href='#rates'>rates</a>, <a href='#eigenSystem'>eigenSystem</a>, <a href='#frequencies'>frequencies</a </p>
+<p>&nbsp</p><table id='rateAC' border='1px' width='90%'>
+<caption>rateAC</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>substitution rate for A to C (default 1)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='rateAG' border='1px' width='90%'>
+<caption>rateAG</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>substitution rate for A to G (default 1)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='rateAT' border='1px' width='90%'>
+<caption>rateAT</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>substitution rate for A to T (default 1)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='rateCG' border='1px' width='90%'>
+<caption>rateCG</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>substitution rate for C to G (default 1)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='rateCT' border='1px' width='90%'>
+<caption>rateCT</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>substitution rate for C to T (default 1)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='rateGT' border='1px' width='90%'>
+<caption>rateGT</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>substitution rate for G to T (default 1)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='rates' border='1px' width='90%'>
+<caption>rates</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>Rate parameter which defines the transition rate matrix. Only the off-diagonal entries need to be specified (diagonal makes row sum to zero in a rate matrix). Entry i specifies the rate from floor(i/(n-1)) to i%(n-1)+delta where n is the number of states and delta=1 if floor(i/(n-1)) <= i%(n-1) and 0 otherwise.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='eigenSystem' border='1px' width='90%'>
+<caption>eigenSystem</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>Name of the class used for creating an EigenSystem</td></tr>
+<tr><td>
+Optional input. Default: beast.base.evolution.substitutionmodel.DefaultEigenSystem</td></tr>
+</table>
+<p>&nbsp</p><table id='frequencies' border='1px' width='90%'>
+<caption>frequencies</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.substitutionmodel.Frequencies.html'>beast.base.evolution.substitutionmodel.Frequencies</a></td></tr></thead>
+<tr><td>substitution model equilibrium state frequencies</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

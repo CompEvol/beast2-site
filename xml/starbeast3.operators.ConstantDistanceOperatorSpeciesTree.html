@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: starbeast3.operators.ConstantDistanceOperatorSpeciesTree</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: starbeast3.operators.ConstantDistanceOperatorSpeciesTree</h1>
+<p>Proposes a move in state space.<br/><br/><br/>For internal nodes: propose a new node time</p>
+<h2>Inputs:</h2>
+<p><a href='#twindowSize'>twindowSize</a>, <a href='#popsizes'>popsizes</a>, <a href='#proportionalToBranchLength'>proportionalToBranchLength</a>, <a href='#clock'>clock</a>, <a href='#tree'>tree</a>, <a href='#markclades'>markclades</a>, <a href='#gene'>gene</a>, <a href='#kernel'>kernel</a>, <a href='#kernelDistribution'>kernelDistribution</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='twindowSize' border='1px' width='90%'>
+<caption>twindowSize</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>the size of the window when proposing new node time</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='popsizes' border='1px' width='90%'>
+<caption>popsizes</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>the constant population sizes associated with nodes in the tree.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='proportionalToBranchLength' border='1px' width='90%'>
+<caption>proportionalToBranchLength</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Set proposal step sizes proportional to branch length (true) or a constant (false)</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='clock' border='1px' width='90%'>
+<caption>clock</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.evolution.branchratemodel.UCRelaxedClockModelSB3.html'>starbeast3.evolution.branchratemodel.UCRelaxedClockModelSB3</a></td></tr></thead>
+<tr><td>the relaxed clock model associated with species tree branch rates. If not specified, then rates will not change (eg strict clock)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>beast.tree on which this operation is performed</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='markclades' border='1px' width='90%'>
+<caption>markclades</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Mark all ancestors of nodes changed by the operator as changed, up to the MRCA of all nodes changed by the operator.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='gene' border='1px' width='90%'>
+<caption>gene</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.evolution.speciation.GeneTreeForSpeciesTreeDistribution.html'>starbeast3.evolution.speciation.GeneTreeForSpeciesTreeDistribution***</a></td></tr></thead>
+<tr><td>list of gene trees that constrain species tree movement</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='kernel' border='1px' width='90%'>
+<caption>kernel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.genekernel.GTKPrior.html'>starbeast3.genekernel.GTKPrior</a></td></tr></thead>
+<tr><td>the kernel of gene trees</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='kernelDistribution' border='1px' width='90%'>
+<caption>kernelDistribution</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.operator.kernel.KernelDistribution</td></tr></thead>
+<tr><td>provides sample distribution for proposals</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

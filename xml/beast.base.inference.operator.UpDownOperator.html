@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beast.base.inference.operator.UpDownOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beast.base.inference.operator.UpDownOperator</h1>
+<p>Proposes a move in state space.<br/>This element represents an operator that scales two parameters in different directions. Each operation involves selecting a scale uniformly at random between scaleFactor and 1/scaleFactor. The up parameter is multiplied by this scale and the down parameter is divided by this scale.</p>
+<h2>Inputs:</h2>
+<p><a href='#scaleFactor'>scaleFactor</a>, <a href='#up'>up</a>, <a href='#down'>down</a>, <a href='#optimise'>optimise</a>, <a href='#elementWise'>elementWise</a>, <a href='#differentRandomIndex'>differentRandomIndex</a>, <a href='#upper'>upper</a>, <a href='#lower'>lower</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='scaleFactor' border='1px' width='90%'>
+<caption>scaleFactor</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>magnitude factor used for scaling</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='up' border='1px' width='90%'>
+<caption>up</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.StateNode***</td></tr></thead>
+<tr><td>zero or more items to scale upwards</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='down' border='1px' width='90%'>
+<caption>down</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.StateNode***</td></tr></thead>
+<tr><td>zero or more items to scale downwards</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='optimise' border='1px' width='90%'>
+<caption>optimise</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>flag to indicate that the scale factor is automatically changed in order to achieve a good acceptance rate (default true)</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='elementWise' border='1px' width='90%'>
+<caption>elementWise</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>flag to indicate that the scaling is applied to a random index in multivariate parameters (default false)</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='differentRandomIndex' border='1px' width='90%'>
+<caption>differentRandomIndex</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>flag to indicate if a different random index should be chosen for each parameter (default false); only applicable if elementWise is set to true</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='upper' border='1px' width='90%'>
+<caption>upper</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>Upper Limit of scale factor</td></tr>
+<tr><td>
+Optional input. Default: 1.0</td></tr>
+</table>
+<p>&nbsp</p><table id='lower' border='1px' width='90%'>
+<caption>lower</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>Lower limit of scale factor</td></tr>
+<tr><td>
+Optional input. Default: 0.0</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

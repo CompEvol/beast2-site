@@ -1,0 +1,167 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: feast.simulation.SimulatedAlignment</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: feast.simulation.SimulatedAlignment</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>A node that can be part of the state.<br/>Unordered set mapping keys to values<br/>Generic class for associating data to tips of a tree, e.g. an Alignment.<br/>Class representing alignment data<br/>A more flexible alignment simulator. Doesn't require pre-specification of number of taxa.</p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#tree'>tree</a>, <a href='#siteModel'>siteModel</a>, <a href='#sequenceLength'>sequenceLength</a>, <a href='#outputFileName'>outputFileName</a>, <a href='#startingSequence'>startingSequence</a>, <a href='#startingSequenceAge'>startingSequenceAge</a>, <a href='#sequence'>sequence</a>, <a href='#statecount'>statecount</a>, <a href='#dataType'>dataType</a>, <a href='#strip'>strip</a>, <a href='#weights'>weights</a>, <a href='#ascertained'>ascertained</a>, <a href='#excludefrom'>excludefrom</a>, <a href='#excludeto'>excludeto</a>, <a href='#excludeevery'>excludeevery</a>, <a href='#includefrom'>includefrom</a>, <a href='#includeto'>includeto</a>, <a href='#includeevery'>includeevery</a>, <a href='#taxa'>taxa</a>, <a href='#userDataType'>userDataType</a>, <a href='#*'>*</a>, <a href='#estimate'>estimate</a </p>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>Tree down which to simulate sequence evolution.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='siteModel' border='1px' width='90%'>
+<caption>siteModel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.sitemodel.SiteModel.html'>beast.base.evolution.sitemodel.SiteModel</a></td></tr></thead>
+<tr><td>Site model to use in simulation.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='sequenceLength' border='1px' width='90%'>
+<caption>sequenceLength</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Length of sequence to simulate.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='outputFileName' border='1px' width='90%'>
+<caption>outputFileName</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>Name of file (if any) simulated alignment should be saved to.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='startingSequence' border='1px' width='90%'>
+<caption>startingSequence</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.alignment.Sequence.html'>beast.base.evolution.alignment.Sequence</a></td></tr></thead>
+<tr><td>Initial sequence to start from.  (Default is random draw from equilibrium distribution.)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='startingSequenceAge' border='1px' width='90%'>
+<caption>startingSequenceAge</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>When startingSequence is specified, age (relative to the final sample) at which the sequence simulation starts from. (Default is the age of the root of the tree, but use this to make the starting sequence correspond toan earlier time.) Must be greater than the tMRCA of the tree.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='sequence' border='1px' width='90%'>
+<caption>sequence</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.alignment.Sequence.html'>beast.base.evolution.alignment.Sequence***</a></td></tr></thead>
+<tr><td>sequence and meta data for particular taxon</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='statecount' border='1px' width='90%'>
+<caption>statecount</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>maximum number of states in all sequences</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='dataType' border='1px' width='90%'>
+<caption>dataType</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>data type, one of {aminoacid=aminoacid, binary=binary, integer=integer, nucleotide=nucleotide, standard=standard, twoStateCovarion=twoStateCovarion, user defined=user defined}</td></tr>
+<tr><td>
+Optional input. Default: nucleotide</td></tr>
+</table>
+<p>&nbsp</p><table id='strip' border='1px' width='90%'>
+<caption>strip</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>sets weight to zero for sites that are invariant (e.g. all 1, all A or all unkown)</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='weights' border='1px' width='90%'>
+<caption>weights</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>comma separated list of weights, one for each site in the sequences. If not specified, each site has weight 1</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='ascertained' border='1px' width='90%'>
+<caption>ascertained</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>is true if the alignment allows ascertainment correction, i.e., conditioning the Felsenstein likelihood on excluding constant sites from the alignment</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='excludefrom' border='1px' width='90%'>
+<caption>excludefrom</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>first site to condition on, default 0</td></tr>
+<tr><td>
+Optional input. Default: 0</td></tr>
+</table>
+<p>&nbsp</p><table id='excludeto' border='1px' width='90%'>
+<caption>excludeto</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>last site to condition on (but excluding this site), default 0</td></tr>
+<tr><td>
+Optional input. Default: 0</td></tr>
+</table>
+<p>&nbsp</p><table id='excludeevery' border='1px' width='90%'>
+<caption>excludeevery</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>interval between sites to condition on (default 1)</td></tr>
+<tr><td>
+Optional input. Default: 1</td></tr>
+</table>
+<p>&nbsp</p><table id='includefrom' border='1px' width='90%'>
+<caption>includefrom</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>first site to condition on, default 0</td></tr>
+<tr><td>
+Optional input. Default: 0</td></tr>
+</table>
+<p>&nbsp</p><table id='includeto' border='1px' width='90%'>
+<caption>includeto</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>last site to condition on, default 0</td></tr>
+<tr><td>
+Optional input. Default: 0</td></tr>
+</table>
+<p>&nbsp</p><table id='includeevery' border='1px' width='90%'>
+<caption>includeevery</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>interval between sites to condition on (default 1)</td></tr>
+<tr><td>
+Optional input. Default: 1</td></tr>
+</table>
+<p>&nbsp</p><table id='taxa' border='1px' width='90%'>
+<caption>taxa</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.alignment.TaxonSet.html'>beast.base.evolution.alignment.TaxonSet</a></td></tr></thead>
+<tr><td>An optional taxon-set used only to sort the sequences into the same order as they appear in the taxon-set.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='userDataType' border='1px' width='90%'>
+<caption>userDataType</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.datatype.DataType$Base</td></tr></thead>
+<tr><td>non-standard, user specified data type, if specified 'dataType' is ignored</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='*' border='1px' width='90%'>
+<caption>*</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>Input containing the map</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='estimate' border='1px' width='90%'>
+<caption>estimate</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>whether to estimate this item or keep constant to its initial value</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+</body>
+</html>

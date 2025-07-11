@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beast.base.inference.State</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beast.base.inference.State</h1>
+<p>The state represents the current point in the state space, and maintains values of a set of StateNodes, such as parameters and trees. Furthermore, the state manages which parts of the model need to be stored/restored and notified that recalculation is appropriate.</p>
+<h2>Inputs:</h2>
+<p><a href='#stateNode'>stateNode</a>, <a href='#storeEvery'>storeEvery</a>, <a href='#experimental'>experimental</a </p>
+<p>&nbsp</p><table id='stateNode' border='1px' width='90%'>
+<caption>stateNode</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.StateNode***</td></tr></thead>
+<tr><td>anything that is part of the state</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='storeEvery' border='1px' width='90%'>
+<caption>storeEvery</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>store the state to disk every X number of samples so that we can resume computation later on if the process failed half-way.</td></tr>
+<tr><td>
+Optional input. Default: -1</td></tr>
+</table>
+<p>&nbsp</p><table id='experimental' border='1px' width='90%'>
+<caption>experimental</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Use experimental code to calculate calcNodePath.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+</body>
+</html>

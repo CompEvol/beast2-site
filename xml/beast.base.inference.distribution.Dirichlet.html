@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beast.base.inference.distribution.Dirichlet</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beast.base.inference.distribution.Dirichlet</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>A class that describes a parametric distribution, that is, a distribution that takes some parameters/valuables as inputs and can produce (cumulative) densities and inverse cumulative densities.<br/>Dirichlet distribution.  p(x_1,...,x_n;alpha_1,...,alpha_n) = 1/B(alpha) prod_{i=1}^K x_i^{alpha_i - 1} where B() is the beta function B(alpha) = prod_{i=1}^K Gamma(alpha_i)/ Gamma(sum_{i=1}^K alpha_i}. </p>
+<h2>Inputs:</h2>
+<p><a href='#alpha'>alpha</a>, <a href='#sum'>sum</a>, <a href='#offset'>offset</a </p>
+<p>&nbsp</p><table id='alpha' border='1px' width='90%'>
+<caption>alpha</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>coefficients of the Dirichlet distribution</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='sum' border='1px' width='90%'>
+<caption>sum</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>expected sum of the values</td></tr>
+<tr><td>
+Optional input. Default: 1.0</td></tr>
+</table>
+<p>&nbsp</p><table id='offset' border='1px' width='90%'>
+<caption>offset</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>offset of origin (defaults to 0)</td></tr>
+<tr><td>
+Optional input. Default: 0.0</td></tr>
+</table>
+</body>
+</html>

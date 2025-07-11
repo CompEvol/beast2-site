@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: sa.evolution.operators.WilsonBaldingWithRateCategories</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: sa.evolution.operators.WilsonBaldingWithRateCategories</h1>
+<p>Proposes a move in state space.<br/>This operator changes a beast.tree.<br/>Implement Wilson Balding operator for (zero branch) sampled ancestor trees and per branch rate categoriesThis version of Wilson Balding operator does not change the root.  </p>
+<h2>Inputs:</h2>
+<p><a href='#rateCategories'>rateCategories</a>, <a href='#tree'>tree</a>, <a href='#markclades'>markclades</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='rateCategories' border='1px' width='90%'>
+<caption>rateCategories</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.IntegerParameter.html'>beast.base.inference.parameter.IntegerParameter</a></td></tr></thead>
+<tr><td>rate category per branch</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>beast.tree on which this operation is performed</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='markclades' border='1px' width='90%'>
+<caption>markclades</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Mark all ancestors of nodes changed by the operator as changed, up to the MRCA of all nodes changed by the operator.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

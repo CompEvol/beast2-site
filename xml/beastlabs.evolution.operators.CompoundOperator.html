@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastlabs.evolution.operators.CompoundOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastlabs.evolution.operators.CompoundOperator</h1>
+<p>Proposes a move in state space.<br/>Operator that distributes a certain amount of operator weight. This is useful in setting up analyses with many operators (like a *BEAST analysis) and where the total amount of weight for groups of operators (say gene tree operators) needs to be fixed for optimal performance.</p>
+<h2>Inputs:</h2>
+<p><a href='#operator'>operator</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='operator' border='1px' width='90%'>
+<caption>operator</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.Operator***</td></tr></thead>
+<tr><td>operator the CompoundOperator chooses from with probability proportional to its weight</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

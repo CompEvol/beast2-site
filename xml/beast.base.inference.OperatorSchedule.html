@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beast.base.inference.OperatorSchedule</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beast.base.inference.OperatorSchedule</h1>
+<table border='1px'>
+<thead><tr><td>implemented by the following</td></tr></thead>
+<tr><td><a href='starbeast3.operators.MultiStepOperatorSchedule.html'>starbeast3.operators.MultiStepOperatorSchedule</a></td></tr>
+<tr><td><a href='beast.base.evolution.operator.kernel.BactrianOperatorSchedule.html'>beast.base.evolution.operator.kernel.BactrianOperatorSchedule</a></td></tr>
+<tr><td><a href='starbeast3.core.OperatorScheduleRecalculator.html'>starbeast3.core.OperatorScheduleRecalculator</a></td></tr>
+</table>
+<p>Specify operator selection and optimisation schedule</p>
+<h2>Inputs:</h2>
+<p><a href='#transform'>transform</a>, <a href='#autoOptimize'>autoOptimize</a>, <a href='#detailedRejection'>detailedRejection</a>, <a href='#autoOptimizeDelay'>autoOptimizeDelay</a>, <a href='#operator'>operator</a>, <a href='#subschedule'>subschedule</a>, <a href='#weight'>weight</a>, <a href='#weightIsPercentage'>weightIsPercentage</a>, <a href='#operatorPattern'>operatorPattern</a </p>
+<p>&nbsp</p><table id='transform' border='1px' width='90%'>
+<caption>transform</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.OperatorSchedule$OptimisationTransform</td></tr></thead>
+<tr><td>transform optimisation schedule (default none) This can be [none, log, sqrt] (default 'none')</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='autoOptimize' border='1px' width='90%'>
+<caption>autoOptimize</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>whether to automatically optimise operator settings</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='detailedRejection' border='1px' width='90%'>
+<caption>detailedRejection</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>true if detailed rejection statistics should be included. (default=false)</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='autoOptimizeDelay' border='1px' width='90%'>
+<caption>autoOptimizeDelay</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>number of samples to skip before auto optimisation kicks in (default=10000)</td></tr>
+<tr><td>
+Optional input. Default: 10000</td></tr>
+</table>
+<p>&nbsp</p><table id='operator' border='1px' width='90%'>
+<caption>operator</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.Operator***</td></tr></thead>
+<tr><td>operator that the schedule can choose from. Any operators added by other classes (e.g. MCMC) will be added if there are no duplicates.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='subschedule' border='1px' width='90%'>
+<caption>subschedule</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.OperatorSchedule.html'>beast.base.inference.OperatorSchedule***</a></td></tr></thead>
+<tr><td>operator schedule representing a subset ofthe weight of the operators it contains.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator schedule is selected. Only used when this operator schedule is nested inside other schedules. This weight is relative to other operators and operator schedules of the parent schedule.</td></tr>
+<tr><td>
+Optional input. Default: 100.0</td></tr>
+</table>
+<p>&nbsp</p><table id='weightIsPercentage' border='1px' width='90%'>
+<caption>weightIsPercentage</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>indicates weight is a percentage of total weight instead of a relative weight</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='operatorPattern' border='1px' width='90%'>
+<caption>operatorPattern</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>Regular expression matching operator IDs of operators of parent schedule</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

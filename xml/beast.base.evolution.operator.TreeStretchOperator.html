@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beast.base.evolution.operator.TreeStretchOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beast.base.evolution.operator.TreeStretchOperator</h1>
+<p>Proposes a move in state space.<br/>Scale operator that scales random epoch in a tree<br/>Scales tree skewing parts to take tip dates in account</p>
+<h2>Reference:</h2><p>Bouckaert RR. An efficient coalescent epoch model for Bayesian phylogenetic inference. Systematic Biology, syac015, 2022</p>
+<p><a href="https://doi.org/DOI:10.1093/sysbio/syac015">doi:DOI:10.1093/sysbio/syac015</a></p>
+<h2>Inputs:</h2>
+<p><a href='#meanRate'>meanRate</a>, <a href='#tree'>tree</a>, <a href='#kernelDistribution'>kernelDistribution</a>, <a href='#optimise'>optimise</a>, <a href='#scaleFactor'>scaleFactor</a>, <a href='#fromOldestTipOnly'>fromOldestTipOnly</a>, <a href='#groupSizes'>groupSizes</a>, <a href='#treeIntervals'>treeIntervals</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='meanRate' border='1px' width='90%'>
+<caption>meanRate</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>mean clock rate -- inversely scaled if specified</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>beast.tree on which this operation is performed</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='kernelDistribution' border='1px' width='90%'>
+<caption>kernelDistribution</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.operator.kernel.KernelDistribution</td></tr></thead>
+<tr><td>provides sample distribution for proposals</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='optimise' border='1px' width='90%'>
+<caption>optimise</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>flag to indicate that the scale factor is automatically changed in order to achieve a good acceptance rate (default true)</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='scaleFactor' border='1px' width='90%'>
+<caption>scaleFactor</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>scaling factor -- positive number that determines size of the jump: higher means bigger jumps.</td></tr>
+<tr><td>
+Optional input. Default: 0.05</td></tr>
+</table>
+<p>&nbsp</p><table id='fromOldestTipOnly' border='1px' width='90%'>
+<caption>fromOldestTipOnly</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>only scale parts between root and oldest tip. If false, use any epoch between youngest tip and root.</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='groupSizes' border='1px' width='90%'>
+<caption>groupSizes</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.IntegerParameter.html'>beast.base.inference.parameter.IntegerParameter</a></td></tr></thead>
+<tr><td>the group sizes parameter. If specified, use group sizes as boundaries(and fromOldestTipOnly is ignored)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='treeIntervals' border='1px' width='90%'>
+<caption>treeIntervals</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.TreeIntervals.html'>beast.base.evolution.tree.TreeIntervals</a></td></tr></thead>
+<tr><td>Intervals for a phylogenetic beast tree. Must be specified if groupSizes is specified.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

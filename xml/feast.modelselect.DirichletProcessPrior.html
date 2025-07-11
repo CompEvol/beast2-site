@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: feast.modelselect.DirichletProcessPrior</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: feast.modelselect.DirichletProcessPrior</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>Probabilistic representation that can produce a log probability for instance for running an MCMC chain.<br/>A distribution representing the probability of the elements of an input function (parameter) under a Dirichlet process prior with a particular base distribution (baseDistr) and scale paraemter (scaleParameter). In order to use this, you'll need to ensure operators preserve the equivalence of identical elements of function.</p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#parameter'>parameter</a>, <a href='#baseDistr'>baseDistr</a>, <a href='#scaleParameter'>scaleParameter</a </p>
+<p>&nbsp</p><table id='parameter' border='1px' width='90%'>
+<caption>parameter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>Array to which to apply DPP.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='baseDistr' border='1px' width='90%'>
+<caption>baseDistr</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.distribution.ParametricDistribution</td></tr></thead>
+<tr><td>Base distribution for Dirichlet process</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='scaleParameter' border='1px' width='90%'>
+<caption>scaleParameter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>Scale parameter of DPP.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

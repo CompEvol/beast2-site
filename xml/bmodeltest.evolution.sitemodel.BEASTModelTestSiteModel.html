@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: bmodeltest.evolution.sitemodel.BEASTModelTestSiteModel</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: bmodeltest.evolution.sitemodel.BEASTModelTestSiteModel</h1>
+<table border='1px'>
+<thead><tr><td>implemented by the following</td></tr></thead>
+<tr><td><a href='bmodeltest.evolution.sitemodel.BEASTModelTest.html'>bmodeltest.evolution.sitemodel.BEASTModelTest</a></td></tr>
+</table>
+<p>Defines mutation rate and gamma distributed rates across sites (optional) and proportion of the sites invariant (also optional).<br/>Site model that jumps between with and without gamma sites, as well as with and without invariant sites</p>
+<h2>Reference:</h2><p>Bouckaert RR, Drummond AJ. bModelTest: Bayesian phylogenetic site model averaging and model comparison. BMC evolutionary biology. 2017 Dec;17(1):42.</p>
+<p><a href="https://doi.org/https://doi.org/10.1186/s12862-017-0890-6">doi:https://doi.org/10.1186/s12862-017-0890-6</a></p>
+<h2>Inputs:</h2>
+<p><a href='#hasGammaRates'>hasGammaRates</a>, <a href='#hasInvariantSites'>hasInvariantSites</a>, <a href='#mutationRate'>mutationRate</a>, <a href='#gammaCategoryCount'>gammaCategoryCount</a>, <a href='#shape'>shape</a>, <a href='#proportionInvariant'>proportionInvariant</a>, <a href='#substModel'>substModel</a </p>
+<p>&nbsp</p><table id='hasGammaRates' border='1px' width='90%'>
+<caption>hasGammaRates</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.IntegerParameter.html'>beast.base.inference.parameter.IntegerParameter</a></td></tr></thead>
+<tr><td>flag indicating whether gamma rate heterogeneity should be used (if 1) or not (if 0)</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='hasInvariantSites' border='1px' width='90%'>
+<caption>hasInvariantSites</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.IntegerParameter.html'>beast.base.inference.parameter.IntegerParameter</a></td></tr></thead>
+<tr><td>flag indicating whether invariant sites should be used (if 1) or not (if 0)</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='mutationRate' border='1px' width='90%'>
+<caption>mutationRate</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>mutation rate (defaults to 1.0)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='gammaCategoryCount' border='1px' width='90%'>
+<caption>gammaCategoryCount</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>gamma category count (default=zero for no gamma)</td></tr>
+<tr><td>
+Optional input. Default: 0</td></tr>
+</table>
+<p>&nbsp</p><table id='shape' border='1px' width='90%'>
+<caption>shape</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>shape parameter of gamma distribution. Ignored if gammaCategoryCount 1 or less</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='proportionInvariant' border='1px' width='90%'>
+<caption>proportionInvariant</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>proportion of sites that is invariant: should be between 0 (default) and 1</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='substModel' border='1px' width='90%'>
+<caption>substModel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.substitutionmodel.SubstitutionModel</td></tr></thead>
+<tr><td>substitution model along branches in the beast.tree</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

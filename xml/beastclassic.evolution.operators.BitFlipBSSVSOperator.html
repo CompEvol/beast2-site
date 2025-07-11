@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastclassic.evolution.operators.BitFlipBSSVSOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastclassic.evolution.operators.BitFlipBSSVSOperator</h1>
+<p>Proposes a move in state space.<br/>Flip one bit in an array of boolean bits and scale the BSSVS parameter accordingly. The hastings ratio is designed so that all subsets of vectors with the same number of 'on' bits are equiprobable.</p>
+<h2>Inputs:</h2>
+<p><a href='#indicator'>indicator</a>, <a href='#mu'>mu</a>, <a href='#scaleFactor'>scaleFactor</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='indicator' border='1px' width='90%'>
+<caption>indicator</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.BooleanParameter.html'>beast.base.inference.parameter.BooleanParameter</a></td></tr></thead>
+<tr><td>the parameter to operate a flip on.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='mu' border='1px' width='90%'>
+<caption>mu</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>the rate parameter in the substitution model (mutation rate).</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='scaleFactor' border='1px' width='90%'>
+<caption>scaleFactor</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>scaling factor: larger means more bold proposals</td></tr>
+<tr><td>
+Optional input. Default: 1.0</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

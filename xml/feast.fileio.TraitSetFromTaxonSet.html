@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: feast.fileio.TraitSetFromTaxonSet</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: feast.fileio.TraitSetFromTaxonSet</h1>
+<p>A trait set represent a collection of properties of taxons, for the use of initializing a tree. The traits are represented as text content in taxon=value form, for example, for a date trait, wecould have a content of chimp=1950,human=1991,neander=-10000. All white space is ignored, so they canbe put on multiple tabbed lines in the XML. The type of node in the tree determines what happes with this information. The default Node only recognizes 'date', 'date-forward' and 'date-backward' as a trait, but by creating custom Node classes other traits can be supported as well.<br/>Initialize a trait set from a taxon set. Permits similar functionality to the 'autoconfigure' option in BEAUti.</p>
+<h2>Inputs:</h2>
+<p><a href='#delimiter'>delimiter</a>, <a href='#everythingBeforeFirst'>everythingBeforeFirst</a>, <a href='#everythingAfterLast'>everythingAfterLast</a>, <a href='#takeGroup'>takeGroup</a>, <a href='#traitname'>traitname</a>, <a href='#units'>units</a>, <a href='#value'>value</a>, <a href='#taxa'>taxa</a>, <a href='#dateFormat'>dateFormat</a </p>
+<p>&nbsp</p><table id='delimiter' border='1px' width='90%'>
+<caption>delimiter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>Delimiter used to split taxon names.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='everythingBeforeFirst' border='1px' width='90%'>
+<caption>everythingBeforeFirst</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Use everything before this delimiter.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='everythingAfterLast' border='1px' width='90%'>
+<caption>everythingAfterLast</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Use everything before this delimiter.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='takeGroup' border='1px' width='90%'>
+<caption>takeGroup</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Use everthing in this group.</td></tr>
+<tr><td>
+Optional input. Default: -1</td></tr>
+</table>
+<p>&nbsp</p><table id='traitname' border='1px' width='90%'>
+<caption>traitname</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>name of the trait, used as meta data name for the tree. Special traitnames that are recognized are 'age','date','date-forward' and 'date-backward'.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='units' border='1px' width='90%'>
+<caption>units</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.tree.TraitSet$Units</td></tr></thead>
+<tr><td>name of the units in which values are posed, used for conversion to a real value. This can be [year, month, day] (default 'year')</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='value' border='1px' width='90%'>
+<caption>value</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>traits encoded as taxon=value pairs separated by commas</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='taxa' border='1px' width='90%'>
+<caption>taxa</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.alignment.TaxonSet.html'>beast.base.evolution.alignment.TaxonSet</a></td></tr></thead>
+<tr><td>contains list of taxa to map traits to</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='dateFormat' border='1px' width='90%'>
+<caption>dateFormat</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>the date/time format to be parsed, (e.g., 'dd/M/yyyy')</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

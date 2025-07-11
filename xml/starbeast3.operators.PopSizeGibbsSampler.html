@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: starbeast3.operators.PopSizeGibbsSampler</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: starbeast3.operators.PopSizeGibbsSampler</h1>
+<p>Proposes a move in state space.<br/><br/>Samples population sizes of constant populations for multi species coalescent model</p>
+<h2>Inputs:</h2>
+<p><a href='#popSizes'>popSizes</a>, <a href='#gammaprior'>gammaprior</a>, <a href='#intervals'>intervals</a>, <a href='#gene'>gene</a>, <a href='#kernel'>kernel</a>, <a href='#kernelDistribution'>kernelDistribution</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='popSizes' border='1px' width='90%'>
+<caption>popSizes</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>constant population size parameter, one dimension for each branch of the species tree</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='gammaprior' border='1px' width='90%'>
+<caption>gammaprior</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.distribution.ParametricDistribution</td></tr></thead>
+<tr><td>gamma distributed prior for population sizes</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='intervals' border='1px' width='90%'>
+<caption>intervals</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.TreeIntervals.html'>beast.base.evolution.tree.TreeIntervals</a></td></tr></thead>
+<tr><td>tree intervals for use with single tree -- should not be used if gene-attribute is used</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='gene' border='1px' width='90%'>
+<caption>gene</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.evolution.speciation.GeneTreeForSpeciesTreeDistribution.html'>starbeast3.evolution.speciation.GeneTreeForSpeciesTreeDistribution***</a></td></tr></thead>
+<tr><td>list of gene trees that constrain species tree movement</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='kernel' border='1px' width='90%'>
+<caption>kernel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.genekernel.GTKPrior.html'>starbeast3.genekernel.GTKPrior</a></td></tr></thead>
+<tr><td>the kernel of gene trees</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='kernelDistribution' border='1px' width='90%'>
+<caption>kernelDistribution</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.operator.kernel.KernelDistribution</td></tr></thead>
+<tr><td>provides sample distribution for proposals</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

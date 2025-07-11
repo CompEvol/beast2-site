@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastfx.app.tools.ClassEnumerator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastfx.app.tools.ClassEnumerator</h1>
+<p>Entry point for running a Beast task, for instance an MCMC or other probabilistic analysis, a simulation, etc.<br/>Lists classes of a given type. Useful for developers that want to set up an ant configuration file listing services of given type.</p>
+<h2>Inputs:</h2>
+<p><a href='#type'>type</a>, <a href='#package'>package</a>, <a href='#serviceFormat'>serviceFormat</a>, <a href='#moduleFormat'>moduleFormat</a </p>
+<p>&nbsp</p><table id='type' border='1px' width='90%'>
+<caption>type</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>class for which all implementations will be listed</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='package' border='1px' width='90%'>
+<caption>package</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>only classes inside this package will be listed</td></tr>
+<tr><td>
+Optional input. Default: beast</td></tr>
+</table>
+<p>&nbsp</p><table id='serviceFormat' border='1px' width='90%'>
+<caption>serviceFormat</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>list classes in service provider format for ant script</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='moduleFormat' border='1px' width='90%'>
+<caption>moduleFormat</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>list classes in format for module-info.java</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+</body>
+</html>

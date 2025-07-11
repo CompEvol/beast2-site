@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastlabs.tools.TraceStateNodeSource</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastlabs.tools.TraceStateNodeSource</h1>
+<p>Source of state node parameter values for post hoc analysis</p>
+<h2>Inputs:</h2>
+<p><a href='#trace'>trace</a>, <a href='#value'>value</a>, <a href='#state'>state</a </p>
+<p>&nbsp</p><table id='trace' border='1px' width='90%'>
+<caption>trace</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beastfx.app.util.LogFile</td></tr></thead>
+<tr><td>Trace logs containing parameter settings. First trace log should contain posterior.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='value' border='1px' width='90%'>
+<caption>value</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>comma delimited string of map enties. Each entry maps a trace label to a state node entry. Use square brackets to indicate the dimension. For example kappa.s:dna=kappa, freq.s:dna[0]=freq.A, freq.s:dna[1]=freq.C If no index is given in brackets, the first match in the trace will be assigned to index 0 and all consecutive matches to consecutive indices, e.g. freq.s:dna[]=freq.1 is equivalent to freq.s:dna[0]=freq.1,freq.s:dna[1]=freq.2,freq.s:dna[2]=freq.3,freq.s:dna[3]=freq.4</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='state' border='1px' width='90%'>
+<caption>state</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.State.html'>beast.base.inference.State</a></td></tr></thead>
+<tr><td>elements of the state space</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

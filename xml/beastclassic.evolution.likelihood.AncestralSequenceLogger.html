@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastclassic.evolution.likelihood.AncestralSequenceLogger</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastclassic.evolution.likelihood.AncestralSequenceLogger</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>Probabilistic representation that can produce a log probability for instance for running an MCMC chain.<br/>Generic tree likelihood for an alignment given a generic SiteModel, a beast tree and a branch rate model<br/>Calculates the probability of sequence data on a beast.tree given a site and substitution model using a variant of the 'peeling algorithm'. For details, seeFelsenstein, Joseph (1981). Evolutionary trees from DNA sequences: a maximum likelihood approach. J Mol Evol 17 (6): 368-376.<br/>Ancestral State Tree Likelihood<br/>Reconstructs sequences at internal nodes and logs them in NEXUS format</p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#logIndividualSites'>logIndividualSites</a>, <a href='#tag'>tag</a>, <a href='#useMAP'>useMAP</a>, <a href='#returnML'>returnML</a>, <a href='#useJava'>useJava</a>, <a href='#sampleTips'>sampleTips</a>, <a href='#leaftrait'>leaftrait</a>, <a href='#useAmbiguities'>useAmbiguities</a>, <a href='#useTipLikelihoods'>useTipLikelihoods</a>, <a href='#implementation'>implementation</a>, <a href='#scaling'>scaling</a>, <a href='#rootFrequencies'>rootFrequencies</a>, <a href='#data'>data</a>, <a href='#tree'>tree</a>, <a href='#siteModel'>siteModel</a>, <a href='#branchRateModel'>branchRateModel</a </p>
+<p>&nbsp</p><table id='logIndividualSites' border='1px' width='90%'>
+<caption>logIndividualSites</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>if true, tree log gets one entry for every site, if false complete sequence is logged</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='tag' border='1px' width='90%'>
+<caption>tag</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>label used to report trait</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='useMAP' border='1px' width='90%'>
+<caption>useMAP</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>whether to use maximum aposteriori assignments or sample</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='returnML' border='1px' width='90%'>
+<caption>returnML</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>report integrate likelihood of tip data</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='useJava' border='1px' width='90%'>
+<caption>useJava</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>prefer java, even if beagle is available</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='sampleTips' border='1px' width='90%'>
+<caption>sampleTips</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>if tips have missing data/ambigous values sample them for logging (default true)</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='leaftrait' border='1px' width='90%'>
+<caption>leaftrait</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beastclassic.evolution.likelihood.LeafTrait.html'>beastclassic.evolution.likelihood.LeafTrait***</a></td></tr></thead>
+<tr><td>list of leaf traits</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='useAmbiguities' border='1px' width='90%'>
+<caption>useAmbiguities</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>flag to indicate that sites containing ambiguous states should be handled instead of ignored (the default)</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='useTipLikelihoods' border='1px' width='90%'>
+<caption>useTipLikelihoods</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>flag to indicate that partial likelihoods are provided at the tips</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='implementation' border='1px' width='90%'>
+<caption>implementation</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>name of class that implements this treelikelihood potentially more efficiently. This class will be tried first, with the TreeLikelihood as fallback implementation. When multi-threading, multiple objects can be created.</td></tr>
+<tr><td>
+Optional input. Default: beast.base.evolution.likelihood.BeagleTreeLikelihood</td></tr>
+</table>
+<p>&nbsp</p><table id='scaling' border='1px' width='90%'>
+<caption>scaling</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.likelihood.TreeLikelihood$Scaling</td></tr></thead>
+<tr><td>type of scaling to use, one of [none, always, _default]. If not specified, the -beagle_scaling flag is used.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='rootFrequencies' border='1px' width='90%'>
+<caption>rootFrequencies</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.substitutionmodel.Frequencies.html'>beast.base.evolution.substitutionmodel.Frequencies</a></td></tr></thead>
+<tr><td>prior state frequencies at root, optional</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='data' border='1px' width='90%'>
+<caption>data</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.alignment.Alignment.html'>beast.base.evolution.alignment.Alignment</a></td></tr></thead>
+<tr><td>sequence data for the beast.tree</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.tree.TreeInterface</td></tr></thead>
+<tr><td>phylogenetic beast.tree with sequence data in the leafs</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='siteModel' border='1px' width='90%'>
+<caption>siteModel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.sitemodel.SiteModelInterface</td></tr></thead>
+<tr><td>site model for leafs in the beast.tree</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='branchRateModel' border='1px' width='90%'>
+<caption>branchRateModel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.branchratemodel.BranchRateModel$Base</td></tr></thead>
+<tr><td>A model describing the rates on the branches of the beast.tree.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

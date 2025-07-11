@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastlabs.math.distributions.MixtureDistribution</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastlabs.math.distributions.MixtureDistribution</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>Probabilistic representation that can produce a log probability for instance for running an MCMC chain.<br/>Takes mixture of distributions</p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#distribution'>distribution</a>, <a href='#weights'>weights</a>, <a href='#useLogSpace'>useLogSpace</a </p>
+<p>&nbsp</p><table id='distribution' border='1px' width='90%'>
+<caption>distribution</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.Distribution***</td></tr></thead>
+<tr><td>distribution to average over</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='weights' border='1px' width='90%'>
+<caption>weights</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>weights on the distributions, should sum to 1 if specified</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='useLogSpace' border='1px' width='90%'>
+<caption>useLogSpace</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>if false (default) use sum_i w_i P_i, if true use sum_i w_i log(P_i). Note if useLogSpace=true, the resulting distribution is not normalised (unless one of the weights is 1), while if useLogSpace=false, the resulting distribution is normalised iff all mixture components are normalised.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+</body>
+</html>

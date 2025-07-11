@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastfx.app.tools.JarHealthChecker</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastfx.app.tools.JarHealthChecker</h1>
+<p>Entry point for running a Beast task, for instance an MCMC or other probabilistic analysis, a simulation, etc.<br/>Checks the health of a jar file with classes for a package</p>
+<h2>Inputs:</h2>
+<p><a href='#jar'>jar</a>, <a href='#output'>output</a>, <a href='#namespace'>namespace</a </p>
+<p>&nbsp</p><table id='jar' border='1px' width='90%'>
+<caption>jar</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.io.File</td></tr></thead>
+<tr><td>jar-file containing BEAST package classes</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='output' border='1px' width='90%'>
+<caption>output</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beastfx.app.util.OutFile</td></tr></thead>
+<tr><td>output-file where report is stored. Use stdout if not specified.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='namespace' border='1px' width='90%'>
+<caption>namespace</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>only classes inside this package will be listed</td></tr>
+<tr><td>
+Optional input. Default: beast</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beast.base.evolution.alignment.Sequence</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beast.base.evolution.alignment.Sequence</h1>
+<p>Single sequence in an alignment.</p>
+<h2>Inputs:</h2>
+<p><a href='#totalcount'>totalcount</a>, <a href='#taxon'>taxon</a>, <a href='#value'>value</a>, <a href='#uncertain'>uncertain</a </p>
+<p>&nbsp</p><table id='totalcount' border='1px' width='90%'>
+<caption>totalcount</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>number of states or the number of lineages for this species in SNAPP analysis</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='taxon' border='1px' width='90%'>
+<caption>taxon</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>name of this species</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='value' border='1px' width='90%'>
+<caption>value</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>sequence data, either encoded as a string or as comma separated list of integers, or comma separated likelihoods/probabilities for each site if uncertain=true.In either case, whitespace is ignored.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='uncertain' border='1px' width='90%'>
+<caption>uncertain</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>if true, sequence is provided as comma separated probabilities for each character, with sites separated by a semi-colons. In this formulation, gaps are coded as 1/K,...,1/K, where K is the number of states in the model.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

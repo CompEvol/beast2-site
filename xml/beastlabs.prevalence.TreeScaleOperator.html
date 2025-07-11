@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastlabs.prevalence.TreeScaleOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastlabs.prevalence.TreeScaleOperator</h1>
+<p>Proposes a move in state space.<br/>This operator changes a beast.tree.<br/>Scales a complete beast.tree.</p>
+<h2>Inputs:</h2>
+<p><a href='#scaleFactor'>scaleFactor</a>, <a href='#scaleAll'>scaleAll</a>, <a href='#scaleAllIndependently'>scaleAllIndependently</a>, <a href='#degreesOfFreedom'>degreesOfFreedom</a>, <a href='#tree'>tree</a>, <a href='#list'>list</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='scaleFactor' border='1px' width='90%'>
+<caption>scaleFactor</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>scaling factor: larger means more bold proposals</td></tr>
+<tr><td>
+Optional input. Default: 1.0</td></tr>
+</table>
+<p>&nbsp</p><table id='scaleAll' border='1px' width='90%'>
+<caption>scaleAll</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>if true, all elements of a parameter (not beast.tree) are scaled, otherwise one is randomly selected</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='scaleAllIndependently' border='1px' width='90%'>
+<caption>scaleAllIndependently</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>if true, all elements of a parameter (not beast.tree) are scaled with a different factor, otherwise a single factor is used</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='degreesOfFreedom' border='1px' width='90%'>
+<caption>degreesOfFreedom</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Degrees of freedom used in ...</td></tr>
+<tr><td>
+Optional input. Default: 1</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>beast.tree on which this operation is performed</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='list' border='1px' width='90%'>
+<caption>list</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beastlabs.prevalence.PrevalenceList.html'>beastlabs.prevalence.PrevalenceList</a></td></tr></thead>
+<tr><td>raw prevalence list with only times and actions</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

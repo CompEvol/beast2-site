@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: starbeast3.operators.ParallelMCMCTreeOperatorTreeDistribution</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: starbeast3.operators.ParallelMCMCTreeOperatorTreeDistribution</h1>
+<p>A set of parallel tree distributions, which will all be added to the same thread in a ParallelMCMCOperator<br/>Distribution on a tree conditinionally independent from all other distributions given the state of the rest of parameter space</p>
+<h2>Inputs:</h2>
+<p><a href='#tree'>tree</a>, <a href='#treelikelihood'>treelikelihood</a>, <a href='#geneprior'>geneprior</a>, <a href='#dist'>dist</a>, <a href='#include'>include</a>, <a href='#distribution'>distribution</a </p>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>the tree</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='treelikelihood' border='1px' width='90%'>
+<caption>treelikelihood</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.likelihood.GenericTreeLikelihood.html'>beast.base.evolution.likelihood.GenericTreeLikelihood</a></td></tr></thead>
+<tr><td>treelikelihood part of the distribution</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='geneprior' border='1px' width='90%'>
+<caption>geneprior</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.evolution.speciation.GeneTreeForSpeciesTreeDistribution.html'>starbeast3.evolution.speciation.GeneTreeForSpeciesTreeDistribution</a></td></tr></thead>
+<tr><td>prior on the gene tree</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='dist' border='1px' width='90%'>
+<caption>dist</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.Distribution***</td></tr></thead>
+<tr><td>other distributions which will be affected by changing the tree</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='include' border='1px' width='90%'>
+<caption>include</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter***</a></td></tr></thead>
+<tr><td>optional additional parameters to include</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='distribution' border='1px' width='90%'>
+<caption>distribution</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.operators.ParallelMCMCTreeOperatorTreeDistribution.html'>starbeast3.operators.ParallelMCMCTreeOperatorTreeDistribution***</a></td></tr></thead>
+<tr><td>Distribution on a tree conditionally independent from all other distributions given the state of the rest of parameter space. </td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

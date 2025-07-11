@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastlabs.math.distributions.BetaRange</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastlabs.math.distributions.BetaRange</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>Probabilistic representation that can produce a log probability for instance for running an MCMC chain.<br/>Expansion of the Beta distribution, except it respects the upper/lower limits of the parameter  Can handle a different prior per parameter if the dimension of 'x' is equal to the dimension of the gamma parameters  If alpha / beta are set to 0, then the parameter will be skipped (ie. 0 log density)  If the parameter exceeds lower/upper, the log density is negative infinity</p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#x'>x</a>, <a href='#alpha'>alpha</a>, <a href='#beta'>beta</a>, <a href='#lower'>lower</a>, <a href='#upper'>upper</a </p>
+<p>&nbsp</p><table id='x' border='1px' width='90%'>
+<caption>x</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>the parameter at which the density is calculated</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='alpha' border='1px' width='90%'>
+<caption>alpha</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>first shape parameter (default 1)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='beta' border='1px' width='90%'>
+<caption>beta</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>the other shape parameter (default 1)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='lower' border='1px' width='90%'>
+<caption>lower</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>lower limit of the parameter (default 0)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='upper' border='1px' width='90%'>
+<caption>upper</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>upper limit of the parameter (default 1)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

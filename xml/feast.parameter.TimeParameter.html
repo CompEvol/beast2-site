@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: feast.parameter.TimeParameter</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: feast.parameter.TimeParameter</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>A node that can be part of the state.<br/>A parameter represents a value in the state space that can be changed by operators.<br/>A real-valued parameter represents a value (or array of values if the dimension is larger than one) in the state space that can be changed by operators.<br/>RealParameter with a constructor that sets initial values based on formatted dates converted to ages relative to the most recent sample on the tree.</p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#timeFormat'>timeFormat</a>, <a href='#time'>time</a>, <a href='#timeEarlier'>timeEarlier</a>, <a href='#timeLater'>timeLater</a>, <a href='#mostRecentSampleTime'>mostRecentSampleTime</a>, <a href='#lower'>lower</a>, <a href='#upper'>upper</a>, <a href='#value'>value</a>, <a href='#dimension'>dimension</a>, <a href='#minordimension'>minordimension</a>, <a href='#keys'>keys</a>, <a href='#estimate'>estimate</a </p>
+<p>&nbsp</p><table id='timeFormat' border='1px' width='90%'>
+<caption>timeFormat</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>The time format to be parsed, e.g. dd/M/yyyy</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='time' border='1px' width='90%'>
+<caption>time</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>One or more (space-delimited) times to be used in initializing parameter</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='timeEarlier' border='1px' width='90%'>
+<caption>timeEarlier</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>Time to be converted into an upper bound on the parameter value, in format specified by timeFormat</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='timeLater' border='1px' width='90%'>
+<caption>timeLater</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>Time to be converted into an lower bound on the parameter value, in format specified by timeFormat</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='mostRecentSampleTime' border='1px' width='90%'>
+<caption>mostRecentSampleTime</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>Time of the most recent sample, in format specified by timeFormat</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='lower' border='1px' width='90%'>
+<caption>lower</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>lower value for this parameter (default -infinity)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='upper' border='1px' width='90%'>
+<caption>upper</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>upper value for this parameter (default +infinity)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='value' border='1px' width='90%'>
+<caption>value</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double***</td></tr></thead>
+<tr><td>start value(s) for this parameter. If multiple values are specified, they should be separated by whitespace.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='dimension' border='1px' width='90%'>
+<caption>dimension</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>dimension of the parameter (default 1, i.e scalar)</td></tr>
+<tr><td>
+Optional input. Default: 1</td></tr>
+</table>
+<p>&nbsp</p><table id='minordimension' border='1px' width='90%'>
+<caption>minordimension</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>minor-dimension when the parameter is interpreted as a matrix (default 1)</td></tr>
+<tr><td>
+Optional input. Default: 1</td></tr>
+</table>
+<p>&nbsp</p><table id='keys' border='1px' width='90%'>
+<caption>keys</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>the keys (unique dimension names) for the dimensions of this parameter</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='estimate' border='1px' width='90%'>
+<caption>estimate</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>whether to estimate this item or keep constant to its initial value</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: starbeast3.evolution.branchratemodel.StarBeast3Clock</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: starbeast3.evolution.branchratemodel.StarBeast3Clock</h1>
+<p></p>
+<h2>Inputs:</h2>
+<p><a href='#speciesTreeRates'>speciesTreeRates</a>, <a href='#sharedRateModel'>sharedRateModel</a>, <a href='#tree'>tree</a>, <a href='#geneTree'>geneTree</a>, <a href='#kernel'>kernel</a>, <a href='#pointer'>pointer</a>, <a href='#clock.rate'>clock.rate</a </p>
+<p>&nbsp</p><table id='speciesTreeRates' border='1px' width='90%'>
+<caption>speciesTreeRates</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: starbeast3.evolution.branchratemodel.BranchRateModelSB3</td></tr></thead>
+<tr><td>The real branch rate model of the species tree</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='sharedRateModel' border='1px' width='90%'>
+<caption>sharedRateModel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.evolution.branchratemodel.SharedSpeciesClockModel.html'>starbeast3.evolution.branchratemodel.SharedSpeciesClockModel</a></td></tr></thead>
+<tr><td>Clock model for species tree (instead of speciesTreeRates)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>the gene tree</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='geneTree' border='1px' width='90%'>
+<caption>geneTree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.evolution.speciation.GeneTreeForSpeciesTreeDistribution.html'>starbeast3.evolution.speciation.GeneTreeForSpeciesTreeDistribution</a></td></tr></thead>
+<tr><td>The gene tree this relaxed clock is associated with.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='kernel' border='1px' width='90%'>
+<caption>kernel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.genekernel.GTKPrior.html'>starbeast3.genekernel.GTKPrior</a></td></tr></thead>
+<tr><td>the kernel of gene trees</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='pointer' border='1px' width='90%'>
+<caption>pointer</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.genekernel.GTKPointerTree.html'>starbeast3.genekernel.GTKPointerTree</a></td></tr></thead>
+<tr><td>the tree which points to the kernel</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='clock.rate' border='1px' width='90%'>
+<caption>clock.rate</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>mean clock rate (defaults to 1.0)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

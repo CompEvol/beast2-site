@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: starbeast3.evolution.substitutionmodel.LewisMK</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: starbeast3.evolution.substitutionmodel.LewisMK</h1>
+<p>LewisMK subtitution model: equal rates, equal frequencies</p>
+<h2>Reference:</h2><p>Lewis, P. O. (2001). 
+A likelihood approach to estimating phylogeny from discrete morphological character data. 
+Systematic biology, 50(6), 913-925.</p>
+<p><a href="https://doi.org/10.1080/106351501753462876">doi:10.1080/106351501753462876</a></p>
+<h2>Inputs:</h2>
+<p><a href='#stateNumber'>stateNumber</a>, <a href='#datatype'>datatype</a>, <a href='#frequencies'>frequencies</a </p>
+<p>&nbsp</p><table id='stateNumber' border='1px' width='90%'>
+<caption>stateNumber</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>the number of character states</td></tr>
+<tr><td>
+Either this, or datatype needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='datatype' border='1px' width='90%'>
+<caption>datatype</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.datatype.DataType</td></tr></thead>
+<tr><td>datatype, used to determine the number of states</td></tr>
+<tr><td>
+Either this, or stateNumber needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='frequencies' border='1px' width='90%'>
+<caption>frequencies</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.substitutionmodel.Frequencies.html'>beast.base.evolution.substitutionmodel.Frequencies</a></td></tr></thead>
+<tr><td>substitution model equilibrium state frequencies</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

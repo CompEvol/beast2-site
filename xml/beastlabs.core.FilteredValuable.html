@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastlabs.core.FilteredValuable</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastlabs.core.FilteredValuable</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>selects values from a parameter, for instance all even indexed entries</p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#parameter'>parameter</a>, <a href='#range'>range</a </p>
+<p>&nbsp</p><table id='parameter' border='1px' width='90%'>
+<caption>parameter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>the parameter to select values from</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='range' border='1px' width='90%'>
+<caption>range</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>specifies list of indices First site is 1.Filter specs are comma separated, either a range [from]-[to] or iteration [from]:[to]:[step]; 1-100 defines a range, 1-100 or 1:100:3 defines every third in range 1-100, 1::3,2::3 removes every third site. negative values count from the last: -1 indicate the last element, -2 the one but last. Default for range [1]-[last site], default for iterator [1]:[last site]:[1]</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

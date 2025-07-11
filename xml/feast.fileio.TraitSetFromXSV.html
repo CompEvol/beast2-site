@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: feast.fileio.TraitSetFromXSV</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: feast.fileio.TraitSetFromXSV</h1>
+<p>A trait set represent a collection of properties of taxons, for the use of initializing a tree. The traits are represented as text content in taxon=value form, for example, for a date trait, wecould have a content of chimp=1950,human=1991,neander=-10000. All white space is ignored, so they canbe put on multiple tabbed lines in the XML. The type of node in the tree determines what happes with this information. The default Node only recognizes 'date', 'date-forward' and 'date-backward' as a trait, but by creating custom Node classes other traits can be supported as well.<br/>Initialize a trait set from a CSV/TSV file.</p>
+<h2>Inputs:</h2>
+<p><a href='#fileName'>fileName</a>, <a href='#sep'>sep</a>, <a href='#taxonNameCol'>taxonNameCol</a>, <a href='#traitValueCol'>traitValueCol</a>, <a href='#skipFirstRow'>skipFirstRow</a>, <a href='#traitname'>traitname</a>, <a href='#units'>units</a>, <a href='#value'>value</a>, <a href='#taxa'>taxa</a>, <a href='#dateFormat'>dateFormat</a </p>
+<p>&nbsp</p><table id='fileName' border='1px' width='90%'>
+<caption>fileName</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>Name of CSV/TSV file to extract values from.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='sep' border='1px' width='90%'>
+<caption>sep</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>Separator for CSV/TSV file.  Default is TAB.</td></tr>
+<tr><td>
+Optional input. Default: 	</td></tr>
+</table>
+<p>&nbsp</p><table id='taxonNameCol' border='1px' width='90%'>
+<caption>taxonNameCol</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Index of column containing taxon names (Default 0).</td></tr>
+<tr><td>
+Optional input. Default: 0</td></tr>
+</table>
+<p>&nbsp</p><table id='traitValueCol' border='1px' width='90%'>
+<caption>traitValueCol</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Index of column containing trait names (Default 1).</td></tr>
+<tr><td>
+Optional input. Default: 1</td></tr>
+</table>
+<p>&nbsp</p><table id='skipFirstRow' border='1px' width='90%'>
+<caption>skipFirstRow</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>If true, skip first row. (Default false.)</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='traitname' border='1px' width='90%'>
+<caption>traitname</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>name of the trait, used as meta data name for the tree. Special traitnames that are recognized are 'age','date','date-forward' and 'date-backward'.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='units' border='1px' width='90%'>
+<caption>units</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.tree.TraitSet$Units</td></tr></thead>
+<tr><td>name of the units in which values are posed, used for conversion to a real value. This can be [year, month, day] (default 'year')</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='value' border='1px' width='90%'>
+<caption>value</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>traits encoded as taxon=value pairs separated by commas</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='taxa' border='1px' width='90%'>
+<caption>taxa</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.alignment.TaxonSet.html'>beast.base.evolution.alignment.TaxonSet</a></td></tr></thead>
+<tr><td>contains list of taxa to map traits to</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='dateFormat' border='1px' width='90%'>
+<caption>dateFormat</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>the date/time format to be parsed, (e.g., 'dd/M/yyyy')</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

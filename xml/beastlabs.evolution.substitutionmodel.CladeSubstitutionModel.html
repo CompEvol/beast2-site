@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastlabs.evolution.substitutionmodel.CladeSubstitutionModel</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastlabs.evolution.substitutionmodel.CladeSubstitutionModel</h1>
+<p>Substitution model dependent on clades. For each clade a substitution model is specified. For nodes that do not fit in a clade a default substitution model is used.</p>
+<h2>Inputs:</h2>
+<p><a href='#defaultModel'>defaultModel</a>, <a href='#tree'>tree</a>, <a href='#cladeModel'>cladeModel</a>, <a href='#clades'>clades</a>, <a href='#taxa'>taxa</a>, <a href='#frequencies'>frequencies</a </p>
+<p>&nbsp</p><table id='defaultModel' border='1px' width='90%'>
+<caption>defaultModel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.substitutionmodel.SubstitutionModel</td></tr></thead>
+<tr><td>Default substitution model, that is, the model that applies when none of the other do</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>tree for which to produce substitution models</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='cladeModel' border='1px' width='90%'>
+<caption>cladeModel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.substitutionmodel.SubstitutionModel***</td></tr></thead>
+<tr><td>substitution model for each of the clades specified</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='clades' border='1px' width='90%'>
+<caption>clades</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.alignment.TaxonSet.html'>beast.base.evolution.alignment.TaxonSet***</a></td></tr></thead>
+<tr><td>set of taxa forming a clade and any branch in the clade will get a clade substitution model</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='taxa' border='1px' width='90%'>
+<caption>taxa</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.alignment.Alignment.html'>beast.base.evolution.alignment.Alignment</a></td></tr></thead>
+<tr><td>set taxa to choose from</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='frequencies' border='1px' width='90%'>
+<caption>frequencies</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.substitutionmodel.Frequencies.html'>beast.base.evolution.substitutionmodel.Frequencies</a></td></tr></thead>
+<tr><td>substitution model equilibrium state frequencies</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

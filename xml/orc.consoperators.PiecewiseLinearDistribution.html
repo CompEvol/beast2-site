@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: orc.consoperators.PiecewiseLinearDistribution</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: orc.consoperators.PiecewiseLinearDistribution</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>A class that describes a parametric distribution, that is, a distribution that takes some parameters/valuables as inputs and can produce (cumulative) densities and inverse cumulative densities.<br/>Approximates parametric distribution by piecewise linear approximation.</p>
+<h2>Inputs:</h2>
+<p><a href='#distr'>distr</a>, <a href='#bins'>bins</a>, <a href='#limit'>limit</a>, <a href='#cutOffEnd'>cutOffEnd</a>, <a href='#offset'>offset</a </p>
+<p>&nbsp</p><table id='distr' border='1px' width='90%'>
+<caption>distr</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.distribution.ParametricDistribution</td></tr></thead>
+<tr><td>Underlying parametric distribution that is approximated.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='bins' border='1px' width='90%'>
+<caption>bins</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>number of bins used to approximate the distribution piecewise linearly. (default 100)</td></tr>
+<tr><td>
+Optional input. Default: 100</td></tr>
+</table>
+<p>&nbsp</p><table id='limit' border='1px' width='90%'>
+<caption>limit</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>fraction of bins at end of distribution to be cut off -- should be between 0 and 1</td></tr>
+<tr><td>
+Optional input. Default: 0.1</td></tr>
+</table>
+<p>&nbsp</p><table id='cutOffEnd' border='1px' width='90%'>
+<caption>cutOffEnd</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>approximate values below for quantiles close to 0 and 1 with rate at limit/bins and (1-limit/bins) respectively.If false, for quantiles below limit/bins and above (1-limit/bins) the inverseCumulativeProbability methods of the underlying parametric distribution is called(which is slower, but should not happen very often).</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='offset' border='1px' width='90%'>
+<caption>offset</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>offset of origin (defaults to 0)</td></tr>
+<tr><td>
+Optional input. Default: 0.0</td></tr>
+</table>
+</body>
+</html>

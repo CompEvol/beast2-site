@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastclassic.evolution.substitutionmodel.GLM</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastclassic.evolution.substitutionmodel.GLM</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>Extracts the intervals from a tree. Points in the intervals are defined by the heights of nodes in the tree.</p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#migrationGLM'>migrationGLM</a>, <a href='#NeGLM'>NeGLM</a>, <a href='#maxRate'>maxRate</a>, <a href='#dimension'>dimension</a>, <a href='#typeTrait'>typeTrait</a>, <a href='#types'>types</a </p>
+<p>&nbsp</p><table id='migrationGLM' border='1px' width='90%'>
+<caption>migrationGLM</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beastclassic.evolution.substitutionmodel.GlmModel</td></tr></thead>
+<tr><td>input of migration GLM model</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='NeGLM' border='1px' width='90%'>
+<caption>NeGLM</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beastclassic.evolution.substitutionmodel.GlmModel</td></tr></thead>
+<tr><td>input of migration GLM model</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='maxRate' border='1px' width='90%'>
+<caption>maxRate</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>maximum rate used for integration</td></tr>
+<tr><td>
+Optional input. Default: Infinity</td></tr>
+</table>
+<p>&nbsp</p><table id='dimension' border='1px' width='90%'>
+<caption>dimension</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>the number of different states. if -1, it will use the number of different types </td></tr>
+<tr><td>
+Either this, or types needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='typeTrait' border='1px' width='90%'>
+<caption>typeTrait</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.TraitSet.html'>beast.base.evolution.tree.TraitSet</a></td></tr></thead>
+<tr><td>Type trait set.  Used only by BEAUti.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='types' border='1px' width='90%'>
+<caption>types</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>input of the different types, can be helpful for multilocus data</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

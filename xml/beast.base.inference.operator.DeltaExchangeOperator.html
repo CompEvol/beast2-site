@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beast.base.inference.operator.DeltaExchangeOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beast.base.inference.operator.DeltaExchangeOperator</h1>
+<p>Proposes a move in state space.<br/>A generic operator for use with a sum-constrained (possibly weighted) vector parameter.</p>
+<h2>Inputs:</h2>
+<p><a href='#parameter'>parameter</a>, <a href='#intparameter'>intparameter</a>, <a href='#delta'>delta</a>, <a href='#autoOptimize'>autoOptimize</a>, <a href='#integer'>integer</a>, <a href='#weightvector'>weightvector</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='parameter' border='1px' width='90%'>
+<caption>parameter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter***</a></td></tr></thead>
+<tr><td>if specified, this parameter is operated on</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='intparameter' border='1px' width='90%'>
+<caption>intparameter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.IntegerParameter.html'>beast.base.inference.parameter.IntegerParameter***</a></td></tr></thead>
+<tr><td>if specified, this parameter is operated on</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='delta' border='1px' width='90%'>
+<caption>delta</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>Magnitude of change for two randomly picked values.</td></tr>
+<tr><td>
+Optional input. Default: 1.0</td></tr>
+</table>
+<p>&nbsp</p><table id='autoOptimize' border='1px' width='90%'>
+<caption>autoOptimize</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>if true, window size will be adjusted during the MCMC run to improve mixing.</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='integer' border='1px' width='90%'>
+<caption>integer</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>if true, changes are all integers.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='weightvector' border='1px' width='90%'>
+<caption>weightvector</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.IntegerParameter.html'>beast.base.inference.parameter.IntegerParameter</a></td></tr></thead>
+<tr><td>weights on a vector parameter</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

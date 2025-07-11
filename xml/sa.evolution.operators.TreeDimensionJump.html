@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: sa.evolution.operators.TreeDimensionJump</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: sa.evolution.operators.TreeDimensionJump</h1>
+<p>Proposes a move in state space.<br/>This operator changes a beast.tree.<br/>Implements a narrow move between trees of different dimensions (number of nodes in trees).It takes a random sampled node which is either a leaf with the younger siblingor a sampled internal node. In the first case, the leaf becomes a sampled internal node by replacing its parent (the height of the leaf remains unchanged). In the second case, the sampled internal node becomes a leaf by inserting a new parent node at a height which is uniformly chosen on the interval  between the sampled node height and its old parent height.</p>
+<h2>Inputs:</h2>
+<p><a href='#rateCategories'>rateCategories</a>, <a href='#removalProbability'>removalProbability</a>, <a href='#tree'>tree</a>, <a href='#markclades'>markclades</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='rateCategories' border='1px' width='90%'>
+<caption>rateCategories</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.IntegerParameter.html'>beast.base.inference.parameter.IntegerParameter</a></td></tr></thead>
+<tr><td>rate category per branch</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='removalProbability' border='1px' width='90%'>
+<caption>removalProbability</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>The probability of an individual to be removed from the process immediately after the sampling</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>beast.tree on which this operation is performed</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='markclades' border='1px' width='90%'>
+<caption>markclades</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Mark all ancestors of nodes changed by the operator as changed, up to the MRCA of all nodes changed by the operator.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastclassic.geo.GeoSpatialDistribution</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastclassic.geo.GeoSpatialDistribution</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>Distribution over a geographical area</p>
+<h2>Inputs:</h2>
+<p><a href='#label'>label</a>, <a href='#kmlfile'>kmlfile</a>, <a href='#inside'>inside</a>, <a href='#union'>union</a </p>
+<p>&nbsp</p><table id='label' border='1px' width='90%'>
+<caption>label</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>identifies nodes this distribution applies to -- can be taxon names, 'all' for all nodes, 'root' for root node only</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='kmlfile' border='1px' width='90%'>
+<caption>kmlfile</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>name of the kml file specifying a set of regions</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='inside' border='1px' width='90%'>
+<caption>inside</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>whether the area inside regions is allowed</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='union' border='1px' width='90%'>
+<caption>union</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>whether the union instead of intersection of regions is allowed</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+</body>
+</html>

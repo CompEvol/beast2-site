@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastclassic.evolution.operators.GMRFSkyrideBlockUpdateOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastclassic.evolution.operators.GMRFSkyrideBlockUpdateOperator</h1>
+<p>Proposes a move in state space.<br/>A Metropolis-Hastings operator to update the log population sizes and precision parameter jointly under a Gaussian Markov random field prior</p>
+<h2>Inputs:</h2>
+<p><a href='#likelihood'>likelihood</a>, <a href='#scaleFactor'>scaleFactor</a>, <a href='#maxIterations'>maxIterations</a>, <a href='#stopValue'>stopValue</a>, <a href='#optimise'>optimise</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='likelihood' border='1px' width='90%'>
+<caption>likelihood</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beastclassic.evolution.tree.coalescent.GMRFSkyrideLikelihood.html'>beastclassic.evolution.tree.coalescent.GMRFSkyrideLikelihood</a></td></tr></thead>
+<tr><td>GMRF Multilocus Skyride Likelihood</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='scaleFactor' border='1px' width='90%'>
+<caption>scaleFactor</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>scale factor: larger means more bold proposals</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='maxIterations' border='1px' width='90%'>
+<caption>maxIterations</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>max number of iterations for proposal...</td></tr>
+<tr><td>
+Optional input. Default: 200</td></tr>
+</table>
+<p>&nbsp</p><table id='stopValue' border='1px' width='90%'>
+<caption>stopValue</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td></td></tr>
+<tr><td>
+Optional input. Default: 0.01</td></tr>
+</table>
+<p>&nbsp</p><table id='optimise' border='1px' width='90%'>
+<caption>optimise</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>flag to indicate that the scale factor is automatically changed in order to achieve a good acceptance rate (default true)</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beast.base.evolution.operator.TipDatesRandomWalker</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beast.base.evolution.operator.TipDatesRandomWalker</h1>
+<table border='1px'>
+<thead><tr><td>implemented by the following</td></tr></thead>
+<tr><td><a href='beast.base.evolution.operator.kernel.BactrianTipDatesRandomWalker.html'>beast.base.evolution.operator.kernel.BactrianTipDatesRandomWalker</a></td></tr>
+<tr><td><a href='sa.evolution.operators.SampledNodeDateRandomWalker.html'>sa.evolution.operators.SampledNodeDateRandomWalker</a></td></tr>
+</table>
+<p>Proposes a move in state space.<br/>This operator changes a beast.tree.<br/>Randomly moves tip dates on a tree by randomly selecting one from (a subset of) taxa</p>
+<h2>Inputs:</h2>
+<p><a href='#windowSize'>windowSize</a>, <a href='#taxonset'>taxonset</a>, <a href='#useGaussian'>useGaussian</a>, <a href='#tree'>tree</a>, <a href='#markclades'>markclades</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='windowSize' border='1px' width='90%'>
+<caption>windowSize</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>the size of the window both up and down when using uniform interval OR standard deviation when using Gaussian</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='taxonset' border='1px' width='90%'>
+<caption>taxonset</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.alignment.TaxonSet.html'>beast.base.evolution.alignment.TaxonSet</a></td></tr></thead>
+<tr><td>limit scaling to a subset of taxa. By default all tips are scaled.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='useGaussian' border='1px' width='90%'>
+<caption>useGaussian</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Use Gaussian to move instead of uniform interval. Default false.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>beast.tree on which this operation is performed</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='markclades' border='1px' width='90%'>
+<caption>markclades</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Mark all ancestors of nodes changed by the operator as changed, up to the MRCA of all nodes changed by the operator.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

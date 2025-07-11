@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: orc.ner.NEROperator_dAB_dAE_dBC</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: orc.ner.NEROperator_dAB_dAE_dBC</h1>
+<p>Proposes a move in state space.<br/>This operator changes a beast.tree.<br/>For internal nodes: propose a new node time<br/><br/></p>
+<h2>Reference:</h2><p>Zhang, R., Drummond, A. (2020) Improving the performance of Bayesian phylogenetic inference
+  under relaxed clock models. BMC Evol Biol 20, 54</p>
+<p><a href="https://doi.org/https://doi.org/10.1186/s12862-020-01609-4">doi:https://doi.org/10.1186/s12862-020-01609-4</a></p>
+<h2>Inputs:</h2>
+<p><a href='#distr'>distr</a>, <a href='#optimize'>optimize</a>, <a href='#twindowSize'>twindowSize</a>, <a href='#rates'>rates</a>, <a href='#quantiles'>quantiles</a>, <a href='#clockModel'>clockModel</a>, <a href='#kernel'>kernel</a>, <a href='#include'>include</a>, <a href='#tree'>tree</a>, <a href='#markclades'>markclades</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='distr' border='1px' width='90%'>
+<caption>distr</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.distribution.ParametricDistribution</td></tr></thead>
+<tr><td>Rate distribution. Required if using the quantile parameterisation.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='optimize' border='1px' width='90%'>
+<caption>optimize</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Whether to optimise the tunable parameter (default true)</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='twindowSize' border='1px' width='90%'>
+<caption>twindowSize</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>the size of the window when proposing new node time</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='rates' border='1px' width='90%'>
+<caption>rates</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>the rates associated with nodes in the tree for sampling of individual rates among branches.</td></tr>
+<tr><td>
+Either this, or quantiles needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='quantiles' border='1px' width='90%'>
+<caption>quantiles</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>the quantiles of each branch rate.</td></tr>
+<tr><td>
+Either this, or rates needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='clockModel' border='1px' width='90%'>
+<caption>clockModel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.branchratemodel.UCRelaxedClockModel.html'>beast.base.evolution.branchratemodel.UCRelaxedClockModel</a></td></tr></thead>
+<tr><td>relaxed clock model used to deal with quantiles</td></tr>
+<tr><td>
+Forbidden: must not be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='kernel' border='1px' width='90%'>
+<caption>kernel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.operator.kernel.KernelDistribution</td></tr></thead>
+<tr><td>Proposal kernel for a random walk on the internal node height.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='include' border='1px' width='90%'>
+<caption>include</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: orc.consoperators.InConstantDistanceOperator$ChildInclusions</td></tr></thead>
+<tr><td>Option flag to ensure that this operator always targets nodes which have a 'leaf' or 'internal' child. Default: no constraints 'none'.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>beast.tree on which this operation is performed</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='markclades' border='1px' width='90%'>
+<caption>markclades</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Mark all ancestors of nodes changed by the operator as changed, up to the MRCA of all nodes changed by the operator.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

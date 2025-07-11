@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastlabs.evolution.operators.AttachOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastlabs.evolution.operators.AttachOperator</h1>
+<table border='1px'>
+<thead><tr><td>implemented by the following</td></tr></thead>
+<tr><td><a href='beastlabs.evolution.operators.AttachAndUniformOperator.html'>beastlabs.evolution.operators.AttachAndUniformOperator</a></td></tr>
+<tr><td><a href='beastlabs.evolution.operators.CladeInternalAttachOperator.html'>beastlabs.evolution.operators.CladeInternalAttachOperator</a></td></tr>
+<tr><td><a href='beastlabs.evolution.operators.MultiCladeAttachOperator.html'>beastlabs.evolution.operators.MultiCladeAttachOperator</a></td></tr>
+</table>
+<p>Proposes a move in state space.<br/>This operator changes a beast.tree.<br/>Detach a clade and re-attach it at the same height somewhere else. A BEAST object can guide the moves by providing a distance between clades via the DistanceProvider interface. Clades with lower distance should be more closely related and therefore the move more likely to get accepted.</p>
+<h2>Inputs:</h2>
+<p><a href='#weights'>weights</a>, <a href='#tipsOnly'>tipsOnly</a>, <a href='#topOnly'>topOnly</a>, <a href='#constraints'>constraints</a>, <a href='#restricted'>restricted</a>, <a href='#tree'>tree</a>, <a href='#markclades'>markclades</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='weights' border='1px' width='90%'>
+<caption>weights</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beastlabs.evolution.operators.DistanceProvider</td></tr></thead>
+<tr><td>Provide distances between clades (data, not tree based)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='tipsOnly' border='1px' width='90%'>
+<caption>tipsOnly</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Move only nodes attached to tips.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='topOnly' border='1px' width='90%'>
+<caption>topOnly</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Consider only nodes not under any monophyly constraint.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='constraints' border='1px' width='90%'>
+<caption>constraints</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beastlabs.math.distributions.MultiMonophyleticConstraint.html'>beastlabs.math.distributions.MultiMonophyleticConstraint</a></td></tr></thead>
+<tr><td>Respect clade constraints, i.e make no moves which violate some constraint.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='restricted' border='1px' width='90%'>
+<caption>restricted</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.MRCAPrior.html'>beast.base.evolution.tree.MRCAPrior***</a></td></tr></thead>
+<tr><td>Use only those nodes (MRCAs of some clades)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>beast.tree on which this operation is performed</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='markclades' border='1px' width='90%'>
+<caption>markclades</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Mark all ancestors of nodes changed by the operator as changed, up to the MRCA of all nodes changed by the operator.</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

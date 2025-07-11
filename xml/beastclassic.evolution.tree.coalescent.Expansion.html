@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastclassic.evolution.tree.coalescent.Expansion</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastclassic.evolution.tree.coalescent.Expansion</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>An implementation of a population size function beastObject.Also note that if you are dealing with a diploid population N0 will be the number of alleles, not the number of individuals.<br/>Coalescent intervals for a exponentially growing population.<br/>A demographic model of constant population size followed by exponential growth.</p>
+<h2>Inputs:</h2>
+<p><a href='#ancestralPopulationProportion'>ancestralPopulationProportion</a>, <a href='#popSize'>popSize</a>, <a href='#growthRate'>growthRate</a </p>
+<p>&nbsp</p><table id='ancestralPopulationProportion' border='1px' width='90%'>
+<caption>ancestralPopulationProportion</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td></td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='popSize' border='1px' width='90%'>
+<caption>popSize</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>present-day population size (defaults to 1.0). </td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='growthRate' border='1px' width='90%'>
+<caption>growthRate</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Function</td></tr></thead>
+<tr><td>Growth rate is the exponent of the exponential growth. A value of zero represents a constant population size, negative values represent decline towards the present, positive numbers represents exponential growth towards the present.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+</body>
+</html>

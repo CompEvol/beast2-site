@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastfx.app.tools.PackageHealthChecker</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastfx.app.tools.PackageHealthChecker</h1>
+<p>Entry point for running a Beast task, for instance an MCMC or other probabilistic analysis, a simulation, etc.<br/>Does sanity checks on a BEAST package
+o make sure all classes implementing services are registered as services
+o make sure folders are in the right place (lib, template, examples)
+o make sure source code is available and matches jar library
+o make sure version.xml is present
+and more...</p>
+<h2>Inputs:</h2>
+<p><a href='#package'>package</a>, <a href='#output'>output</a>, <a href='#namespace'>namespace</a>, <a href='#verbose'>verbose</a>, <a href='#xmlOnly'>xmlOnly</a </p>
+<p>&nbsp</p><table id='package' border='1px' width='90%'>
+<caption>package</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>name of the  BEAST package</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='output' border='1px' width='90%'>
+<caption>output</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beastfx.app.util.OutFile</td></tr></thead>
+<tr><td>output-file where report is stored. Use stdout if not specified.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='namespace' border='1px' width='90%'>
+<caption>namespace</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>only classes inside this package name will be listed</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='verbose' border='1px' width='90%'>
+<caption>verbose</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>show info and error messages when parsing XML</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='xmlOnly' border='1px' width='90%'>
+<caption>xmlOnly</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>only perform XML parsing check, not any of the others</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+</body>
+</html>

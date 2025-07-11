@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: starbeast3.genekernel.GTKPrior</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: starbeast3.genekernel.GTKPrior</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>Probabilistic representation that can produce a log probability for instance for running an MCMC chain.<br/></p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#pointer'>pointer</a>, <a href='#kernel'>kernel</a>, <a href='#geneKernelSize'>geneKernelSize</a>, <a href='#indicator'>indicator</a>, <a href='#speciesTree'>speciesTree</a>, <a href='#ploidy'>ploidy</a>, <a href='#sampling'>sampling</a>, <a href='#speciesTreePrior'>speciesTreePrior</a>, <a href='#populationModel'>populationModel</a>, <a href='#taxonset'>taxonset</a>, <a href='#pointerPrior'>pointerPrior</a </p>
+<p>&nbsp</p><table id='pointer' border='1px' width='90%'>
+<caption>pointer</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.genekernel.GTKPointerTree.html'>starbeast3.genekernel.GTKPointerTree***</a></td></tr></thead>
+<tr><td>Gene trees which point to the kernel trees</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='kernel' border='1px' width='90%'>
+<caption>kernel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.genekernel.GeneTreeKernel.html'>starbeast3.genekernel.GeneTreeKernel</a></td></tr></thead>
+<tr><td>The gene tree kernel which contains a set of trees</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='geneKernelSize' border='1px' width='90%'>
+<caption>geneKernelSize</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.IntegerParameter.html'>beast.base.inference.parameter.IntegerParameter</a></td></tr></thead>
+<tr><td>The parameter governing the gene kernel size</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='indicator' border='1px' width='90%'>
+<caption>indicator</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.IntegerParameter.html'>beast.base.inference.parameter.IntegerParameter</a></td></tr></thead>
+<tr><td>A parameter which points each observed gene tree to one in the kernel</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='speciesTree' border='1px' width='90%'>
+<caption>speciesTree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.tree.SpeciesTree.html'>starbeast3.tree.SpeciesTree</a></td></tr></thead>
+<tr><td>species tree containing the associated gene tree</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='ploidy' border='1px' width='90%'>
+<caption>ploidy</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>ploidy (copy number) for this gene, typically a whole number or half (default 2 for autosomal_nuclear)</td></tr>
+<tr><td>
+Optional input. Default: 2.0</td></tr>
+</table>
+<p>&nbsp</p><table id='sampling' border='1px' width='90%'>
+<caption>sampling</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Set to true if using this class for simulating sequences</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='speciesTreePrior' border='1px' width='90%'>
+<caption>speciesTreePrior</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.evolution.speciation.SpeciesTreePrior.html'>starbeast3.evolution.speciation.SpeciesTreePrior</a></td></tr></thead>
+<tr><td>defines population function and its parameters</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='populationModel' border='1px' width='90%'>
+<caption>populationModel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: starbeast3.evolution.speciation.PopulationModel</td></tr></thead>
+<tr><td>Population model used to infer the multispecies coalescent probability for this gene</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='taxonset' border='1px' width='90%'>
+<caption>taxonset</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.alignment.TaxonSet.html'>beast.base.evolution.alignment.TaxonSet</a></td></tr></thead>
+<tr><td>set of taxa mapping lineages to species</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='pointerPrior' border='1px' width='90%'>
+<caption>pointerPrior</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>If true, only tree pointers have prior density (except for illegal kernal trees which are rejected). If false,only kernel trees have prior density. </td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+</body>
+</html>

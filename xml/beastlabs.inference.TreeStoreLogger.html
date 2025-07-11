@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastlabs.inference.TreeStoreLogger</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastlabs.inference.TreeStoreLogger</h1>
+<p>Logs results of a calculation processes on regular intervals.<br/>Logs results of a calculation processes on regular intervals.</p>
+<h2>Inputs:</h2>
+<p><a href='#fileName'>fileName</a>, <a href='#logEvery'>logEvery</a>, <a href='#model'>model</a>, <a href='#mode'>mode</a>, <a href='#sort'>sort</a>, <a href='#sanitiseHeaders'>sanitiseHeaders</a>, <a href='#log'>log</a>, <a href='#ascii'>ascii</a </p>
+<p>&nbsp</p><table id='fileName' border='1px' width='90%'>
+<caption>fileName</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>Name of the file, or stdout if left blank</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='logEvery' border='1px' width='90%'>
+<caption>logEvery</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Number of the samples logged</td></tr>
+<tr><td>
+Optional input. Default: 1</td></tr>
+</table>
+<p>&nbsp</p><table id='model' border='1px' width='90%'>
+<caption>model</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.BEASTObject</td></tr></thead>
+<tr><td>Model to log at the top of the log. If specified, XML will be produced for the model, commented out by # at the start of a line. Alignments are suppressed. This way, the log file documents itself. </td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='mode' border='1px' width='90%'>
+<caption>mode</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.Logger$LOGMODE</td></tr></thead>
+<tr><td>logging mode, one of [autodetect, compound, tree]</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='sort' border='1px' width='90%'>
+<caption>sort</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.Logger$SORTMODE</td></tr></thead>
+<tr><td>sort items to be logged, one of [none, alphabetic, smart]</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='sanitiseHeaders' border='1px' width='90%'>
+<caption>sanitiseHeaders</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>whether to remove any clutter introduced by BEAUti</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='log' border='1px' width='90%'>
+<caption>log</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.core.Loggable***</td></tr></thead>
+<tr><td>Element in a log. This can be any plug in that is Loggable.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='ascii' border='1px' width='90%'>
+<caption>ascii</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>whether to convert the log output to ASCII</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+</body>
+</html>

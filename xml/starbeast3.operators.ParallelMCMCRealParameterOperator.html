@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: starbeast3.operators.ParallelMCMCRealParameterOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: starbeast3.operators.ParallelMCMCRealParameterOperator</h1>
+<p>Proposes a move in state space.<br/>Operator that does proposals that count for one step or more steps in the MCMC<br/>Run MCMC on different treelikelihood parts of the model in parallel before combining them in a single Gibbs move</p>
+<h2>Inputs:</h2>
+<p><a href='#distribution'>distribution</a>, <a href='#chainLength'>chainLength</a>, <a href='#chainCoverage'>chainCoverage</a>, <a href='#threads'>threads</a>, <a href='#otherState'>otherState</a>, <a href='#learning'>learning</a>, <a href='#burnin'>burnin</a>, <a href='#schedule'>schedule</a>, <a href='#nregression'>nregression</a>, <a href='#targetCPU'>targetCPU</a>, <a href='#targetWeight'>targetWeight</a>, <a href='#runtime'>runtime</a>, <a href='#speciesTree'>speciesTree</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='distribution' border='1px' width='90%'>
+<caption>distribution</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.CompoundDistribution.html'>beast.base.inference.CompoundDistribution</a></td></tr></thead>
+<tr><td>compound distribution of all likelihoods</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='chainLength' border='1px' width='90%'>
+<caption>chainLength</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Long</td></tr></thead>
+<tr><td>Length of the MCMC chain: each individual ParallelMCMC performs chainLength/nrOfThreads samples</td></tr>
+<tr><td>
+Either this, or chainCoverage needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='chainCoverage' border='1px' width='90%'>
+<caption>chainCoverage</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>The MCMC chain length is the coverage times the number of parameters</td></tr>
+<tr><td>
+Either this, or chainLength needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='threads' border='1px' width='90%'>
+<caption>threads</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>maximum number of threads to use, if less than 1 the number of threads in BeastMCMC is used (default -1)</td></tr>
+<tr><td>
+Optional input. Default: -1</td></tr>
+</table>
+<p>&nbsp</p><table id='otherState' border='1px' width='90%'>
+<caption>otherState</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.State.html'>beast.base.inference.State</a></td></tr></thead>
+<tr><td>main state containing all statenodes for this analysis</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='learning' border='1px' width='90%'>
+<caption>learning</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>Learn whether to parallelise (n threads) or not (1 thread 1 operator)</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='burnin' border='1px' width='90%'>
+<caption>burnin</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>How many operator calls before thread learning kicks in. Learning will begin after chainLength regression.</td></tr>
+<tr><td>
+Optional input. Default: 10000</td></tr>
+</table>
+<p>&nbsp</p><table id='schedule' border='1px' width='90%'>
+<caption>schedule</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='starbeast3.core.OperatorScheduleRecalculator.html'>starbeast3.core.OperatorScheduleRecalculator</a></td></tr></thead>
+<tr><td>Operator schedule (if learning is applied)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='nregression' border='1px' width='90%'>
+<caption>nregression</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Number of MCMC chainLengths vs runtimes to sample in order to learn chainLengths, for load balancing. Set to <5 to skip the training.</td></tr>
+<tr><td>
+Optional input. Default: 200</td></tr>
+</table>
+<p>&nbsp</p><table id='targetCPU' border='1px' width='90%'>
+<caption>targetCPU</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>Proportion of threads allocated (if > 1) that should be spent on MCMC, as opposed to overhead.Larger targetCPU will mean longer chains and lower operator weight. If targetCPU=0, then the load balancing will match the slowest thread. Set nregression=0 to omit this step.</td></tr>
+<tr><td>
+Optional input. Default: 0.8</td></tr>
+</table>
+<p>&nbsp</p><table id='targetWeight' border='1px' width='90%'>
+<caption>targetWeight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>Target effective weight of this operator, to be learned if regression is applied. The effective weight is the operator weight * chainLength sum. Set this to 0 (or nregression=0) to omit this step.</td></tr>
+<tr><td>
+Optional input. Default: 0.0</td></tr>
+</table>
+<p>&nbsp</p><table id='runtime' border='1px' width='90%'>
+<caption>runtime</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>Max runtime of MCMC chains during training (only applicable if load balancing is being trained). If this isset to -1, then chain lengths are sampled instead of runtimes.</td></tr>
+<tr><td>
+Optional input. Default: -1.0</td></tr>
+</table>
+<p>&nbsp</p><table id='speciesTree' border='1px' width='90%'>
+<caption>speciesTree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>an optional dummy input so that beauti can load the template (hack)</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

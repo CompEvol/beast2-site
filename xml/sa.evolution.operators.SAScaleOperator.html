@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: sa.evolution.operators.SAScaleOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: sa.evolution.operators.SAScaleOperator</h1>
+<p>Proposes a move in state space.<br/>Scales a parameter or a complete beast.tree (depending on which of the two is specified.<br/></p>
+<h2>Inputs:</h2>
+<p><a href='#tree'>tree</a>, <a href='#parameter'>parameter</a>, <a href='#scaleFactor'>scaleFactor</a>, <a href='#scaleAll'>scaleAll</a>, <a href='#scaleAllIndependently'>scaleAllIndependently</a>, <a href='#degreesOfFreedom'>degreesOfFreedom</a>, <a href='#indicator'>indicator</a>, <a href='#rootOnly'>rootOnly</a>, <a href='#optimise'>optimise</a>, <a href='#upper'>upper</a>, <a href='#lower'>lower</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>if specified, all beast.tree divergence times are scaled</td></tr>
+<tr><td>
+Either this, or parameter needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='parameter' border='1px' width='90%'>
+<caption>parameter</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>if specified, this parameter is scaled</td></tr>
+<tr><td>
+Either this, or tree needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='scaleFactor' border='1px' width='90%'>
+<caption>scaleFactor</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>scaling factor: range from 0 to 1. Close to zero is very large jumps, close to 1.0 is very small jumps.</td></tr>
+<tr><td>
+Optional input. Default: 0.75</td></tr>
+</table>
+<p>&nbsp</p><table id='scaleAll' border='1px' width='90%'>
+<caption>scaleAll</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>if true, all elements of a parameter (not beast.tree) are scaled, otherwise one is randomly selected</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='scaleAllIndependently' border='1px' width='90%'>
+<caption>scaleAllIndependently</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>if true, all elements of a parameter (not beast.tree) are scaled with a different factor, otherwise a single factor is used</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='degreesOfFreedom' border='1px' width='90%'>
+<caption>degreesOfFreedom</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Degrees of freedom used when scaleAllIndependently=false and scaleAll=true to override default in calculation of Hasting ratio. Ignored when less than 1, default 0.</td></tr>
+<tr><td>
+Optional input. Default: 0</td></tr>
+</table>
+<p>&nbsp</p><table id='indicator' border='1px' width='90%'>
+<caption>indicator</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.BooleanParameter.html'>beast.base.inference.parameter.BooleanParameter</a></td></tr></thead>
+<tr><td>indicates which of the dimension of the parameters can be scaled. Only used when scaleAllIndependently=false and scaleAll=false. If not specified it is assumed all dimensions are allowed to be scaled.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='rootOnly' border='1px' width='90%'>
+<caption>rootOnly</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>scale root of a tree only, ignored if tree is not specified (default false)</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='optimise' border='1px' width='90%'>
+<caption>optimise</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>flag to indicate that the scale factor is automatically changed in order to achieve a good acceptance rate (default true)</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='upper' border='1px' width='90%'>
+<caption>upper</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>Upper Limit of scale factor</td></tr>
+<tr><td>
+Optional input. Default: 0.99999999</td></tr>
+</table>
+<p>&nbsp</p><table id='lower' border='1px' width='90%'>
+<caption>lower</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>Lower limit of scale factor</td></tr>
+<tr><td>
+Optional input. Default: 1.0E-8</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

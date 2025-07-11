@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: orc.consoperators.UcldScalerOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: orc.consoperators.UcldScalerOperator</h1>
+<p>Proposes a move in state space.<br/>For standard deviation of the lognormal distribution of branch rates in uncorrelated relaxed clock model: a scale operation on ucldstdev and proposing rates that maintain the same probability.</p>
+<h2>Inputs:</h2>
+<p><a href='#rates'>rates</a>, <a href='#quantiles'>quantiles</a>, <a href='#stdev'>stdev</a>, <a href='#scaleFactor'>scaleFactor</a>, <a href='#distr'>distr</a>, <a href='#kernel'>kernel</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='rates' border='1px' width='90%'>
+<caption>rates</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>the rates associated with nodes in the tree for sampling of individual rates among branches.</td></tr>
+<tr><td>
+Either this, or quantiles needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='quantiles' border='1px' width='90%'>
+<caption>quantiles</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>the quantiles of each branch rate.</td></tr>
+<tr><td>
+Either this, or rates needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='stdev' border='1px' width='90%'>
+<caption>stdev</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.inference.parameter.RealParameter.html'>beast.base.inference.parameter.RealParameter</a></td></tr></thead>
+<tr><td>the distribution governing the rates among branches.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='scaleFactor' border='1px' width='90%'>
+<caption>scaleFactor</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>scaling factor: larger means more bold proposals</td></tr>
+<tr><td>
+Optional input. Default: 1.0</td></tr>
+</table>
+<p>&nbsp</p><table id='distr' border='1px' width='90%'>
+<caption>distr</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.distribution.ParametricDistribution</td></tr></thead>
+<tr><td>the distribution governing the rates among branches.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='kernel' border='1px' width='90%'>
+<caption>kernel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.operator.kernel.KernelDistribution</td></tr></thead>
+<tr><td>Proposal kernel for a scale on the clock SD.</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>

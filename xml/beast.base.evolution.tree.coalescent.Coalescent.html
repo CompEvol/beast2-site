@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beast.base.evolution.tree.coalescent.Coalescent</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beast.base.evolution.tree.coalescent.Coalescent</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>Probabilistic representation that can produce a log probability for instance for running an MCMC chain.<br/>Distribution on a tree, typically a prior such as Coalescent or Yule<br/>Calculates the probability of a beast.tree conditional on a population size function. Note that this does not take the number of possible tree interval/tree topology combinations in account, in other words, the constant required for making this a proper distribution that integrates to unity is not calculated (partly, because we don't know how for sequentially sampled data).</p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#populationModel'>populationModel</a>, <a href='#tree'>tree</a>, <a href='#treeIntervals'>treeIntervals</a </p>
+<p>&nbsp</p><table id='populationModel' border='1px' width='90%'>
+<caption>populationModel</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.tree.coalescent.PopulationFunction</td></tr></thead>
+<tr><td>A population size model</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='tree' border='1px' width='90%'>
+<caption>tree</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.evolution.tree.TreeInterface</td></tr></thead>
+<tr><td>tree over which to calculate a prior or likelihood</td></tr>
+<tr><td>
+Either this, or treeIntervals needs to be specified</td></tr>
+</table>
+<p>&nbsp</p><table id='treeIntervals' border='1px' width='90%'>
+<caption>treeIntervals</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.TreeIntervals.html'>beast.base.evolution.tree.TreeIntervals</a></td></tr></thead>
+<tr><td>Intervals for a phylogenetic beast tree</td></tr>
+<tr><td>
+Either this, or tree needs to be specified</td></tr>
+</table>
+</body>
+</html>

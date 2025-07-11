@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beastlabs.evolution.tree.SimpleConstrainedRandomTree</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beastlabs.evolution.tree.SimpleConstrainedRandomTree</h1>
+<p>BEASTObject that performs calculations based on the State.<br/>A node that can be part of the state.<br/>Tree (the T in BEAST) representing gene beast.tree, species beast.tree, language history, or other time-beast.tree relationships among sequence data.<br/>This class provides the basic engine for coalescent simulation of a given demographic model over a given time period. <br/>Random tree with constraints specified by one tree, just like multiple monophyly.</p>
+<p>Logable: yes, this can be used in a log.</p>
+<h2>Inputs:</h2>
+<p><a href='#constraints'>constraints</a>, <a href='#taxa'>taxa</a>, <a href='#constraint'>constraint</a>, <a href='#rootHeight'>rootHeight</a>, <a href='#branchMean'>branchMean</a>, <a href='#limitCalibrations'>limitCalibrations</a>, <a href='#weights'>weights</a>, <a href='#initial'>initial</a>, <a href='#trait'>trait</a>, <a href='#taxonset'>taxonset</a>, <a href='#nodetype'>nodetype</a>, <a href='#adjustTreeNodeHeights'>adjustTreeNodeHeights</a>, <a href='#estimate'>estimate</a </p>
+<p>&nbsp</p><table id='constraints' border='1px' width='90%'>
+<caption>constraints</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beastlabs.math.distributions.MultiMonophyleticConstraint.html'>beastlabs.math.distributions.MultiMonophyleticConstraint***</a></td></tr></thead>
+<tr><td>all constraints as encoded by one unresolved tree.</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+<p>&nbsp</p><table id='taxa' border='1px' width='90%'>
+<caption>taxa</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.alignment.Alignment.html'>beast.base.evolution.alignment.Alignment</a></td></tr></thead>
+<tr><td>set of taxa to initialise tree specified by alignment</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='constraint' border='1px' width='90%'>
+<caption>constraint</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.MRCAPrior.html'>beast.base.evolution.tree.MRCAPrior***</a></td></tr></thead>
+<tr><td>specifies (monophyletic or height distribution) constraints on internal nodes</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='rootHeight' border='1px' width='90%'>
+<caption>rootHeight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>If specified the tree will be scaled to match the root height, if constraints allow this</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='branchMean' border='1px' width='90%'>
+<caption>branchMean</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>Branches will be exponentially distributed with this mean (bounds permitting).</td></tr>
+<tr><td>
+Optional input. Default: -1.0</td></tr>
+</table>
+<p>&nbsp</p><table id='limitCalibrations' border='1px' width='90%'>
+<caption>limitCalibrations</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>Initialize node height to be in the center of its calibration. For example, a value of 0.9 will restrict the height to be in the [5%,95%] percentile range. 1 means takes the full range.</td></tr>
+<tr><td>
+Optional input. Default: 0.95</td></tr>
+</table>
+<p>&nbsp</p><table id='weights' border='1px' width='90%'>
+<caption>weights</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beastlabs.evolution.operators.DistanceProvider</td></tr></thead>
+<tr><td>if provided, used to inform sampling distribution such that nodes that are closer have a higher chance of forming a clade</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='initial' border='1px' width='90%'>
+<caption>initial</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.Tree.html'>beast.base.evolution.tree.Tree</a></td></tr></thead>
+<tr><td>tree to start with</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='trait' border='1px' width='90%'>
+<caption>trait</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.tree.TraitSet.html'>beast.base.evolution.tree.TraitSet***</a></td></tr></thead>
+<tr><td>trait information for initializing traits (like node dates) in the tree</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='taxonset' border='1px' width='90%'>
+<caption>taxonset</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: <a href='beast.base.evolution.alignment.TaxonSet.html'>beast.base.evolution.alignment.TaxonSet</a></td></tr></thead>
+<tr><td>set of taxa that correspond to the leafs in the tree</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='nodetype' border='1px' width='90%'>
+<caption>nodetype</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
+<tr><td>type of the nodes in the beast.tree</td></tr>
+<tr><td>
+Optional input. Default: beast.base.evolution.tree.Node</td></tr>
+</table>
+<p>&nbsp</p><table id='adjustTreeNodeHeights' border='1px' width='90%'>
+<caption>adjustTreeNodeHeights</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>if true (default), then tree node heights are adjusted to avoid non-positive branch lengths. If you want to maintain zero branch lengths then you must set this to false.</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='estimate' border='1px' width='90%'>
+<caption>estimate</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>whether to estimate this item or keep constant to its initial value</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+</body>
+</html>

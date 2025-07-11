@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>BEAST v2.7.8 Documentation: beast.base.evolution.operator.kernel.AdaptableVarianceMultivariateNormalOperator</title>
+<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
+</head>
+<body>
+<h1>BEAST v2.7.8 Documentation: beast.base.evolution.operator.kernel.AdaptableVarianceMultivariateNormalOperator</h1>
+<p>Proposes a move in state space.<br/>Operator with a flexible kernel distribution<br/>Operator that moves many parameters (possibly, after transformation to make them more normally distributed). It learns the correlation structure among these parameters during the MCMC run and updates parameters accordingly. doi:10.1093/bioinformatics/btx088</p>
+<h2>Inputs:</h2>
+<p><a href='#transformations'>transformations</a>, <a href='#scaleFactor'>scaleFactor</a>, <a href='#coefficient'>coefficient</a>, <a href='#beta'>beta</a>, <a href='#initial'>initial</a>, <a href='#burnin'>burnin</a>, <a href='#every'>every</a>, <a href='#optimise'>optimise</a>, <a href='#store'>store</a>, <a href='#allowNonsense'>allowNonsense</a>, <a href='#kernelDistribution'>kernelDistribution</a>, <a href='#weight'>weight</a </p>
+<p>&nbsp</p><table id='transformations' border='1px' width='90%'>
+<caption>transformations</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.operator.kernel.Transform***</td></tr></thead>
+<tr><td>one or more transformed parameters to be moved.
+For scale parameters use LogTransform (where e.g. scale operators were used).
+For location parameter use NoTransform (where e.g. random walk operators were used).
+For parameters that sum to a constant use LogConstrainedSumTransform  (where e.g. delta-exchange operators were used).</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='scaleFactor' border='1px' width='90%'>
+<caption>scaleFactor</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>start scaling factor, larger values give bolder moves (this is tuned during the run)</td></tr>
+<tr><td>
+Optional input. Default: 1.0</td></tr>
+</table>
+<p>&nbsp</p><table id='coefficient' border='1px' width='90%'>
+<caption>coefficient</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>determines diagonal correlation for variance matrix</td></tr>
+<tr><td>
+Optional input. Default: 1.0</td></tr>
+</table>
+<p>&nbsp</p><table id='beta' border='1px' width='90%'>
+<caption>beta</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>fraction of proposal determined by non-covariance matrix</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='initial' border='1px' width='90%'>
+<caption>initial</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Number of proposals before covariance matrix is considered in proposal. Must be larger than burnin, if specified. If not specified (or < 0), the operator uses 200 * parameter dimension</td></tr>
+<tr><td>
+Optional input. Default: -1</td></tr>
+</table>
+<p>&nbsp</p><table id='burnin' border='1px' width='90%'>
+<caption>burnin</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>Number of proposals that are ignored before covariance matrix is being updated. If initial is not specified, uses half the default initial value (which equals 100 * parameter dimension)</td></tr>
+<tr><td>
+Optional input. Default: 0</td></tr>
+</table>
+<p>&nbsp</p><table id='every' border='1px' width='90%'>
+<caption>every</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
+<tr><td>update interval for covariance matrix, default 1 (that is, every step)</td></tr>
+<tr><td>
+Optional input. Default: 1</td></tr>
+</table>
+<p>&nbsp</p><table id='optimise' border='1px' width='90%'>
+<caption>optimise</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>flag to indicate that the scale factor is automatically changed in order to achieve a good acceptance rate (default true)</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='store' border='1px' width='90%'>
+<caption>store</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>flag to indicate if covariance and mean should be stored to the state file (default true)</td></tr>
+<tr><td>
+Optional input. Default: true</td></tr>
+</table>
+<p>&nbsp</p><table id='allowNonsense' border='1px' width='90%'>
+<caption>allowNonsense</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
+<tr><td>flag to indicate if transforms may accept nonsensical inputs eg. 0 parameters (default false)</td></tr>
+<tr><td>
+Optional input. Default: false</td></tr>
+</table>
+<p>&nbsp</p><table id='kernelDistribution' border='1px' width='90%'>
+<caption>kernelDistribution</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: beast.base.inference.operator.kernel.KernelDistribution</td></tr></thead>
+<tr><td>provides sample distribution for proposals</td></tr>
+<tr><td>
+Optional input</td></tr>
+</table>
+<p>&nbsp</p><table id='weight' border='1px' width='90%'>
+<caption>weight</caption>
+<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Double</td></tr></thead>
+<tr><td>weight with which this operator is selected</td></tr>
+<tr><td>
+Required input</td></tr>
+</table>
+</body>
+</html>
