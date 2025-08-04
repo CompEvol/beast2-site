@@ -1,54 +1,13 @@
 <html>
-<head>
-<title>BEAST v2.6.7 Documentation: beast.app.beauti.BeautiConnector</title>
-<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
-</head>
+<head><title>deprecated v2.6 documentation</title></head>
 <body>
-<h1>BEAST v2.6.7 Documentation: beast.app.beauti.BeautiConnector</h1>
-<p>Specifies which part of the template get connected to the main network</p>
-<h2>Inputs:</h2>
-<p><a href='#method'>method</a>, <a href='#srcID'>srcID</a>, <a href='#targetID'>targetID</a>, <a href='#inputName'>inputName</a>, <a href='#value'>value</a>, <a href='#if'>if</a </p>
-<p>&nbsp</p><table id='method' border='1px' width='90%'>
-<caption>method</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
-<tr><td>name of static method that should be called with BeautiDoc as argument. For example beast.app.beauti.SiteModelInputEditor.custmoConnector</td></tr>
-<tr><td>
-Either this, or inputName needs to be specified</td></tr>
-</table>
-<p>&nbsp</p><table id='srcID' border='1px' width='90%'>
-<caption>srcID</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
-<tr><td>ID of the beastObject to be connected</td></tr>
-<tr><td>
-Either this, or method needs to be specified</td></tr>
-</table>
-<p>&nbsp</p><table id='targetID' border='1px' width='90%'>
-<caption>targetID</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
-<tr><td>ID of beastObject to connect to</td></tr>
-<tr><td>
-Either this, or method needs to be specified</td></tr>
-</table>
-<p>&nbsp</p><table id='inputName' border='1px' width='90%'>
-<caption>inputName</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
-<tr><td>name of the input of the beastObject to connect to</td></tr>
-<tr><td>
-Either this, or method needs to be specified</td></tr>
-</table>
-<p>&nbsp</p><table id='value' border='1px' width='90%'>
-<caption>value</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
-<tr><td>associate some tip text with the srcID beastObject, useful for displaying prior and operator specific information</td></tr>
-<tr><td>
-Optional input</td></tr>
-</table>
-<p>&nbsp</p><table id='if' border='1px' width='90%'>
-<caption>if</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
-<tr><td>condition under which this connector should be executed.These should be of the form inposterior(id) or id/input=value, e.g. inposterior(kappa), kappa/estimate=true. inlikelihood(id) to check there is a beastObject with suplied id that is predecessor of likelihood. nooperator(id) to check there is no operator with suplied id. isInitialising to execute only when subtemplate is first instantiated. For partition specific ids, use $(n), e.g. e.g. kappa.$(n)/estimate=true. For multiple conditions, separate by 'and', e.g. inposterior(kappa.$(n)) and kappa.$(n)/estimate=true</td></tr>
-<tr><td>
-Optional input</td></tr>
-</table>
+Documentation for beast.app.beauti.BeautiConnector is deprecated and replaced by 
+<a href="beastfx.app.inputeditor.BeautiConnector.html">beastfx.app.inputeditor.BeautiConnector</a>.
+
+<script>
+window.onload = function () { 
+	window.location="/xml/beastfx.app.inputeditor.BeautiConnector.html"
+}
+</script>
 </body>
 </html>

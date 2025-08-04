@@ -1,89 +1,13 @@
 <html>
-<head>
-<title>BEAST v2.6.7 Documentation: beast.app.beauti.BeautiPanelConfig</title>
-<link rel='StyleSheet' href='/tmp/styles.css' type='text/css'>
-</head>
+<head><title>deprecated v2.6 documentation</title></head>
 <body>
-<h1>BEAST v2.6.7 Documentation: beast.app.beauti.BeautiPanelConfig</h1>
-<p>Defines properties for custom panels in Beauti</p>
-<h2>Inputs:</h2>
-<p><a href='#panelname'>panelname</a>, <a href='#tiptext'>tiptext</a>, <a href='#path'>path</a>, <a href='#hasPartitions'>hasPartitions</a>, <a href='#addButtons'>addButtons</a>, <a href='#isVisible'>isVisible</a>, <a href='#icon'>icon</a>, <a href='#forceExpansion'>forceExpansion</a>, <a href='#type'>type</a>, <a href='#labelWidth'>labelWidth</a>, <a href='#buttonStatus'>buttonStatus</a </p>
-<p>&nbsp</p><table id='panelname' border='1px' width='90%'>
-<caption>panelname</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
-<tr><td>name of the panel, used to label the panel and in the visibility menu</td></tr>
-<tr><td>
-Required input</td></tr>
-</table>
-<p>&nbsp</p><table id='tiptext' border='1px' width='90%'>
-<caption>tiptext</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
-<tr><td>tiptext shown when hovering over the tab</td></tr>
-<tr><td>
-Required input</td></tr>
-</table>
-<p>&nbsp</p><table id='path' border='1px' width='90%'>
-<caption>path</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
-<tr><td>path of the BEASTObject to be shown in this panel, in xpath-like format. For example operator to edit the operator input of the top level run element. distribution/distribution[id='prior'] for prior distributions.distribution/distribution[id='posterior']/traitset all posterior inputs with name traitset</td></tr>
-<tr><td>
-Required input</td></tr>
-</table>
-<p>&nbsp</p><table id='hasPartitions' border='1px' width='90%'>
-<caption>hasPartitions</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: beast.app.beauti.BeautiPanelConfig$Partition</td></tr></thead>
-<tr><td>flag to indicate the panel hasa partition context (and hence a partition list), deafult none.  Possible values: [none, Partition, SiteModel, ClockModel, Tree]</td></tr>
-<tr><td>
-Optional input</td></tr>
-</table>
-<p>&nbsp</p><table id='addButtons' border='1px' width='90%'>
-<caption>addButtons</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
-<tr><td>flag to indicate buttons should be added, default true</td></tr>
-<tr><td>
-Optional input. Default: true</td></tr>
-</table>
-<p>&nbsp</p><table id='isVisible' border='1px' width='90%'>
-<caption>isVisible</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Boolean</td></tr></thead>
-<tr><td>flag to indicate panel is visible on startup, default true</td></tr>
-<tr><td>
-Optional input. Default: true</td></tr>
-</table>
-<p>&nbsp</p><table id='icon' border='1px' width='90%'>
-<caption>icon</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
-<tr><td>icon shown in the panel relative to /beast/app/beauti, default 0.png</td></tr>
-<tr><td>
-Optional input. Default: 0.png</td></tr>
-</table>
-<p>&nbsp</p><table id='forceExpansion' border='1px' width='90%'>
-<caption>forceExpansion</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: beast.app.draw.InputEditor$ExpandOption</td></tr></thead>
-<tr><td>whether to expand the input(s)This can be [TRUE, TRUE_START_COLLAPSED, FALSE, IF_ONE_ITEM] (default 'FALSE')</td></tr>
-<tr><td>
-Optional input</td></tr>
-</table>
-<p>&nbsp</p><table id='type' border='1px' width='90%'>
-<caption>type</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.String</td></tr></thead>
-<tr><td>type used for finding the appropriate beastObject editor. By default, type is determined by the input type of the last component of the path</td></tr>
-<tr><td>
-Optional input</td></tr>
-</table>
-<p>&nbsp</p><table id='labelWidth' border='1px' width='90%'>
-<caption>labelWidth</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: java.lang.Integer</td></tr></thead>
-<tr><td>width of labels used to show name of inputs in input editors</td></tr>
-<tr><td>
-Optional input. Default: 150</td></tr>
-</table>
-<p>&nbsp</p><table id='buttonStatus' border='1px' width='90%'>
-<caption>buttonStatus</caption>
-<thead><tr bgcolor='#AAAAAA'><td>type: beast.app.draw.InputEditor$ButtonStatus</td></tr></thead>
-<tr><td>whether to show add and delete buttons. This can be [ALL, NONE, DELETE_ONLY, ADD_ONLY] (default 'ALL')</td></tr>
-<tr><td>
-Optional input</td></tr>
-</table>
+Documentation for beast.app.beauti.BeautiPanelConfig is deprecated and replaced by 
+<a href="beastfx.app.inputeditor.BeautiPanelConfig.html">beastfx.app.inputeditor.BeautiPanelConfig</a>.
+
+<script>
+window.onload = function () { 
+	window.location="/xml/beastfx.app.inputeditor.BeautiPanelConfig.html"
+}
+</script>
 </body>
 </html>
