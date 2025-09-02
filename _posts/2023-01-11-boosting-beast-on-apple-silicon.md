@@ -215,6 +215,10 @@ OPENJFX_LICENSE	bin		legal		readme.txt
 
 That is, you should see a `bin` directory containing `java` executable.
 
+Update 1/9/2025: the ARM versions of current versions of the JDK (e.g. Java 21) appear to have caught up, and are now equally fast as running in Docker. 
+Therefore, it may be worth the effort of replacing the JRE that comes with the BEAST install with one that is more modern and get an instant 20% or so boost in performance.
+Since BEAST2 aims for Java 17, there is potential for some features to not work, but checking the list of changes I could not find anything detrimental, and a quick BEAST run gave exact the same results under Java 17 as Java 21, so I think things are OK.
+
 
 
 
