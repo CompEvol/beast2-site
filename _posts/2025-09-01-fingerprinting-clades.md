@@ -23,7 +23,7 @@ the fingerprint is in fact always equal to the xor of all the taxa in the clade.
 The most expensive test in building a CCD0 is determining whether $$C1\cup C2=S$$ under the condition $$C1\cap C2=\emptyset$$, since this requires BitSet operators that are computationally expensive.
 Fortunately, fingerprints can help out here: if $$C1\cup C2=S$$ then
 $$f(C1) \oplus f(C2) = f(S)$$ were $$f(.)$$ is the fingerprint of a clade.
-This is a necessary but not sufficient condition to test $$C1\cup C2=S$$ with $$C1$$ and $$C2$$ disjoint: if $$C1=\{A\}, C2=\{A,B,C\}, S=\{A,C\}$$, that is $$C2$$ is the parent clade of $$C1$$ and $$S$$, we still have $$f(C1) \oplus f(C2) = f(S)$$ since $$f(C1) \oplus f(S) = f(C2)$$.
+This is a necessary but not sufficient condition to test $$C1\cup C2=S$$ with $$C1$$ and $$C2$$ disjoint: if $$C1=\{A\}, C2=\{A,B,C\}, S=\{B,C\}$$, that is $$C2$$ is the parent clade of $$C1$$ and $$S$$, we still have $$f(C1) \oplus f(C2) = f(S)$$ since $$f(C1) \oplus f(S) = f(C2)$$.
 Another necessary condition is that the size of $$C1$$ plus the size of $$C2$$ must be equal to the size of $$S$$.
 Note that this implicitly tests that $$C1$$ and $$C2$$ are disjoint.
 If one of these conditions fails, we can be sure there is no match.
