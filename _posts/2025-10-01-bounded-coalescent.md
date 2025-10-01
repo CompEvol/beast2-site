@@ -3,7 +3,7 @@ layout: post
 title: Bounded coalescent
 tags: []
 ---
-<p style="color:gray">30 September 2025 by <a href='mailto:r.bouckaert@auckland.ac.nz'>Remco Bouckaert</a></p>
+<p style="color:gray">1 October 2025 by <a href='mailto:r.bouckaert@auckland.ac.nz'>Remco Bouckaert</a></p>
 
 ## Calculating the time bounded probability of a constant population coalescent tree
 
