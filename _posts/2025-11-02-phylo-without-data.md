@@ -43,6 +43,7 @@ Barido-Sottani J, Vaughan TG, Stadler T. A multitype birth–death model for Bay
 
 Anastasia Ejova, Oliver Sheehan, Simon J Greenhill, Jakub Cigán, Silvie Kotherová, Jan Krátký, Radek Kundt, Eva Kundtová Klocová, Joseph Watts, Remco Bouckaert, Quentin D Atkinson, Joseph Bulbulia, Russell D Gray.
 Three evolutionary radiations shaped the evolution of global religious diversity.
-Accepted at Evolutionary Human Sciences 2025
+Evolutionary Human Sciences, Volume 7, 2025, e43,
+<a href="https://doi.org/10.1017/ehs.2025.10027">doi:10.1017/ehs.2025.10027</a>.
 
 Russel PM, Brewer BJ, Klaere S, Bouckaert RR. Model selection and parameter inference in phylogenetics using nested sampling. Systematic biology. 2019 Mar 1;68(2):219-33.
