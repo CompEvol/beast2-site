@@ -10,11 +10,11 @@ For lower dimensional parameters, higher acceptance probabilities are optimal:
 
 ```
 Dimension	Optimal Acceptance Rate
-1			~ 0.441
-2			~ 0.352
-5			~ 0.279
-10			~ 0.257
-∞	          0.234
+1			  0.441
+2			  0.352
+5			  0.279
+10			  0.257
+∞	          0.234
 ```
 
 This raises the question whether this is the same for Bactrian random walk operators.
@@ -30,7 +30,7 @@ The plot shows the ESS for the posterior as well as for the first dimension of t
 Since the difference dimensions are IID, ESSs for other dimensions can be expected to be the same.
 ESSs for the posterior and the parameter are fairly close to each other.
 
-![Operator acceptance probability results plot](/images/OptimalBactrianRandomWalkExperiment.svg)
+![Operator acceptance probability results plot](/images/OptimalBactrianRandomWalkExperiment.png)
 
 
 Note that the y-axis is on a log-scale.
