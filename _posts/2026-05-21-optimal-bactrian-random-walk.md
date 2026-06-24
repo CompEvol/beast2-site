@@ -14,7 +14,7 @@ Dimension	Optimal Acceptance Rate
 2			  0.352
 5			  0.279
 10			  0.257
-∞	          0.234
+∞			  0.234
 ```
 
 This raises the question whether this is the same for Bactrian random walk operators.
