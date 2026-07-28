@@ -19,12 +19,12 @@ Dimension	Optimal Acceptance Rate
 
 This raises the question whether this is the same for Bactrian random walk operators.
 Here, we experimentally verify what makes for optimal values.
-We sample from a $k$ dimensional parameter that is IID standard normal distributed, and use a Bactrian random walk operator that is modified to sample all $k$ dimensions at the same time.
+We sample from a $$k$$ dimensional parameter that is IID standard normal distributed, and use a Bactrian random walk operator that is modified to sample all $$k$$ dimensions at the same time.
 The standard BEAST random walk operator randomly picks a single dimension and only does a proposal for the chosen dimension, but to be comparable to the Gelman et al. (1997) set up we use the updated version.
 
 
 
-We vary the dimension $k$ from 1, 2, 4, 8, 16 and 32 and the target acceptance probability from 0.05 to 0.5 in steps of 0.05, giving 9 different runs.
+We vary the dimension $$k$$ from 1, 2, 4, 8, 16 and 32 and the target acceptance probability from 0.05 to 0.5 in steps of 0.05, giving 9 different runs.
 The observed probabilities varied a bit from the target acceptance probabilities, and these empirical acceptance probabilities are used in the graph.
 The plot shows the ESS for the posterior as well as for the first dimension of the parameter.
 Since the difference dimensions are IID, ESSs for other dimensions can be expected to be the same.
@@ -34,7 +34,7 @@ ESSs for the posterior and the parameter are fairly close to each other.
 
 
 Note that the y-axis is on a log-scale.
-Perhaps somewhat surprisigin is that with every doubling of the parameter dimension $k$, the ESS halves.
+Perhaps somewhat surprisigin is that with every doubling of the parameter dimension $$k$$, the ESS halves.
 So, moving more dimensions at the same time does not increase ESS, probably because the window-size of the random walk operator is tuned to become smaller, so overall amount of state space traversed per step is not increased.
 
 The plot shows that having a target acceptance probability of 0.3 works well over a wide range of parameter dimensions.
